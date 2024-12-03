@@ -8,10 +8,35 @@ public abstract class ContentCreation {
     protected Content content;
     protected LocalDateTime timeStamp;
     
-    public ContentCreation(String contentID, User contentPublisher, Content content, LocalDateTime timeStamp) {
+    public String getContentID() {
+        return contentID;
+    }
+
+    public void setContentID(String contentID) {
         this.contentID = contentID;
+    }
+
+    public User getContentPublisher() {
+        return contentPublisher;
+    }
+
+    public void setContentPublisher(User contentPublisher) {
         this.contentPublisher = contentPublisher;
+    }
+
+    public Content getContent() {
+        return content;
+    }
+
+    public void setContent(Content content) {
         this.content = content;
-        this.timeStamp = LocalDateTime.now();
+    }
+
+    public LocalDateTime getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(LocalDateTime timeStamp) {
+        this.timeStamp = timeStamp;
     }
 }
