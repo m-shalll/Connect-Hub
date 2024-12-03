@@ -8,10 +8,10 @@ public class User {
     String dateOfBirth;
     String status;
 
-    public User(String password, String email, String status, String dateOfBirth, String userName, String userId) {
+    public User(String password, String email, String dateOfBirth, String userName, String userId) {
         this.password = password;
         Email = email;
-        this.status = status;
+        this.status = "online";
         this.dateOfBirth = dateOfBirth;
         this.userName = userName;
         this.userId = userId;
