@@ -1,17 +1,17 @@
 
 package Backend;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-public class ContentCreation {
-    private String contentID;
+public abstract class ContentCreation {
+    protected String contentID;
     private User contentPublisher;
-    private Content content;
-    private LocalDate timeStamp;
+    protected Content content;
+    protected LocalDateTime timeStamp;
     
-    public ContentCreation(String contentID, User contentPublisher, Content content, LocalDate timeStamp) {
+    public ContentCreation(String contentID, User contentPublisher, Content content, LocalDateTime timeStamp) {
         this.contentID = contentID;
         this.contentPublisher = contentPublisher;
         this.content = content;
-        this.timeStamp = timeStamp;
+        this.timeStamp = LocalDateTime.now();
     }
 }
