@@ -1,0 +1,45 @@
+package Backend;
+
+import java.security.MessageDigest;
+import java.security.SecureRandom;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+
+public class PasswordManager {
+
+    public PasswordManager() {}
+
+    public String generateSalt(int length) {
+        try {
+            byte[] saltBytes = new byte[length];
+            SecureRandom secureRandom = new SecureRandom();
+            secureRandom.nextBytes(saltBytes);
+            return Base64.getEncoder().encodeToString(saltBytes);  // Encode as Base64 to store as string
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    // Hash the password with the salt
+    private String hashPassword(String password, String salt) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");  // Use SHA-256 for hashing
+            digest.update(salt.getBytes());  // Add the salt to the hash
+            byte[] hashedBytes = digest.digest(password.getBytes());  // Hash the password with the salt
+            return Base64.getEncoder().encodeToString(hashedBytes);  // Convert the hash to Base64 string
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Error hashing the password", e);
+        }
+    }
+
+    public Boolean verifyPassword(String password, String hashedPassword, String salt) {
+        return hashedPassword.equals(hashPassword(password, salt));
+    }
+
+    public String updatePassword(String password, String salt) {
+        return hashPassword(password, salt);
+    }
+
+
+}

@@ -1,49 +1,44 @@
 package Backend;
-import java.security.MessageDigest;
-import java.security.SecureRandom;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
+
 public class User {
+    @JsonProperty
     private final String userId;
+    @JsonProperty("email")
     private String Email;
+    @JsonProperty("username")
     private String userName;
+    @JsonProperty
     private String password;
+    @JsonProperty("Date-of-birth")
     private String dateOfBirth;
+    @JsonProperty
     private String status;
+    @JsonProperty
     private String salt;
-    private String hashedPassword;
+    //private String hashedPassword; unnecessary
+    private PasswordManager passwordManager  = new PasswordManager();
 
     public User(String password, String email, String dateOfBirth, String userName, String userId) {
-        this.password = password;
+        //this.password = password; unnecessary
         this.Email = email;
         this.status = "online";
         this.dateOfBirth = dateOfBirth;
         this.userName = userName;
         this.userId = userId;
-        this.salt=generateSalt(16);
-        this.hashedPassword=hashPassword(password, this.salt);;
-    }
-    private String generateSalt(int length) {
-        byte[] saltBytes = new byte[length];
-        SecureRandom secureRandom = new SecureRandom();
-        secureRandom.nextBytes(saltBytes);
-        return Base64.getEncoder().encodeToString(saltBytes);  // Encode as Base64 to store as string
+        this.salt = passwordManager.generateSalt(16);
+        this.password = passwordManager.updatePassword(password, this.salt);
     }
 
-    // Hash the password with the salt
-    private String hashPassword(String password, String salt) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");  // Use SHA-256 for hashing
-            digest.update(salt.getBytes());  // Add the salt to the hash
-            byte[] hashedBytes = digest.digest(password.getBytes());  // Hash the password with the salt
-            return Base64.getEncoder().encodeToString(hashedBytes);  // Convert the hash to Base64 string
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Error hashing the password", e);
-        }
-    }
     public String getUserId() {
         return userId;
     }
+    public String  getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+    public String getSalt() { return salt; }
+    public void setSalt() { this.salt = passwordManager.generateSalt(16); }
     public void setStatusOn(){
         this.status="online";
     }
