@@ -1,13 +1,21 @@
 
 package Backend;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDateTime;
 
 public abstract class ContentCreation {
+    @JsonProperty
     protected String contentID;
-    private User contentPublisher;
+    @JsonProperty
+    private String contentPublisher;
+    @JsonProperty
     protected Content content;
+    @JsonProperty
     protected LocalDateTime timeStamp;
     
+    public ContentCreation(){
+        timeStamp = LocalDateTime.now();
+    }
     public String getContentID() {
         return contentID;
     }
@@ -16,11 +24,11 @@ public abstract class ContentCreation {
         this.contentID = contentID;
     }
 
-    public User getContentPublisher() {
+    public String getContentPublisher() {
         return contentPublisher;
     }
 
-    public void setContentPublisher(User contentPublisher) {
+    public void setContentPublisher(String contentPublisher) {
         this.contentPublisher = contentPublisher;
     }
 
