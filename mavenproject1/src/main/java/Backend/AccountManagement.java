@@ -20,7 +20,7 @@ public class AccountManagement {
         }
     }
     // login method changes status to online
-    private static void logIn(String userId) throws IOException {
+    public static void logIn(String userId) throws IOException {
         ArrayList<User> users=loadUsers();
         for(User user:users){
             if(user.getUserId().equals(userId)){
@@ -30,7 +30,7 @@ public class AccountManagement {
         }
     }
     // logout method changes status to offline
-    private static void logOut(String userId) throws IOException {
+    public static void logOut(String userId) throws IOException {
         ArrayList<User> users=loadUsers();
         for(User user:users){
             if(user.getUserId().equals(userId)){
@@ -40,7 +40,7 @@ public class AccountManagement {
         }
     }
     // loadUsers methods returns arraylist of all the users from json file
-    private static ArrayList<User> loadUsers() throws IOException {
+    public static ArrayList<User> loadUsers() throws IOException {
         File file = new File(fileName);
         if (!file.exists()) {
             return new ArrayList<>();
@@ -48,7 +48,7 @@ public class AccountManagement {
         return objectMapper.readValue(file, new TypeReference<ArrayList<User>>() {});
     }
     // saveUsers methods takes arraylist of users and saves them in json file
-    private static void saveUsers(ArrayList<User> users) throws IOException {
+    public static void saveUsers(ArrayList<User> users) throws IOException {
         File file = new File(fileName);
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, users);
     }
