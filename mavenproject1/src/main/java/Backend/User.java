@@ -4,7 +4,7 @@ import java.security.SecureRandom;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 public class User {
-    private final String userId;
+    private String userId;
     private String Email;
     private String userName;
     private String password;
@@ -12,17 +12,6 @@ public class User {
     private String status;
     private String salt;
     private String hashedPassword;
-
-    public User(String password, String email, String dateOfBirth, String userName, String userId) {
-        this.password = password;
-        this.Email = email;
-        this.status = "online";
-        this.dateOfBirth = dateOfBirth;
-        this.userName = userName;
-        this.userId = userId;
-        this.salt=generateSalt(16);
-        this.hashedPassword=hashPassword(password, this.salt);;
-    }
     private String generateSalt(int length) {
         byte[] saltBytes = new byte[length];
         SecureRandom secureRandom = new SecureRandom();
@@ -97,5 +86,12 @@ public class User {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+    public void setUserHashedPassword(String userId) {
+        this.hashedPassword = userId;
     }
 }
