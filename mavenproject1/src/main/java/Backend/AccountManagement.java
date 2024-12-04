@@ -11,7 +11,13 @@ public class AccountManagement {
     private static ObjectMapper objectMapper = new ObjectMapper();
     // signup method creates a user object and adds it to json file
     public void signUp(String password, String email, String dateOfBirth, String userName, String userId){
-        User newUser = new User( password,  email,  dateOfBirth,  userName,  userId);
+        User newUser = new UserBuilder()
+                .setPassword(password)
+                .setEmail(email)
+                .setDateOfBirth(dateOfBirth)
+                .setName(userId)
+                .setId(userId)
+                .build();
         this.users.add(newUser);
         try {
             saveUsers(this.users);
@@ -20,7 +26,7 @@ public class AccountManagement {
         }
     }
     // login method changes status to online
-    public static boolean logIn(String userId) throws IOException {
+    public boolean logIn(String userId) throws IOException {
         ArrayList<User> users=loadUsers();
         for(User user:users){
             if(user.getUserId().equals(userId)){
@@ -32,7 +38,7 @@ public class AccountManagement {
         return false;
     }
     // logout method changes status to offline
-    public static void logOut(String userId) throws IOException {
+    public void logOut(String userId) throws IOException {
         ArrayList<User> users=loadUsers();
         for(User user:users){
             if(user.getUserId().equals(userId)){
