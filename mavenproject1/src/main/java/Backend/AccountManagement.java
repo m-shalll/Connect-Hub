@@ -20,14 +20,16 @@ public class AccountManagement {
         }
     }
     // login method changes status to online
-    public static void logIn(String userId) throws IOException {
+    public static boolean logIn(String userId) throws IOException {
         ArrayList<User> users=loadUsers();
         for(User user:users){
             if(user.getUserId().equals(userId)){
                 user.setStatusOn();
                 saveUsers(users);
+                return true;
             }
         }
+        return false;
     }
     // logout method changes status to offline
     public static void logOut(String userId) throws IOException {

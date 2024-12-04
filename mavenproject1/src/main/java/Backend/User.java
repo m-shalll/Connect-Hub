@@ -50,4 +50,52 @@ public class User {
     public void setStatusOff(){
         this.status="offline";
     }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
 }
