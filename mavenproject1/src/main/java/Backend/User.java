@@ -4,6 +4,7 @@ import java.security.SecureRandom;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.ArrayList;
+import java.util.*;
 
 public class User {
     private final String userId;
@@ -15,6 +16,32 @@ public class User {
     private String salt;
     private String hashedPassword;
     private ArrayList<User> friends=new ArrayList<>();
+    private ArrayList<User> blocked=new ArrayList<>();
+    private Map<User, String> friendReq=new HashMap<>(); 
+
+    public ArrayList<User> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(ArrayList<User> friends) {
+        this.friends = friends;
+    }
+
+    public ArrayList<User> getBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(ArrayList<User> blocked) {
+        this.blocked = blocked;
+    }
+
+    public Map<User, String> getFriendReq() {
+        return friendReq;
+    }
+
+    public void setFriendReq(Map<User, String> friendReq) {
+        this.friendReq = friendReq;
+    }
 
     public User(String password, String email, String dateOfBirth, String userName, String userId) {
         this.password = password;

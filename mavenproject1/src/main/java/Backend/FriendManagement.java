@@ -3,11 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Backend;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.core.type.TypeReference;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 /**
  *
  * @author AbdElrahman
@@ -50,15 +49,16 @@ public class FriendManagement {
 
     }
     //Friends suggestions
-   /* public ArrayList<User> suggestedFriends(User x){
-   ArrayList<User> y = new ArrayList<>(x.getFriends());
-   for(User i:y){ 
-   
+    public ArrayList<User> suggestedFriends(User x,ArrayList<User>users){
+   ArrayList<User> suggested = new ArrayList<>();
+   for(User i:users){
+       if(!x.getFriends().contains(i)&&x.getBlocked().contains(i)&&!x.equals(i))
+   suggested.add(i);
    }
     
     
-    
-    }*/
+    return suggested;
+    }
     //Remove a friend
     public void removeFriend(User u,User rem)throws IOException{
     if(u.getFriends().contains(rem)){
