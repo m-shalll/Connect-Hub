@@ -3,6 +3,8 @@ import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.ArrayList;
+
 public class User {
     private final String userId;
     private String Email;
@@ -12,6 +14,7 @@ public class User {
     private String status;
     private String salt;
     private String hashedPassword;
+    private ArrayList<User> friends=new ArrayList<>();
 
     public User(String password, String email, String dateOfBirth, String userName, String userId) {
         this.password = password;
