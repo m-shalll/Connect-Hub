@@ -45,7 +45,7 @@ public class PostDatabase {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             posts = objectMapper.readValue(file,objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Post.class));
         } catch (IOException e) {
-            System.out.println("Error in loading posts: " + e.getMessage());
+            System.out.println("Error in loading posts " + e.getMessage());
         }
         return posts; 
     }
