@@ -14,6 +14,7 @@ import java.util.ArrayList;
  * @author AbdElrahman
  */
 public class FriendsSearch extends javax.swing.JDialog {
+    //placeholder until shal completes it
 ArrayList<User> users=new ArrayList<>();
     /**
      * Creates new form NewJDialog
@@ -34,8 +35,8 @@ ArrayList<User> users=new ArrayList<>();
 
         jTextField1 = new javax.swing.JTextField();
         Search = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        Profile = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -52,7 +53,14 @@ ArrayList<User> users=new ArrayList<>();
             }
         });
 
-        jScrollPane1.setViewportView(jList1);
+        jComboBox1.setSelectedItem("");
+
+        Profile.setText("Go to profile");
+        Profile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProfileActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,7 +69,10 @@ ArrayList<User> users=new ArrayList<>();
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(Profile))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
@@ -75,9 +86,11 @@ ArrayList<User> users=new ArrayList<>();
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Search))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Profile))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
 
         pack();
@@ -93,14 +106,23 @@ ArrayList<User> users=new ArrayList<>();
             JOptionPane.showMessageDialog(this, "Some fields are empty","Error",JOptionPane.ERROR_MESSAGE);
         }
         else{
-        
-        
-        
-        
+        for(int i=0;i<users.size();i++){
+        if(users.get(i).getUserName().startsWith(s))
+            jComboBox1.addItem(users.get(i).getUserName());
+        }
+
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_SearchActionPerformed
+
+    private void ProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileActionPerformed
+       String s=(String)jComboBox1.getSelectedItem();
+       
+       
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProfileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,9 +168,9 @@ ArrayList<User> users=new ArrayList<>();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Profile;
     private javax.swing.JButton Search;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
