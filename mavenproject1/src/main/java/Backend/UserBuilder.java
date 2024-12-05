@@ -28,10 +28,11 @@ public class UserBuilder {
         user.setUserName(id);
         return this;
     }
-    public UserBuilder setPasswordManager(PasswordManager passwordManager){
-        user.setPasswordManager(passwordManager);
+    public UserBuilder setSalt(){
+        user.setSalt();
         return this;
     }
+
     public UserBuilder setPassword(String id){
         user.setPassword(id);
         return this;
@@ -44,10 +45,7 @@ public class UserBuilder {
         user.setStatusOn();
         return this;
     }
-    public UserBuilder setSalt(){
-        user.setSalt();
-        return this;
-    }
+
 
     public UserBuilder setUserPhoto(String id){
         user.setUserPhoto(id);

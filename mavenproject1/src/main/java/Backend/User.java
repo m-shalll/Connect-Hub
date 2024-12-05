@@ -28,11 +28,10 @@ public class User {
     private String userCover;
     @JsonProperty("Bio")
     private String userBio;
-    private PasswordManager passwordManager;
     private ArrayList<String> friends=new ArrayList<>();
     private ArrayList<String> blocked=new ArrayList<>();
     private Map<String, String> friendReq=new HashMap<>();
-
+    PasswordManager passwordManager = PasswordManager.getInstance();
 
     public ArrayList<String> getFriends() {
         return friends;
@@ -110,8 +109,6 @@ public class User {
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
-    public void setPasswordManager(PasswordManager passwordManager) { this.passwordManager = passwordManager;}
 
     public void setSalt() {
         this.salt = passwordManager.generateSalt(16);
