@@ -32,7 +32,7 @@ public class StoryDatabase {
 
     }
 }
-    public ArrayList<Story> loadPosts(){
+    public ArrayList<Story> loadStories(){
         File f = new File(fileName);
         if (f.exists()) {
             ArrayList<Story> s = new ArrayList<>();

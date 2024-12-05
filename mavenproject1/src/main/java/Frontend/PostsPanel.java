@@ -4,24 +4,28 @@ import javax.swing.*;
 import java.awt.*;
 import Backend.*;
 
-public class PostsPanel {
-    public static JPanel createPost(Post p){
-        JPanel postPanel = new JPanel();
-        postPanel.setLayout(new BorderLayout());
-        postPanel.setBorder(BorderFactory.createEmptyBorder());
+public class PostsPanel extends JPanel{
+    public PostsPanel(Post p){
+//        setBackground(Color.WHITE);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBounds(250,175,450,780);
         
         JLabel usernameLabel = new JLabel(p.getContentPublisher());
         usernameLabel.setFont(new Font("Arial", Font.BOLD, 12));
-        postPanel.add(usernameLabel, BorderLayout.NORTH);
+        add(usernameLabel, BorderLayout.NORTH);
         
-        ImageIcon imageIcon = new ImageIcon(p.getContent().getImageFilePath());
-        JLabel imageLabel = new JLabel(imageIcon);
-        postPanel.add(imageLabel, BorderLayout.CENTER);
+        ImageIcon originalIcon = new ImageIcon(p.getContent().getImageFilePath());
+        Image scaledImage = originalIcon.getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon = new ImageIcon(scaledImage);
+        JLabel imageLabel = new JLabel(resizedIcon);
+        add(imageLabel, BorderLayout.CENTER);
         
         JLabel captionLabel = new JLabel(p.getContent().getCaption());
         captionLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-        postPanel.add(captionLabel, BorderLayout.SOUTH);
-        
-        return postPanel;
+        add(captionLabel, BorderLayout.SOUTH);
+    }
+    @Override
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
     }
 }

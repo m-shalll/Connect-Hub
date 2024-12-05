@@ -5,6 +5,9 @@ public class Content {
     private String imageFilePath;
     private String caption;
     
+    public Content(){
+        
+    }
     public Content(String image, String caption){
         this.imageFilePath = image;
         this.caption = caption;
