@@ -62,7 +62,8 @@ public class AccountManagement {
         File file = new File(fileName);
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, users);
     }
-    public User getUser(String username){
+    public User getUser(String username) throws IOException{
+        ArrayList<User> users=loadUsers();
         for(User user:users){
             if(user.getUserName().equals(username))
             return user;
