@@ -32,7 +32,7 @@ public class StoryDatabase {
 
     }
 }
-    public ArrayList<Story> loadPosts(){
+    public ArrayList<Story> loadStories(){
         File f = new File(fileName);
         if (f.exists()) {
             ArrayList<Story> s = new ArrayList<>();
@@ -42,7 +42,7 @@ public class StoryDatabase {
                 objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
                 s = objectMapper.readValue(f, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Story.class));
             } catch (IOException e) {
-
+                System.out.println("Error in loading stories " + e.getMessage());
             }
             return s;
         }

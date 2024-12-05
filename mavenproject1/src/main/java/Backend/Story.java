@@ -4,7 +4,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class Story extends ContentCreation{
-    protected Story(){
+    public Story(){
         super();
     }
     public boolean isPast24Hours(){

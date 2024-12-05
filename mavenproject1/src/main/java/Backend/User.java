@@ -1,35 +1,63 @@
 package Backend;
-import java.security.MessageDigest;
-import java.security.SecureRandom;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+
 public class User {
+    @JsonProperty
     private String userId;
+    @JsonProperty("email")
     private String Email;
+    @JsonProperty("username")
     private String userName;
+    @JsonProperty
     private String password;
+    @JsonProperty("Date-of-birth")
     private String dateOfBirth;
+    @JsonProperty
     private String status;
+    @JsonProperty
     private String salt;
-    private String hashedPassword;
-    private String generateSalt(int length) {
-        byte[] saltBytes = new byte[length];
-        SecureRandom secureRandom = new SecureRandom();
-        secureRandom.nextBytes(saltBytes);
-        return Base64.getEncoder().encodeToString(saltBytes);  // Encode as Base64 to store as string
+    @JsonProperty("Profile photo")
+    private String userPhoto;
+    @JsonProperty("Cover photo")
+    private String userCover;
+    @JsonProperty("Bio")
+    private String userBio;
+    private ArrayList<String> friends=new ArrayList<>();
+    private ArrayList<String> blocked=new ArrayList<>();
+    private Map<String, String> friendReq=new HashMap<>();
+    PasswordManager passwordManager = PasswordManager.getInstance();
+
+    public ArrayList<String> getFriends() {
+        return friends;
     }
 
-    // Hash the password with the salt
-    private String hashPassword(String password, String salt) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");  // Use SHA-256 for hashing
-            digest.update(salt.getBytes());  // Add the salt to the hash
-            byte[] hashedBytes = digest.digest(password.getBytes());  // Hash the password with the salt
-            return Base64.getEncoder().encodeToString(hashedBytes);  // Convert the hash to Base64 string
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Error hashing the password", e);
-        }
+    public void setFriends(ArrayList<String> friends) {
+        this.friends = friends;
     }
+
+    public ArrayList<String> getBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(ArrayList<String> blocked) {
+        this.blocked = blocked;
+    }
+
+    public Map<String, String> getFriendReq() {
+        return friendReq;
+    }
+
+    public void setFriendReq(Map<String, String> friendReq) {
+        this.friendReq = friendReq;
+    }
+
+
     public String getUserId() {
         return userId;
     }
@@ -64,6 +92,12 @@ public class User {
         return salt;
     }
 
+    public String getUserPhoto() { return userPhoto;}
+
+    public String getUserCover() { return userCover;}
+
+    public String getUserBio() { return userBio;}
+
     public void setEmail(String email) {
         Email = email;
     }
@@ -72,26 +106,26 @@ public class User {
         this.userName = userName;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setSalt() {
+        this.salt = passwordManager.generateSalt(16);
     }
 
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
+    public void setPassword(String password) {this.password = passwordManager.returnHashed(password, this.salt);;}
 
     public void setUserId(String userId) {
         this.userId = userId;
     }
-    public void setUserHashedPassword(String userId) {
-        this.hashedPassword = userId;
-    }
+
+    public void setUserPhoto(String userPhoto) { this.userPhoto = userPhoto;}
+
+    public void setUserCover(String userCover) { this.userCover = userCover;}
+
+    public void setUserBio(String userBio) { this.userBio = userBio;}
+
+
+
 }

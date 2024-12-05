@@ -32,21 +32,22 @@ public class PostDatabase {
 
     }
 }
-    public ArrayList<Post> loadPosts(){
-        File f = new File(fileName);
-        if (f.exists()) {
-            ArrayList<Post> p = new ArrayList<>();
-            try {
-                ObjectMapper objectMapper = new ObjectMapper();
-                objectMapper.registerModule(new JavaTimeModule());
-                objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-                p = objectMapper.readValue(f, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Post.class));
-            } catch (IOException e) {
-                
-            }
-            return p;
+    public ArrayList<Post> loadPosts() {
+        File file = new File(fileName);
+        ArrayList<Post> posts = new ArrayList<>();
+        if (!file.exists()) {
+            System.out.println("File not found: " + fileName);
+            return posts; 
         }
-        return null;  
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule());
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            posts = objectMapper.readValue(file,objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Post.class));
+        } catch (IOException e) {
+            System.out.println("Error in loading posts " + e.getMessage());
+        }
+        return posts; 
     }
 }
     

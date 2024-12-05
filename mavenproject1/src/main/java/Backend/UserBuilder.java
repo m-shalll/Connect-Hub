@@ -4,6 +4,9 @@
  */
 package Backend;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 /**
  *
  * @author Dell
@@ -25,6 +28,11 @@ public class UserBuilder {
         user.setUserName(id);
         return this;
     }
+    public UserBuilder setSalt(){
+        user.setSalt();
+        return this;
+    }
+
     public UserBuilder setPassword(String id){
         user.setPassword(id);
         return this;
@@ -33,18 +41,46 @@ public class UserBuilder {
         user.setDateOfBirth(id);
         return this;
     }
-    public UserBuilder setStatus(String id){
-        user.setStatus(id);
+    public UserBuilder setStatus(){
+        user.setStatusOn();
         return this;
     }
-    public UserBuilder setSalt(String id){
-        user.setSalt(id);
+
+
+    public UserBuilder setUserPhoto(String id){
+        user.setUserPhoto(id);
         return this;
     }
-    public UserBuilder setHashedPassword(String id){
-        user.setUserHashedPassword(id);
+
+    public UserBuilder setUserCover(String id){
+        user.setUserCover(id);
         return this;
     }
+
+    public UserBuilder setUserBio(String id){
+        user.setUserBio(id);
+        return this;
+    }
+    public void setFriends(ArrayList<String> friends) {
+        user.setFriends(friends);
+    }
+
+
+
+    public void setBlocked(ArrayList<String> blocked) {
+        user.setBlocked(blocked);
+    }
+
+
+
+    public void setFriendReq(Map<String, String> friendReq) {
+        user.setFriendReq(friendReq);
+    }
+
+
+
+
+
     public User build(){
         return this.user;
     }
