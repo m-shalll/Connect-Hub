@@ -10,15 +10,10 @@ public class PasswordManager {
     public PasswordManager() {}
 
     public String generateSalt(int length) {
-        try {
             byte[] saltBytes = new byte[length];
             SecureRandom secureRandom = new SecureRandom();
             secureRandom.nextBytes(saltBytes);
             return Base64.getEncoder().encodeToString(saltBytes);  // Encode as Base64 to store as string
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-        return "";
     }
 
     // Hash the password with the salt
@@ -37,7 +32,7 @@ public class PasswordManager {
         return hashedPassword.equals(hashPassword(password, salt));
     }
 
-    public String updatePassword(String password, String salt) {
+    public String returnHashed(String password, String salt) {
         return hashPassword(password, salt);
     }
 

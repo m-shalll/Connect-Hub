@@ -1,7 +1,6 @@
 package Backend;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -17,7 +16,7 @@ public class ProfileManagement {
     private PasswordManager passwordManager;
 
 
-    public ProfileManagement(String userId , String userPhoto, String userCover, String userBio, String userPassword) {
+    public ProfileManagement(String userId, String userPhoto, String userCover, String userBio, String userPassword) {
         this.userId = userId;
         this.userPhoto = userPhoto;
         this.userCover = userCover;
@@ -27,17 +26,15 @@ public class ProfileManagement {
 
 
     private void SaveDetails(String userId) {
-        try{
+        try {
             ObjectMapper mapper = new ObjectMapper();
-
             //Reads the json file into a list of User objects
             List<User> users = mapper.readValue(
                     new File("User.json"),
-                    new TypeReference<List<User>>() {}
+                    new TypeReference<List<User>>() {
+                    }
             );
-
             User neededUser = null;
-
             //iterate through the list till user is found
             for (User user : users) {
                 if (user.getUserId().equals(userId)) {
@@ -46,26 +43,27 @@ public class ProfileManagement {
                 }
             }
             if (neededUser != null) {
-                if(userPhoto != null) {} // use setter
-                if(userCover != null) { } // use setter
-                if(userBio != null) { } // use setter
-                if(userPassword != null) {
+                if (userPhoto != null) {
+                    neededUser.setUserPhoto(userPhoto);
+                }
+                if (userCover != null) {
+                    neededUser.setUserCover(userCover);
+                }
+                if (userBio != null) {
+                    neededUser.setUserBio(userBio);
+                }
+                if (userPassword != null) {
                     neededUser.setSalt();
-                    neededUser.setPassword(passwordManager.updatePassword( userPassword, neededUser.getSalt() ) );
+                    neededUser.setPassword(passwordManager.returnHashed(userPassword, neededUser.getSalt()));
                 }
                 mapper.writerWithDefaultPrettyPrinter().writeValue(new File("User.json"), users);
-
-            }
-            else if (neededUser == null) {
+            } else {
                 System.out.println("User not found ");
-                return;
             }
 
-     } catch (Exception e) {
-        e.printStackTrace();}
+        } catch (Exception e) {
+            System.out.println(e + "error");
+        }
     }
-
-
-
 
 }
