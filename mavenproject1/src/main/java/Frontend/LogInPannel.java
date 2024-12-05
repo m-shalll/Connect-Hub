@@ -153,8 +153,7 @@ public class LogInPannel extends javax.swing.JFrame {
                 passwordI.setText("");
             }
             else{
-                FeedWindow feed=new FeedWindow();
-                feed.setVisible(true);
+                
             }
         } catch (IOException ex) {
             Logger.getLogger(LogInPannel.class.getName()).log(Level.SEVERE, null, ex);
