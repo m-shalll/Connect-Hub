@@ -15,10 +15,9 @@ public class User {
     private String dateOfBirth;
     private String status;
     private String salt;
-<<<<<<< Updated upstream
+
     private String hashedPassword;
-        private ArrayList<String> friends=new ArrayList<>();
-=======
+
     @JsonProperty("Profile photo")
     private String userPhoto;
     @JsonProperty("Cover photo")
@@ -27,7 +26,6 @@ public class User {
     private  String userBio;
     private PasswordManager passwordManager;
     private ArrayList<String> friends=new ArrayList<>();
->>>>>>> Stashed changes
     private ArrayList<String> blocked=new ArrayList<>();
     private Map<String, String> friendReq=new HashMap<>(); 
     

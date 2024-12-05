@@ -4,25 +4,28 @@
  */
 package Frontend;
 
-import Backend.AccountManagement;
+import Backend.*;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.util.*;
 
 /**
  *
  * @author Dell
  */
 public class LogInPannel extends javax.swing.JFrame {
-
+AccountManagement manager=new AccountManagement();
     /**
      * Creates new form LogInPannel
      */
     public LogInPannel() {
+        
         initComponents();
     }
+    public static ArrayList<User> users=manager.loadUsers();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -145,7 +148,7 @@ public class LogInPannel extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(new JFrame(), "Some fields are empty","Error",JOptionPane.ERROR_MESSAGE);
         }
         else{
-            AccountManagement manager=new AccountManagement();
+            
         try {
             if(!manager.logIn(userId)){
                 JOptionPane.showMessageDialog(new JFrame(), "Incorrect username or password","Error",JOptionPane.ERROR_MESSAGE);

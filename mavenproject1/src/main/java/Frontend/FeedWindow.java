@@ -43,7 +43,7 @@ public class FeedWindow extends javax.swing.JFrame {
     JScrollPane scrollPane = new JScrollPane(feed);
     public void loadPosts(){
         for(int i=0; i<posts.size(); i++){
-            
+
         }
     }
     public static void main(String args[]) {
