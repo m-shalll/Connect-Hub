@@ -8,6 +8,8 @@ import java.util.Map;
 
 
 public class User {
+        @JsonProperty
+    private String salt;
     @JsonProperty
     private String userId;
     @JsonProperty("email")
@@ -20,8 +22,7 @@ public class User {
     private String dateOfBirth;
     @JsonProperty
     private String status;
-    @JsonProperty
-    private String salt;
+
     @JsonProperty("Profile photo")
     private String userPhoto;
     @JsonProperty("Cover photo")

@@ -6,7 +6,7 @@ import javax.swing.JFileChooser;
 
 public class mavenproject1 {
     public static void main(String[] args) {
-        PostDatabase d = PostDatabase.getInstance();
+        /*PostDatabase d = PostDatabase.getInstance();
         
         Post one = (Post)ContentFactory.createContent("post");
         String filePath = "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\4.jpg";
@@ -29,6 +29,18 @@ public class mavenproject1 {
         d.savePosts(p);
         
         FeedWindow w = new FeedWindow();
-        w.setVisible(true);
+        w.setVisible(true);*/
+        PasswordManager passwordmanager = PasswordManager.getInstance();
+        User newUser = new UserBuilder()
+                .setSalt()
+                .setPassword("hamza")
+                .setEmail("")
+                .setDateOfBirth("")
+                .setName("")
+                .setId("")
+                .build();
+        System.out.println(""+ newUser.getPassword());
+        if(passwordmanager.verifyPassword("hamza", newUser.getPassword(), newUser.getSalt()))
+            System.out.println("ok");
     }
 }
