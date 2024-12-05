@@ -5,7 +5,10 @@
 package Frontend;
 
 import Backend.AccountManagement;
+import Backend.PasswordManager;
+import Backend.User;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -144,18 +147,30 @@ public class LogInPannel extends javax.swing.JFrame {
         if(password.isEmpty()||userName.isEmpty()){
             JOptionPane.showMessageDialog(new JFrame(), "Some fields are empty","Error",JOptionPane.ERROR_MESSAGE);
         }
-        AccountManagement manager=new AccountManagement();
-        try {
-            if(!manager.logIn(userName)){
-                JOptionPane.showMessageDialog(new JFrame(), "Incorrect username or password","Error",JOptionPane.ERROR_MESSAGE);
-                nameI.setText("");
-                passwordI.setText("");
+        else{
+            AccountManagement manager=new AccountManagement();
+            PasswordManager pass = PasswordManager.getInstance();
+            try {
+                if(manager.getUser(userName)!=null){
+                    User user = manager.getUser(userName);
+                    System.out.println(user.getUserName());
+                    System.out.println(user.getPassword());
+                    if(pass.verifyPassword(password,user.getPassword() , user.getSalt())){
+                        FeedWindow feed=new FeedWindow();
+                        feed.setVisible(true);
+                        this.setVisible(false);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(new JFrame(), "Incorrect username or password","Error",JOptionPane.ERROR_MESSAGE);
+                        nameI.setText("");
+                        passwordI.setText("");
+                    } 
+                }   
+            } catch (IOException ex) {
+                Logger.getLogger(LogInPannel.class.getName()).log(Level.SEVERE, null, ex);
             }
-            else{
+            
                 
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(LogInPannel.class.getName()).log(Level.SEVERE, null, ex);
         }
          
     }//GEN-LAST:event_jButton2ActionPerformed
