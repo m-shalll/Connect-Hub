@@ -16,6 +16,10 @@ public class User {
     private String userName;
     @JsonProperty
     private String salt;
+
+
+    private String hashedPassword;
+
     @JsonProperty
     private String password;
     @JsonProperty("Date-of-birth")

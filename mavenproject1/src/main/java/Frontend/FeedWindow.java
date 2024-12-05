@@ -103,9 +103,13 @@ public class FeedWindow extends javax.swing.JFrame {
     public void loadAllPosts(){
         posts = database1.loadPosts();
         for(int i=0; i<posts.size(); i++){
+
+
+
             PostsPanel postPanel = new PostsPanel(posts.get(i));
             jPanel1.add(postPanel);
             System.out.println(posts.get(i));
+
         }
         jPanel1.revalidate();
         jPanel1.repaint();
