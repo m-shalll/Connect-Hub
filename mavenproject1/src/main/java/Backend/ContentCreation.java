@@ -12,7 +12,7 @@ public abstract class ContentCreation {
     protected Content content;
     @JsonProperty
     protected LocalDateTime timeStamp;
-
+    
     public ContentCreation(){
         timeStamp = LocalDateTime.now();
     }
