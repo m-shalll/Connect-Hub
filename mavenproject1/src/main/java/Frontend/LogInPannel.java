@@ -117,11 +117,11 @@ public class LogInPannel extends javax.swing.JFrame {
                     .addComponent(passwordI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(jButton2)
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(68, 68, 68))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, jLabel2});
@@ -138,16 +138,15 @@ public class LogInPannel extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String userId=nameI.getText();
+        String userName=nameI.getText();
         char[] character=passwordI.getPassword();
         String password = new String(character);
-        if(password.isEmpty()||userId.isEmpty()){
+        if(password.isEmpty()||userName.isEmpty()){
             JOptionPane.showMessageDialog(new JFrame(), "Some fields are empty","Error",JOptionPane.ERROR_MESSAGE);
         }
-        else{
-            AccountManagement manager=new AccountManagement();
+        AccountManagement manager=new AccountManagement();
         try {
-            if(!manager.logIn(userId)){
+            if(!manager.logIn(userName)){
                 JOptionPane.showMessageDialog(new JFrame(), "Incorrect username or password","Error",JOptionPane.ERROR_MESSAGE);
                 nameI.setText("");
                 passwordI.setText("");
@@ -157,7 +156,6 @@ public class LogInPannel extends javax.swing.JFrame {
             }
         } catch (IOException ex) {
             Logger.getLogger(LogInPannel.class.getName()).log(Level.SEVERE, null, ex);
-        }
         }
          
     }//GEN-LAST:event_jButton2ActionPerformed
