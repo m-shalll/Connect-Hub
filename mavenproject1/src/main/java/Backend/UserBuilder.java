@@ -4,6 +4,9 @@
  */
 package Backend;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 /**
  *
  * @author Dell
@@ -59,6 +62,21 @@ public class UserBuilder {
     public UserBuilder setUserBio(String id){
         user.setUserBio(id);
         return this;
+    }
+    public void setFriends(ArrayList<String> friends) {
+        user.setFriends(friends);
+    }
+
+
+
+    public void setBlocked(ArrayList<String> blocked) {
+        user.setBlocked(blocked);
+    }
+
+
+
+    public void setFriendReq(Map<String, String> friendReq) {
+        user.setFriendReq(friendReq);
     }
 
 
