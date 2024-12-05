@@ -15,13 +15,13 @@ public class User {
     @JsonProperty("username")
     private String userName;
     @JsonProperty
+    private String salt;
+    @JsonProperty
     private String password;
     @JsonProperty("Date-of-birth")
     private String dateOfBirth;
     @JsonProperty
     private String status;
-    @JsonProperty
-    private String salt;
     @JsonProperty("Profile photo")
     private String userPhoto;
     @JsonProperty("Cover photo")
