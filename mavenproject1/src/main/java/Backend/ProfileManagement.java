@@ -69,16 +69,12 @@ public class ProfileManagement {
 
     private ArrayList<Post> profileFeed() {
         try {
-            ObjectMapper mapper = new ObjectMapper();
             //Reads the json file into a list of User objects
-            ArrayList<Post> users = mapper.readValue(
-                    new File("Posts.json"),
-                    new TypeReference<ArrayList<Post>>() {
-                    }
-            );
+            PostDatabase postdatabase = PostDatabase.getInstance();
+            ArrayList<Post> allPosts = postdatabase.loadPosts();
             ArrayList<Post> userPosts = new ArrayList<>();
-            if (users != null) {
-                for (Post post : users) {
+            if (allPosts != null) {
+                for (Post post : allPosts) {
                     if (post.getContentPublisher().equals(userId)) {
                         userPosts.add(post);
                     }
