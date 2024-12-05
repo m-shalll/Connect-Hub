@@ -11,7 +11,13 @@ public class AccountManagement {
     private static ObjectMapper objectMapper = new ObjectMapper();
     // signup method creates a user object and adds it to json file
     public void signUp(String password, String email, String dateOfBirth, String userName, String userId){
-        User newUser = new User( password,  email,  dateOfBirth,  userName,  userId);
+        User newUser = new UserBuilder()
+                .setPassword(password)
+                .setEmail(email)
+                .setDateOfBirth(dateOfBirth)
+                .setName(userId)
+                .setId(userId)
+                .build();
         this.users.add(newUser);
         try {
             saveUsers(this.users);
@@ -20,17 +26,19 @@ public class AccountManagement {
         }
     }
     // login method changes status to online
-    private static void logIn(String userId) throws IOException {
+    public boolean logIn(String userId) throws IOException {
         ArrayList<User> users=loadUsers();
         for(User user:users){
             if(user.getUserId().equals(userId)){
                 user.setStatusOn();
                 saveUsers(users);
+                return true;
             }
         }
+        return false;
     }
     // logout method changes status to offline
-    private static void logOut(String userId) throws IOException {
+    public void logOut(String userId) throws IOException {
         ArrayList<User> users=loadUsers();
         for(User user:users){
             if(user.getUserId().equals(userId)){
@@ -40,7 +48,7 @@ public class AccountManagement {
         }
     }
     // loadUsers methods returns arraylist of all the users from json file
-    private static ArrayList<User> loadUsers() throws IOException {
+    public static ArrayList<User> loadUsers() throws IOException {
         File file = new File(fileName);
         if (!file.exists()) {
             return new ArrayList<>();
@@ -48,7 +56,7 @@ public class AccountManagement {
         return objectMapper.readValue(file, new TypeReference<ArrayList<User>>() {});
     }
     // saveUsers methods takes arraylist of users and saves them in json file
-    private static void saveUsers(ArrayList<User> users) throws IOException {
+    public static void saveUsers(ArrayList<User> users) throws IOException {
         File file = new File(fileName);
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, users);
     }

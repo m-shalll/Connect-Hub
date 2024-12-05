@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.*;
 
 public class User {
-    private final String userId;
+    private String userId;
     private String Email;
     private String userName;
     private String password;
@@ -16,45 +16,7 @@ public class User {
     private String status;
     private String salt;
     private String hashedPassword;
-    private ArrayList<String> friends=new ArrayList<>();
-    private ArrayList<String> blocked=new ArrayList<>();
-    private Map<String, String> friendReq=new HashMap<>(); 
-    
 
-    public ArrayList<String> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(ArrayList<String> friends) {
-        this.friends = friends;
-    }
-
-    public ArrayList<String> getBlocked() {
-        return blocked;
-    }
-
-    public void setBlocked(ArrayList<String> blocked) {
-        this.blocked = blocked;
-    }
-
-    public Map<String, String> getFriendReq() {
-        return friendReq;
-    }
-
-    public void setFriendReq(Map<String, String> friendReq) {
-        this.friendReq = friendReq;
-    }
-
-    public User(String password, String email, String dateOfBirth, String userName, String userId) {
-        this.password = password;
-        this.Email = email;
-        this.status = "online";
-        this.dateOfBirth = dateOfBirth;
-        this.userName = userName;
-        this.userId = userId;
-        this.salt=generateSalt(16);
-        this.hashedPassword=hashPassword(password, this.salt);;
-    }
     private String generateSalt(int length) {
         byte[] saltBytes = new byte[length];
         SecureRandom secureRandom = new SecureRandom();
@@ -81,5 +43,60 @@ public class User {
     }
     public void setStatusOff(){
         this.status="offline";
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+    public void setUserHashedPassword(String userId) {
+        this.hashedPassword = userId;
     }
 }
