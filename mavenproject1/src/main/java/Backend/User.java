@@ -1,8 +1,12 @@
 package Backend;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.ArrayList;
+import java.util.*;
+
 public class User {
     private String userId;
     private String Email;
@@ -12,6 +16,7 @@ public class User {
     private String status;
     private String salt;
     private String hashedPassword;
+
     private String generateSalt(int length) {
         byte[] saltBytes = new byte[length];
         SecureRandom secureRandom = new SecureRandom();
