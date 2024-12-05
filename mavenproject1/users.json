@@ -1,9 +1,15 @@
 [ {
-  "userId" : "zawi-shaz",
-  "userName" : "zawi-shaz",
-  "password" : "12345",
-  "dateOfBirth" : "25/5/2009",
+  "userId" : "hamza",
+  "salt" : "q1lSvXKyCgh7ojsO3tKong==",
+  "password" : "UXMZZerK3WU6e3EZzOxRhgoUaE4LgOhlDFU4tiRlSV0=",
   "status" : "online",
-  "salt" : null,
-  "email" : "dkgskyfg@gmail.com"
+  "friends" : [ ],
+  "blocked" : [ ],
+  "friendReq" : { },
+  "email" : "teg",
+  "username" : "hamza",
+  "Date-of-birth" : "etgeg",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
 } ]

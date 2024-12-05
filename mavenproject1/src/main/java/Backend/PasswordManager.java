@@ -20,10 +20,10 @@ public class PasswordManager {
     }
 
     public String generateSalt(int length) {
-            byte[] saltBytes = new byte[length];
-            SecureRandom secureRandom = new SecureRandom();
-            secureRandom.nextBytes(saltBytes);
-            return Base64.getEncoder().encodeToString(saltBytes);  // Encode as Base64 to store as string
+        byte[] saltBytes = new byte[length];
+        SecureRandom secureRandom = new SecureRandom();
+        secureRandom.nextBytes(saltBytes);
+        return Base64.getEncoder().encodeToString(saltBytes);  // Encode as Base64 to store as string
     }
 
     // Hash the password with the salt
