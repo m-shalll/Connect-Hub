@@ -14,11 +14,11 @@ import java.util.Map;
 public class FriendManagement {
 // Send a friend request
       public void sendFriendRequest(User s, User r) throws IOException {
-        if (s.getBlocked().contains(r)) {
+        if (s.getBlocked().contains(r.getUserId())) {
             throw new IOException("Blocked user");
             
         }
-        if (r.getFriendReq().containsKey(s)) {
+        if (r.getFriendReq().containsKey(s.getUserId())) {
            throw new IOException("Request already sent");
             
         }
@@ -33,6 +33,7 @@ public class FriendManagement {
     // Accept friend request
     public void acceptFriendRequest(User r, User s) throws IOException {
         //if statement maybe later removed
+        
         /*if (!r.getFriendReq().containsKey(s) || 
             !r.getFriendReq().get(s).equals("pending")) {
             throw new IOException("No request from this user");
@@ -46,18 +47,18 @@ public class FriendManagement {
 
     // Decline friend request
     public void declineFriendRequest(User r, User s)throws IOException {
-        if (!r.getFriendReq().containsKey(s)) {
+        if (!r.getFriendReq().containsKey(s.getUserId())) {
             throw new IOException("No request from this user");
         }
         r.getFriendReq().put(s.getUserId(), "Declined");
 
     }
     //Friends suggestions
-    public ArrayList<User> suggestedFriends(User x,ArrayList<User>users){
-   ArrayList<User> suggested = new ArrayList<>();
+    public ArrayList<String> suggestedFriends(User x,ArrayList<User>users){
+   ArrayList<String> suggested = new ArrayList<>();
    for(User i:users){
-       if(!x.getFriends().contains(i)&&x.getBlocked().contains(i)&&!x.equals(i))
-   suggested.add(i);
+       if(!x.getFriends().contains(i.getUserId())&&x.getBlocked().contains(i.getUserId())&&!x.getUserId().equals(i.getUserId()))
+   suggested.add(i.getUserId());
    }
     
     
@@ -75,10 +76,10 @@ public class FriendManagement {
     }
 //Block user
 public void blockUser(User u,User b)throws IOException{
-if (u.getBlocked().contains(b)) {
+if (u.getBlocked().contains(b.getUserId())) {
             throw new IOException("User already blocked");
         }
-if(u.getFriends().contains(b)){
+if(u.getFriends().contains(b.getUserId())){
 u.getFriends().remove(b.getUserId());
 b.getFriends().remove(u.getUserId());
 }
