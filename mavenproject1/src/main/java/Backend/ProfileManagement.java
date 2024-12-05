@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -64,6 +65,32 @@ public class ProfileManagement {
         } catch (Exception e) {
             System.out.println(e + "error");
         }
+    }
+
+    private ArrayList<Post> profileFeed() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            //Reads the json file into a list of User objects
+            ArrayList<Post> users = mapper.readValue(
+                    new File("Posts.json"),
+                    new TypeReference<ArrayList<Post>>() {
+                    }
+            );
+            ArrayList<Post> userPosts = new ArrayList<>();
+            if (users != null) {
+                for (Post post : users) {
+                    if (post.getContentPublisher().equals(userId)) {
+                        userPosts.add(post);
+                    }
+                }
+                return userPosts;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 }
