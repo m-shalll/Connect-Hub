@@ -1,9 +1,14 @@
 package Backend;
+import java.security.MessageDigest;
+import java.security.SecureRandom;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class User {
+    private final String userId;
     @JsonProperty
     private String userId;
     @JsonProperty("email")
@@ -18,6 +23,7 @@ public class User {
     private String status;
     @JsonProperty
     private String salt;
+    private String hashedPassword;
     @JsonProperty("Profile photo")
     private String userPhoto;
     @JsonProperty("Cover photo")
