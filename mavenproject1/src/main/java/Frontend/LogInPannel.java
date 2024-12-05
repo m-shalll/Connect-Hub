@@ -146,7 +146,7 @@ public class LogInPannel extends javax.swing.JFrame {
         }
         AccountManagement manager=new AccountManagement();
         try {
-            if(!manager.logIn(userId)){
+            if(!manager.logIn(userName)){
                 JOptionPane.showMessageDialog(new JFrame(), "Incorrect username or password","Error",JOptionPane.ERROR_MESSAGE);
                 nameI.setText("");
                 passwordI.setText("");
