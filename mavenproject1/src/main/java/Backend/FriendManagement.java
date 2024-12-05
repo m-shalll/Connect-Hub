@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -22,21 +22,25 @@ public class FriendManagement {
            throw new IOException("Request already sent");
             
         }
-        r.getFriendReq().put(s, "pending");
+           if (r==s) {
+           throw new IOException("same user");
+            
+        }
+        r.getFriendReq().put(s.getUserId(), "pending");
        
     }
 
     // Accept friend request
     public void acceptFriendRequest(User r, User s) throws IOException {
         //if statement maybe later removed
-        if (!r.getFriendReq().containsKey(s) || 
+        /*if (!r.getFriendReq().containsKey(s) || 
             !r.getFriendReq().get(s).equals("pending")) {
             throw new IOException("No request from this user");
            
-        }
-        r.getFriends().add(s);
-        s.getFriends().add(r);
-        r.getFriendReq().put(s, "accepted");
+        }*/
+        r.getFriends().add(s.getUserId());
+        s.getFriends().add(r.getUserId());
+        r.getFriendReq().put(s.getUserId(), "accepted");
 
     }
 
@@ -45,7 +49,7 @@ public class FriendManagement {
         if (!r.getFriendReq().containsKey(s)) {
             throw new IOException("No request from this user");
         }
-        r.getFriendReq().put(s, "Declined");
+        r.getFriendReq().put(s.getUserId(), "Declined");
 
     }
     //Friends suggestions
@@ -61,10 +65,10 @@ public class FriendManagement {
     }
     //Remove a friend
     public void removeFriend(User u,User rem)throws IOException{
-    if(u.getFriends().contains(rem)){
+    if(u.getFriends().contains(rem.getUserId())){
         
-        u.getFriends().remove(rem);
-        rem.getFriends().remove(u);
+        u.getFriends().remove(rem.getUserId());
+        rem.getFriends().remove(u.getUserId());
             }
     else
        throw new IOException("User is not a friend") ;
@@ -75,10 +79,10 @@ if (u.getBlocked().contains(b)) {
             throw new IOException("User already blocked");
         }
 if(u.getFriends().contains(b)){
-u.getFriends().remove(b);
-b.getFriends().remove(u);
+u.getFriends().remove(b.getUserId());
+b.getFriends().remove(u.getUserId());
 }
-u.getBlocked().add(b);
+u.getBlocked().add(b.getUserId());
 
 
 

@@ -1,4 +1,5 @@
 package Backend;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.security.NoSuchAlgorithmException;
@@ -15,31 +16,32 @@ public class User {
     private String status;
     private String salt;
     private String hashedPassword;
-    private ArrayList<User> friends=new ArrayList<>();
-    private ArrayList<User> blocked=new ArrayList<>();
-    private Map<User, String> friendReq=new HashMap<>(); 
+    private ArrayList<String> friends=new ArrayList<>();
+    private ArrayList<String> blocked=new ArrayList<>();
+    private Map<String, String> friendReq=new HashMap<>(); 
+    
 
-    public ArrayList<User> getFriends() {
+    public ArrayList<String> getFriends() {
         return friends;
     }
 
-    public void setFriends(ArrayList<User> friends) {
+    public void setFriends(ArrayList<String> friends) {
         this.friends = friends;
     }
 
-    public ArrayList<User> getBlocked() {
+    public ArrayList<String> getBlocked() {
         return blocked;
     }
 
-    public void setBlocked(ArrayList<User> blocked) {
+    public void setBlocked(ArrayList<String> blocked) {
         this.blocked = blocked;
     }
 
-    public Map<User, String> getFriendReq() {
+    public Map<String, String> getFriendReq() {
         return friendReq;
     }
 
-    public void setFriendReq(Map<User, String> friendReq) {
+    public void setFriendReq(Map<String, String> friendReq) {
         this.friendReq = friendReq;
     }
 

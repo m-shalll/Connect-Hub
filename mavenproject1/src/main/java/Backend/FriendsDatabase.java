@@ -13,11 +13,17 @@ import java.util.*;
  * @author AbdElrahman
  */
 public class FriendsDatabase {
+    private Map<String, ArrayList<String>> friend=new HashMap<>(); 
    private static final String fileName = "friends.json";
      private static ObjectMapper objectMapper = new ObjectMapper();
-    public void writeinFile(ArrayList<User> friends) throws IOException{
+    public void writeinFile(ArrayList<User>users) throws IOException{
     File file = new File(fileName);
-        objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, friends);
+    for(int i=0;i<users.size();i++){
+        if(users.get(i).getFriends()!=null)
+    friend.put(users.get(i).getUserId(),users.get(i).getFriends());
+
+    }
+        objectMapper.writeValue(file, friend);
     } 
      private static ArrayList<User> load() throws IOException {
         File file = new File(fileName);
