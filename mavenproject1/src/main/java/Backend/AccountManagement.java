@@ -11,7 +11,7 @@ public class AccountManagement {
     private static ObjectMapper objectMapper = new ObjectMapper();
     // signup method creates a user object and adds it to json file
     public void signUp(String password, String email, String dateOfBirth, String userName, String userId){
-        User newUser = new User( password,  email,  dateOfBirth,  userName,  userId);
+        User newUser = new User();
         this.users.add(newUser);
         try {
             saveUsers(this.users);
