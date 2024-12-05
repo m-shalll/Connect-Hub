@@ -1,1 +1,15 @@
-{}
+[ {
+  "userId" : "hamza",
+  "salt" : "q1lSvXKyCgh7ojsO3tKong==",
+  "password" : "UXMZZerK3WU6e3EZzOxRhgoUaE4LgOhlDFU4tiRlSV0=",
+  "status" : "online",
+  "friends" : [ ],
+  "blocked" : [ ],
+  "friendReq" : { },
+  "email" : "teg",
+  "username" : "hamza",
+  "Date-of-birth" : "etgeg",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+} ]
