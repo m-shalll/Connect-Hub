@@ -16,6 +16,34 @@ public class User {
     private String status;
     private String salt;
     private String hashedPassword;
+        private ArrayList<String> friends=new ArrayList<>();
+    private ArrayList<String> blocked=new ArrayList<>();
+    private Map<String, String> friendReq=new HashMap<>(); 
+    
+
+    public ArrayList<String> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(ArrayList<String> friends) {
+        this.friends = friends;
+    }
+
+    public ArrayList<String> getBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(ArrayList<String> blocked) {
+        this.blocked = blocked;
+    }
+
+    public Map<String, String> getFriendReq() {
+        return friendReq;
+    }
+
+    public void setFriendReq(Map<String, String> friendReq) {
+        this.friendReq = friendReq;
+    }
 
     private String generateSalt(int length) {
         byte[] saltBytes = new byte[length];
