@@ -4,16 +4,26 @@ import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 
 public class PasswordManager {
 
-    public PasswordManager() {}
+    private static PasswordManager instance = null;
+    private PasswordManager(){
+
+    }
+    public static PasswordManager getInstance(){
+        if(instance == null){
+            instance  = new PasswordManager();
+        }
+        return instance;
+    }
 
     public String generateSalt(int length) {
-            byte[] saltBytes = new byte[length];
-            SecureRandom secureRandom = new SecureRandom();
-            secureRandom.nextBytes(saltBytes);
-            return Base64.getEncoder().encodeToString(saltBytes);  // Encode as Base64 to store as string
+        byte[] saltBytes = new byte[length];
+        SecureRandom secureRandom = new SecureRandom();
+        secureRandom.nextBytes(saltBytes);
+        return Base64.getEncoder().encodeToString(saltBytes);  // Encode as Base64 to store as string
     }
 
     // Hash the password with the salt
