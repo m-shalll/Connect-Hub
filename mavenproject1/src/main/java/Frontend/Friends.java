@@ -95,11 +95,16 @@ System.out.println(friendReq.entrySet());
         jLabel3 = new javax.swing.JLabel();
         Request = new javax.swing.JButton();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         jButton2 = new javax.swing.JButton();
         Refresh = new javax.swing.JButton();
 =======
         Refresh = new javax.swing.JButton();
         Back = new javax.swing.JButton();
+>>>>>>> Stashed changes
+=======
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 >>>>>>> Stashed changes
 
         jButton1.setText("jButton1");
@@ -157,6 +162,9 @@ System.out.println(friendReq.entrySet());
         });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
         jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,6 +172,7 @@ System.out.println(friendReq.entrySet());
             }
         });
 
+<<<<<<< Updated upstream
 =======
 >>>>>>> Stashed changes
         Refresh.setText("Refresh");
@@ -183,6 +192,15 @@ System.out.println(friendReq.entrySet());
         });
 
 >>>>>>> Stashed changes
+=======
+        jButton3.setText("Refresh");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+>>>>>>> Stashed changes
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -196,12 +214,17 @@ System.out.println(friendReq.entrySet());
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< Updated upstream
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+=======
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+>>>>>>> Stashed changes
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Add, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Decline, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Block, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Remove, javax.swing.GroupLayout.Alignment.TRAILING))
+<<<<<<< Updated upstream
                         .addGap(128, 128, 128))
 =======
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -213,6 +236,9 @@ System.out.println(friendReq.entrySet());
                         .addComponent(Refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
 >>>>>>> Stashed changes
+=======
+                        .addGap(122, 122, 122))
+>>>>>>> Stashed changes
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,9 +249,15 @@ System.out.println(friendReq.entrySet());
                                         .addGap(31, 31, 31)
                                         .addComponent(Request))
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+=======
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+>>>>>>> Stashed changes
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -234,6 +266,7 @@ System.out.println(friendReq.entrySet());
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(41, 41, 41)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< Updated upstream
                         .addComponent(Refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
 =======
@@ -252,10 +285,15 @@ System.out.println(friendReq.entrySet());
                                     .addComponent(Remove, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGap(0, 0, Short.MAX_VALUE))))
 >>>>>>> Stashed changes
+=======
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+>>>>>>> Stashed changes
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -277,6 +315,34 @@ System.out.println(friendReq.entrySet());
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(Add)
+                                .addGap(96, 96, 96)
+                                .addComponent(Decline))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(Block)
+                                .addGap(49, 49, 49)
+                                .addComponent(Remove))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+>>>>>>> Stashed changes
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -284,6 +350,7 @@ System.out.println(friendReq.entrySet());
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Request)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+<<<<<<< Updated upstream
                         .addGap(68, 68, 68)
                         .addComponent(Add)
                         .addGap(96, 96, 96)
@@ -312,6 +379,10 @@ System.out.println(friendReq.entrySet());
                         .addComponent(Remove)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+=======
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+>>>>>>> Stashed changes
                 .addGap(12, 12, 12))
 >>>>>>> Stashed changes
         );
@@ -508,6 +579,7 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
     }//GEN-LAST:event_RequestActionPerformed
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
         // TODO add your handling code here:
@@ -519,6 +591,10 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
     private void RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshActionPerformed
    loadList1();
 >>>>>>> Stashed changes
+=======
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+ loadList1();
+>>>>>>> Stashed changes
         loadList2();
         loadList3();
         try {
@@ -527,6 +603,7 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
         } catch (IOException ex) {
             Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
         }
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     }//GEN-LAST:event_RefreshActionPerformed
 
@@ -539,6 +616,22 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
 
         // TODO add your handling code here:
     }//GEN-LAST:event_BackActionPerformed
+
+>>>>>>> Stashed changes
+=======
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+ try {
+            AccountManagement.saveUsers(users);
+            // TODO add your handling code here:
+        } catch (IOException ex) {
+            Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 >>>>>>> Stashed changes
     /**
@@ -597,6 +690,10 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
     private javax.swing.JButton Request;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+<<<<<<< Updated upstream
+=======
+    private javax.swing.JButton jButton3;
+>>>>>>> Stashed changes
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
