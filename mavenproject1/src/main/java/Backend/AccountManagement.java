@@ -50,7 +50,7 @@ public class AccountManagement {
         }
     }
     // loadUsers methods returns arraylist of all the users from json file
-    public static ArrayList<User> loadUsers() throws IOException {
+    public  ArrayList<User> loadUsers() throws IOException {
         File file = new File(fileName);
         if (!file.exists()) {
             return new ArrayList<>();
