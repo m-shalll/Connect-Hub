@@ -363,8 +363,9 @@ public class FeedWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        //Friends newWindow = new Friends();
-        //newWindow.setVisible(true);
+        FeedWindow x=new FeedWindow(currentUser);
+        Friends h = new Friends(x,true);
+        h.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
