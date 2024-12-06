@@ -18,7 +18,6 @@ import java.util.*;
  */
 public class LogInPannel extends javax.swing.JFrame {
 public static AccountManagement manager=new AccountManagement();
-public static ArrayList<user> users=manager.loadUsers();
     /**
      * Creates new form LogInPannel
      */

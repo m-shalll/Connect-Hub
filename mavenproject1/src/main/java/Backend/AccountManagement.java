@@ -19,7 +19,7 @@ public class AccountManagement {
                 .buildersetPassword(password)
                 .setEmail(email)
                 .setDateOfBirth(dateOfBirth)
-                .setName(userId)
+                .setName(userName)
                 .setId(userId)
                 .build();
         this.users.add(newUser);
@@ -64,10 +64,10 @@ public class AccountManagement {
         File file = new File(fileName);
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, users);
     }
-    public User getUser(String username) throws IOException{
+    public User getUser(String userId) throws IOException{
         ArrayList<User> users=loadUsers();
         for(User user:users){
-            if(user.getUserName().equals(username))
+            if(user.getUserId().equals(userId))
             return user;
         }
         return null;
