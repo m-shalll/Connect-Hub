@@ -22,7 +22,12 @@ public class PostsPanel extends JPanel{
         
         JLabel captionLabel = new JLabel(p.getContent().getCaption());
         captionLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-        add(captionLabel, BorderLayout.SOUTH);
+
+        Box verticalBox = Box.createVerticalBox();
+        verticalBox.add(captionLabel);
+        verticalBox.add(Box.createVerticalStrut(15)); 
+        add(verticalBox, BorderLayout.SOUTH);
+      
     }
     @Override
     public void paintComponent(Graphics g){

@@ -12,6 +12,9 @@ public class Content {
         this.imageFilePath = image;
         this.caption = caption;
     }
+    public Content(String caption){
+        this.caption = caption;
+    }
     public String getImageFilePath() {
         return imageFilePath;
     }
