@@ -15,6 +15,7 @@ public class ProfileManagement {
     private String userBio;
     private String userPassword;
     private PasswordManager passwordManager;
+    private AccountManagement accManager = new AccountManagement();
 
 
     public ProfileManagement(String userId, String userPhoto, String userCover, String userBio, String userPassword) {
@@ -26,15 +27,10 @@ public class ProfileManagement {
     }
 
 
-    private void SaveDetails(String userId) {
+    public void SaveDetails() {
         try {
-            ObjectMapper mapper = new ObjectMapper();
-            //Reads the json file into a list of User objects
-            List<User> users = mapper.readValue(
-                    new File("User.json"),
-                    new TypeReference<List<User>>() {
-                    }
-            );
+            ArrayList<User> users = accManager.loadUsers();
+            
             User neededUser = null;
             //iterate through the list till user is found
             for (User user : users) {
@@ -58,7 +54,8 @@ public class ProfileManagement {
                     neededUser.setSalt(passwordManager.generateSalt(16));
                     neededUser.setPassword(passwordManager.returnHashed(userPassword, neededUser.getSalt()));
                 }
-                mapper.writerWithDefaultPrettyPrinter().writeValue(new File("User.json"), users);
+                AccountManagement.saveUsers(users);
+                
             } else {
                 System.out.println("User not found ");
             }
@@ -67,8 +64,10 @@ public class ProfileManagement {
             System.out.println(e + "error");
         }
     }
+    
+    //friendlist
 
-    private ArrayList<Post> profileFeed() {
+    public ArrayList<Post> profileFeed() {
         try {
             //Reads the json file into a list of User objects
             PostDatabase postdatabase = PostDatabase.getInstance();

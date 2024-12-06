@@ -38,17 +38,8 @@ public class mavenproject1 {
             AccountManagement manager=new AccountManagement();
 
             FriendManagement friendManager = new FriendManagement();
-          
-            ArrayList<User> users = manager.loadUsers();
-     
-
-friendManager.sendFriendRequest(users.get(1), users.get(12));
-friendManager.acceptFriendRequest(users.get(12), users.get(1));
-
-
-
-
-            AccountManagement.saveUsers(users);
+            ProfileManagement pro = new ProfileManagement("user001","C:\\Users\\Hamza\\Downloads",null,null,null);
+            pro.SaveDetails();
         
         
         
