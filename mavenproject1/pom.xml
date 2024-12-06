@@ -48,10 +48,5 @@
             <artifactId>datechooser</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>datechooser</artifactId>
-            <version>SNAPSHOT</version>
-        </dependency>
     </dependencies>
 </project>

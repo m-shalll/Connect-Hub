@@ -178,13 +178,11 @@ public static User logIn;
                     System.out.println(user.getPassword());
                     System.out.println(pass.returnHashed(password, user.getSalt()));
                     System.out.println();
-                    
                     if(pass.verifyPassword(password,user.getPassword() , user.getSalt())){
 
                         users=manager.loadUsers();
                         logIn=manager.getUser(userName);
-
-                        FeedWindow feed=new FeedWindow();
+                        FeedWindow feed=new FeedWindow(logIn);
                         feed.setVisible(true);
                         this.setVisible(false);
                     }
