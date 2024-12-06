@@ -211,7 +211,7 @@ public class SignUpPanel extends javax.swing.JFrame {
         String date= dateI.getText();
         Boolean valid=true;
         Validation validation=new Validation();
-        if(password.isEmpty()||userId.isEmpty()||email.isEmpty()||password.isEmpty()){
+        if(password.isEmpty()||userId.isEmpty()||email.isEmpty()||password.isEmpty()||date.isEmpty()){
             JOptionPane.showMessageDialog(new JFrame(), "Some fields are empty","Error",JOptionPane.ERROR_MESSAGE);
             valid=false;
         }
