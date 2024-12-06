@@ -197,7 +197,7 @@ public static User logIn;
             } catch (IOException ex) {
                 Logger.getLogger(LogInPannel.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
