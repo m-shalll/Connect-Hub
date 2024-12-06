@@ -155,7 +155,6 @@ public static User logIn;
         if(password.isEmpty()||userName.isEmpty()){
             JOptionPane.showMessageDialog(new JFrame(), "Some fields are empty","Error",JOptionPane.ERROR_MESSAGE);
         }
-
         else{
             try {
             if(!manager.logIn(userName)){
@@ -199,13 +198,6 @@ public static User logIn;
                 Logger.getLogger(LogInPannel.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-
-            
-
-        }
-
-
-         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
