@@ -4,22 +4,22 @@
   "password" : "/QGs+y5vFb3NmVp9Pr0B1kdxiQseYWEz1q9Dbs1tfTw=",
   "salt" : "rwE0qb/QnGOOgFKmlvICZw==",
   "password" : "vlwryqXUxHiCnSQSlfr4dZGCzpen+NuWs3VZGX++2J4=",
-  "status" : "online",
+  "status" : "offline",
   "friends" : [ "user002" ],
   "blocked" : [ ],
   "friendReq" : { },
   "email" : "john.doe01@gmail.com",
   "username" : "John Doe",
   "Date-of-birth" : "1990-04-15",
-  "Profile photo" : null,
-  "Cover photo" : null,
-  "Bio" : null
+  "Profile photo" : "C:\\Users\\Hamza\\Downloads\\board-453758_640.jpg",
+  "Cover photo" : "C:\\Users\\Hamza\\Downloads\\artworks-FJBz9K9Gul22uqN7-c4oHqg-t500x500.jpg",
+  "Bio" : "i am the man"
 }, {
   "userId" : "user002",
   "salt" : "HECGITMmGrwUVsvFJFwVNQ==",
   "password" : "IReDlKZZaWK4Qf63CTEJ6QnqOGPizlmLL3eT42JCDCw=",
   "status" : "online",
-  "friends" : [ "user001" ],
+  "friends" : [ "user001", "user014", "user013" ],
   "blocked" : [ ],
   "friendReq" : {
     "user001" : "accepted"
@@ -185,9 +185,11 @@
   "salt" : "n51LZKP34+/8QUzhk+wm+Q==",
   "password" : "ZgAL0gecYf+sy52PTjN32+WAeln4mJQaUdYakNZQPRE=",
   "status" : "online",
-  "friends" : [ "user014" ],
+  "friends" : [ "user014", "user002" ],
   "blocked" : [ ],
-  "friendReq" : { },
+  "friendReq" : {
+    "user002" : "accepted"
+  },
   "email" : "ryan.morgan13@gmail.com",
   "username" : "Ryan Morgan",
   "Date-of-birth" : "1988-08-29",
@@ -199,10 +201,11 @@
   "salt" : "mSz/PzpZC9UNnWsBenYEqg==",
   "password" : "sl0cojF48c9douFB2/WSbO6+Hs30sKhLObC1qA3VESk=",
   "status" : "online",
-  "friends" : [ "user013" ],
+  "friends" : [ "user013", "user002" ],
   "blocked" : [ ],
   "friendReq" : {
-    "user013" : "accepted"
+    "user013" : "accepted",
+    "user002" : "accepted"
   },
   "email" : "chloe.hill14@gmail.com",
   "username" : "Chloe Hill",
@@ -232,7 +235,8 @@
   "friends" : [ ],
   "blocked" : [ "user015" ],
   "friendReq" : {
-    "user015" : "Declined"
+    "user015" : "Declined",
+    "user002" : "Declined"
   },
   "email" : "olivia.scott16@gmail.com",
   "username" : "Olivia Scott",
