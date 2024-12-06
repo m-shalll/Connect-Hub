@@ -153,8 +153,10 @@ public class LogInPannel extends javax.swing.JFrame {
             try {
                 if(manager.getUser(userName)!=null){
                     User user = manager.getUser(userName);
-                    System.out.println(user.getUserName());
                     System.out.println(user.getPassword());
+                    System.out.println(pass.returnHashed(password, user.getSalt()));
+                    System.out.println();
+                    
                     if(pass.verifyPassword(password,user.getPassword() , user.getSalt())){
                         FeedWindow feed=new FeedWindow();
                         feed.setVisible(true);
