@@ -5,16 +5,16 @@ import java.awt.*;
 import Backend.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class PostsPanel extends JPanel{
     public PostsPanel(Post p){
+        AccountManagement am = new AccountManagement();
         ArrayList<User> users = null;
         try {
-            users = AccountManagement.loadUsers();
+            users = am.loadUsers();
         } catch (IOException ex) {
-            Logger.getLogger(PostsPanel.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         User currentUser = null;
         for(int i=0; i<users.size();i++){

@@ -1,8 +1,17 @@
 [ {
-  "contentID" : null,
-  "contentPublisher" : "hamza",
+  "contentID" : "8",
+  "contentPublisher" : "user001",
   "content" : {
-    "imageFilePath" : null,
+    "imageFilePath" : "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\4.jpg",
+    "caption" : "What a great day today"
+  },
+  "timeStamp" : [ 2024, 12, 6, 15, 20, 56, 244373200 ],
+  "past24Hours" : false
+}, {
+  "contentID" : null,
+  "contentPublisher" : "user002",
+  "content" : {
+    "imageFilePath" : "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\3.jpg",
     "caption" : "New story"
   },
   "timeStamp" : [ 2024, 12, 6, 3, 5, 24, 481873200 ],
