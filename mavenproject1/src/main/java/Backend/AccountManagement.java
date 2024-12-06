@@ -9,12 +9,14 @@ public class AccountManagement {
     private static final String fileName = "users.json";
     private ArrayList<User> users=new ArrayList<>();
     private static ObjectMapper objectMapper = new ObjectMapper();
+    PasswordManager passwordManager = PasswordManager.getInstance();
 
     // signup method creates a user object and adds it to json file
     public void signUp(String password, String email, String dateOfBirth, String userName, String userId){
+        
         User newUser = new UserBuilder()
-                .setSalt()
-                .setPassword(password)
+                .buildersetSalt()
+                .buildersetPassword(password)
                 .setEmail(email)
                 .setDateOfBirth(dateOfBirth)
                 .setName(userId)

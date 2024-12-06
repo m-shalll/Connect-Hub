@@ -8,6 +8,7 @@ import java.util.Map;
 
 
 public class User {
+    PasswordManager passwordManager = PasswordManager.getInstance();
     @JsonProperty
     private String userId;
     @JsonProperty("email")
@@ -35,7 +36,6 @@ public class User {
     private ArrayList<String> friends=new ArrayList<>();
     private ArrayList<String> blocked=new ArrayList<>();
     private Map<String, String> friendReq=new HashMap<>();
-    PasswordManager passwordManager = PasswordManager.getInstance();
 
     public ArrayList<String> getFriends() {
         return friends;
@@ -114,11 +114,18 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void setSalt() {
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+    public void buildersetSalt(){
         this.salt = passwordManager.generateSalt(16);
     }
 
-    public void setPassword(String password) {this.password = passwordManager.returnHashed(password, this.salt);;}
+    public void buildersetPassword(String password){
+        this.password = passwordManager.returnHashed(password, salt);
+    }
+    public void setPassword(String password) 
+    {this.password = password;}
 
     public void setUserId(String userId) {
         this.userId = userId;
