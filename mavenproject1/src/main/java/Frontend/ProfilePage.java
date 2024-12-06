@@ -209,6 +209,8 @@ public class ProfilePage extends javax.swing.JFrame {
          jPanel1.repaint();
          jPanel4.repaint();
          jPanel5.repaint();
+         DisplayImage(jPanel4, targetUser.getUserPhoto());
+         DisplayImage(jPanel5, targetUser.getUserCover());
          
          
          
