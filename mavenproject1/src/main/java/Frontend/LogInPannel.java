@@ -18,9 +18,12 @@ import java.util.*;
  */
 public class LogInPannel extends javax.swing.JFrame {
 public static AccountManagement manager=new AccountManagement();
+
+
 public static ArrayList<User> users;
 public static FriendManagement f=new FriendManagement();
 public static User logIn;
+
 
 
     /**
