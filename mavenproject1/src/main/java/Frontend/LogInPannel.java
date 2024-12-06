@@ -162,9 +162,6 @@ public static User logIn;
                 nameI.setText("");
                 passwordI.setText("");
             }
-            else{
-                
-            }
         } catch (IOException ex) {
             Logger.getLogger(LogInPannel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -198,6 +195,7 @@ public static User logIn;
                 Logger.getLogger(LogInPannel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

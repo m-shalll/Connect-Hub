@@ -222,14 +222,21 @@ if(s==null)
 else{
 
     
-       User r = LogInPannel.manager.getUser(s);
        try {
-        LogInPannel.f.acceptFriendRequest(targetUser,r);
-    } catch (IOException ex) {
+           
+           
+           User r = LogInPannel.manager.getUser(s);
+           try {
+               LogInPannel.f.acceptFriendRequest(targetUser,r);
+           } catch (IOException ex) {
+               Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           
+           JOptionPane.showMessageDialog(this, "Added succ","Error",JOptionPane.ERROR_MESSAGE);
+           
+       } catch (IOException ex) {
         Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
     }
-   
-    JOptionPane.showMessageDialog(this, "Added succ","Error",JOptionPane.ERROR_MESSAGE);
  
 }
 
@@ -247,14 +254,21 @@ if(s==null)
 else{
 
     
-       User r = LogInPannel.manager.getUser(s);
        try {
-        LogInPannel.f.declineFriendRequest(targetUser, r);
-    } catch (IOException ex) {
+           
+           
+           User r = LogInPannel.manager.getUser(s);
+           try {
+               LogInPannel.f.declineFriendRequest(targetUser, r);
+           } catch (IOException ex) {
+               Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           
+           JOptionPane.showMessageDialog(this, "declined succ","Error",JOptionPane.ERROR_MESSAGE);
+           
+       } catch (IOException ex) {
         Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
     }
-   
-    JOptionPane.showMessageDialog(this, "declined succ","Error",JOptionPane.ERROR_MESSAGE);
  
 }
         // TODO add your handling code here:
@@ -270,14 +284,20 @@ if(s==null)
 else{
 
     
-       User r = LogInPannel.manager.getUser(s);
-       try {
+       User r;
+            try {
+                r = LogInPannel.manager.getUser(s);
+                  try {
         LogInPannel.f.blockUser(targetUser, r);
     } catch (IOException ex) {
         Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
     }
 
     
+            } catch (IOException ex) {
+                Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
+            }
+     
     JOptionPane.showMessageDialog(this, "Block succ","Error",JOptionPane.ERROR_MESSAGE);
  
 }
@@ -294,14 +314,21 @@ if(s==null)
 else{
 
     
-       User r = LogInPannel.manager.getUser(s);
        try {
-        LogInPannel.f.removeFriend(targetUser, r);
-    } catch (IOException ex) {
+           
+           
+           User r = LogInPannel.manager.getUser(s);
+           try {
+               LogInPannel.f.removeFriend(targetUser, r);
+           } catch (IOException ex) {
+               Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           
+           JOptionPane.showMessageDialog(this, "remove succ","Error",JOptionPane.ERROR_MESSAGE);
+           
+       } catch (IOException ex) {
         Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
     }
-    
-    JOptionPane.showMessageDialog(this, "remove succ","Error",JOptionPane.ERROR_MESSAGE);
  
 }        
 // TODO add your handling code here:
@@ -317,15 +344,22 @@ if(s==null)
 else{
 
     
-       User r = LogInPannel.manager.getUser(s);
        try {
-        LogInPannel.f.sendFriendRequest(targetUser, r);
-    } catch (IOException ex) {
+           
+           
+           User r = LogInPannel.manager.getUser(s);
+           try {
+               LogInPannel.f.sendFriendRequest(targetUser, r);
+           } catch (IOException ex) {
+               Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           
+           
+           JOptionPane.showMessageDialog(this, "sent succ","Error",JOptionPane.ERROR_MESSAGE);
+           
+       } catch (IOException ex) {
         Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
     }
-   
-    
-    JOptionPane.showMessageDialog(this, "sent succ","Error",JOptionPane.ERROR_MESSAGE);
  
 }
         // TODO add your handling code here:
