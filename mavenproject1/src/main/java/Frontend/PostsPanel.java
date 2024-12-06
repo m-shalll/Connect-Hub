@@ -3,14 +3,28 @@ package Frontend;
 import javax.swing.*;
 import java.awt.*;
 import Backend.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PostsPanel extends JPanel{
     public PostsPanel(Post p){
-//        setBackground(Color.WHITE);
+        ArrayList<User> users = null;
+        try {
+            users = AccountManagement.loadUsers();
+        } catch (IOException ex) {
+            Logger.getLogger(PostsPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        User currentUser = null;
+        for(int i=0; i<users.size();i++){
+            if(p.getContentPublisher().equals(users.get(i).getUserId()))
+                currentUser = users.get(i);
+        }
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBounds(250,175,450,780);
         
-        JLabel usernameLabel = new JLabel(p.getContentPublisher());
+        JLabel usernameLabel = new JLabel(currentUser.getUserName());
         usernameLabel.setFont(new Font("Arial", Font.BOLD, 12));
         add(usernameLabel, BorderLayout.NORTH);
         

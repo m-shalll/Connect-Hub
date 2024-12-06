@@ -5,26 +5,42 @@ import java.awt.*;
 import Backend.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FeedWindow extends javax.swing.JFrame {
 
     private PostDatabase database1;
+    private StoryDatabase database2;
     private ArrayList<Post> posts;
+    private ArrayList<Story> stories;
     private int postCounter = 0;
+    private int storyCounter = 0;
+    private User currentUser = null;
 
-    public FeedWindow() {
+    public FeedWindow(String user) {
         initComponents();
         database1 = PostDatabase.getInstance();
+        database2 = StoryDatabase.getInstance();
         posts = database1.loadPosts();
+        stories = database2.loadStories();
         this.setTitle("Feed Window");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null); 
         jDialog1.pack();
         postCounter = posts.size();
-        loadAllPosts();
+        storyCounter = stories.size();
+        try {
+            currentUser = getCurrentUser(user);
+        } catch (IOException ex) {
+            
+        }
+        loadPosts();
+        loadStories();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -43,6 +59,9 @@ public class FeedWindow extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         jLabel1.setText("Enter Caption:");
 
@@ -119,25 +138,31 @@ public class FeedWindow extends javax.swing.JFrame {
 
         jButton4.setText("Manage Friends");
 
+        jList1.setBackground(new java.awt.Color(242, 242, 242));
+        jScrollPane2.setViewportView(jList1);
+
+        jScrollPane3.setViewportView(jScrollPane2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(252, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(203, 203, 203))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addContainerGap())))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(203, 203, 203))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +174,9 @@ public class FeedWindow extends javax.swing.JFrame {
                     .addComponent(jButton3)
                     .addComponent(jButton4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -195,54 +222,48 @@ public class FeedWindow extends javax.swing.JFrame {
             jDialog1.setVisible(false);
             p.setContent(content);
             p.setContentID(String.valueOf(postCounter++));
-            p.setContentPublisher("user");
+            p.setContentPublisher(currentUser.getUserId());
             posts.add(p);
             database1.savePosts(posts);
-            loadAllPosts();
+            loadPosts();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
-    public void loadAllPosts(){
+    public User getCurrentUser(String userID) throws IOException{
+        ArrayList<User> users = AccountManagement.loadUsers();
+        for(int i=0; i<users.size(); i++){
+            if(users.get(i).getUserId().equals(userID)){
+                return users.get(i);
+            }
+        }
+        return null;
+        
+    }
+    public void loadPosts(){
+        ArrayList<String> friends = currentUser.getFriends();
         jPanel1.removeAll();
         posts = database1.loadPosts();
         posts.sort((e1, e2) -> e2.getTimeStamp().compareTo(e1.getTimeStamp()));
-        for(int i=0; i<posts.size(); i++){
-            PostsPanel postPanel = new PostsPanel(posts.get(i));
-            jPanel1.add(postPanel);
-            System.out.println(posts.get(i));
+        for (int i = 0; i < posts.size(); i++) {
+            for (int j = 0; j < friends.size(); j++) {
+                if (posts.get(i).getContentPublisher().equals(friends.get(i))) {
+                    PostsPanel postPanel = new PostsPanel(posts.get(i));
+                    jPanel1.add(postPanel);
+                }
+            }
         }
         jPanel1.revalidate();
         jPanel1.repaint();
     }
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FeedWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FeedWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FeedWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FeedWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FeedWindow().setVisible(true);
-            }
-        });
+    public void loadStories(){
+        ArrayList<String> friends = currentUser.getFriends();
+        String[] emptyData = {};
+        jList1.setListData(emptyData);
+        stories = database2.loadStories();
+        stories.sort((e1, e2) -> e2.getTimeStamp().compareTo(e1.getTimeStamp()));
+        String[] data = new String[stories.size()];
+        data = friends.toArray(data);
+        jList1.setListData(data);
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -255,8 +276,11 @@ public class FeedWindow extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
