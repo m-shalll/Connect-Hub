@@ -1,7 +1,5 @@
 [ {
   "userId" : "user001",
-  "salt" : "D86oZO5ZPwPVQTM0eXSXxw==",
-  "password" : "/QGs+y5vFb3NmVp9Pr0B1kdxiQseYWEz1q9Dbs1tfTw=",
   "salt" : "rwE0qb/QnGOOgFKmlvICZw==",
   "password" : "vlwryqXUxHiCnSQSlfr4dZGCzpen+NuWs3VZGX++2J4=",
   "status" : "offline",
@@ -312,7 +310,6 @@
   "friends" : [ ],
   "blocked" : [ ],
   "friendReq" : { },
-
   "email" : "john.doe01@gmail.com",
   "username" : "John Doe",
   "Date-of-birth" : "1990-04-15",
@@ -599,9 +596,6 @@
   "friendReq" : {
     "user019" : "Declined"
   },
-  "email" : "sophia.walker20@gmail.com",
-  "username" : "Sophia Walker",
-  "Date-of-birth" : "1996-02-15",
   "email" : "iadicsvd@gmail.com",
   "username" : "user001",
   "Date-of-birth" : "2024-12-11",
