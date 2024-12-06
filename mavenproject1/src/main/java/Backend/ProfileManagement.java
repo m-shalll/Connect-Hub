@@ -54,7 +54,8 @@ public class ProfileManagement {
                     neededUser.setUserBio(userBio);
                 }
                 if (userPassword != null) {
-                    neededUser.setSalt();
+                  
+                    neededUser.setSalt(passwordManager.generateSalt(16));
                     neededUser.setPassword(passwordManager.returnHashed(userPassword, neededUser.getSalt()));
                 }
                 mapper.writerWithDefaultPrettyPrinter().writeValue(new File("User.json"), users);

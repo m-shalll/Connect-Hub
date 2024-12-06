@@ -22,6 +22,7 @@ public static ArrayList<User> users;
 public static FriendManagement f=new FriendManagement();
 public static User logIn;
 
+
     /**
      * Creates new form LogInPannel
      */
@@ -87,23 +88,23 @@ public static User logIn;
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(123, 123, 123)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nameI)
-                            .addComponent(passwordI, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(passwordI, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -141,7 +142,9 @@ public static User logIn;
     }//GEN-LAST:event_nameIActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        SignUpPanel sign=new SignUpPanel();
+        sign.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -154,10 +157,7 @@ public static User logIn;
         }
 
         else{
-            
-        }
-
-        try {
+            try {
             if(!manager.logIn(userName)){
                 JOptionPane.showMessageDialog(new JFrame(), "Incorrect username or password","Error",JOptionPane.ERROR_MESSAGE);
                 nameI.setText("");
@@ -171,7 +171,7 @@ public static User logIn;
         }
 
 
-            
+
             PasswordManager pass = PasswordManager.getInstance();
             try {
                 if(manager.getUser(userName)!=null){
@@ -181,8 +181,10 @@ public static User logIn;
                     System.out.println();
                     
                     if(pass.verifyPassword(password,user.getPassword() , user.getSalt())){
+
                         users=manager.loadUsers();
                         logIn=manager.getUser(userName);
+
                         FeedWindow feed=new FeedWindow();
                         feed.setVisible(true);
                         this.setVisible(false);
@@ -199,9 +201,9 @@ public static User logIn;
 
 
             
-       
 
-        
+        }
+
 
          
     }//GEN-LAST:event_jButton2ActionPerformed

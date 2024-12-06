@@ -35,5 +35,6 @@ public class mavenproject1 {
         AccountManagement manager=new AccountManagement();
         manager.signUp("12345","teg","etgeg","etge","hamza");
         manager.logIn("hamza");
+        
     }
 }
