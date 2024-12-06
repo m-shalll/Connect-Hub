@@ -223,14 +223,9 @@
   "Cover photo" : null,
   "Bio" : null
 }, {
-  "userId" : "user016",
-  "salt" : "7CK4W3NVwlQNw2ofmok5uA==",
-  "password" : "tp1h5BefRTlB3qWUzfp228D9rjkz21aljsOyM5df+XY=",
-=======
   "userId" : "hamza",
   "salt" : "YAhkSIJLK/DqpEBuw4PChg==",
   "password" : "wgzPUs+UEJveibDehR6KFFOg3UJr6vPF6FC5ChakDrc=",
-
   "status" : "online",
   "friends" : [ ],
   "blocked" : [ "user015" ],
@@ -300,6 +295,20 @@
   "email" : "sophia.walker20@gmail.com",
   "username" : "Sophia Walker",
   "Date-of-birth" : "1996-02-15",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user0011",
+  "salt" : "sZQYz9YKUFAeqkTaIjd/YA==",
+  "password" : "JBp4OyZd7iDH9xodfWAsnrgGAcOteDbLFGH9c4Q5+2c=",
+  "status" : null,
+  "friends" : [ ],
+  "blocked" : [ ],
+  "friendReq" : { },
+  "email" : "iadicsvd@gmail.com",
+  "username" : "user001",
+  "Date-of-birth" : "2024-12-11",
   "Profile photo" : null,
   "Cover photo" : null,
   "Bio" : null
