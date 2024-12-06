@@ -172,11 +172,6 @@ public class ProfilePage extends javax.swing.JFrame {
 
         } catch (Exception e) {
             e.printStackTrace();
-            // Add a placeholder if an error occurs
-            JLabel errorLabel = new JLabel("Failed to load image.");
-            errorLabel.setHorizontalAlignment(JLabel.CENTER);
-            errorLabel.setVerticalAlignment(JLabel.CENTER);
-            jPanel.add(errorLabel, BorderLayout.CENTER);
         }
     } else {
         
@@ -209,8 +204,8 @@ public class ProfilePage extends javax.swing.JFrame {
          jPanel1.repaint();
          jPanel4.repaint();
          jPanel5.repaint();
-         DisplayImage(jPanel4, targetUser.getUserPhoto());
-         DisplayImage(jPanel5, targetUser.getUserCover());
+         DisplayImage(jPanel4, userPhoto);
+         DisplayImage(jPanel5, userPhoto);
          
          
          

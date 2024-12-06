@@ -1,7 +1,7 @@
 [ {
   "userId" : "user001",
-  "salt" : "rwE0qb/QnGOOgFKmlvICZw==",
-  "password" : "vlwryqXUxHiCnSQSlfr4dZGCzpen+NuWs3VZGX++2J4=",
+  "salt" : "ErKhUY99sh0LrOqcLXCl0g==",
+  "password" : "XGD61Va7SEV8PWmPklR4Wt6I8JXk4LSkMp1Xzd+0dNw=",
   "status" : "online",
   "friends" : [ "user002" ],
   "blocked" : [ ],
@@ -9,9 +9,9 @@
   "email" : "john.doe01@gmail.com",
   "username" : "John Doe",
   "Date-of-birth" : "1990-04-15",
-  "Profile photo" : "C:\\Users\\Hamza\\Downloads\\board-453758_640.jpg",
-  "Cover photo" : "C:\\Users\\Hamza\\Downloads\\detachment-sermon.jpg",
-  "Bio" : "hi"
+  "Profile photo" : "C:\\Users\\Hamza\\Downloads\\f776fe208611732c9b6d1b6fc917287b.jpg",
+  "Cover photo" : "C:\\Users\\Hamza\\Downloads\\6948525a86e2d4d415d9893afcc40cb4.jpg",
+  "Bio" : "123"
 }, {
   "userId" : "user002",
   "salt" : "HECGITMmGrwUVsvFJFwVNQ==",
