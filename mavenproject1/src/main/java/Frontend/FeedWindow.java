@@ -461,11 +461,10 @@ public class FeedWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        
-        ProfilePage profile = new ProfilePage(this);
-     this.setVisible(false);
-     profile.setVisible(true);
-    // TODO add your handling code here:
+        FeedWindow feed = this;
+        ProfilePage profile = new ProfilePage(feed);
+        this.setVisible(false);
+        profile.setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     public void loadPosts(){
@@ -486,20 +485,38 @@ public class FeedWindow extends javax.swing.JFrame {
     }
     public void loadStories(){
         ArrayList<String> friends = currentUser.getFriends();
-        ArrayList<String> friendsNames = new ArrayList<>();
-        for(int i=0; i<friends.size(); i++){
-            for(int j=0; j<users.size(); j++){
-                if(friends.get(i).equals(users.get(j).getUserId())){
-                    friendsNames.add(users.get(j).getUserName());
+        ArrayList<String> friendsUserNames = new ArrayList<>();
+        System.out.println(friends);
+        ArrayList<String> friendsStories = new ArrayList<>();
+        System.out.println(friendsStories);
+        for (int i = 0; i < friends.size(); i++) {
+            for (int j = 0; j < stories.size(); j++) {
+                if(stories.get(j).getContentPublisher().equals(friends.get(i))){
+                    friendsStories.add(friends.get(i));
                 }
             }
         }
+        try {
+            users = userDatabase.loadUsers();
+        } catch (IOException ex) {
+
+        }
+        for (int i = 0; i < friendsStories.size(); i++) {
+            for (int j = 0; j < users.size(); j++) {
+                if(friendsStories.get(i).equals(users.get(j).getUserId())){
+                    friendsUserNames.add(users.get(j).getUserName());
+                }
+            }
+        }
+        System.out.println(friendsUserNames);
+        System.out.println(friendsStories);
         String[] emptyData = {};
         jList1.setListData(emptyData);
         stories = database2.loadStories();
         stories.sort((e1, e2) -> e2.getTimeStamp().compareTo(e1.getTimeStamp()));
         String[] data = new String[stories.size()];
-        data = friendsNames.toArray(data);
+        data = friendsUserNames.toArray(data);
+        System.out.println(data);
         jList1.setListData(data);
     }
 

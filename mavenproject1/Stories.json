@@ -1,19 +1,19 @@
 [ {
-  "contentID" : "8",
-  "contentPublisher" : "user001",
+  "contentID" : "0",
+  "contentPublisher" : "user014",
   "content" : {
-    "imageFilePath" : "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\4.jpg",
-    "caption" : "What a great day today"
-  },
-  "timeStamp" : [ 2024, 12, 6, 15, 20, 56, 244373200 ],
-  "past24Hours" : false
-}, {
-  "contentID" : null,
-  "contentPublisher" : "user002",
-  "content" : {
-    "imageFilePath" : "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\3.jpg",
+    "imageFilePath" : null,
     "caption" : "New story"
   },
-  "timeStamp" : [ 2024, 12, 6, 3, 5, 24, 481873200 ],
+  "timeStamp" : [ 2024, 12, 6, 22, 59, 12, 293526300 ],
+  "past24Hours" : false
+}, {
+  "contentID" : "1",
+  "contentPublisher" : "user002",
+  "content" : {
+    "imageFilePath" : null,
+    "caption" : "Programming is fun"
+  },
+  "timeStamp" : [ 2024, 12, 6, 23, 0, 19, 932745800 ],
   "past24Hours" : false
 } ]
