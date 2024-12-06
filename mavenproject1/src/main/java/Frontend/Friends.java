@@ -17,11 +17,16 @@ import javax.swing.JOptionPane;
  * @author AbdElrahman
  */
 public class Friends extends javax.swing.JDialog {
-   public User targetUser =LogInPannel.logIn;
+    public ArrayList<User> users=LogInPannel.users;
+   
+   public User targetUser=LogInPannel.logIn ;
    
     public Friends(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+           
+        
+       
         //generate friend requests
         loadList1();
         //generate friends list
@@ -36,15 +41,16 @@ public class Friends extends javax.swing.JDialog {
     Map<String, String> friendReq = targetUser.getFriendReq();
     
     // Iterate over the map to check for "Pending" requests
+System.out.println(friendReq.entrySet());
     for (Map.Entry<String, String> entry : friendReq.entrySet()) {
-        if ("Pending".equals(entry.getValue())) {
+        if ("pending".equals(entry.getValue())) {
             names.add(entry.getKey()); 
+            //System.out.println("899"+names);
         }
     }
     
     // Set the list data for your JList
-    jList1.setListData(names.toArray(new String[0]));
-        System.out.println(jList1.getSelectedValue()); 
+    jList2.setListData(names.toArray(new String[0]));
 }
     public void loadList2(){
     ArrayList<String> names = new ArrayList<>();
@@ -52,13 +58,15 @@ public class Friends extends javax.swing.JDialog {
     for(String i: targetUser.getFriends()){
     names.add(i);
     }
+        System.out.println(names);
     //adds the arraylist created to jlist by converting to array
     jList1.setListData(names.toArray(new String[0]));
     }
     
     public void loadList3(){
-   ArrayList<String> names =LogInPannel.f.suggestedFriends(targetUser, LogInPannel.users);
-   jList1.setListData(names.toArray(new String[0]));
+   ArrayList<String> names =LogInPannel.f.suggestedFriends(targetUser, users);
+        System.out.println(names);
+   jList3.setListData(names.toArray(new String[0]));
     
     }
 
@@ -213,7 +221,7 @@ public class Friends extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
-String s=jList1.getSelectedValue();
+String s=jList2.getSelectedValue();
         System.out.println(s);
 
 
@@ -237,6 +245,8 @@ else{
        } catch (IOException ex) {
         Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
     }
+       loadList1();
+       loadList2();
  
 }
 
@@ -245,7 +255,7 @@ else{
     }//GEN-LAST:event_AddActionPerformed
 
     private void DeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeclineActionPerformed
-String s=jList1.getSelectedValue();
+String s=jList2.getSelectedValue();
         System.out.println(s);
 
 
@@ -269,7 +279,8 @@ else{
        } catch (IOException ex) {
         Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
     }
- 
+        loadList1();
+
 }
         // TODO add your handling code here:
     }//GEN-LAST:event_DeclineActionPerformed
@@ -299,7 +310,7 @@ else{
             }
      
     JOptionPane.showMessageDialog(this, "Block succ","Error",JOptionPane.ERROR_MESSAGE);
- 
+ loadList2();
 }
 // TODO add your handling code here:
     }//GEN-LAST:event_BlockActionPerformed
@@ -318,8 +329,9 @@ else{
            
            
            User r = LogInPannel.manager.getUser(s);
+           System.out.println("990"+r);
            try {
-               LogInPannel.f.removeFriend(targetUser, r);
+              LogInPannel.f.removeFriend(targetUser, r);
            } catch (IOException ex) {
                Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
            }
@@ -329,13 +341,14 @@ else{
        } catch (IOException ex) {
         Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
     }
+       loadList2();
  
 }        
 // TODO add your handling code here:
     }//GEN-LAST:event_RemoveActionPerformed
 
     private void RequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequestActionPerformed
-              String s=jList1.getSelectedValue();
+              String s=jList3.getSelectedValue();
         System.out.println(s);
 
 
@@ -356,11 +369,11 @@ else{
            
            
            JOptionPane.showMessageDialog(this, "sent succ","Error",JOptionPane.ERROR_MESSAGE);
-           
+            
        } catch (IOException ex) {
         Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
     }
- 
+ loadList3();
 }
         // TODO add your handling code here:
     }//GEN-LAST:event_RequestActionPerformed

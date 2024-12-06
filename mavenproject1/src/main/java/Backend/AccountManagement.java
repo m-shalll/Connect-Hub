@@ -11,8 +11,10 @@ public class AccountManagement {
     PasswordManager passwordManager = PasswordManager.getInstance();
 
     // signup method creates a user object and adds it to json file
+
     public void signUp(String password, String email, String dateOfBirth, String userName, String userId) throws IOException{
         ArrayList<User> users=loadUsers();
+
         User newUser = new UserBuilder()
                 .buildersetSalt()
                 .buildersetPassword(password)
@@ -66,7 +68,9 @@ public class AccountManagement {
     public User getUser(String userId) throws IOException{
         ArrayList<User> users=loadUsers();
         for(User user:users){
+
             if(user.getUserId().equals(userId))
+
             return user;
         }
         return null;
