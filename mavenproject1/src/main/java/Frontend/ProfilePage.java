@@ -114,10 +114,6 @@ public class ProfilePage extends javax.swing.JFrame {
             System.out.println("Friends: " + user.getFriends());
             return user.getFriends();
         }
-            
-        } catch (IOException ex) {
-            Logger.getLogger(ProfilePage.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return null;
     }
     
