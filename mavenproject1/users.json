@@ -2,7 +2,7 @@
   "userId" : "user001",
   "salt" : "rwE0qb/QnGOOgFKmlvICZw==",
   "password" : "vlwryqXUxHiCnSQSlfr4dZGCzpen+NuWs3VZGX++2J4=",
-  "status" : "offline",
+  "status" : "online",
   "friends" : [ "user002" ],
   "blocked" : [ ],
   "friendReq" : { },
@@ -10,8 +10,8 @@
   "username" : "John Doe",
   "Date-of-birth" : "1990-04-15",
   "Profile photo" : "C:\\Users\\Hamza\\Downloads\\board-453758_640.jpg",
-  "Cover photo" : "C:\\Users\\Hamza\\Downloads\\artworks-FJBz9K9Gul22uqN7-c4oHqg-t500x500.jpg",
-  "Bio" : "i am the man"
+  "Cover photo" : "C:\\Users\\Hamza\\Downloads\\detachment-sermon.jpg",
+  "Bio" : "hi"
 }, {
   "userId" : "user002",
   "salt" : "HECGITMmGrwUVsvFJFwVNQ==",

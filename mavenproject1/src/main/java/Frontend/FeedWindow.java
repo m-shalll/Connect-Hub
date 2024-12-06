@@ -460,8 +460,8 @@ public class FeedWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        FeedWindow feed = this;
-        ProfilePage profile = new ProfilePage(feed);
+        
+        ProfilePage profile = new ProfilePage(this);
      this.setVisible(false);
      profile.setVisible(true);
     // TODO add your handling code here:
