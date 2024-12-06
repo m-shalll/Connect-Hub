@@ -2,10 +2,313 @@
   "userId" : "user001",
   "salt" : "D86oZO5ZPwPVQTM0eXSXxw==",
   "password" : "/QGs+y5vFb3NmVp9Pr0B1kdxiQseYWEz1q9Dbs1tfTw=",
+  "salt" : "rwE0qb/QnGOOgFKmlvICZw==",
+  "password" : "vlwryqXUxHiCnSQSlfr4dZGCzpen+NuWs3VZGX++2J4=",
+  "status" : "online",
+  "friends" : [ "user002" ],
+  "blocked" : [ ],
+  "friendReq" : { },
+  "email" : "john.doe01@gmail.com",
+  "username" : "John Doe",
+  "Date-of-birth" : "1990-04-15",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user002",
+  "salt" : "HECGITMmGrwUVsvFJFwVNQ==",
+  "password" : "IReDlKZZaWK4Qf63CTEJ6QnqOGPizlmLL3eT42JCDCw=",
+  "status" : "online",
+  "friends" : [ "user001" ],
+  "blocked" : [ ],
+  "friendReq" : {
+    "user001" : "accepted"
+  },
+  "email" : "jane.smith02@gmail.com",
+  "username" : "Jane Smith",
+  "Date-of-birth" : "1992-08-21",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user003",
+  "salt" : "x4aKuhYtL5onaXZCS+PvgQ==",
+  "password" : "yjpqKPekHbUbPb1ypwpR0mcLJ7Au4IwjXHU3vkJCK74=",
   "status" : "online",
   "friends" : [ ],
   "blocked" : [ ],
   "friendReq" : { },
+  "email" : "michael.jones03@gmail.com",
+  "username" : "Michael Jones",
+  "Date-of-birth" : "1988-03-10",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user004",
+  "salt" : "47LKONuq6bt3/bFH5GGZbA==",
+  "password" : "oPRvq11O8YvSCJxVd57A4Yu2FskoyrSxcoVti3dEaCE=",
+  "status" : "online",
+  "friends" : [ ],
+  "blocked" : [ "user003" ],
+  "friendReq" : {
+    "user003" : "Declined"
+  },
+  "email" : "sarah.lee04@gmail.com",
+  "username" : "Sarah Lee",
+  "Date-of-birth" : "1995-06-30",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user005",
+  "salt" : "eGZFYs6dDO96pgvdpzHKmQ==",
+  "password" : "sGBt+oketQxCzBWLktjoFUEXrwAgkiwZ2EMFPumwgw8=",
+  "status" : "online",
+  "friends" : [ "user006" ],
+  "blocked" : [ ],
+  "friendReq" : { },
+  "email" : "david.brown05@gmail.com",
+  "username" : "David Brown",
+  "Date-of-birth" : "1987-11-25",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user006",
+  "salt" : "BVyID786ZO5o0r6FUqsoIQ==",
+  "password" : "LeRdlf2Nb6up7LUkn/4uXfoppn1uHHI0RTRjZPWJjTk=",
+  "status" : "online",
+  "friends" : [ "user005" ],
+  "blocked" : [ ],
+  "friendReq" : {
+    "user005" : "accepted"
+  },
+  "email" : "emma.clark06@gmail.com",
+  "username" : "Emma Clark",
+  "Date-of-birth" : "1993-05-14",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user007",
+  "salt" : "GQklaOSlj+Pzr7xH43iTDA==",
+  "password" : "ORDK6E3UlskkNk2Jlc5xjtpHZM8oVo7wLvAdTo4j/eo=",
+  "status" : "online",
+  "friends" : [ ],
+  "blocked" : [ ],
+  "friendReq" : { },
+  "email" : "chris.white07@gmail.com",
+  "username" : "Chris White",
+  "Date-of-birth" : "1991-09-19",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user008",
+  "salt" : "b4K+T6ccphwHbij6xcMQQg==",
+  "password" : "CCTAW35vDgxFlwV4xq9KiSM0THxQr1L7XX4MPCYhw8I=",
+  "status" : "online",
+  "friends" : [ ],
+  "blocked" : [ "user007" ],
+  "friendReq" : {
+    "user007" : "Declined"
+  },
+  "email" : "lisa.harris08@gmail.com",
+  "username" : "Lisa Harris",
+  "Date-of-birth" : "1994-12-07",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user009",
+  "salt" : "gApIEDw3V3aEJ7RFwzDWoQ==",
+  "password" : "6yZMIrsUfX5U5QoypI3OYj9U5O3aR+58YGG2HRIQQMs=",
+  "status" : "online",
+  "friends" : [ "user010" ],
+  "blocked" : [ ],
+  "friendReq" : { },
+  "email" : "daniel.evans09@gmail.com",
+  "username" : "Daniel Evans",
+  "Date-of-birth" : "1989-02-03",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user010",
+  "salt" : "bnbShb7QhKgbkQK+a6tXEw==",
+  "password" : "QDsgzyIZL+j27/MxZQjoXlSxEYsfNomow8DE8hDkI8o=",
+  "status" : "online",
+  "friends" : [ "user009" ],
+  "blocked" : [ ],
+  "friendReq" : {
+    "user009" : "accepted"
+  },
+  "email" : "sophie.turner10@gmail.com",
+  "username" : "Sophie Turner",
+  "Date-of-birth" : "1996-07-22",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user011",
+  "salt" : "sluh34/GCWJgtwa6GopciA==",
+  "password" : "zxuikx7uDQSuoJ8rXvpYz4bMv4OQ6WgRUX+GFUw9ziw=",
+  "status" : "online",
+  "friends" : [ ],
+  "blocked" : [ ],
+  "friendReq" : { },
+  "email" : "jack.moore11@gmail.com",
+  "username" : "Jack Moore",
+  "Date-of-birth" : "1990-10-05",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user012",
+  "salt" : "CXxFqVBj2qZi4S4M6Ew/CQ==",
+  "password" : "M4yXQyeWcAjfTSRPVd2oK7pJJ3l6XQ1NV4OLhKb/PBI=",
+  "status" : "online",
+  "friends" : [ ],
+  "blocked" : [ "user011" ],
+  "friendReq" : {
+    "user011" : "Declined"
+  },
+  "email" : "anna.bell12@gmail.com",
+  "username" : "Anna Bell",
+  "Date-of-birth" : "1992-01-18",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user013",
+  "salt" : "n51LZKP34+/8QUzhk+wm+Q==",
+  "password" : "ZgAL0gecYf+sy52PTjN32+WAeln4mJQaUdYakNZQPRE=",
+  "status" : "online",
+  "friends" : [ "user014" ],
+  "blocked" : [ ],
+  "friendReq" : { },
+  "email" : "ryan.morgan13@gmail.com",
+  "username" : "Ryan Morgan",
+  "Date-of-birth" : "1988-08-29",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user014",
+  "salt" : "mSz/PzpZC9UNnWsBenYEqg==",
+  "password" : "sl0cojF48c9douFB2/WSbO6+Hs30sKhLObC1qA3VESk=",
+  "status" : "online",
+  "friends" : [ "user013" ],
+  "blocked" : [ ],
+  "friendReq" : {
+    "user013" : "accepted"
+  },
+  "email" : "chloe.hill14@gmail.com",
+  "username" : "Chloe Hill",
+  "Date-of-birth" : "1995-04-09",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user015",
+  "salt" : "L4Lxap8Z7VZ1Odw19KQF9w==",
+  "password" : "3OskxHP+jRS5tDITWsWela90mXH+TVkfQqDLEFPGL7Q=",
+  "status" : "online",
+  "friends" : [ ],
+  "blocked" : [ ],
+  "friendReq" : { },
+  "email" : "james.king15@gmail.com",
+  "username" : "James King",
+  "Date-of-birth" : "1987-03-28",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "hamza",
+  "salt" : "YAhkSIJLK/DqpEBuw4PChg==",
+  "password" : "wgzPUs+UEJveibDehR6KFFOg3UJr6vPF6FC5ChakDrc=",
+  "status" : "online",
+  "friends" : [ ],
+  "blocked" : [ "user015" ],
+  "friendReq" : {
+    "user015" : "Declined"
+  },
+  "email" : "olivia.scott16@gmail.com",
+  "username" : "Olivia Scott",
+  "Date-of-birth" : "1993-09-11",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user017",
+  "salt" : "fVkq/jGUXASUw+TYcC9jDQ==",
+  "password" : "pYz+axLo4uEJXweBzV+2vO2/Emk8eqhWrquYQKPzuTM=",
+  "status" : "online",
+  "friends" : [ "user018" ],
+  "blocked" : [ ],
+  "friendReq" : { },
+  "email" : "benjamin.green17@gmail.com",
+  "username" : "Benjamin Green",
+  "Date-of-birth" : "1991-06-02",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user018",
+  "salt" : "6JcbFPcP3O1orqw9olOZmg==",
+  "password" : "e+5/aqFT4vR1AtMAL0oyAL7ZHaXFH8O8dby883fRJGM=",
+  "status" : "online",
+  "friends" : [ "user017" ],
+  "blocked" : [ ],
+  "friendReq" : {
+    "user017" : "accepted"
+  },
+  "email" : "mia.adams18@gmail.com",
+  "username" : "Mia Adams",
+  "Date-of-birth" : "1994-11-13",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user019",
+  "salt" : "d/NV7a4HVjJaC4sPg3qCwA==",
+  "password" : "OlAuYOuEkAp/7pZ5aJ06HUOfCJ+cDhDrvVQO7ZnU5jc=",
+  "status" : "online",
+  "friends" : [ ],
+  "blocked" : [ ],
+  "friendReq" : { },
+  "email" : "nathan.wright19@gmail.com",
+  "username" : "Nathan Wright",
+  "Date-of-birth" : "1989-05-25",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user020",
+  "salt" : "ejPWb4oaBSiSgtxolkOrvQ==",
+  "password" : "H5TdSyI+8Th/og+mrxfxy/U90O36IB/Sn1GQBMZzPk0=",
+  "status" : "online",
+  "friends" : [ ],
+  "blocked" : [ "user019" ],
+  "friendReq" : {
+    "user019" : "Declined"
+  },
+  "email" : "sophia.walker20@gmail.com",
+  "username" : "Sophia Walker",
+  "Date-of-birth" : "1996-02-15",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user0011",
+  "salt" : "sZQYz9YKUFAeqkTaIjd/YA==",
+  "password" : "JBp4OyZd7iDH9xodfWAsnrgGAcOteDbLFGH9c4Q5+2c=",
+  "status" : null,
+  "friends" : [ ],
+  "blocked" : [ ],
+  "friendReq" : { },
+
   "email" : "john.doe01@gmail.com",
   "username" : "John Doe",
   "Date-of-birth" : "1990-04-15",
@@ -295,6 +598,9 @@
   "email" : "sophia.walker20@gmail.com",
   "username" : "Sophia Walker",
   "Date-of-birth" : "1996-02-15",
+  "email" : "iadicsvd@gmail.com",
+  "username" : "user001",
+  "Date-of-birth" : "2024-12-11",
   "Profile photo" : null,
   "Cover photo" : null,
   "Bio" : null

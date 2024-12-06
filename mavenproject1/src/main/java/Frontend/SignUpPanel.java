@@ -4,6 +4,7 @@
  */
 package Frontend;
 
+import Backend.AccountManagement;
 import Backend.Validation;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -22,6 +23,10 @@ public class SignUpPanel extends javax.swing.JFrame {
      */
     public SignUpPanel() {
         initComponents();
+        dateChooser1.setDateFormat("yyyy-MM-dd");
+        dateChooser1.setTextRefernce(dateI);
+        dateI.setText("");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     }
 
     /**
@@ -33,6 +38,7 @@ public class SignUpPanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dateChooser1 = new com.raven.datechooser.DateChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nameI = new javax.swing.JTextField();
@@ -47,7 +53,9 @@ public class SignUpPanel extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         rePasswordI = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        dateI = new javax.swing.JTextField();
+
+        dateChooser1.setDateFormat("yyyy-MM-dd");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Signup");
@@ -136,7 +144,7 @@ public class SignUpPanel extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dateI, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,7 +189,7 @@ public class SignUpPanel extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
                             .addComponent(rePasswordI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dateI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(47, 47, 47)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton2))
@@ -200,16 +208,27 @@ public class SignUpPanel extends javax.swing.JFrame {
         String userId=idI.getText();
         String email=emailI.getText();
         String password=passwordI.getText();
+        String date= dateI.getText();
+        Boolean valid=true;
         Validation validation=new Validation();
         if(password.isEmpty()||userId.isEmpty()||email.isEmpty()||password.isEmpty()){
             JOptionPane.showMessageDialog(new JFrame(), "Some fields are empty","Error",JOptionPane.ERROR_MESSAGE);
+            valid=false;
         }
-        if(!validation.isValidEmail(email)){
+        else if(!validation.isValidEmail(email)){
             JOptionPane.showMessageDialog(new JFrame(), "Write a proper email format like @gmail.com","Error",JOptionPane.ERROR_MESSAGE);
+            valid=false;
         }
-        try {
+        else if(!password.equals(rePasswordI.getText())){
+            JOptionPane.showMessageDialog(new JFrame(), "Your passwords are not matching please make sure they are the same","Error",JOptionPane.ERROR_MESSAGE);
+            rePasswordI.setText("");
+            valid=false;
+        }
+        else{
+            try {
             if(!validation.uniqueUserId(userId)){
                 JOptionPane.showMessageDialog(new JFrame(), userId+" already exists, try a different UserID","Error",JOptionPane.ERROR_MESSAGE);
+                valid=false;
             }
         } catch (IOException ex) {
             Logger.getLogger(SignUpPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -217,14 +236,25 @@ public class SignUpPanel extends javax.swing.JFrame {
         try {
             if(!validation.uniqueEmail(email)){
                 JOptionPane.showMessageDialog(new JFrame(), "This mail is already in use","Error",JOptionPane.ERROR_MESSAGE);
+                valid=false;
             }
         } catch (IOException ex) {
             Logger.getLogger(SignUpPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } 
         }
-        if(!password.equals(rePasswordI.getText())){
-            JOptionPane.showMessageDialog(new JFrame(), "Your passwords are not matching please make sure they are the same","Error",JOptionPane.ERROR_MESSAGE);
-            rePasswordI.setText("");
+        if(valid){
+            AccountManagement manager=new AccountManagement();
+            try {
+                manager.signUp(password, email, date, username, userId);
+            } catch (IOException ex) {
+                Logger.getLogger(SignUpPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(new JFrame(), "You have successfuly created an account please login!","Success",JOptionPane.INFORMATION_MESSAGE);
+            LogInPannel panel=new LogInPannel();
+            panel.setVisible(true);
+            this.setVisible(false);
         }
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -278,6 +308,8 @@ public class SignUpPanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.raven.datechooser.DateChooser dateChooser1;
+    private javax.swing.JTextField dateI;
     private javax.swing.JTextField emailI;
     private javax.swing.JTextField idI;
     private javax.swing.JButton jButton1;
@@ -289,7 +321,6 @@ public class SignUpPanel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField nameI;
     private javax.swing.JTextField passwordI;
     private javax.swing.JTextField rePasswordI;
