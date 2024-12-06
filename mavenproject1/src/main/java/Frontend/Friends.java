@@ -262,7 +262,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s);
+           User r = LogInPannel.manager.getUser(s,LogInPannel.users);
            try {
                LogInPannel.f.acceptFriendRequest(targetUser,r);
            } catch (IOException ex) {
@@ -302,7 +302,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s);
+           User r = LogInPannel.manager.getUser(s,LogInPannel.users);
            try {
                LogInPannel.f.declineFriendRequest(targetUser, r);
            } catch (IOException ex) {
@@ -338,7 +338,7 @@ else{
     
        User r;
             try {
-                r = LogInPannel.manager.getUser(s);
+                r = LogInPannel.manager.getUser(s,LogInPannel.users);
                   try {
         LogInPannel.f.blockUser(targetUser, r);
     } catch (IOException ex) {
@@ -375,7 +375,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s);
+           User r = LogInPannel.manager.getUser(s,LogInPannel.users);
            System.out.println("990"+r);
            try {
               LogInPannel.f.removeFriend(targetUser, r);
@@ -413,7 +413,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s);
+           User r = LogInPannel.manager.getUser(s,LogInPannel.users);
            try {
                LogInPannel.f.sendFriendRequest(targetUser, r);
            } catch (IOException ex) {
@@ -457,6 +457,8 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
         } catch (IOException ex) {
             Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
         }
+         FeedWindow x=new FeedWindow(targetUser);
+         x.setVisible(true);
  this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
