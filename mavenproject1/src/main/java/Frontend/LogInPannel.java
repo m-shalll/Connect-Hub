@@ -18,6 +18,10 @@ import java.util.*;
  */
 public class LogInPannel extends javax.swing.JFrame {
 public static AccountManagement manager=new AccountManagement();
+public static ArrayList<User> users;
+public static FriendManagement f=new FriendManagement();
+public static User logIn;
+
 
     /**
      * Creates new form LogInPannel
@@ -145,6 +149,7 @@ public static AccountManagement manager=new AccountManagement();
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String userName=nameI.getText();
+        
         char[] character=passwordI.getPassword();
         String password = new String(character);
         if(password.isEmpty()||userName.isEmpty()){
@@ -164,7 +169,8 @@ public static AccountManagement manager=new AccountManagement();
             Logger.getLogger(LogInPannel.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-            AccountManagement manager=new AccountManagement();
+
+
             PasswordManager pass = PasswordManager.getInstance();
             try {
                 if(manager.getUser(userName)!=null){
@@ -174,6 +180,10 @@ public static AccountManagement manager=new AccountManagement();
                     System.out.println();
                     
                     if(pass.verifyPassword(password,user.getPassword() , user.getSalt())){
+
+                        users=manager.loadUsers();
+                        logIn=manager.getUser(userName);
+
                         FeedWindow feed=new FeedWindow();
                         feed.setVisible(true);
                         this.setVisible(false);
@@ -187,7 +197,7 @@ public static AccountManagement manager=new AccountManagement();
             } catch (IOException ex) {
                 Logger.getLogger(LogInPannel.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } 
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
