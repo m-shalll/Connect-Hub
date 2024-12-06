@@ -4,7 +4,6 @@
  */
 package Frontend;
 import com.formdev.flatlaf.FlatDarkLaf;
-
 import Backend.AccountManagement;
 import Backend.ProfileManagement;
 import Backend.*;
