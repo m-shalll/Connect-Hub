@@ -40,6 +40,12 @@ public class FeedWindow extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+<<<<<<< Updated upstream
+=======
+        ManagF = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+>>>>>>> Stashed changes
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -107,6 +113,30 @@ public class FeedWindow extends javax.swing.JFrame {
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane1.setViewportView(jPanel1);
 
+<<<<<<< Updated upstream
+=======
+        ManagF.setText("Manage Friends");
+        ManagF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManagFActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("refresh");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Create Story");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+>>>>>>> Stashed changes
         jButton1.setText("Create Post");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,16 +193,55 @@ public class FeedWindow extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< Updated upstream
                 .addContainerGap(189, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57))
+=======
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                                    .addComponent(ManagF, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
+>>>>>>> Stashed changes
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+<<<<<<< Updated upstream
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
+=======
+                .addContainerGap()
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ManagF, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+>>>>>>> Stashed changes
         );
 
         pack();
@@ -223,7 +292,105 @@ public class FeedWindow extends javax.swing.JFrame {
             loadAllPosts();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
+<<<<<<< Updated upstream
     public void loadAllPosts(){
+=======
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jDialog1.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ManagFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManagFActionPerformed
+        FeedWindow x=new FeedWindow(currentUser);
+        Friends h = new Friends(x,true);
+        
+        h.setVisible(true);
+        
+    }//GEN-LAST:event_ManagFActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        String selectedStory = jList1.getSelectedValue();
+        if (selectedStory != null) {
+            StoriesPanel story = new StoriesPanel(selectedStory);
+            jPanel2.add(story);
+            jDialog2.setTitle(selectedStory);
+            jDialog2.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Select Story!");
+        }
+
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        boolean canCreateStory = true;
+        for (int i = 0; i < stories.size(); i++) {
+            if (stories.get(i).getContentPublisher().equals(currentUser.getUserId())) {
+                canCreateStory = false;
+            }
+        }
+        if (canCreateStory) {
+            jDialog3.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Cant create story, try again after present story expires!");
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        File file = null;
+        String fileName = null;
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Loading File");
+        int dialog = fileChooser.showSaveDialog(null);
+        if (dialog == JFileChooser.APPROVE_OPTION) {
+            file = fileChooser.getSelectedFile();
+            fileName = file.getAbsolutePath();
+        }
+        if (file != null && file.exists()) {
+                fileName = file.getAbsolutePath();
+                jTextField4.setText(fileName);
+        } 
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        Story s = (Story)ContentFactory.createContent("story");
+        String s1 = jTextField3.getText();
+        String s2 = jTextField4.getText();
+        File file = new File(s2);
+        Content content = null;
+        if (s1.equals("")) {
+            JOptionPane.showMessageDialog(this, "No story without text");
+        } else {
+            if (s2.equals("")) {
+                content = new Content(s1);
+            } else {
+                if (file != null && file.exists()) {
+                    content = new Content(s2, s1);
+                }
+            }
+            jDialog3.setVisible(false);
+            s.setContent(content);
+            s.setContentID(String.valueOf(storyCounter++));
+            s.setContentPublisher(currentUser.getUserId());
+            stories.add(s);
+            database2.savePosts(stories);
+        }
+
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        for(int i=0; i<stories.size(); i++){
+            if(stories.get(i).isPast24Hours()){
+                stories.remove(stories.get(i));            
+            }
+        }
+        loadPosts();
+        loadStories();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    public void loadPosts(){
+        ArrayList<String> friends = currentUser.getFriends();
+>>>>>>> Stashed changes
         jPanel1.removeAll();
         posts = database1.loadPosts();
         posts.sort((e1, e2) -> e2.getTimeStamp().compareTo(e1.getTimeStamp()));
@@ -272,10 +439,10 @@ public class FeedWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ManagF;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JDialog jDialog1;
