@@ -200,13 +200,20 @@ public class ProfilePage extends javax.swing.JFrame {
          loadFriendList(targetUser.getUserId());
          ProfileManagement profilemanagement = new ProfileManagement(targetUser.getUserId(),userPhoto,userCover,userBio,userPassword);
          profilemanagement.SaveDetails();
+        try {
+            for(User user : users)
+            {
+                if(user.getUserId().equals(targetUser.getUserId()))
+                    user = targetUser;
+            }
+            AccountManagement.saveUsers(users);
+        } catch (IOException ex) {
+            Logger.getLogger(ProfilePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
          jLabel3.setText(targetUser.getUserName());
          jTextArea2.setText(targetUser.getUserBio());
-         jPanel1.repaint();
-         jPanel4.repaint();
-         jPanel5.repaint();
-         DisplayImage(jPanel4, userPhoto);
-         DisplayImage(jPanel5, userPhoto);
+         DisplayImage(jPanel4, targetUser.getUserPhoto());
+         DisplayImage(jPanel5, targetUser.getUserCover());
          
          
          
@@ -272,7 +279,6 @@ public class ProfilePage extends javax.swing.JFrame {
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         jPanel11 = new javax.swing.JPanel();
@@ -736,7 +742,6 @@ public class ProfilePage extends javax.swing.JFrame {
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jTextArea2.setFocusable(false);
-        jScrollPane3.setViewportView(jTextArea2);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -774,7 +779,7 @@ public class ProfilePage extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextArea2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -831,8 +836,8 @@ public class ProfilePage extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(47, 47, 47)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(jTextArea2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1000,7 +1005,6 @@ public class ProfilePage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
