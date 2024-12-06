@@ -287,6 +287,7 @@ public class ProfilePage extends javax.swing.JFrame {
         jTextArea2 = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         jPanel11 = new javax.swing.JPanel();
+        jButton10 = new javax.swing.JButton();
 
         photoPop.setTitle("Change Photo");
         photoPop.setMaximumSize(new java.awt.Dimension(976, 458));
@@ -692,7 +693,7 @@ public class ProfilePage extends javax.swing.JFrame {
 
         jLabel7.setText("Dont forget to hit refresh!");
 
-        jPanel4.setBorder(new javax.swing.border.MatteBorder(null));
+        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
         jPanel4.setFocusable(false);
         jPanel4.setMaximumSize(new java.awt.Dimension(102, 102));
         jPanel4.setMinimumSize(new java.awt.Dimension(102, 102));
@@ -765,6 +766,13 @@ public class ProfilePage extends javax.swing.JFrame {
 
         jScrollPane4.setViewportView(jPanel11);
 
+        jButton10.setText("NewsFeed");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -814,15 +822,19 @@ public class ProfilePage extends javax.swing.JFrame {
                                 .addComponent(jLabel7)))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
+                .addComponent(jButton10)
+                .addGap(18, 18, 18)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jButton6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton6)
+                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -904,8 +916,9 @@ public class ProfilePage extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
       
         userPhoto = jFileChooser1.getSelectedFile().getAbsolutePath();
-        
-     photoPop.setVisible(false);// TODO add your handling code here:
+        if(userPhoto == null)
+            JOptionPane.showMessageDialog(new JFrame(), "File was not chosen","Error",JOptionPane.ERROR_MESSAGE);
+        photoPop.setVisible(false);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -924,6 +937,8 @@ public class ProfilePage extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
      
         userCover = jFileChooser2.getSelectedFile().getAbsolutePath(); 
+        if(userCover == null)
+            JOptionPane.showMessageDialog(new JFrame(), "File was not chosen","Error",JOptionPane.ERROR_MESSAGE);
         coverPhoto.setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -949,6 +964,11 @@ public class ProfilePage extends javax.swing.JFrame {
         passPop.setVisible(false);
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+     this.setVisible(false);
+     // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -998,6 +1018,7 @@ public class ProfilePage extends javax.swing.JFrame {
     private javax.swing.JDialog coverPhoto;
     private javax.swing.JList<String> friendsList;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
