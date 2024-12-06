@@ -226,6 +226,11 @@
   "userId" : "user016",
   "salt" : "7CK4W3NVwlQNw2ofmok5uA==",
   "password" : "tp1h5BefRTlB3qWUzfp228D9rjkz21aljsOyM5df+XY=",
+=======
+  "userId" : "hamza",
+  "salt" : "YAhkSIJLK/DqpEBuw4PChg==",
+  "password" : "wgzPUs+UEJveibDehR6KFFOg3UJr6vPF6FC5ChakDrc=",
+
   "status" : "online",
   "friends" : [ ],
   "blocked" : [ "user015" ],
