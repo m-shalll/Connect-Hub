@@ -34,40 +34,22 @@ public class mavenproject1 {
 //        w.setVisible(true);
 //    
 
+        
             AccountManagement manager=new AccountManagement();
 
             FriendManagement friendManager = new FriendManagement();
           
-            ArrayList<User> users = AccountManagement.loadUsers();
-            friendManager.sendFriendRequest(users.get(0), users.get(1));
-friendManager.acceptFriendRequest(users.get(1), users.get(0));
-friendManager.sendFriendRequest(users.get(2), users.get(3));
-friendManager.declineFriendRequest(users.get(3), users.get(2));
-friendManager.blockUser(users.get(3), users.get(2));
-friendManager.sendFriendRequest(users.get(4), users.get(5));
-friendManager.acceptFriendRequest(users.get(5), users.get(4));
-friendManager.sendFriendRequest(users.get(6), users.get(7));
-friendManager.declineFriendRequest(users.get(7), users.get(6));
-friendManager.blockUser(users.get(7), users.get(6));
-friendManager.sendFriendRequest(users.get(8), users.get(9));
-friendManager.acceptFriendRequest(users.get(9), users.get(8));
-friendManager.sendFriendRequest(users.get(10), users.get(11));
-friendManager.declineFriendRequest(users.get(11), users.get(10));
-friendManager.blockUser(users.get(11), users.get(10));
-friendManager.sendFriendRequest(users.get(12), users.get(13));
-friendManager.acceptFriendRequest(users.get(13), users.get(12));
-friendManager.sendFriendRequest(users.get(14), users.get(15));
-friendManager.declineFriendRequest(users.get(15), users.get(14));
-friendManager.blockUser(users.get(15), users.get(14));
-friendManager.sendFriendRequest(users.get(16), users.get(17));
-friendManager.acceptFriendRequest(users.get(17), users.get(16));
-friendManager.sendFriendRequest(users.get(18), users.get(19));
-friendManager.declineFriendRequest(users.get(19), users.get(18));
-friendManager.blockUser(users.get(19), users.get(18));
+            ArrayList<User> users = manager.loadUsers();
+     
+
+friendManager.sendFriendRequest(users.get(1), users.get(12));
+friendManager.acceptFriendRequest(users.get(12), users.get(1));
+
 
 
 
             AccountManagement.saveUsers(users);
+        
         
         
     }

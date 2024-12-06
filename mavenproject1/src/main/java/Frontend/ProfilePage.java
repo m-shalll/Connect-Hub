@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Frontend;
+import com.formdev.flatlaf.FlatDarkLaf;
 
 import Backend.AccountManagement;
 import Backend.ProfileManagement;
@@ -18,6 +19,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -33,7 +37,8 @@ public class ProfilePage extends javax.swing.JFrame {
     private DefaultListModel<String> listModel;
     public ProfilePage() {
         initComponents();
-        loadFriendList("hamza");
+        
+        loadFriendList("user002");
     }
     
     private void loadFriendList(String UserId){
@@ -42,11 +47,17 @@ public class ProfilePage extends javax.swing.JFrame {
         if(friends != null){
             for(String friend : friends)
         {
+            
             listModel.addElement(friend);
                     
         }
         }
-        friendsList.setModel(listModel);
+         SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                friendsList.setModel(listModel);
+            }
+        });
         
     };
     
@@ -54,9 +65,14 @@ public class ProfilePage extends javax.swing.JFrame {
     public ArrayList<String> userFrom(String userId){
         try {
             User user = accManager.getUser(userId);
-            if (user == null)
-                System.out.println("error loading user");
+            if (user == null) {
+            System.out.println("Error loading user for ID: " + userId);
+        } else {
+            System.out.println("User loaded: " + user.getUserId());
+            System.out.println("Friends: " + user.getFriends());
             return user.getFriends();
+        }
+            
         } catch (IOException ex) {
             Logger.getLogger(ProfilePage.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -70,12 +86,10 @@ public class ProfilePage extends javax.swing.JFrame {
             String friend = value.toString();
             try {
                 User user = accManager.getUser(friend);
-                if( user!=null || user.getStatus().equals("online")){
-                    label.setBackground(Color.GREEN);
-                    label.setForeground(Color.BLACK);
+                if( user!=null && user.getStatus().equals("online")){
+                    label.setForeground(Color.GREEN);
                 }
                 else{
-                    label.setBackground(Color.RED);
                     label.setForeground(Color.BLACK);
                 }
                 if(isSelected){
@@ -126,22 +140,22 @@ public class ProfilePage extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(0, 51, 51));
         jSeparator1.setForeground(new java.awt.Color(0, 102, 102));
 
+        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jScrollPane1.setViewportView(friendsList);
+
         friendsList.setBackground(new java.awt.Color(67, 71, 70));
         friendsList.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 153)));
         friendsList.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        friendsList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "yo" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        friendsList.setForeground(new java.awt.Color(204, 204, 204));
+        friendsList.setToolTipText("");
+        friendsList.setDropMode(javax.swing.DropMode.ON);
+        friendsList.setVisibleRowCount(10);
         jScrollPane1.setViewportView(friendsList);
         friendsList.setCellRenderer(new CustomListCellRenderer());
 
         // Add JList to a scroll pane
-        JScrollPane scrollPane = new JScrollPane(friendsList);
 
         // Add the scroll pane to your panel
-        jPanel1.add(scrollPane);
 
         jSeparator2.setBackground(new java.awt.Color(51, 51, 51));
         jSeparator2.setForeground(new java.awt.Color(0, 102, 102));
@@ -273,6 +287,7 @@ public class ProfilePage extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -299,6 +314,11 @@ public class ProfilePage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                try {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
                 
                 
                 new ProfilePage().setVisible(true);
