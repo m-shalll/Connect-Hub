@@ -221,17 +221,14 @@ if(s==null)
  JOptionPane.showMessageDialog(this, "Must choose User","Error",JOptionPane.ERROR_MESSAGE);
 else{
 
-    try {
+    
        User r = LogInPannel.manager.getUser(s);
        try {
         LogInPannel.f.acceptFriendRequest(targetUser,r);
     } catch (IOException ex) {
         Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
     }
-    } catch (IOException ex) {
-        Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    
+   
     JOptionPane.showMessageDialog(this, "Added succ","Error",JOptionPane.ERROR_MESSAGE);
  
 }
@@ -249,17 +246,14 @@ if(s==null)
  JOptionPane.showMessageDialog(this, "Must choose User","Error",JOptionPane.ERROR_MESSAGE);
 else{
 
-    try {
+    
        User r = LogInPannel.manager.getUser(s);
        try {
         LogInPannel.f.declineFriendRequest(targetUser, r);
     } catch (IOException ex) {
         Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
     }
-    } catch (IOException ex) {
-        Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    
+   
     JOptionPane.showMessageDialog(this, "declined succ","Error",JOptionPane.ERROR_MESSAGE);
  
 }
@@ -275,16 +269,14 @@ if(s==null)
  JOptionPane.showMessageDialog(this, "Must choose User","Error",JOptionPane.ERROR_MESSAGE);
 else{
 
-    try {
+    
        User r = LogInPannel.manager.getUser(s);
        try {
         LogInPannel.f.blockUser(targetUser, r);
     } catch (IOException ex) {
         Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
     }
-    } catch (IOException ex) {
-        Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
-    }
+
     
     JOptionPane.showMessageDialog(this, "Block succ","Error",JOptionPane.ERROR_MESSAGE);
  
@@ -301,13 +293,10 @@ if(s==null)
  JOptionPane.showMessageDialog(this, "Must choose User","Error",JOptionPane.ERROR_MESSAGE);
 else{
 
-    try {
+    
        User r = LogInPannel.manager.getUser(s);
        try {
         LogInPannel.f.removeFriend(targetUser, r);
-    } catch (IOException ex) {
-        Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
-    }
     } catch (IOException ex) {
         Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -327,16 +316,14 @@ if(s==null)
  JOptionPane.showMessageDialog(this, "Must choose User","Error",JOptionPane.ERROR_MESSAGE);
 else{
 
-    try {
+    
        User r = LogInPannel.manager.getUser(s);
        try {
         LogInPannel.f.sendFriendRequest(targetUser, r);
     } catch (IOException ex) {
         Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
     }
-    } catch (IOException ex) {
-        Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
-    }
+   
     
     JOptionPane.showMessageDialog(this, "sent succ","Error",JOptionPane.ERROR_MESSAGE);
  

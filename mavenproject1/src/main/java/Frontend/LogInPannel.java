@@ -18,13 +18,10 @@ import java.util.*;
  */
 public class LogInPannel extends javax.swing.JFrame {
 public static AccountManagement manager=new AccountManagement();
-<<<<<<< Updated upstream
-public static ArrayList<user> users=manager.loadUsers();
-=======
 public static ArrayList<User> users;
 public static FriendManagement f=new FriendManagement();
 public static User logIn;
->>>>>>> Stashed changes
+
     /**
      * Creates new form LogInPannel
      */
@@ -172,8 +169,7 @@ public static User logIn;
         } catch (IOException ex) {
             Logger.getLogger(LogInPannel.class.getName()).log(Level.SEVERE, null, ex);
         }
-<<<<<<< Updated upstream
-=======
+
 
             
             PasswordManager pass = PasswordManager.getInstance();
@@ -203,10 +199,10 @@ public static User logIn;
 
 
             
-        }
+       
 
         
->>>>>>> Stashed changes
+
          
     }//GEN-LAST:event_jButton2ActionPerformed
 
