@@ -28,13 +28,13 @@ public class UserBuilder {
         user.setUserName(id);
         return this;
     }
-    public UserBuilder setSalt(){
-        user.setSalt();
+    public UserBuilder buildersetSalt(){
+        user.buildersetSalt();
         return this;
     }
 
-    public UserBuilder setPassword(String id){
-        user.setPassword(id);
+    public UserBuilder buildersetPassword(String id){
+        user.buildersetPassword(id);
         return this;
     }
     public UserBuilder setDateOfBirth(String id){
