@@ -13,13 +13,13 @@ public class AccountManagement {
 
     // signup method creates a user object and adds it to json file
     public void signUp(String password, String email, String dateOfBirth, String userName, String userId){
-        
+
         User newUser = new UserBuilder()
                 .buildersetSalt()
                 .buildersetPassword(password)
                 .setEmail(email)
                 .setDateOfBirth(dateOfBirth)
-                .setName(userId)
+                .setName(userName)
                 .setId(userId)
                 .build();
         this.users.add(newUser);
@@ -67,7 +67,7 @@ public class AccountManagement {
     public User getUser(String username) throws IOException{
         ArrayList<User> users=loadUsers();
         for(User user:users){
-            if(user.getUserName().equals(username))
+            if(user.getUserId().equals(username))
             return user;
         }
         return null;

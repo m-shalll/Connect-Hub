@@ -18,14 +18,24 @@ public class FriendManagement {
             throw new IOException("Blocked user");
             
         }
-        if (r.getFriendReq().containsKey(s.getUserId())) {
+       /* if (r.getFriendReq().containsKey(s.getUserId())) {
            throw new IOException("Request already sent");
             
-        }
+        }*/
            if (r==s) {
            throw new IOException("same user");
             
         }
+       Map<String, String> friendReq = r.getFriendReq();
+
+    if (friendReq.containsKey(s.getUserId())) {
+        String status = friendReq.get(s.getUserId());
+        if(!status.equals("declined"))
+            throw new IOException("Request already sent");
+        
+        
+        
+    }
         r.getFriendReq().put(s.getUserId(), "pending");
        
     }
@@ -57,7 +67,7 @@ public class FriendManagement {
     public ArrayList<String> suggestedFriends(User x,ArrayList<User>users){
    ArrayList<String> suggested = new ArrayList<>();
    for(User i:users){
-       if(!x.getFriends().contains(i.getUserId())&&x.getBlocked().contains(i.getUserId())&&!x.getUserId().equals(i.getUserId()))
+       if(!x.getFriends().contains(i.getUserId())&&!x.getBlocked().contains(i.getUserId())&&!x.getUserId().equals(i.getUserId()))
    suggested.add(i.getUserId());
    }
     
