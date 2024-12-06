@@ -18,7 +18,7 @@ import java.util.*;
  */
 public class LogInPannel extends javax.swing.JFrame {
 public static AccountManagement manager=new AccountManagement();
-public static ArrayList<user> users=manager.loadUsers();
+
     /**
      * Creates new form LogInPannel
      */
@@ -152,6 +152,18 @@ public static ArrayList<user> users=manager.loadUsers();
         }
 
         else{
+            try {
+            if(!manager.logIn(userName)){
+                JOptionPane.showMessageDialog(new JFrame(), "Incorrect username or password","Error",JOptionPane.ERROR_MESSAGE);
+                nameI.setText("");
+                passwordI.setText("");
+            }
+            else{
+                
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(LogInPannel.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
             AccountManagement manager=new AccountManagement();
             PasswordManager pass = PasswordManager.getInstance();
@@ -181,18 +193,7 @@ public static ArrayList<user> users=manager.loadUsers();
             
         }
 
-        try {
-            if(!manager.logIn(userName)){
-                JOptionPane.showMessageDialog(new JFrame(), "Incorrect username or password","Error",JOptionPane.ERROR_MESSAGE);
-                nameI.setText("");
-                passwordI.setText("");
-            }
-            else{
-                
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(LogInPannel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
          
     }//GEN-LAST:event_jButton2ActionPerformed
 
