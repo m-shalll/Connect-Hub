@@ -7,13 +7,12 @@ import java.util.ArrayList;
 
 public class AccountManagement {
     private static final String fileName = "users.json";
-    private ArrayList<User> users=new ArrayList<>();
     private static ObjectMapper objectMapper = new ObjectMapper();
     PasswordManager passwordManager = PasswordManager.getInstance();
 
     // signup method creates a user object and adds it to json file
-    public void signUp(String password, String email, String dateOfBirth, String userName, String userId){
-        
+    public void signUp(String password, String email, String dateOfBirth, String userName, String userId) throws IOException{
+        ArrayList<User> users=loadUsers();
         User newUser = new UserBuilder()
                 .buildersetSalt()
                 .buildersetPassword(password)
@@ -22,9 +21,9 @@ public class AccountManagement {
                 .setName(userName)
                 .setId(userId)
                 .build();
-        this.users.add(newUser);
+        users.add(newUser);
         try {
-            saveUsers(this.users);
+            saveUsers(users);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
