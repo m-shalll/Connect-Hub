@@ -4,28 +4,33 @@
  */
 package Frontend;
 
-import Backend.AccountManagement;
-import Backend.PasswordManager;
-import Backend.User;
+import Backend.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.util.*;
 
 /**
  *
  * @author Dell
  */
 public class LogInPannel extends javax.swing.JFrame {
+public static AccountManagement manager=new AccountManagement();
+public static ArrayList<User> users;
+public static FriendManagement f=new FriendManagement();
+public static User logIn;
+
 
     /**
      * Creates new form LogInPannel
      */
     public LogInPannel() {
+        
         initComponents();
     }
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -83,23 +88,23 @@ public class LogInPannel extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(123, 123, 123)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nameI)
-                            .addComponent(passwordI, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(passwordI, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -137,26 +142,46 @@ public class LogInPannel extends javax.swing.JFrame {
     }//GEN-LAST:event_nameIActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        SignUpPanel sign=new SignUpPanel();
+        sign.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String userName=nameI.getText();
+        
         char[] character=passwordI.getPassword();
         String password = new String(character);
         if(password.isEmpty()||userName.isEmpty()){
             JOptionPane.showMessageDialog(new JFrame(), "Some fields are empty","Error",JOptionPane.ERROR_MESSAGE);
         }
         else{
-            AccountManagement manager=new AccountManagement();
+            try {
+            if(!manager.logIn(userName)){
+                JOptionPane.showMessageDialog(new JFrame(), "Incorrect username or password","Error",JOptionPane.ERROR_MESSAGE);
+                nameI.setText("");
+                passwordI.setText("");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(LogInPannel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+
             PasswordManager pass = PasswordManager.getInstance();
             try {
                 if(manager.getUser(userName)!=null){
                     User user = manager.getUser(userName);
-                    System.out.println(user.getUserName());
                     System.out.println(user.getPassword());
+                    System.out.println(pass.returnHashed(password, user.getSalt()));
+                    System.out.println();
+                    
                     if(pass.verifyPassword(password,user.getPassword() , user.getSalt())){
-                        FeedWindow feed=new FeedWindow(userName);
+
+                        users=manager.loadUsers();
+                        logIn=manager.getUser(userName);
+
+                        FeedWindow feed=new FeedWindow();
                         feed.setVisible(true);
                         this.setVisible(false);
                     }
@@ -169,10 +194,8 @@ public class LogInPannel extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(LogInPannel.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-                
         }
-         
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
