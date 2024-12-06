@@ -49,28 +49,25 @@ public class ProfilePage extends javax.swing.JFrame {
     private String userBio;
     private String userPassword;
     private ArrayList<Post> posts;
+    private FeedWindow feed;
     AccountManagement accManager = LogInPannel.manager;
     private DefaultListModel<String> listModel;
     public ProfilePage(FeedWindow feed) {
         initComponents();
+        this.feed = feed;
         
         //loadFriendList(targetUser.getUserId());
-        loadUserPosts("user001");
-        loadFriendList("user001");
-        try {
-            User user = accManager.getUser("user001");
-            DisplayImage(jPanel4, user.getUserPhoto());
-            DisplayImage(jPanel5, user.getUserCover());
-        } catch (IOException ex) {
-            Logger.getLogger(ProfilePage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        loadUserPosts(targetUser.getUserId());
+        loadFriendList(targetUser.getUserId());
+        DisplayImage(jPanel4, targetUser.getUserPhoto());
+        DisplayImage(jPanel5, targetUser.getUserCover());
         refreshPage();
     }
     
     
     private void loadUserPosts(String UserId) {
     jPanel11.removeAll();
-    ProfileManagement profilemanagement = new ProfileManagement("user001", null, null, null, null);
+    ProfileManagement profilemanagement = new ProfileManagement(targetUser.getUserId(), null, null, null, null);
     posts = profilemanagement.profileFeed();
     posts.sort((e1, e2) -> e2.getTimeStamp().compareTo(e1.getTimeStamp()));
 
@@ -175,11 +172,6 @@ public class ProfilePage extends javax.swing.JFrame {
 
         } catch (Exception e) {
             e.printStackTrace();
-            // Add a placeholder if an error occurs
-            JLabel errorLabel = new JLabel("Failed to load image.");
-            errorLabel.setHorizontalAlignment(JLabel.CENTER);
-            errorLabel.setVerticalAlignment(JLabel.CENTER);
-            jPanel.add(errorLabel, BorderLayout.CENTER);
         }
     } else {
         
@@ -204,20 +196,16 @@ public class ProfilePage extends javax.swing.JFrame {
 
 
      public void refreshPage(){
-        try {
-            accManager.getUser("user002").setStatusOff();
-            loadFriendList("user001");
-            ProfileManagement profilemanagement = new ProfileManagement("user001",userPhoto,userCover,userBio,userPassword);
-            profilemanagement.SaveDetails();
-            User user = accManager.getUser("user001");
-            jLabel3.setText(user.getUserName());
-            jTextArea2.setText(user.getUserBio());
-            jPanel1.repaint();
-            jPanel4.repaint();
-            jPanel5.repaint();
-        } catch (IOException ex) {
-            Logger.getLogger(ProfilePage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         loadFriendList(targetUser.getUserId());
+         ProfileManagement profilemanagement = new ProfileManagement(targetUser.getUserId(),userPhoto,userCover,userBio,userPassword);
+         profilemanagement.SaveDetails();
+         jLabel3.setText(targetUser.getUserName());
+         jTextArea2.setText(targetUser.getUserBio());
+         jPanel1.repaint();
+         jPanel4.repaint();
+         jPanel5.repaint();
+         DisplayImage(jPanel4, userPhoto);
+         DisplayImage(jPanel5, userPhoto);
          
          
          
@@ -290,7 +278,6 @@ public class ProfilePage extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
 
         photoPop.setTitle("Change Photo");
-        photoPop.setMaximumSize(new java.awt.Dimension(976, 458));
         photoPop.setMinimumSize(new java.awt.Dimension(976, 458));
         photoPop.setResizable(false);
 
@@ -383,7 +370,6 @@ public class ProfilePage extends javax.swing.JFrame {
         );
 
         bioPop.setTitle("Change Bio");
-        bioPop.setMaximumSize(new java.awt.Dimension(514, 436));
         bioPop.setMinimumSize(new java.awt.Dimension(514, 436));
 
         jPanel8.setBackground(new java.awt.Color(51, 51, 51));
@@ -433,7 +419,6 @@ public class ProfilePage extends javax.swing.JFrame {
         );
 
         passPop.setTitle("Change Password");
-        passPop.setMaximumSize(new java.awt.Dimension(848, 416));
         passPop.setMinimumSize(new java.awt.Dimension(848, 416));
 
         jPanel10.setBackground(new java.awt.Color(51, 51, 51));
@@ -506,7 +491,6 @@ public class ProfilePage extends javax.swing.JFrame {
         );
 
         coverPhoto.setTitle("Change Cover");
-        coverPhoto.setMaximumSize(new java.awt.Dimension(1061, 436));
         coverPhoto.setMinimumSize(new java.awt.Dimension(1061, 436));
         coverPhoto.setResizable(false);
 
@@ -967,6 +951,8 @@ public class ProfilePage extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
      this.setVisible(false);
+      feed.setVisible(true);
+     
      // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
 

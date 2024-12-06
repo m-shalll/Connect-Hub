@@ -5,9 +5,6 @@
     <Container class="javax.swing.JDialog" name="photoPop">
       <Properties>
         <Property name="title" type="java.lang.String" value="Change Photo"/>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[976, 458]"/>
-        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[976, 458]"/>
         </Property>
@@ -154,9 +151,6 @@
     <Container class="javax.swing.JDialog" name="bioPop">
       <Properties>
         <Property name="title" type="java.lang.String" value="Change Bio"/>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[514, 436]"/>
-        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[514, 436]"/>
         </Property>
@@ -245,9 +239,6 @@
     <Container class="javax.swing.JDialog" name="passPop">
       <Properties>
         <Property name="title" type="java.lang.String" value="Change Password"/>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[848, 416]"/>
-        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[848, 416]"/>
         </Property>
@@ -366,9 +357,6 @@
     <Container class="javax.swing.JDialog" name="coverPhoto">
       <Properties>
         <Property name="title" type="java.lang.String" value="Change Cover"/>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[1061, 436]"/>
-        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[1061, 436]"/>
         </Property>
