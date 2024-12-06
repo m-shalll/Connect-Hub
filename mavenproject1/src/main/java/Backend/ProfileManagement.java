@@ -14,7 +14,7 @@ public class ProfileManagement {
     private String userCover;
     private String userBio;
     private String userPassword;
-    private PasswordManager passwordManager;
+    private PasswordManager passwordManager = PasswordManager.getInstance();
     private AccountManagement accManager = new AccountManagement();
 
 
