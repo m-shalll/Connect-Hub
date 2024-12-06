@@ -444,7 +444,7 @@ public class FeedWindow extends javax.swing.JFrame {
             s.setContentID(String.valueOf(storyCounter++));
             s.setContentPublisher(currentUser.getUserId());
             stories.add(s);
-            database2.savePosts(stories);
+            database2.saveStories(stories);
         }
 
     }//GEN-LAST:event_jButton9ActionPerformed

@@ -21,7 +21,7 @@ public class StoryDatabase {
         }
         return instance;
     }
-    public void savePosts(ArrayList<Story> p) {
+    public void saveStories(ArrayList<Story> p) {
     File f = new File(fileName);
     try {
         ObjectMapper objectMapper = new ObjectMapper();
