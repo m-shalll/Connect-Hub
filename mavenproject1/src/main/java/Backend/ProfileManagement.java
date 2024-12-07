@@ -29,8 +29,6 @@ public class ProfileManagement {
 
     public void SaveDetails(ArrayList<User> users) {
         try {
-
-            
             User neededUser = null;
             //iterate through the list till user is found
             for (User user : users) {
