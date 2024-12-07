@@ -198,7 +198,7 @@ public class ProfilePage extends javax.swing.JFrame {
      public void refreshPage(){
          loadFriendList(targetUser.getUserId());
          ProfileManagement profilemanagement = new ProfileManagement(targetUser.getUserId(),userPhoto,userCover,userBio,userPassword);
-         profilemanagement.SaveDetails();
+         profilemanagement.SaveDetails(users);
         try {
             for(User user : users)
             {
