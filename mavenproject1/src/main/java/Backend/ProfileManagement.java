@@ -27,9 +27,9 @@ public class ProfileManagement {
     }
 
 
-    public void SaveDetails() {
+    public void SaveDetails(ArrayList<User> users) {
         try {
-            ArrayList<User> users = accManager.loadUsers();
+
             
             User neededUser = null;
             //iterate through the list till user is found

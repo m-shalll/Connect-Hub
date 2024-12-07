@@ -115,6 +115,10 @@ public class ProfilePage extends javax.swing.JFrame {
             System.out.println("Friends: " + user.getFriends());
             return user.getFriends();
         }
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ProfilePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
     
@@ -194,7 +198,7 @@ public class ProfilePage extends javax.swing.JFrame {
      public void refreshPage(){
          loadFriendList(targetUser.getUserId());
          ProfileManagement profilemanagement = new ProfileManagement(targetUser.getUserId(),userPhoto,userCover,userBio,userPassword);
-         profilemanagement.SaveDetails();
+         profilemanagement.SaveDetails(users);
         try {
             for(User user : users)
             {

@@ -1,7 +1,7 @@
 
 package Backend;
 
-public class Content {
+public class Content implements ContentInterface {
     private String imageFilePath;
     private String caption;
     
