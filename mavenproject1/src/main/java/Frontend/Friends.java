@@ -451,24 +451,18 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
- try {
+        try {
             AccountManagement.saveUsers(users);
             // TODO add your handling code here:
         } catch (IOException ex) {
             Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
         }
-         FeedWindow x=new FeedWindow(targetUser);
-         x.setVisible(true);
- this.dispose();
-        // TODO add your handling code here:
+        FeedWindow x = new FeedWindow(targetUser);
+        x.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
