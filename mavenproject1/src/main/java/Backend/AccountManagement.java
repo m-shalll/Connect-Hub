@@ -22,6 +22,7 @@ public class AccountManagement {
                 .setDateOfBirth(dateOfBirth)
                 .setName(userName)
                 .setId(userId)
+                .buildersetUserPhoto()
                 .build();
         users.add(newUser);
         try {

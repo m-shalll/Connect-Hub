@@ -132,6 +132,7 @@ public class User {
     }
 
     public void setUserPhoto(String userPhoto) { this.userPhoto = userPhoto;}
+    public void buildersetUserPhoto() { this.userPhoto = "Images\\user.jpg";}
 
     public void setUserCover(String userCover) { this.userCover = userCover;}
 

@@ -47,8 +47,8 @@ public class UserBuilder {
     }
 
 
-    public UserBuilder setUserPhoto(String id){
-        user.setUserPhoto(id);
+    public UserBuilder buildersetUserPhoto(){
+        user.buildersetUserPhoto();
         return this;
     }
 
