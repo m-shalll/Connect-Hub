@@ -16,31 +16,35 @@ public class FeedWindow extends javax.swing.JFrame {
 
     private PostDatabase database1;
     private StoryDatabase database2;
-    private AccountManagement userDatabase = new AccountManagement();
+    private AccountManagement userDatabase;
     private ArrayList<User> users;
     private ArrayList<Post> posts;
     private ArrayList<Story> stories;
     private int postCounter = 0;
     private int storyCounter = 0;
-    private User currentUser = null;
+    private User currentUser;
 
     public FeedWindow(User user) {
         initComponents();
+        
         CustomJFrame frame = new CustomJFrame(this);
+        
         database1 = PostDatabase.getInstance();
         database2 = StoryDatabase.getInstance();
         posts = database1.loadPosts();
         stories = database2.loadStories();
+        userDatabase = new AccountManagement();
         try {
             users = userDatabase.loadUsers();
         } catch (IOException ex) {
             System.out.println("error" + ex.getMessage());
         }
-        this.setLayout(null); 
-        jDialog1.pack();
+        
         postCounter = posts.size();
         storyCounter = stories.size();
         currentUser = user;
+        
+        this.setLayout(null); 
         loadPosts();
         loadStories();
         jDialog1.pack();
