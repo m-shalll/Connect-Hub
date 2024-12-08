@@ -21,7 +21,7 @@ public class PostDatabase {
         }
         return instance;
     }
-    public void savePosts(ArrayList<Post> p) {
+    public void savePosts(ArrayList<ContentCreation> p) {
     File f = new File(fileName);
     try {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -32,9 +32,9 @@ public class PostDatabase {
 
     }
 }
-    public ArrayList<Post> loadPosts() {
+    public ArrayList<ContentCreation> loadPosts() {
         File file = new File(fileName);
-        ArrayList<Post> posts = new ArrayList<>();
+        ArrayList<ContentCreation> posts = new ArrayList<>();
         if (!file.exists()) {
             System.out.println("File not found: " + fileName);
             return posts; 

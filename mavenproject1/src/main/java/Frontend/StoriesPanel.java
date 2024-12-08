@@ -25,10 +25,10 @@ public class StoriesPanel extends JPanel{
             }
         }
         Story currentStory = null;
-        ArrayList<Story> stories = StoryDatabase.getInstance().loadStories();
+        ArrayList<ContentCreation> stories = StoryDatabase.getInstance().loadStories();
         for(int i=0; i<stories.size();i++){
             if(stories.get(i).getContentPublisher().equals(currentUser)){
-                currentStory = stories.get(i);
+                currentStory = (Story)stories.get(i);
             }
         }
         JLabel emptyString = new JLabel("");

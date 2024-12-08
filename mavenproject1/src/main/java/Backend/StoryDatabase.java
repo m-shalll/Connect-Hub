@@ -21,7 +21,7 @@ public class StoryDatabase {
         }
         return instance;
     }
-    public void saveStories(ArrayList<Story> p) {
+    public void saveStories(ArrayList<ContentCreation> p) {
     File f = new File(fileName);
     try {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -32,10 +32,10 @@ public class StoryDatabase {
 
     }
 }
-    public ArrayList<Story> loadStories(){
+    public ArrayList<ContentCreation> loadStories(){
         File f = new File(fileName);
         if (f.exists()) {
-            ArrayList<Story> s = new ArrayList<>();
+            ArrayList<ContentCreation> s = new ArrayList<>();
             try {
                 ObjectMapper objectMapper = new ObjectMapper();
                 objectMapper.registerModule(new JavaTimeModule());
