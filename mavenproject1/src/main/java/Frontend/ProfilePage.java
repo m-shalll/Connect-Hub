@@ -47,7 +47,7 @@ public class ProfilePage extends javax.swing.JFrame {
     private String userCover;
     private String userBio;
     private String userPassword;
-    private ArrayList<Post> posts;
+    private ArrayList<ContentCreation> posts;
     private FeedWindow feed;
     AccountManagement accManager = LogInPannel.manager;
     private ArrayList<User> users = LogInPannel.users;
@@ -75,8 +75,8 @@ public class ProfilePage extends javax.swing.JFrame {
     // Use BoxLayout to stack the posts vertically
     jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.Y_AXIS));
 
-    for (Post post : posts) {
-        PostsPanel pPanel = new PostsPanel(post);
+    for (ContentCreation post : posts) {
+        PostsPanel pPanel = new PostsPanel((Post)post);
         pPanel.setMaximumSize(new Dimension(1187, 470)); // Set a fixed size for each panel
         jPanel11.add(pPanel);
     }

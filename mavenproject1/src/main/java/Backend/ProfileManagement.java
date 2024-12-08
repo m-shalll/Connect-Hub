@@ -65,16 +65,16 @@ public class ProfileManagement {
     
     //friendlist
 
-    public ArrayList<Post> profileFeed() {
+    public ArrayList<ContentCreation> profileFeed() {
         try {
             //Reads the json file into a list of User objects
             PostDatabase postdatabase = PostDatabase.getInstance();
-            ArrayList<Post> allPosts = postdatabase.loadPosts();
-            ArrayList<Post> userPosts = new ArrayList<>();
+            ArrayList<ContentCreation> allPosts = postdatabase.loadPosts();
+            ArrayList<ContentCreation> userPosts = new ArrayList<>();
             if (allPosts != null) {
-                for (Post post : allPosts) {
+                for (ContentCreation post : allPosts) {
                     if (post.getContentPublisher().equals(userId)) {
-                        userPosts.add(post);
+                        userPosts.add((Post)post);
                     }
                 }
                 return userPosts;

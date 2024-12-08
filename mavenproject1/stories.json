@@ -1,1 +1,10 @@
-[]
+[ {
+  "contentID" : "0",
+  "contentPublisher" : "user001",
+  "content" : {
+    "imageFilePath" : null,
+    "caption" : "new story from user001"
+  },
+  "timeStamp" : [ 2024, 12, 9, 1, 39, 52, 205768200 ],
+  "past24Hours" : false
+} ]

@@ -16,10 +16,10 @@ public class FeedWindow extends javax.swing.JFrame {
 
     private PostDatabase database1;
     private StoryDatabase database2;
-    private AccountManagement userDatabase;
+    private AccountManagement userDatabase = new AccountManagement();;
     private ArrayList<User> users;
-    private ArrayList<Post> posts;
-    private ArrayList<Story> stories;
+    private ArrayList<ContentCreation> posts;
+    private ArrayList<ContentCreation> stories;
     private int postCounter = 0;
     private int storyCounter = 0;
     private User currentUser;
@@ -33,7 +33,6 @@ public class FeedWindow extends javax.swing.JFrame {
         database2 = StoryDatabase.getInstance();
         posts = database1.loadPosts();
         stories = database2.loadStories();
-        userDatabase = new AccountManagement();
         try {
             users = userDatabase.loadUsers();
         } catch (IOException ex) {
@@ -464,7 +463,8 @@ public class FeedWindow extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         for(int i=0; i<stories.size(); i++){
-            if(stories.get(i).isPast24Hours()){
+            Story story = (Story)stories.get(i);
+            if(story.isPast24Hours()){
                 stories.remove(stories.get(i));            
             }
         }
@@ -499,7 +499,7 @@ public class FeedWindow extends javax.swing.JFrame {
         for (int i = 0; i < posts.size(); i++) {
             for (int j = 0; j < friends.size(); j++) {
                 if (posts.get(i).getContentPublisher().equals(friends.get(j))) {
-                    PostsPanel postPanel = new PostsPanel(posts.get(i));
+                    PostsPanel postPanel = new PostsPanel((Post)posts.get(i));
                     jPanel1.add(postPanel);
                 }
             }
