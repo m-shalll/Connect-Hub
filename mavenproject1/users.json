@@ -3,7 +3,7 @@
   "salt" : "PvuuQFGh46qtAdY46ZPr6w==",
   "password" : "j/lS3W8kq3jBYyi8Rqxph5vKcORPQoCFFhI3btPkS3Y=",
   "status" : "online",
-  "friends" : [ "user003", "user004", "user005" ],
+  "friends" : [ "user003", "user004", "user005", "user002" ],
   "blocked" : [ "user017", "user018", "user019", "user020", "user002" ],
   "friendReq" : {
     "user017" : "Declined",
@@ -21,8 +21,8 @@
   "userId" : "user002",
   "salt" : "sZyFwHHEIOwmeyn14L8k5g==",
   "password" : "VFK8+MhIKXaDDGtWw0EwOzojaMA9LyhSJTXLgUvQ9NM=",
-  "status" : "offline",
-  "friends" : [ "user006", "user007", "user009" ],
+  "status" : "online",
+  "friends" : [ "user006", "user007", "user009", "user001" ],
   "blocked" : [ "user018", "user019", "user020" ],
   "friendReq" : {
     "user001" : "accepted",
