@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CustomJFrame extends JPanel{
-    private static final String backgroundPhoto = "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\JFrameBackground2.jpg";
+    private static final String backgroundPhoto = "Images\\JFrameBackground2.jpg";
     public CustomJFrame(javax.swing.JFrame frame){
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setLayout(null);

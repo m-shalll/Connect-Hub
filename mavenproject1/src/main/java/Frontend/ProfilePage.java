@@ -56,6 +56,7 @@ public class ProfilePage extends javax.swing.JFrame {
         initComponents();
         this.feed = feed;
         
+        
         //loadFriendList(targetUser.getUserId());
         loadUserPosts(targetUser.getUserId());
         loadFriendList(targetUser.getUserId());
