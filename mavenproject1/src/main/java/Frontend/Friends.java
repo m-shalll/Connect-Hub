@@ -438,15 +438,20 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
     }//GEN-LAST:event_RequestActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-           loadList1();
-        loadList2();
-        loadList3();
         try {
-            AccountManagement.saveUsers(users);
-            // TODO add your handling code here:
+            users=LogInPannel.manager.loadUsers();
         } catch (IOException ex) {
             Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            targetUser=LogInPannel.manager.getUser(LogInPannel.userName, users);
+        } catch (IOException ex) {
+            Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        loadList1();
+        loadList2();
+        loadList3();
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 

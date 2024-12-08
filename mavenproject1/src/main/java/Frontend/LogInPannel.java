@@ -23,6 +23,7 @@ public static AccountManagement manager=new AccountManagement();
 public static ArrayList<User> users;
 public static FriendManagement f=new FriendManagement();
 public static User logIn;
+public static String userName;
 
 
 
@@ -151,7 +152,7 @@ public static User logIn;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String userName=nameI.getText();
+         userName=nameI.getText();
     try {
         users=manager.loadUsers();
     } catch (IOException ex) {
@@ -187,8 +188,9 @@ public static User logIn;
                         users=manager.loadUsers();
                         logIn=manager.getUser(userName,users);
                         FeedWindow feed=new FeedWindow(logIn);
-                        feed.setVisible(true);
                         this.setVisible(false);
+                        feed.setVisible(true);
+                        
                     }
                     else{
                         JOptionPane.showMessageDialog(new JFrame(), "Incorrect username or password","Error",JOptionPane.ERROR_MESSAGE);
