@@ -11,7 +11,7 @@ public class mavenproject1 {
         AccountManagement manager = new AccountManagement();
         FriendManagement friendManager = new FriendManagement();
         ArrayList<User> users = manager.loadUsers();
-// User 0 friendships
+        // User 0 friendships
 friendManager.sendFriendRequest(users.get(0), users.get(1));
 friendManager.acceptFriendRequest(users.get(1), users.get(0));
 friendManager.sendFriendRequest(users.get(0), users.get(2));

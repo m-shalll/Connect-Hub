@@ -42,7 +42,7 @@ public class UserBuilder {
         return this;
     }
     public UserBuilder setStatus(){
-        user.setStatusOn();
+        user.setStatusOff();
         return this;
     }
 

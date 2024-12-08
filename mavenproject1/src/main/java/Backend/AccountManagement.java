@@ -23,6 +23,7 @@ public class AccountManagement {
                 .setName(userName)
                 .setId(userId)
                 .buildersetUserPhoto()
+                .setStatus()
                 .build();
         users.add(newUser);
         try {
