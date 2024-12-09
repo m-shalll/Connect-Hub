@@ -1,7 +1,7 @@
 [ {
   "userId" : "user001",
-  "salt" : "rwE0qb/QnGOOgFKmlvICZw==",
-  "password" : "vlwryqXUxHiCnSQSlfr4dZGCzpen+NuWs3VZGX++2J4=",
+  "salt" : "8+aXO3/4WaHPI0/Rfjoq0g==",
+  "password" : "qFfxaxECq6sbjwcOqEM1aBRy/sGBOOZdL4INIoYbGQo=",
   "status" : "online",
   "friends" : [ "user002" ],
   "blocked" : [ "user014" ],
@@ -9,7 +9,7 @@
   "email" : "john.doe01@gmail.com",
   "username" : "John Doe",
   "Date-of-birth" : "1990-04-15",
-  "Profile photo" : "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\pfp2.jpeg",
+  "Profile photo" : null,
   "Cover photo" : "C:\\Users\\Hamza\\Downloads\\6948525a86e2d4d415d9893afcc40cb4.jpg",
   "Bio" : "1111"
 }, {
@@ -20,7 +20,8 @@
   "friends" : [ "user001", "user014", "user013" ],
   "blocked" : [ ],
   "friendReq" : {
-    "user001" : "accepted"
+    "user001" : "accepted",
+    "user88" : "pending"
   },
   "email" : "jane.smith02@gmail.com",
   "username" : "Jane Smith",
@@ -299,6 +300,20 @@
   "email" : "sophia.walker20@gmail.com",
   "username" : "Sophia Walker",
   "Date-of-birth" : "1996-02-15",
+  "Profile photo" : null,
+  "Cover photo" : null,
+  "Bio" : null
+}, {
+  "userId" : "user88",
+  "salt" : "fv4+icrfDXdfYr60uAx6aw==",
+  "password" : "7xZ4KVxtK0XTIY3xSW7BqxOLb39wvs7TTgvq4R9SaWA=",
+  "status" : "online",
+  "friends" : [ ],
+  "blocked" : [ ],
+  "friendReq" : { },
+  "email" : "sjs@gmail.com",
+  "username" : "ahmed",
+  "Date-of-birth" : "2024-12-24",
   "Profile photo" : null,
   "Cover photo" : null,
   "Bio" : null

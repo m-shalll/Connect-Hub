@@ -29,11 +29,11 @@ public class PostsPanel extends JPanel {
         ImageIcon icon = new ImageIcon(currentUser.getUserPhoto());
         Image image = icon.getImage();
         Image scaledImage1 = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-        ImageIcon circularIcon = new ImageIcon(UserIcon.makeImageCircular(scaledImage1));
-        JLabel imageLabel1 = new JLabel(circularIcon);
+        //ImageIcon circularIcon = new ImageIcon(UserIcon.makeImageCircular(scaledImage1));
+        //JLabel imageLabel1 = new JLabel(circularIcon);
         JLabel usernameLabel = new JLabel(currentUser.getUserName());
         usernameLabel.setFont(new Font("Arial", Font.BOLD, 12));
-        topBox.add(imageLabel1);
+      //  topBox.add(imageLabel1);
         topBox.add(Box.createHorizontalStrut(10)); 
         topBox.add(usernameLabel);
         topBox.setAlignmentX(LEFT_ALIGNMENT); 

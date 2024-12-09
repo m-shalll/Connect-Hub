@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 public class UserIcon {
-        public static Image makeImageCircular(Image image) {
+       /*public static Image makeImageCircular(Image image) {
         while (image.getWidth(null) <= 0 || image.getHeight(null) <= 0) {
             try {
                 Thread.sleep(10);
@@ -21,6 +21,8 @@ public class UserIcon {
         g2.drawImage(image, 0, 0, size, size, null);
         g2.dispose();
         return circularImage;
+
     }
+*/
 }
 

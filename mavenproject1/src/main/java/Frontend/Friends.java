@@ -262,7 +262,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s,LogInPannel.users);
+           User r = LogInPannel.manager.getUser(s,users);
            try {
                LogInPannel.f.acceptFriendRequest(targetUser,r);
            } catch (IOException ex) {
@@ -302,7 +302,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s,LogInPannel.users);
+           User r = LogInPannel.manager.getUser(s,users);
            try {
                LogInPannel.f.declineFriendRequest(targetUser, r);
            } catch (IOException ex) {
@@ -338,7 +338,7 @@ else{
     
        User r;
             try {
-                r = LogInPannel.manager.getUser(s,LogInPannel.users);
+                r = LogInPannel.manager.getUser(s,users);
                   try {
         LogInPannel.f.blockUser(targetUser, r);
     } catch (IOException ex) {
@@ -375,7 +375,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s,LogInPannel.users);
+           User r = LogInPannel.manager.getUser(s,users);
            System.out.println("990"+r);
            try {
               LogInPannel.f.removeFriend(targetUser, r);
@@ -438,15 +438,20 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
     }//GEN-LAST:event_RequestActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-           loadList1();
-        loadList2();
-        loadList3();
         try {
-            AccountManagement.saveUsers(users);
-            // TODO add your handling code here:
+            users=LogInPannel.manager.loadUsers();
         } catch (IOException ex) {
             Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            targetUser=LogInPannel.manager.getUser(LogInPannel.userName, users);
+        } catch (IOException ex) {
+            Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        loadList1();
+        loadList2();
+        loadList3();
+       
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 

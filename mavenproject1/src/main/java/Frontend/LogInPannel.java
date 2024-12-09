@@ -24,9 +24,10 @@ public class LogInPannel extends javax.swing.JFrame {
 public static AccountManagement manager=new AccountManagement();
 
 
-public static ArrayList<User> users;
+public static ArrayList<UserInterface> users;
 public static FriendManagement f=new FriendManagement();
 public static User logIn;
+public static String userName;
 
 
 
@@ -155,7 +156,7 @@ public static User logIn;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String userName=nameI.getText();
+         userName=nameI.getText();
     try {
         users=manager.loadUsers();
     } catch (IOException ex) {
