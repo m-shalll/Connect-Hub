@@ -7,30 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class StoriesPanel extends JPanel{
-    public StoriesPanel(String username){
+    public StoriesPanel(User currentUser){
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBounds(0,0,387,287);
         
-        AccountManagement am = new AccountManagement();
-        ArrayList<User> users = null;
-        try {
-            users = am.loadUsers();
-        } catch (IOException ex) {
-            
-        }
-        String currentUser = null;
-        for(int i=0; i<users.size(); i++){
-            if(users.get(i).getUserName().equals(username)){
-                currentUser = users.get(i).getUserId();
-            }
-        }
-        Story currentStory = null;
-        ArrayList<ContentCreation> stories = StoryDatabase.getInstance().loadStories();
-        for(int i=0; i<stories.size();i++){
-            if(stories.get(i).getContentPublisher().equals(currentUser)){
-                currentStory = (Story)stories.get(i);
-            }
-        }
+        Story currentStory = UserStories.returnStory(currentUser);
         JLabel emptyString = new JLabel("");
         add(emptyString, BorderLayout.NORTH);
         

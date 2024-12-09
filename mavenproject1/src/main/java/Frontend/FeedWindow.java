@@ -482,21 +482,29 @@ public class FeedWindow extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         String selectedStory = jList1.getSelectedValue();
         if (selectedStory != null) {
-            if(selectedStory.equals("View Your story")){
-                for(int i=0; i<stories.size(); i++){
-                    if(stories.get(i).getContentPublisher().equals(currentUser.getUserId())){
-                        StoriesPanel userStory = new StoriesPanel(currentUser.getUserName());
-                        jPanel2.add(userStory);
-                        jDialog2.setTitle("Your story");
-                        jDialog2.setVisible(true);
+            if (selectedStory.equals("View Your story")) {
+                Story hasStory = UserStories.returnStory(currentUser);
+                if (hasStory != null) {
+                    StoriesPanel userStory = new StoriesPanel(currentUser);
+                    jPanel2.add(userStory);
+                    jDialog2.setTitle("Your story");
+                    jDialog2.setVisible(true);
+                } else{
+                    JOptionPane.showMessageDialog(this, "Add a story first");
+                }
+            } else {
+                User user = null;
+                for (int i = 0; i < users.size(); i++) {
+                    if (selectedStory.equals(users.get(i).getUserName())) {
+                        user = users.get(i);
                         break;
                     }
                 }
+                StoriesPanel story = new StoriesPanel(user);
+                jPanel2.add(story);
+                jDialog2.setTitle(user.getUserName());
+                jDialog2.setVisible(true);
             }
-            StoriesPanel story = new StoriesPanel(selectedStory);
-            jPanel2.add(story);
-            jDialog2.setTitle(selectedStory);
-            jDialog2.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Select Story!");
         }
