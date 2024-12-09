@@ -482,6 +482,17 @@ public class FeedWindow extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         String selectedStory = jList1.getSelectedValue();
         if (selectedStory != null) {
+            if(selectedStory.equals("View Your story")){
+                for(int i=0; i<stories.size(); i++){
+                    if(stories.get(i).getContentPublisher().equals(currentUser.getUserId())){
+                        StoriesPanel userStory = new StoriesPanel(currentUser.getUserName());
+                        jPanel2.add(userStory);
+                        jDialog2.setTitle("Your story");
+                        jDialog2.setVisible(true);
+                        break;
+                    }
+                }
+            }
             StoriesPanel story = new StoriesPanel(selectedStory);
             jPanel2.add(story);
             jDialog2.setTitle(selectedStory);
@@ -511,6 +522,7 @@ public class FeedWindow extends javax.swing.JFrame {
         ArrayList<String> friends = currentUser.getFriends();
         ArrayList<String> friendsUserNames = new ArrayList<>();
         ArrayList<String> friendsStories = new ArrayList<>();
+        friendsUserNames.add("View Your story");
         for (int i = 0; i < friends.size(); i++) {
             for (int j = 0; j < stories.size(); j++) {
                 if(stories.get(j).getContentPublisher().equals(friends.get(i))){

@@ -45,6 +45,7 @@ public class PostsPanel extends JPanel {
         ImageIcon resizedIcon = new ImageIcon(scaledImage);
         JLabel imageLabel2 = new JLabel(resizedIcon);
         Box centerBox = Box.createHorizontalBox();
+        centerBox.add(Box.createHorizontalStrut(35));
         centerBox.add(imageLabel2);
         centerBox.setAlignmentX(LEFT_ALIGNMENT); 
         add(centerBox);
@@ -52,6 +53,7 @@ public class PostsPanel extends JPanel {
         JLabel captionLabel = new JLabel(p.getContent().getCaption());
         captionLabel.setFont(new Font("Arial", Font.ITALIC, 14));
         Box bottomBox = Box.createHorizontalBox();
+        bottomBox.add(Box.createHorizontalStrut(35));
         bottomBox.add(captionLabel);
         bottomBox.setAlignmentX(LEFT_ALIGNMENT); 
         add(bottomBox);
