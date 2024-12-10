@@ -44,8 +44,7 @@ public class FeedWindow extends javax.swing.JFrame {
         currentUser = user;
         
         this.setLayout(null); 
-        loadPosts();
-        loadStories();
+        refresh();
         jDialog1.pack();
         jDialog2.pack();
         jDialog3.pack();
@@ -462,14 +461,7 @@ public class FeedWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        for(int i=0; i<stories.size(); i++){
-            Story story = (Story)stories.get(i);
-            if(story.isPast24Hours()){
-                stories.remove(stories.get(i));            
-            }
-        }
-        loadPosts();
-        loadStories();
+        refresh();        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -509,7 +501,16 @@ public class FeedWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Select Story!");
         }
     }//GEN-LAST:event_jButton11ActionPerformed
-
+    public void refresh(){
+        for(int i=0; i<stories.size(); i++){
+            Story story = (Story)stories.get(i);
+            if(story.isPast24Hours()){
+                stories.remove(stories.get(i));            
+            }
+        }
+        loadPosts();
+        loadStories();
+    }
     public void loadPosts(){
         ArrayList<String> friends = currentUser.getFriends();
         jPanel1.removeAll();
@@ -535,6 +536,7 @@ public class FeedWindow extends javax.swing.JFrame {
             for (int j = 0; j < stories.size(); j++) {
                 if(stories.get(j).getContentPublisher().equals(friends.get(i))){
                     friendsStories.add(friends.get(i));
+                    break;
                 }
             }
         }
@@ -547,6 +549,7 @@ public class FeedWindow extends javax.swing.JFrame {
             for (int j = 0; j < users.size(); j++) {
                 if(friendsStories.get(i).equals(users.get(j).getUserId())){
                     friendsUserNames.add(users.get(j).getUserName());
+                    break;
                 }
             }
         }
