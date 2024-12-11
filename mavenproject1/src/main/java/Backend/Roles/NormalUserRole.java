@@ -1,11 +1,15 @@
-package Backend;
+package Backend.Roles;
 
 import java.util.Set;
 
-public class NormalUserRole implements Role {
+public class NormalUserRole extends RoleDecorator {
     private final Set<String> allowedActions = Set.of(
             "addPost", "leaveGroup"
     );
+
+    public NormalUserRole(Role wrappedRole) {
+        super(wrappedRole);
+    }
 
     @Override
     public boolean canPerform(String action) {

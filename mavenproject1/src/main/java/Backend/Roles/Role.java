@@ -1,4 +1,4 @@
-package Backend;
+package Backend.Roles;
 
 public interface Role {
     public boolean canPerform(String action);
