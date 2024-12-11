@@ -16,7 +16,7 @@ public class FeedWindow extends javax.swing.JFrame {
 
     private PostDatabase database1;
     private StoryDatabase database2;
-    private AccountManagement userDatabase = new AccountManagement();;
+    private AccountManagement userDatabase = AccountManagement.getInstance();
     private ArrayList<User> users;
     private ArrayList<ContentCreation> posts;
     private ArrayList<ContentCreation> stories;
