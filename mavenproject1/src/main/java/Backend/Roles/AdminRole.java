@@ -16,7 +16,7 @@ public class AdminRole extends RoleDecorator {
 
     @Override
     public boolean canPerform(String action) {
-        return allowedActions.contains(action);
+        return allowedActions.contains(action) || super.canPerform(action);
     }
 
     @Override

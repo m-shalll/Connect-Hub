@@ -13,7 +13,7 @@ public class CoAdminRole extends RoleDecorator {
 
     @Override
     public boolean canPerform(String action) {
-        return false;
+        return allowedActions.contains(action) || super.canPerform(action);
     }
 
     @Override
