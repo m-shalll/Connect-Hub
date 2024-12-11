@@ -1,6 +1,9 @@
 
 package Backend;
+import javax.swing.*;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class UserGroups implements UserGroupsInterface{
     private GroupManagement database = GroupManagement.getInstance();
@@ -75,5 +78,15 @@ public class UserGroups implements UserGroupsInterface{
         if(isUserinGroup(userId, groupName)){
             currentGroup.getUsers().remove(userId);
         }
+    }
+    public void sendGroupRequest(User user, Group group) {
+        Map<String, String> grouprequests = group.getGroupRequests();
+
+        if (grouprequests.containsKey(user.getUserId())) {
+            String status = grouprequests.get(user.getUserId());
+            if (!status.equals("declined"))
+                JOptionPane.showMessageDialog(null,"You have already been declined from this group ","Notice", JOptionPane.INFORMATION_MESSAGE);
+        }
+        group.getGroupRequests().put(user.getUserId(), "pending");
     }
 }

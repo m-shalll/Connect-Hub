@@ -1,8 +1,11 @@
 package Backend.Roles;
 
+import Backend.UserGroups;
+
 import java.util.Set;
 
 public class NormalUserRole extends RoleDecorator {
+    UserGroups userGroups;
     private final Set<String> allowedActions = Set.of(
             "addPost", "leaveGroup"
     );
@@ -17,20 +20,20 @@ public class NormalUserRole extends RoleDecorator {
     }
 
     @Override
-    public void execute(String action, String data) {
+    public void execute(String action, String data, Object data2) {
         if (canPerform(action)) {
             switch (action) {
                 case "addPost" -> addPost();
-                case "leaveGroup" -> leaveGroup();
+                case "leaveGroup" -> leaveGroup(data, (String)data2);
             }
 
         } else {
             throw new UnsupportedOperationException(action + " is not permitted");
         }
-
     }
 
-    private void leaveGroup() {
+    private void leaveGroup(String userId, String groupName) {
+        userGroups.removeUserfromGroup(userId, groupName);
     }
 
     private void addPost() {

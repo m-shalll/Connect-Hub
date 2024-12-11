@@ -2,6 +2,7 @@
 package Backend;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public interface GroupInterface {
 
@@ -12,6 +13,7 @@ public interface GroupInterface {
     public void setName(String name);
     public void setDescription(String description);
     public void setGroupPosts(ArrayList<ContentCreation> groupPosts);
+    public void setGroupRequests(Map<String, String> friendReq);
 
     public String getName();
     public String getDescription();
@@ -20,6 +22,7 @@ public interface GroupInterface {
     public ArrayList<String> getAdmin();
     public String getGroupPhoto();
     public ArrayList<ContentCreation> getGroupPosts();
+    public Map<String, String> getGroupRequests();
 }
     
 

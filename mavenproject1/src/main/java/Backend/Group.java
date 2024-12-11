@@ -2,6 +2,8 @@ package Backend;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Group implements GroupInterface{
 
@@ -12,8 +14,12 @@ public class Group implements GroupInterface{
     private ArrayList<String> users;
     private ArrayList<String> coAdmin;
     private ArrayList<ContentCreation> groupPosts;
+    private Map<String, String> groupRequests = new HashMap<>();
 
 
+
+    @Override
+    public void setGroupRequests(Map<String, String> friendReq){ this.groupRequests = friendReq; }
     @Override
     public void setGroupPhoto(String groupPhoto) { this.groupPhoto = groupPhoto;}
     @Override
@@ -43,4 +49,6 @@ public class Group implements GroupInterface{
     public String getGroupPhoto() { return groupPhoto; }
     @Override
     public ArrayList<ContentCreation> getGroupPosts() { return groupPosts; }
+    @Override
+    public Map<String, String> getGroupRequests(){ return groupRequests; }
 }
