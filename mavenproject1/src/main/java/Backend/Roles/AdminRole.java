@@ -42,13 +42,6 @@ public class AdminRole extends RoleDecorator {
     }
 
     private void promoteUser(String userId) {
-        try {
-            if((accManager.getUser(userId)).getRoles().containsKey()){
-
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
 }
