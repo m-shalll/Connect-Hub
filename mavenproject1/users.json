@@ -33,9 +33,9 @@
   "email" : "jane.smith02@gmail.com",
   "username" : "Jane Smith",
   "Date-of-birth" : "1992-08-21",
-  "Profile photo" : "Images\\user.jpg",
-  "Cover photo" : null,
-  "Bio" : null
+  "Profile photo" : "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\pfp2.jpeg",
+  "Cover photo" : "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\JFrameBackground.jpg",
+  "Bio" : "Life is a game"
 }, {
   "userId" : "user003",
   "salt" : "6ZQVWgZ3W1FpxZZonm95ew==",
