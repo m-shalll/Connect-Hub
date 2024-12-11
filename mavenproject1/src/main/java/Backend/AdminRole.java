@@ -24,6 +24,8 @@ private final Set<String> allowedActions = Set.of(
                 case "editPost" -> editPost(data);
                 case "deletePost" -> deletePost(data);
                 case "deleteGroup" -> deleteGroup();
+                case "approveUser" -> approveUser(data);
+                case "declineUser" -> declineUser(data);
             }
 
         } else {
@@ -51,5 +53,11 @@ private final Set<String> allowedActions = Set.of(
     }
 
     private void promoteUser(String userId) {
+    }
+
+    private void approveUser(String userId) {
+    }
+
+    private void declineUser(String userId) {
     }
 }
