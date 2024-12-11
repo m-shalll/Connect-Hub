@@ -28,7 +28,7 @@ public class CoAdminRole extends RoleDecorator {
             }
 
         } else {
-            throw new UnsupportedOperationException(action + " is not permitted");
+            super.execute(action, data);
         }
 
     }
