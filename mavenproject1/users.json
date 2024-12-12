@@ -3,13 +3,11 @@
   "salt" : "PvuuQFGh46qtAdY46ZPr6w==",
   "password" : "j/lS3W8kq3jBYyi8Rqxph5vKcORPQoCFFhI3btPkS3Y=",
   "status" : "online",
-  "friends" : [ "user003", "user004", "user005", "user002" ],
+  "friends" : [ "user004", "user005", "user015", "user011", "user003" ],
   "blocked" : [ "user017", "user018", "user019", "user020", "user002" ],
   "friendReq" : {
-    "user017" : "Declined",
-    "user018" : "Declined",
-    "user019" : "Declined",
-    "user020" : "Declined"
+    "user015" : "accepted",
+    "user011" : "accepted"
   },
   "roles" : { },
   "email" : "john.doe01@gmail.com",
@@ -23,10 +21,9 @@
   "salt" : "sZyFwHHEIOwmeyn14L8k5g==",
   "password" : "VFK8+MhIKXaDDGtWw0EwOzojaMA9LyhSJTXLgUvQ9NM=",
   "status" : "online",
-  "friends" : [ "user006", "user007", "user009", "user001" ],
+  "friends" : [ "user006", "user007", "user009" ],
   "blocked" : [ "user018", "user019", "user020" ],
   "friendReq" : {
-    "user001" : "accepted",
     "user018" : "Declined",
     "user019" : "Declined",
     "user020" : "Declined"
@@ -42,13 +39,13 @@
   "userId" : "user003",
   "salt" : "6ZQVWgZ3W1FpxZZonm95ew==",
   "password" : "HmN0wCbXqe/sAfu8pnxt3lJYcPuRZnCvhgxqdtBBYUY=",
-  "status" : "offline",
-  "friends" : [ "user001", "user010", "user011", "user013", "user019", "user020" ],
+  "status" : "online",
+  "friends" : [ "user010", "user011", "user013", "user019", "user020" ],
   "blocked" : [ ],
   "friendReq" : {
-    "user001" : "accepted",
     "user019" : "accepted",
-    "user020" : "accepted"
+    "user020" : "accepted",
+    "user001" : "pending"
   },
   "roles" : { },
   "email" : "michael.jones03@gmail.com",
@@ -193,7 +190,7 @@
   "salt" : "+QkargdQPgGXvcJTzQVGNA==",
   "password" : "dAdP5F9q3SeUYgF0b7xajr49wNFa5RdTj8Vt6AjU8O8=",
   "status" : "offline",
-  "friends" : [ "user003", "user007", "user008", "user009", "user010", "user014" ],
+  "friends" : [ "user003", "user007", "user008", "user009", "user010", "user014", "user001" ],
   "blocked" : [ ],
   "friendReq" : {
     "user003" : "accepted",
@@ -277,14 +274,10 @@
   "salt" : "EE8JvJ2jswiZfrnDB+FwyA==",
   "password" : "xTCNaWTf1IWDf+bk4aJDw8HrJMfcz4975Ze/KD3K2GM=",
   "status" : "offline",
-  "friends" : [ "user004", "user017" ],
+  "friends" : [ "user004", "user017", "user001" ],
   "blocked" : [ "user011", "user012", "user013", "user014" ],
   "friendReq" : {
-    "user004" : "accepted",
-    "user011" : "Declined",
-    "user012" : "Declined",
-    "user013" : "Declined",
-    "user014" : "Declined"
+    "user004" : "accepted"
   },
   "roles" : { },
   "email" : "james.king15@gmail.com",
@@ -300,13 +293,7 @@
   "status" : "offline",
   "friends" : [ "user017", "user020" ],
   "blocked" : [ "user004", "user012", "user013", "user014", "user015" ],
-  "friendReq" : {
-    "user004" : "Declined",
-    "user012" : "Declined",
-    "user013" : "Declined",
-    "user014" : "Declined",
-    "user015" : "Declined"
-  },
+  "friendReq" : { },
   "roles" : { },
   "email" : "olivia.scott16@gmail.com",
   "username" : "Olivia Scott",
