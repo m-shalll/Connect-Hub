@@ -1,5 +1,6 @@
 package Backend;
 
+import Backend.Roles.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
@@ -36,6 +37,9 @@ public class User {
     private ArrayList<String> friends=new ArrayList<>();
     private ArrayList<String> blocked=new ArrayList<>();
     private Map<String, String> friendReq=new HashMap<>();
+    private Map<String, Role> roles = new HashMap<>();
+
+    public Map<String, Role> getRoles() { return roles; }
 
     public ArrayList<String> getFriends() {
         return friends;
@@ -101,6 +105,8 @@ public class User {
     public String getUserCover() { return userCover;}
 
     public String getUserBio() { return userBio;}
+
+    public void setRoles(Map<String, Role> roles) { this.roles = roles;}
 
     public void setEmail(String email) {
         Email = email;

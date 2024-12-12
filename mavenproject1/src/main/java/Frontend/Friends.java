@@ -262,7 +262,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s,LogInPannel.users);
+           User r = LogInPannel.manager.getUser(s);
            try {
                LogInPannel.f.acceptFriendRequest(targetUser,r);
            } catch (IOException ex) {
@@ -302,7 +302,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s,LogInPannel.users);
+           User r = LogInPannel.manager.getUser(s);
            try {
                LogInPannel.f.declineFriendRequest(targetUser, r);
            } catch (IOException ex) {
@@ -338,7 +338,7 @@ else{
     
        User r;
             try {
-                r = LogInPannel.manager.getUser(s,LogInPannel.users);
+                r = LogInPannel.manager.getUser(s);
                   try {
         LogInPannel.f.blockUser(targetUser, r);
     } catch (IOException ex) {
@@ -375,7 +375,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s,LogInPannel.users);
+           User r = LogInPannel.manager.getUser(s);
            System.out.println("990"+r);
            try {
               LogInPannel.f.removeFriend(targetUser, r);
@@ -413,7 +413,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s,LogInPannel.users);
+           User r = LogInPannel.manager.getUser(s);
            try {
                LogInPannel.f.sendFriendRequest(targetUser, r);
            } catch (IOException ex) {
