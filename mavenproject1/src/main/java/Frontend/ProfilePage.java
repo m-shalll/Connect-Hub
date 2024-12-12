@@ -108,7 +108,7 @@ public class ProfilePage extends javax.swing.JFrame {
     
     public ArrayList<String> userFrom(String userId){
         try {
-            User user = accManager.getUser(userId,users);
+            User user = accManager.getUser(userId);
             if (user == null) {
             System.out.println("Error loading user for ID: " + userId);
         } else {
@@ -129,7 +129,7 @@ public class ProfilePage extends javax.swing.JFrame {
             JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             String friend = value.toString();
             try {
-                User user = accManager.getUser(friend,users);
+                User user = accManager.getUser(friend);
                 if( user!=null && user.getStatus().equals("online")){
                     label.setForeground(Color.GREEN);
                 }
