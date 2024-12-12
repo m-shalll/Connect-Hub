@@ -19,7 +19,7 @@ public interface GroupInterface {
     public String getDescription();
     public ArrayList<String> getCoAdmin();
     public ArrayList<String> getUsers();
-    public ArrayList<String> getAdmin();
+    public String getAdmin();
     public String getGroupPhoto();
     public ArrayList<ContentCreation> getGroupPosts();
     public Map<String, String> getGroupRequests();

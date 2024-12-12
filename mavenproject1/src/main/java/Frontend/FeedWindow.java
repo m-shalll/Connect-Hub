@@ -685,22 +685,15 @@ public class FeedWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please fill empty fields");
         } else { 
             GroupInterface newGroup = new Group();
-            System.out.println("Error 1");
+            newGroup.setName(name);
             newGroup.setAdmin(currentUser.getUserId());
-            System.out.println("Error 2");
             newGroup.setDescription(description);
-            System.out.println("Error 3");
             newGroup.setGroupPhoto(filePathtoImage);
-            System.out.println("Error 4");
             userGroups.addUserToGroup(currentUser.getUserId(), newGroup);
-            System.out.println("Error 5");
             jDialog4.setVisible(false);
             JOptionPane.showMessageDialog(this, "Group Created successfully");
-            System.out.println("Error 6");
             groups.add(newGroup);
-            System.out.println("Error 7");
             groupDatabase.saveGroups(groups);
-            System.out.println("Error 8");
             loadGroups();
         }
     }//GEN-LAST:event_jButton13ActionPerformed

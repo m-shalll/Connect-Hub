@@ -44,7 +44,7 @@ public class Group implements GroupInterface{
     @Override
     public ArrayList<String> getUsers() { return users; }
     @Override
-    public ArrayList<String> getAdmin() { return coAdmin; }
+    public String getAdmin() { return admin; }
     @Override
     public String getGroupPhoto() { return groupPhoto; }
     @Override

@@ -1,8 +1,8 @@
 [ {
-  "name" : null,
+  "name" : "Gym Bros",
   "description" : "we love protein",
-  "groupPhoto" : "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\4.jpg",
-  "admin" : null,
+  "groupPhoto" : "C:\\Users\\Mostafa Mohamed\\AppData\\Roaming\\Microsoft\\Windows\\Recent\\4.lnk",
+  "admin" : "user002",
   "users" : [ "user002" ],
   "coAdmin" : null,
   "groupPosts" : null,
