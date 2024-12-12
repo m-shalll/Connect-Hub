@@ -7,14 +7,15 @@ import java.util.Map;
 import java.util.Set;
 
 public class AdminRole extends RoleDecorator {
-    UserGroups userGroups;
+    private UserGroupsInterface userGroups;
     private final GroupManagement groupManagement = GroupManagement.getInstance();
     private final AccountManagement accManager = AccountManagement.getInstance();
     private final Set<String> allowedActions = Set.of(
         "promoteUser", "demoteUser", "deleteGroup"
 );
-    public AdminRole(Role wrappedRole) {
+    public AdminRole(Role wrappedRole, UserGroupsInterface userGroups) {
         super(wrappedRole);
+        this.userGroups = userGroups;
     }
 
     @Override
@@ -23,22 +24,23 @@ public class AdminRole extends RoleDecorator {
     }
 
     @Override
-    public void execute(String action, String data, Object data2) {
+    public void execute(String action, Object data, Object data2) {
         if (canPerform(action)) {
             switch (action) {
-                case "promoteUser" -> promoteUser(data, (String)data2);
-                case "demoteUser" -> demoteUser(data, (String)data2);
-                case "deleteGroup" -> deleteGroup(data);
+                case "promoteUser" -> promoteUser((String)data, (String)data2);
+                case "demoteUser" -> demoteUser((String)data, (String)data2);
+                case "deleteGroup" -> deleteGroup((String)data);
             }
 
         } else {
-            super.execute(action, data);
+            throw new UnsupportedOperationException(action + " is not permitted");
         }
 
     }
-    public void execute(String action, String data) {
+    @Override
+    public void execute(String action, String data, Object data1, Object data2) {
+        
     }
-
     private void deleteGroup(String groupName) {
         groupManagement.deleteGroup(groupName);
     }
@@ -55,14 +57,13 @@ public class AdminRole extends RoleDecorator {
         }
 
     }
-
     private void promoteUser(String userId, String groupName) {
         try {
             User user = accManager.getUser(userId);
             GroupInterface group = userGroups.returnGroup(groupName);
             Map<String,Role> roles = user.getRoles();
             if(roles.get(groupName) instanceof NormalUserRole){
-                Role promotion = new CoAdminRole(roles.get(groupName));
+                Role promotion = new CoAdminRole(roles.get(groupName), userGroups);
                 roles.put(groupName, promotion);
             }
         } catch (IOException e) {

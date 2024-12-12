@@ -13,8 +13,12 @@ public abstract class RoleDecorator implements Role {
     }
 
     @Override
-    public void execute(String action, String data) {
-        wrappedRole.execute(action, data);
+    public void execute(String action, Object data, Object data2) {
+        wrappedRole.execute(action, data, data2);
+    }
+    @Override
+    public void execute(String action, String data, Object data1, Object data2){
+        wrappedRole.execute(action, data, data1, data2);
     }
     @Override
     public Role unWrap() {

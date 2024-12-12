@@ -7,7 +7,8 @@ public interface UserGroupsInterface {
     public ArrayList<String> returnGroupNamesByUserId(String userId);
     public ArrayList<GroupInterface> returnGroupsByUserId(String userId);
     public GroupInterface returnGroup(String groupName);
-    public boolean isUserinGroup(String userId, String groupName);
-    public void addUserToGroup(String userId, String groupName);
-    public void removeUserfromGroup(String userId, String groupName);
+    public boolean isUserinGroup(String userId, GroupInterface currentGroup);
+    public void addUserToGroup(String userId, GroupInterface currentGroup);
+    public void removeUserfromGroup(String userId, GroupInterface currentGroup);
+    public void sendGroupRequest(User user, GroupInterface group);
 }

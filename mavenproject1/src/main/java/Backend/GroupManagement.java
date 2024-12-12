@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class GroupManagement {
     private static GroupManagement instance = null;
-    private static final String fileName = "Groups";
+    private static final String fileName = "Groups.json";
     
     private GroupManagement(){}
     public static GroupManagement getInstance(){

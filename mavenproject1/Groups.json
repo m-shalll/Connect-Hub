@@ -1,0 +1,10 @@
+[ {
+  "name" : null,
+  "description" : "we love protein",
+  "groupPhoto" : "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\4.jpg",
+  "admin" : null,
+  "users" : [ "user002" ],
+  "coAdmin" : null,
+  "groupPosts" : null,
+  "groupRequests" : { }
+} ]

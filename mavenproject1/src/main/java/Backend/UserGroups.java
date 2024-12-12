@@ -48,6 +48,7 @@ public class UserGroups implements UserGroupsInterface{
         }
         return userGroups;
     }
+    @Override
     public GroupInterface returnGroup(String groupName){
         groups = database.loadGroups();
         for(int i=0; i<groups.size(); i++){
@@ -57,8 +58,8 @@ public class UserGroups implements UserGroupsInterface{
         }
         return null;
     }
-    public boolean isUserinGroup(String userId, String groupName){
-        GroupInterface currentGroup = returnGroup(groupName);
+    @Override
+    public boolean isUserinGroup(String userId, GroupInterface currentGroup){
         ArrayList<String> usersInGroup = currentGroup.getUsers();
         for(int i=0; i<usersInGroup.size(); i++){
             if(usersInGroup.get(i).equals(userId)){
@@ -67,19 +68,26 @@ public class UserGroups implements UserGroupsInterface{
         }
         return false;
     }
-    public void addUserToGroup(String userId, String groupName){
-        GroupInterface currentGroup = returnGroup(groupName);
-        if(!isUserinGroup(userId, groupName)){
-            currentGroup.getUsers().add(userId);
+    @Override
+    public void addUserToGroup(String userId, GroupInterface currentGroup){
+        ArrayList<String> groupUsers = currentGroup.getUsers();
+        if(groupUsers == null){
+            groupUsers = new ArrayList<>();
+            groupUsers.add(userId);
+            currentGroup.setUsers(groupUsers);
+        } else if(!isUserinGroup(userId, currentGroup)){
+            groupUsers.add(userId);
+            currentGroup.setUsers(groupUsers);
         }
     }
-    public void removeUserfromGroup(String userId, String groupName){
-        GroupInterface currentGroup = returnGroup(groupName);
-        if(isUserinGroup(userId, groupName)){
+    @Override
+    public void removeUserfromGroup(String userId, GroupInterface currentGroup){
+        if(isUserinGroup(userId, currentGroup)){
             currentGroup.getUsers().remove(userId);
         }
     }
-    public void sendGroupRequest(User user, Group group) {
+    @Override
+    public void sendGroupRequest(User user, GroupInterface group) {
         Map<String, String> grouprequests = group.getGroupRequests();
 
         if (grouprequests.containsKey(user.getUserId())) {
