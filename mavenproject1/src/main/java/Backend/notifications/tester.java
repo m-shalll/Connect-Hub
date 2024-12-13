@@ -16,18 +16,19 @@ public class tester {
         NotificationManager noti=new NotificationManager();
         NewUser not=new NewUser();
         NewPosts not1=new NewPosts();
-        ArrayList<Notification> notifications=new ArrayList<>();
+        ArrayList<Notification> notifications=noti.load();
         notifications.add(not);
         notifications.add(not1);
         noti.save(notifications);
         notifications=noti.load();
         if(notifications.get(1) instanceof NewPosts){
-            System.out.print("True");
+            System.out.println("True");
         }
         else{
-            System.out.print("False");
+            System.out.println("False");
         }
         NewPosts newPost = (NewPosts) notifications.get(1);
-        System.out.print(newPost.getContentId());
+        System.out.println(newPost.getContentId());
+        System.out.println(newPost.getMessage());
     }
 }
