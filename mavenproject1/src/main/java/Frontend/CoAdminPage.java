@@ -907,7 +907,7 @@ public class CoAdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        coAdminRole = new CoAdminRole(currentUser.getRoles().get("groupName"), usergroups);
+        coAdminRole = new CoAdminRole(accManager.getUserRole(currentUser.getRoles(), currentName), usergroups);
         try {
             coAdminRole.execute("removeUser",jTextField1.getText(), usergroups.returnGroup(currentName));
             System.out.println("User removed successfully.");
@@ -919,7 +919,7 @@ public class CoAdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        coAdminRole = new CoAdminRole(currentUser.getRoles().get("groupName"), usergroups);
+        coAdminRole = new CoAdminRole(accManager.getUserRole(currentUser.getRoles(), currentName), usergroups);
         try {
             coAdminRole.execute("leaveGroup",currentUser.getUserId(), usergroups.returnGroup(currentName));
             System.out.println("User left group successfully.");

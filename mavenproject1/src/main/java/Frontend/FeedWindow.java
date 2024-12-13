@@ -648,15 +648,15 @@ public class FeedWindow extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         String groupName = jList2.getSelectedValue();
         if (groupName != null) {
-            if (currentUser.getRoles().get(groupName) instanceof AdminRole) {
+            if (currentUser.getRoles().get(groupName).equals("AdminRole")) {
                 AdminPage newPage = new AdminPage(groupName, currentUser, this);
                 newPage.setVisible(true);
                 this.setVisible(false);
-            } else if (currentUser.getRoles().get(groupName) instanceof CoAdminRole) {
+            } else if (currentUser.getRoles().get(groupName).equals("CoAdminRole")) {
                 CoAdminPage newPage = new CoAdminPage(groupName, currentUser, this);
                 newPage.setVisible(true);
                 this.setVisible(false);
-            } else if (currentUser.getRoles().get(groupName) instanceof NormalUserRole) {
+            } else if (currentUser.getRoles().get(groupName).equals("NormalUserRole")) {
                 UserPage newPage = new UserPage(groupName, currentUser, this);
                 newPage.setVisible(true);
                 this.setVisible(false);
@@ -713,8 +713,8 @@ public class FeedWindow extends javax.swing.JFrame {
             groups.add(newGroup);
             groupDatabase.saveGroups(groups);
             
-            Map<String, Role> role = currentUser.getRoles();
-            role.put(name, new AdminRole(null, userGroups));
+            Map<String, String> role = currentUser.getRoles();
+            role.put(name, "AdminRole");
             currentUser.setRoles(role);
             try {
                 users = userDatabase.loadUsers();

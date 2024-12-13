@@ -37,9 +37,9 @@ public class User {
     private ArrayList<String> friends=new ArrayList<>();
     private ArrayList<String> blocked=new ArrayList<>();
     private Map<String, String> friendReq=new HashMap<>();
-    private Map<String, Role> roles = new HashMap<>();
+    private Map<String, String> roles = new HashMap<>();
 
-    public Map<String, Role> getRoles() { return roles; }
+    public Map<String, String> getRoles() { return roles; }
 
     public ArrayList<String> getFriends() {
         return friends;
@@ -106,7 +106,7 @@ public class User {
 
     public String getUserBio() { return userBio;}
 
-    public void setRoles(Map<String, Role> roles) { this.roles = roles;}
+    public void setRoles(Map<String, String> roles) { this.roles = roles;}
 
     public void setEmail(String email) {
         Email = email;

@@ -15,6 +15,7 @@ public class AdminPage extends javax.swing.JFrame {
     AdminRole adminRole;
     AccountManagement accManager = LogInPannel.manager;
     GroupManagement groupmanagement = GroupManagement.getInstance();
+    ArrayList<GroupInterface> groups = new ArrayList<>();
     private ArrayList<ContentCreation> posts;
     UserGroupsInterface usergroups = new UserGroups();
     FeedWindow feed;
@@ -38,7 +39,12 @@ public class AdminPage extends javax.swing.JFrame {
         loadGroupMembers(groupName);
         DisplayImage(jPanel4, usergroups.returnGroup(groupName).getGroupPhoto());
         refreshPage(groupName);
+        groups = groupmanagement.loadGroups();
         postCounter = usergroups.returnGroup(groupName).getGroupPosts().size();
+        jDialog1.pack();
+        jDialog2.pack();
+        jDialog3.pack();
+        jDialog4.pack();
     }
     private void loadGroupPosts(String groupName) {
     jPanel11.removeAll();
@@ -169,8 +175,13 @@ public class AdminPage extends javax.swing.JFrame {
          loadGroupMembers(groupName);
          GroupInterface currentGroup = usergroups.returnGroup(groupName);
          ArrayList<GroupInterface> groups = groupmanagement.loadGroups();
-         currentGroup.setGroupPhoto(groupPhoto);
-         currentGroup.setDescription(groupDescription);
+         if(groupPhoto != null){
+             currentGroup.setGroupPhoto(groupPhoto);
+         }
+         if(groupDescription != null){
+             currentGroup.setDescription(groupDescription);
+         }
+         
          for(GroupInterface group : groups)
          {
              if(group.getName().equals(currentGroup.getName())){
@@ -275,6 +286,7 @@ public class AdminPage extends javax.swing.JFrame {
         photoPop.setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel3.setToolTipText("");
 
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -416,6 +428,8 @@ public class AdminPage extends javax.swing.JFrame {
             .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        promdemPop.setTitle("Change status");
+
         jButton16.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jButton16.setText("Promote");
         jButton16.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, null, null));
@@ -470,7 +484,7 @@ public class AdminPage extends javax.swing.JFrame {
                 .addGap(108, 108, 108))
         );
 
-        deletePop.setTitle("Change Password");
+        deletePop.setTitle("Delete Group");
         deletePop.setMinimumSize(new java.awt.Dimension(848, 416));
 
         jPanel10.setBackground(new java.awt.Color(51, 51, 51));
@@ -491,15 +505,13 @@ public class AdminPage extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(83, 83, 83)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(104, 104, 104)
-                .addComponent(jButton12)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addComponent(jButton12))
         );
 
         javax.swing.GroupLayout deletePopLayout = new javax.swing.GroupLayout(deletePop.getContentPane());
@@ -571,6 +583,8 @@ public class AdminPage extends javax.swing.JFrame {
             removePopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jDialog1.setTitle("Add posts");
 
         jLabel4.setText("Caption:");
 
@@ -645,6 +659,8 @@ public class AdminPage extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
+        jDialog2.setTitle("Edit Posts");
+
         jList1.setBackground(new java.awt.Color(102, 102, 102));
         jList1.setForeground(new java.awt.Color(255, 255, 255));
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -678,6 +694,8 @@ public class AdminPage extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jDialog3.setTitle("Edit Posts");
 
         jLabel6.setText("New Caption:");
 
@@ -744,6 +762,8 @@ public class AdminPage extends javax.swing.JFrame {
                 .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
+
+        jDialog4.setTitle("Remove Post");
 
         jList2.setBackground(new java.awt.Color(102, 102, 102));
         jList2.setForeground(new java.awt.Color(255, 255, 255));
@@ -1139,7 +1159,7 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        adminRole = new AdminRole(currentUser.getRoles().get("groupName"), usergroups);
+        adminRole = new AdminRole(accManager.getUserRole(currentUser.getRoles(), currentName), usergroups);
         try {
             adminRole.execute("deleteGroup", currentName,null);
             System.out.println("deleted group successfully.");
@@ -1155,7 +1175,7 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        adminRole = new AdminRole(currentUser.getRoles().get("groupName"), usergroups);
+        adminRole = new AdminRole(accManager.getUserRole(currentUser.getRoles(), currentName), usergroups);
         try {
             adminRole.execute("removeUser",jTextField1.getText(), usergroups.returnGroup(currentName));
             System.out.println("User removed successfully.");
@@ -1166,7 +1186,7 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        adminRole = new AdminRole(currentUser.getRoles().get("groupName"), usergroups);
+        adminRole = new AdminRole(accManager.getUserRole(currentUser.getRoles(), currentName), usergroups);
         try {
             adminRole.execute("promoteUser",jTextField2.getText(), currentName);
             System.out.println("User promoted successfully.");
@@ -1177,7 +1197,7 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        adminRole = new AdminRole(currentUser.getRoles().get("groupName"), usergroups);
+        adminRole = new AdminRole(accManager.getUserRole(currentUser.getRoles(), currentName), usergroups);
         try {
             adminRole.execute("demoteUser",jTextField2.getText(), currentName);
             System.out.println("User removed successfully.");
@@ -1270,8 +1290,16 @@ public class AdminPage extends javax.swing.JFrame {
             p.setContentPublisher(currentUser.getUserId());
             ArrayList<ContentCreation> groupPosts = currentGroup.getGroupPosts();
             groupPosts.add(p);
-            currentGroup.setGroupPosts(groupPosts);
+            
+            groups = groupmanagement.loadGroups();
+            for(int i=0; i<groups.size(); i++){
+                if(groups.get(i).getName().equals(currentGroup.getName())){
+                    groups.get(i).setGroupPosts(groupPosts);
+                }
+            }
+            groupmanagement.saveGroups(groups);
         }        
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed

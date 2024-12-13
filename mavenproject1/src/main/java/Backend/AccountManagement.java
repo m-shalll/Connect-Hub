@@ -1,9 +1,11 @@
 package Backend;
+import Backend.Roles.Role;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class AccountManagement {
     private static final String fileName = "users.json";
@@ -82,6 +84,18 @@ public class AccountManagement {
 
             return user;
         }
+        return null;
+    }
+    public Role getUserRole(Map<String,String> roles,String groupName){
+        String roleName = roles.get(groupName);
+        if(roleName!=null){
+        try {
+            // Assuming Role is the superclass of all possible types
+            Class<?> clazz = Class.forName("Backend.Roles." + roleName); // Include the package name here
+            return (Role) clazz.getDeclaredConstructor().newInstance(); // Instantiates the object
+        } catch (Exception e) {
+            e.printStackTrace();
+        }   }
         return null;
     }
 }

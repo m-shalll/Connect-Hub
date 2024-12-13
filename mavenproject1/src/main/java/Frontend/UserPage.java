@@ -606,7 +606,7 @@ public class UserPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        normalUser = new NormalUserRole(currentUser.getRoles().get("groupName"), usergroups);
+        normalUser = new NormalUserRole(accManager.getUserRole(currentUser.getRoles(), currentName), usergroups);
         try {
             normalUser.execute("leaveGroup", currentUser.getUserId(), usergroups.returnGroup(currentName));
             System.out.println("User left group successfully.");

@@ -11,9 +11,9 @@ public class Group implements GroupInterface{
     private String description;
     private String groupPhoto;
     private String admin;
-    private ArrayList<String> users;
-    private ArrayList<String> coAdmin;
-    private ArrayList<ContentCreation> groupPosts;
+    private ArrayList<String> users = new ArrayList<>();
+    private ArrayList<String> coAdmin = new ArrayList<>();
+    private ArrayList<ContentCreation> groupPosts = new ArrayList<>();
     private Map<String, String> groupRequests = new HashMap<>();
 
 
