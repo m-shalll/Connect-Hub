@@ -1,3 +1,4 @@
+
 package Backend;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -76,6 +77,15 @@ public class AccountManagement {
     }
     public User getUser(String userId) throws IOException{
         ArrayList<User> users = loadUsers();
+        for(User user:users){
+
+            if(user.getUserId().equals(userId))
+
+            return user;
+        }
+        return null;
+    }
+      public User getUser(String userId,ArrayList<User> users) throws IOException{
         for(User user:users){
 
             if(user.getUserId().equals(userId))

@@ -19,16 +19,18 @@ import java.awt.*;
  * @author AbdElrahman
  */
 public class Friends extends javax.swing.JDialog {
-    public ArrayList<User> users=LogInPannel.users;
-   
-   public User targetUser=LogInPannel.logIn ;
-   
+   public ArrayList<User> users;
+   public User targetUser;
+   private GroupManagement groupDatabase;
+   private ArrayList<GroupInterface> groups;
+  
     public Friends(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-           
-        
-       
+        groupDatabase = GroupManagement.getInstance();
+        groups = groupDatabase.loadGroups();
+       users=LogInPannel.users;
+       targetUser=LogInPannel.logIn;
         //generate friend requests
         loadList1();
         //generate friends list
@@ -304,7 +306,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s);
+           User r = LogInPannel.manager.getUser(s,users);
            try {
                LogInPannel.f.acceptFriendRequest(targetUser,r);
            } catch (IOException ex) {
@@ -344,7 +346,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s);
+           User r = LogInPannel.manager.getUser(s,users);
            try {
                LogInPannel.f.declineFriendRequest(targetUser, r);
            } catch (IOException ex) {
@@ -380,7 +382,7 @@ else{
     
        User r;
             try {
-                r = LogInPannel.manager.getUser(s);
+                r = LogInPannel.manager.getUser(s,users);
                   try {
         LogInPannel.f.blockUser(targetUser, r);
     } catch (IOException ex) {
@@ -417,7 +419,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s);
+           User r = LogInPannel.manager.getUser(s,users);
            System.out.println("990"+r);
            try {
               LogInPannel.f.removeFriend(targetUser, r);
@@ -437,6 +439,7 @@ JOptionPane.showMessageDialog(this, "Removed User", "Information", JOptionPane.I
         } catch (IOException ex) {
             Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
         }
+       System.out.println("friends:"+targetUser.getFriends());
  
 }        
 // TODO add your handling code here:
@@ -455,7 +458,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s);
+           User r = LogInPannel.manager.getUser(s,users);
            try {
                LogInPannel.f.sendFriendRequest(targetUser, r);
            } catch (IOException ex) {
@@ -480,16 +483,29 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
     }//GEN-LAST:event_RequestActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-           loadList1();
+          try {
+           users=LogInPannel.manager.loadUsers();
+       } catch (IOException ex) {
+           Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
+       }
+            try {
+           targetUser=LogInPannel.manager.getUser(LogInPannel.userName, users);
+           // TODO add your handling code here:
+       } catch (IOException ex) {
+           Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        loadList1();
         loadList2();
         loadList3();
-        try {
+        
+       /* try {
             AccountManagement.saveUsers(users);
             // TODO add your handling code here:
         } catch (IOException ex) {
             Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        // TODO add your handling code here:
+        }*/
+     
+     
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -523,6 +539,9 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
         ArrayList<User> userSentFriends = new ArrayList<>();
         ArrayList<User> userRecievedFriends = new ArrayList<>();
         
+        ArrayList<GroupInterface> inGrp = new ArrayList<>();
+        ArrayList<GroupInterface> noGrp = new ArrayList<>();
+        ArrayList<GroupInterface> reqForGrp = new ArrayList<>();
         FriendManagement f =LogInPannel.f;
         System.out.println(searchText);
         // Categorize users into friends and non-friends
@@ -552,6 +571,12 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
         System.out.println(userSentFriends);
         System.out.println(userRecievedFriends);
         System.out.println(userNonFriends);
+        JLabel kindLabel = new JLabel("Friends:");
+    kindLabel.setPreferredSize(new Dimension(200, 30));
+    results.add(kindLabel);
+    JSeparator fSeparator = new JSeparator();
+    results.add(fSeparator, BorderLayout.SOUTH);
+    
         //display friends
         for (User friend : userFriends) {
             if(friend==null)
@@ -589,8 +614,68 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
     JSeparator separator = new JSeparator();
     results.add(separator, BorderLayout.SOUTH);
 }
- 
+       if(userNonFriends.isEmpty()&&userRecievedFriends.isEmpty()&&userSentFriends.isEmpty()&&userFriends.isEmpty()){
+            JLabel nLabel = new JLabel("No Results that match search");
+    kindLabel.setPreferredSize(new Dimension(150, 30));
+    results.add(nLabel);
+    JSeparator gSeparator = new JSeparator();
+    results.add(gSeparator, BorderLayout.SOUTH);
+       }
+           
+ //categorize groups
+ for(GroupInterface g:groups){
+ if(g.getName().toLowerCase().contains(searchText.toLowerCase())){
+     if(g.getUsers().equals(targetUser.getUserId()))
+         inGrp.add(g);
+     else if(g.getGroupRequests().containsKey(targetUser.getUserId())){
+         if(g.getGroupRequests().get(targetUser.getUserId()).equals("pending"))
+             reqForGrp.add(g);}
+     else if(g.getGroupRequests().containsKey(targetUser.getUserId())){
+         if(!g.getGroupRequests().get(targetUser.getUserId()).equals("declined"))
+     noGrp.add(g);
+     }
+ }
 
+ }
+         JLabel gLabel = new JLabel("Groups:");
+    kindLabel.setPreferredSize(new Dimension(150, 30));
+    results.add(gLabel);
+    JSeparator gSeparator = new JSeparator();
+    results.add(gSeparator, BorderLayout.SOUTH);
+//Display groups user is in
+       for (GroupInterface g : inGrp) {
+            if(g==null)
+                break;
+    JPanel entryPanel = inGrpPanel(g);
+    results.add(entryPanel);
+    JSeparator separator = new JSeparator();
+    results.add(separator, BorderLayout.SOUTH);
+}
+       //Display groups user sent req for
+       for (GroupInterface g : reqForGrp) {
+            if(g==null)
+                break;
+    JPanel entryPanel = reqForGrpPanel(g);
+    results.add(entryPanel);
+    JSeparator separator = new JSeparator();
+    results.add(separator, BorderLayout.SOUTH);
+}
+       //Display groups user is not in
+       for (GroupInterface g : noGrp) {
+            if(g==null)
+                break;
+    JPanel entryPanel = noGrpPanel(g);
+    results.add(entryPanel);
+    JSeparator separator = new JSeparator();
+    results.add(separator, BorderLayout.SOUTH);
+}
+      if(noGrp.isEmpty()&&reqForGrp.isEmpty()&&inGrp.isEmpty()){
+            JLabel nLabel = new JLabel("No Results that match search");
+    kindLabel.setPreferredSize(new Dimension(150, 30));
+    results.add(nLabel);
+    JSeparator mSeparator = new JSeparator();
+    results.add(mSeparator, BorderLayout.SOUTH);
+       }
       searchPannel.revalidate();
         searchPannel.repaint();
         searchPannel.setTitle("Search For Users");
@@ -827,7 +912,68 @@ private JPanel sugPanel(User nonFriend) {
 
     return panel;
 }
+private JPanel inGrpPanel(GroupInterface g){
+JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
+    // Add user details
+    JLabel usernameLabel = new JLabel(g.getName());
+    usernameLabel.setPreferredSize(new Dimension(150, 30)); 
+    panel.add(usernameLabel);
+   
+
+    //Add Friend button
+    JButton viewGroup = new JButton("View Group");
+    //add functionality here
+        viewGroup.addActionListener(e -> {
+    
+    });
+        panel.add(viewGroup);
+
+return panel;
+}
+private JPanel noGrpPanel(GroupInterface g){
+JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+    // Add user details
+    JLabel usernameLabel = new JLabel(g.getName());
+    usernameLabel.setPreferredSize(new Dimension(150, 30)); 
+    panel.add(usernameLabel);
+   
+
+    //Add Friend button
+    JButton viewGroup = new JButton("View Group");
+    //add functionality here
+        viewGroup.addActionListener(e -> {
+    
+    });
+        panel.add(viewGroup);
+         JButton request = new JButton("sent Request");
+    //add functionality here
+        viewGroup.addActionListener(e -> {
+    
+    });
+panel.add(request);
+return panel;
+}
+private JPanel reqForGrpPanel(GroupInterface g){
+JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+    // Add user details
+    JLabel usernameLabel = new JLabel(g.getName());
+    usernameLabel.setPreferredSize(new Dimension(150, 30)); 
+    panel.add(usernameLabel);
+   
+
+    //Add Friend button
+    JButton viewGroup = new JButton("View Group");
+    //add functionality here
+        viewGroup.addActionListener(e -> {
+    
+    });
+        panel.add(viewGroup);
+
+return panel;
+}
 
 
 
