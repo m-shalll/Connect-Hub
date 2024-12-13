@@ -3,8 +3,8 @@
   "salt" : "PvuuQFGh46qtAdY46ZPr6w==",
   "password" : "j/lS3W8kq3jBYyi8Rqxph5vKcORPQoCFFhI3btPkS3Y=",
   "status" : "online",
-  "friends" : [ "user004", "user005", "user015", "user011", "user003" ],
-  "blocked" : [ "user017", "user018", "user019", "user020", "user002" ],
+  "friends" : [ "user004", "user005", "user015" ],
+  "blocked" : [ "user017", "user018", "user019", "user020", "user002", "user003", "user011" ],
   "friendReq" : {
     "user015" : "accepted",
     "user011" : "accepted"
@@ -40,12 +40,11 @@
   "salt" : "6ZQVWgZ3W1FpxZZonm95ew==",
   "password" : "HmN0wCbXqe/sAfu8pnxt3lJYcPuRZnCvhgxqdtBBYUY=",
   "status" : "online",
-  "friends" : [ "user010", "user011", "user013", "user019", "user020", "user001" ],
+  "friends" : [ "user010", "user011", "user013", "user019", "user020" ],
   "blocked" : [ ],
   "friendReq" : {
     "user019" : "accepted",
-    "user020" : "accepted",
-    "user001" : "accepted"
+    "user020" : "accepted"
   },
   "roles" : { },
   "email" : "michael.jones03@gmail.com",
@@ -190,7 +189,7 @@
   "salt" : "+QkargdQPgGXvcJTzQVGNA==",
   "password" : "dAdP5F9q3SeUYgF0b7xajr49wNFa5RdTj8Vt6AjU8O8=",
   "status" : "offline",
-  "friends" : [ "user003", "user007", "user008", "user009", "user010", "user014", "user001" ],
+  "friends" : [ "user003", "user007", "user008", "user009", "user010", "user014" ],
   "blocked" : [ ],
   "friendReq" : {
     "user003" : "accepted",
@@ -275,7 +274,7 @@
   "salt" : "EE8JvJ2jswiZfrnDB+FwyA==",
   "password" : "xTCNaWTf1IWDf+bk4aJDw8HrJMfcz4975Ze/KD3K2GM=",
   "status" : "offline",
-  "friends" : [ "user004", "user017", "user001" ],
+  "friends" : [ "user004", "user017" ],
   "blocked" : [ "user011", "user012", "user013", "user014" ],
   "friendReq" : {
     "user004" : "accepted"
