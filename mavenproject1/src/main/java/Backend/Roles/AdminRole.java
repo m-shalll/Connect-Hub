@@ -3,8 +3,11 @@ package Backend.Roles;
 import Backend.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AdminRole extends RoleDecorator {
     private UserGroupsInterface userGroups;
@@ -42,16 +45,43 @@ public class AdminRole extends RoleDecorator {
         
     }
     private void deleteGroup(String groupName) {
+        ArrayList<String> userids = userGroups.returnGroup(groupName).getUsers();
+        for(String userString:userids){
+            try {
+               User currentUser = accManager.getUser(userString);
+              Map<String,Role> roles =  currentUser.getRoles();
+              roles.remove(groupName);
+              currentUser.setRoles(roles);
+              ArrayList<User> users = accManager.loadUsers();
+            for(User user: users){
+                if(user.getUserId().equals(currentUser.getUserId()))
+                    user=currentUser;
+            }
+            AccountManagement.saveUsers(users);
+              
+            } catch (IOException ex) {
+                Logger.getLogger(AdminRole.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         groupManagement.deleteGroup(groupName);
     }
 
     private void demoteUser(String userId, String groupName) {
         try {
-            User user = accManager.getUser(userId);
+            User currentUser = accManager.getUser(userId);
             GroupInterface group = userGroups.returnGroup(groupName);
-            Map<String,Role> roles = user.getRoles();
-            if(roles.get(groupName) instanceof CoAdminRole) {}
+            Map<String,Role> roles = currentUser.getRoles();
+            if(roles.get(groupName) instanceof CoAdminRole) {
             roles.put(groupName, (NormalUserRole)roles.get(groupName).unWrap());
+            currentUser.setRoles(roles);
+            ArrayList<User> users = accManager.loadUsers();
+            for(User user: users){
+                if(user.getUserId().equals(userId))
+                    user=currentUser;
+            }
+            AccountManagement.saveUsers(users);
+            }
+            
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -59,12 +89,21 @@ public class AdminRole extends RoleDecorator {
     }
     private void promoteUser(String userId, String groupName) {
         try {
-            User user = accManager.getUser(userId);
+            User currentUser = accManager.getUser(userId);
             GroupInterface group = userGroups.returnGroup(groupName);
-            Map<String,Role> roles = user.getRoles();
+            Map<String,Role> roles = currentUser.getRoles();
             if(roles.get(groupName) instanceof NormalUserRole){
                 Role promotion = new CoAdminRole(roles.get(groupName), userGroups);
                 roles.put(groupName, promotion);
+                roles.put(groupName, (NormalUserRole)roles.get(groupName).unWrap());
+            currentUser.setRoles(roles);
+            ArrayList<User> users = accManager.loadUsers();
+            for(User user: users){
+                if(user.getUserId().equals(userId))
+                    user=currentUser;
+            }
+            AccountManagement.saveUsers(users);
+            
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

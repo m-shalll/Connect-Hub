@@ -52,9 +52,9 @@ public class ProfilePage extends javax.swing.JFrame {
     AccountManagement accManager = LogInPannel.manager;
     private ArrayList<User> users = LogInPannel.users;
     private DefaultListModel<String> listModel;
-    public ProfilePage(FeedWindow feed) {
+    public ProfilePage(User user) {
         initComponents();
-        this.feed = feed;
+        CustomJFrame frame = new CustomJFrame(this);
         
         
         //loadFriendList(targetUser.getUserId());
