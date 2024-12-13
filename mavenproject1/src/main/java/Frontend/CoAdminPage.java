@@ -115,28 +115,21 @@ public class CoAdminPage extends javax.swing.JFrame {
         
     };
     
-           private void LoadGroupRequests(String groupName){
-        listModel = new DefaultListModel<>();
+         private void LoadGroupRequests(String groupName) {
         GroupInterface group = usergroups.returnGroup(groupName);
-        Map<String,String> requests = group.getGroupRequests();
-        if(requests != null){
-            for(String key : requests.keySet()){
-                listModel.addElement(key);
-
-            }
-        {
-            
-                    
-        }
-        }
-         SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                requestList.setModel(listModel);
-            }
-        });
+        Map<String, String> requests = group.getGroupRequests();
+        ArrayList<String> request = new ArrayList<>();
         
-    };
+        if (requests != null) {
+            for (String key : requests.keySet()) {
+                request.add(key);
+            }
+        }
+        String[] data = new String[request.size()];
+        data = request.toArray(data);
+        requestList.setListData(data);
+
+    }
     public ArrayList<String> userFrom(String groupName){
         GroupInterface group = usergroups.returnGroup(groupName);
         if (group == null) {
@@ -1199,15 +1192,17 @@ public class CoAdminPage extends javax.swing.JFrame {
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
         String username = requestList.getSelectedValue();
+        if(username!=null){
         coAdminRole.execute("approveUser", username, usergroups);
-        LoadGroupRequests(currentName);
+        LoadGroupRequests(currentName);}
 
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
         String username = requestList.getSelectedValue();
+        if(username!=null){
         coAdminRole.execute("declineUser", username, currentName);
-        LoadGroupRequests(currentName);
+        LoadGroupRequests(currentName);}
     }//GEN-LAST:event_jButton26ActionPerformed
 
 

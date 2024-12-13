@@ -1,7 +1,7 @@
 [ {
-  "name" : "Gym Bros",
-  "description" : "we love protein",
-  "groupPhoto" : "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\JFrameBackground.jpg",
+  "name" : "agmad group",
+  "description" : "gamdeen",
+  "groupPhoto" : "C:\\Users\\Hamza\\Documents\\GitHub\\Connect-Hub\\mavenproject1\\Images\\pfp1.jpeg",
   "admin" : "user002",
   "users" : [ "user002" ],
   "coAdmin" : [ ],

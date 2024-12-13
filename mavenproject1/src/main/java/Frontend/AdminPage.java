@@ -1,5 +1,5 @@
-
 package Frontend;
+
 import Backend.*;
 import Backend.Roles.*;
 import java.awt.*;
@@ -26,8 +26,8 @@ public class AdminPage extends javax.swing.JFrame {
     private DefaultListModel<String> listModel;
     GroupInterface currentGroup;
     private int postCounter;
-    Post currentPost =null;
-  
+    Post currentPost = null;
+
     public AdminPage(String groupName, User user, FeedWindow currentfeed) {
         initComponents();
         CustomJFrame frame = new CustomJFrame(this);
@@ -35,7 +35,7 @@ public class AdminPage extends javax.swing.JFrame {
         currentUser = user;
         feed = currentfeed;
         currentGroup = usergroups.returnGroup(groupName);
-        adminRole = new AdminRole(coadminrole,usergroups);
+        adminRole = new AdminRole(coadminrole, usergroups);
         //loadFriendList(targetUser.getUserId());
         loadGroupPosts(groupName);
         loadGroupMembers(groupName);
@@ -48,69 +48,65 @@ public class AdminPage extends javax.swing.JFrame {
         jDialog3.pack();
         jDialog4.pack();
     }
+
     private void loadGroupPosts(String groupName) {
-    jPanel11.removeAll();
-    posts = usergroups.returnGroup(groupName).getGroupPosts();
-    posts.sort((e1, e2) -> e2.getTimeStamp().compareTo(e1.getTimeStamp()));
+        jPanel11.removeAll();
+        posts = usergroups.returnGroup(groupName).getGroupPosts();
+        posts.sort((e1, e2) -> e2.getTimeStamp().compareTo(e1.getTimeStamp()));
 
-    // Use BoxLayout to stack the posts vertically
-    jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.Y_AXIS));
+        // Use BoxLayout to stack the posts vertically
+        jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.Y_AXIS));
 
-    for (ContentCreation post : posts) {
-        PostsPanel pPanel = new PostsPanel((Post)post);
-        pPanel.setMaximumSize(new Dimension(1187, 470)); // Set a fixed size for each panel
-        jPanel11.add(pPanel);
+        for (ContentCreation post : posts) {
+            PostsPanel pPanel = new PostsPanel((Post) post);
+            pPanel.setMaximumSize(new Dimension(1187, 470)); // Set a fixed size for each panel
+            jPanel11.add(pPanel);
+        }
+
+        jPanel11.revalidate();
+        jPanel11.repaint();
     }
 
-    jPanel11.revalidate();
-    jPanel11.repaint();
-}
-
-    private void loadGroupMembers(String groupName){
+    private void loadGroupMembers(String groupName) {
         listModel = new DefaultListModel<>();
         GroupInterface group = usergroups.returnGroup(groupName);
         ArrayList<String> members = group.getUsers();
-        if(members != null){
-            for(String member : members)
-        {
-            
-            listModel.addElement(member);
-                    
+        if (members != null) {
+            for (String member : members) {
+
+                listModel.addElement(member);
+
+            }
         }
-        }
-         SwingUtilities.invokeLater(new Runnable() {
+        SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 friendsList.setModel(listModel);
             }
         });
-        
-    };
-        private void LoadGroupRequests(String groupName){
-        listModel = new DefaultListModel<>();
-        GroupInterface group = usergroups.returnGroup(groupName);
-        Map<String,String> requests = group.getGroupRequests();
-        if(requests != null){
-            for(String key : requests.keySet()){
-                listModel.addElement(key);
 
-            }
-        {
-            
-                    
-        }
-        }
-         SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                requestList.setModel(listModel);
-            }
-        });
+    }
+
+    ;
+        private void LoadGroupRequests(String groupName) {
+        GroupInterface group = usergroups.returnGroup(groupName);
+        Map<String, String> requests = group.getGroupRequests();
+        ArrayList<String> request = new ArrayList<>();
         
-    };
+        if (requests != null) {
+            for (String key : requests.keySet()) {
+                request.add(key);
+            }
+        }
+        String[] data = new String[request.size()];
+        data = request.toArray(data);
+        requestList.setListData(data);
+
+    }
+
     
     
-    public ArrayList<String> userFrom(String groupName){
+    public ArrayList<String> userFrom(String groupName) {
         GroupInterface group = usergroups.returnGroup(groupName);
         if (group == null) {
             System.out.println("Error loading group from name: " + groupName);
@@ -121,109 +117,98 @@ public class AdminPage extends javax.swing.JFrame {
         }
         return null;
     }
-    
-     class CustomListCellRenderer extends DefaultListCellRenderer{
+
+    class CustomListCellRenderer extends DefaultListCellRenderer {
+
         @Override
         public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             String member = value.toString();
             try {
                 User user = accManager.getUser(member);
-                if( user!=null && user.getStatus().equals("online")){
+                if (user != null && user.getStatus().equals("online")) {
                     label.setForeground(Color.GREEN);
-                }
-                else{
+                } else {
                     label.setForeground(Color.BLACK);
                 }
-               
-                
-         
-            } catch (IOException ex) {    
+
+            } catch (IOException ex) {
                 label.setBackground(Color.GRAY); // Fallback for errors
                 label.setText(member + " (Error)"); // Indicate failure to load status
                 Logger.getLogger(ProfilePage.class.getName()).log(Level.SEVERE, null, ex);
             }
-     return label;}
-        
-   }
-     private void DisplayImage(JPanel jPanel, String filePath) {
-    // Clear existing components
-    jPanel.removeAll();
-
-    if (filePath != null && !filePath.isEmpty()) {
-        try {
-            // Load the image from the file
-            ImageIcon icon = new ImageIcon(filePath);
-            Image image = icon.getImage();
-
-            // Scale the image to fit the JPanel size
-            int panelWidth = jPanel.getWidth();
-            int panelHeight = jPanel.getHeight();
-            Image scaledImage = image.getScaledInstance(panelWidth, panelHeight, Image.SCALE_SMOOTH);
-
-            // Create a JLabel with the scaled image
-            JLabel jl = new JLabel(new ImageIcon(scaledImage));
-            jl.setHorizontalAlignment(JLabel.CENTER);
-            jl.setVerticalAlignment(JLabel.CENTER);
-
-            // Add the JLabel to the panel
-            jPanel.setLayout(new BorderLayout()); // Use BorderLayout to center the image
-            jPanel.add(jl, BorderLayout.CENTER);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            return label;
         }
-    } else {
-        
-        // Add a placeholder if no file path is provided
-        
-        JLabel placeholderLabel = new JLabel("No image available.");
-        placeholderLabel.setHorizontalAlignment(JLabel.CENTER);
-        placeholderLabel.setVerticalAlignment(JLabel.CENTER);
-        jPanel.add(placeholderLabel, BorderLayout.CENTER);
-        
+
     }
 
-    // Refresh the panel
-    jPanel.revalidate();
-    jPanel.repaint();
-}
+    private void DisplayImage(JPanel jPanel, String filePath) {
+        // Clear existing components
+        jPanel.removeAll();
 
+        if (filePath != null && !filePath.isEmpty()) {
+            try {
+                // Load the image from the file
+                ImageIcon icon = new ImageIcon(filePath);
+                Image image = icon.getImage();
 
+                // Scale the image to fit the JPanel size
+                int panelWidth = jPanel.getWidth();
+                int panelHeight = jPanel.getHeight();
+                Image scaledImage = image.getScaledInstance(panelWidth, panelHeight, Image.SCALE_SMOOTH);
 
-     
-   
+                // Create a JLabel with the scaled image
+                JLabel jl = new JLabel(new ImageIcon(scaledImage));
+                jl.setHorizontalAlignment(JLabel.CENTER);
+                jl.setVerticalAlignment(JLabel.CENTER);
 
+                // Add the JLabel to the panel
+                jPanel.setLayout(new BorderLayout()); // Use BorderLayout to center the image
+                jPanel.add(jl, BorderLayout.CENTER);
 
-     public void refreshPage(String groupName){
-         loadGroupMembers(groupName);
-         loadGroupPosts(groupName);
-         GroupInterface currentGroup = usergroups.returnGroup(groupName);
-         ArrayList<GroupInterface> groups = groupmanagement.loadGroups();
-         if(groupPhoto != null){
-             currentGroup.setGroupPhoto(groupPhoto);
-         }
-         if(groupDescription != null){
-             currentGroup.setDescription(groupDescription);
-         }
-         
-         for(GroupInterface group : groups)
-         {
-             if(group.getName().equals(currentGroup.getName())){
-                 group = currentGroup;
-                 break;
-             }
-         }
-         groupmanagement.saveGroups(groups);
-         jLabel3.setText(currentGroup.getName());
-         jTextArea2.setText(currentGroup.getDescription());
-         DisplayImage(jPanel4, currentGroup.getGroupPhoto());
-         
-         
-         
-         
-         
-     }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+
+            // Add a placeholder if no file path is provided
+            JLabel placeholderLabel = new JLabel("No image available.");
+            placeholderLabel.setHorizontalAlignment(JLabel.CENTER);
+            placeholderLabel.setVerticalAlignment(JLabel.CENTER);
+            jPanel.add(placeholderLabel, BorderLayout.CENTER);
+
+        }
+
+        // Refresh the panel
+        jPanel.revalidate();
+        jPanel.repaint();
+    }
+
+    public void refreshPage(String groupName) {
+        loadGroupMembers(groupName);
+        loadGroupPosts(groupName);
+        GroupInterface currentGroup = usergroups.returnGroup(groupName);
+        ArrayList<GroupInterface> groups = groupmanagement.loadGroups();
+        if (groupPhoto != null) {
+            currentGroup.setGroupPhoto(groupPhoto);
+        }
+        if (groupDescription != null) {
+            currentGroup.setDescription(groupDescription);
+        }
+
+        for (GroupInterface group : groups) {
+            if (group.getName().equals(currentGroup.getName())) {
+                group = currentGroup;
+                break;
+            }
+        }
+        groupmanagement.saveGroups(groups);
+        jLabel3.setText(currentGroup.getName());
+        jTextArea2.setText(currentGroup.getDescription());
+        DisplayImage(jPanel4, currentGroup.getGroupPhoto());
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1249,7 +1234,7 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-       
+
         feed.setVisible(true);
         this.dispose();
 
@@ -1259,15 +1244,16 @@ public class AdminPage extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 
         groupPhoto = jFileChooser1.getSelectedFile().getAbsolutePath();
-        if(groupPhoto == null)
-        JOptionPane.showMessageDialog(new JFrame(), "File was not chosen","Error",JOptionPane.ERROR_MESSAGE);
+        if (groupPhoto == null) {
+            JOptionPane.showMessageDialog(new JFrame(), "File was not chosen", "Error", JOptionPane.ERROR_MESSAGE);
+        }
         photoPop.setVisible(false);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
 
         String path = jFileChooser1.getSelectedFile().getAbsolutePath();
-        DisplayImage(jPanel6,path);  // TODO add your handling code here:
+        DisplayImage(jPanel6, path);  // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -1286,7 +1272,7 @@ public class AdminPage extends javax.swing.JFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         adminRole = new AdminRole(accManager.getUserRole(currentUser.getRoles(), currentName), usergroups);
         try {
-            adminRole.execute("deleteGroup", currentName,null);
+            adminRole.execute("deleteGroup", currentName, null);
             System.out.println("deleted group successfully.");
         } catch (Exception e) {
             System.out.println("Error deleting group: " + e.getMessage());
@@ -1302,7 +1288,7 @@ public class AdminPage extends javax.swing.JFrame {
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         adminRole = new AdminRole(accManager.getUserRole(currentUser.getRoles(), currentName), usergroups);
         try {
-            adminRole.execute("removeUser",jTextField1.getText(), usergroups.returnGroup(currentName));
+            adminRole.execute("removeUser", jTextField1.getText(), usergroups.returnGroup(currentName));
             System.out.println("User removed successfully.");
         } catch (Exception e) {
             System.out.println("Error removing user: " + e.getMessage());
@@ -1313,7 +1299,7 @@ public class AdminPage extends javax.swing.JFrame {
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         adminRole = new AdminRole(accManager.getUserRole(currentUser.getRoles(), currentName), usergroups);
         try {
-            adminRole.execute("promoteUser",jTextField2.getText(), currentName);
+            adminRole.execute("promoteUser", jTextField2.getText(), currentName);
             System.out.println("User promoted successfully.");
         } catch (Exception e) {
             System.out.println("Error promoting user: " + e.getMessage());
@@ -1324,7 +1310,7 @@ public class AdminPage extends javax.swing.JFrame {
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         adminRole = new AdminRole(accManager.getUserRole(currentUser.getRoles(), currentName), usergroups);
         try {
-            adminRole.execute("demoteUser",jTextField2.getText(), currentName);
+            adminRole.execute("demoteUser", jTextField2.getText(), currentName);
             System.out.println("User removed successfully.");
         } catch (Exception e) {
             System.out.println("Error removing user: " + e.getMessage());
@@ -1338,17 +1324,17 @@ public class AdminPage extends javax.swing.JFrame {
         jList2.setListData(emptyData);
         ArrayList<String> posts = new ArrayList<>();
         ArrayList<Post> groupPosts = currentGroup.getGroupPosts();
-        for(int i=0; i<groupPosts.size(); i++){
+        for (int i = 0; i < groupPosts.size(); i++) {
             try {
-                posts.add(accManager.getUser(groupPosts.get(i).getContentPublisher()).getUserName()+ "," + groupPosts.get(i).getContentID());
+                posts.add(accManager.getUser(groupPosts.get(i).getContentPublisher()).getUserName() + "," + groupPosts.get(i).getContentID());
             } catch (IOException ex) {
-                
+
             }
         }
         String[] data = new String[groupPosts.size()];
         data = posts.toArray(data);
         jList2.setListData(data);
-        
+
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
@@ -1357,11 +1343,11 @@ public class AdminPage extends javax.swing.JFrame {
         jList1.setListData(emptyData);
         ArrayList<String> posts = new ArrayList<>();
         ArrayList<Post> groupPosts = currentGroup.getGroupPosts();
-        for(int i=0; i<groupPosts.size(); i++){
+        for (int i = 0; i < groupPosts.size(); i++) {
             try {
-                posts.add(accManager.getUser(groupPosts.get(i).getContentPublisher()).getUserName()+ "," + groupPosts.get(i).getContentID());
+                posts.add(accManager.getUser(groupPosts.get(i).getContentPublisher()).getUserName() + "," + groupPosts.get(i).getContentID());
             } catch (IOException ex) {
-                
+
             }
         }
         String[] data = new String[groupPosts.size()];
@@ -1370,7 +1356,7 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        jDialog1.setVisible(true);                
+        jDialog1.setVisible(true);
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1384,22 +1370,22 @@ public class AdminPage extends javax.swing.JFrame {
             fileName = file.getAbsolutePath();
         }
         if (file != null && file.exists()) {
-                fileName = file.getAbsolutePath();
-                jTextField4.setText(fileName);
+            fileName = file.getAbsolutePath();
+            jTextField4.setText(fileName);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        
+
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        Post p = (Post)ContentFactory.createContent("post");
+        Post p = (Post) ContentFactory.createContent("post");
         String s1 = jTextField3.getText();
         String s2 = jTextField4.getText();
         File file = new File(s2);
         Content content = null;
-        if(s1.equals("")){
+        if (s1.equals("")) {
             JOptionPane.showMessageDialog(this, "No post without text");
         } else {
             if (s2.equals("")) {
@@ -1415,16 +1401,16 @@ public class AdminPage extends javax.swing.JFrame {
             p.setContentPublisher(currentUser.getUserId());
             ArrayList<Post> groupPosts = currentGroup.getGroupPosts();
             groupPosts.add(p);
-            
+
             groups = groupmanagement.loadGroups();
-            for(int i=0; i<groups.size(); i++){
-                if(groups.get(i).getName().equals(currentGroup.getName())){
+            for (int i = 0; i < groups.size(); i++) {
+                if (groups.get(i).getName().equals(currentGroup.getName())) {
                     groups.get(i).setGroupPosts(groupPosts);
                 }
             }
             groupmanagement.saveGroups(groups);
-        }        
-        
+        }
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
@@ -1464,18 +1450,18 @@ public class AdminPage extends javax.swing.JFrame {
             fileName = file.getAbsolutePath();
         }
         if (file != null && file.exists()) {
-                fileName = file.getAbsolutePath();
-                jTextField6.setText(fileName);
+            fileName = file.getAbsolutePath();
+            jTextField6.setText(fileName);
         }
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        Post p = (Post)ContentFactory.createContent("post");
+        Post p = (Post) ContentFactory.createContent("post");
         String s1 = jTextField5.getText();
         String s2 = jTextField6.getText();
         File file = new File(s2);
         Content content = null;
-        if(s1.equals("")){
+        if (s1.equals("")) {
             JOptionPane.showMessageDialog(this, "No post without text");
         } else {
             if (s2.equals("")) {
@@ -1493,15 +1479,15 @@ public class AdminPage extends javax.swing.JFrame {
             groupPosts.remove(currentPost);
             groupPosts.add(p);
             currentPost = null;
-            
+
             groups = groupmanagement.loadGroups();
-            for(int i=0; i<groups.size(); i++){
-                if(groups.get(i).getName().equals(currentGroup.getName())){
+            for (int i = 0; i < groups.size(); i++) {
+                if (groups.get(i).getName().equals(currentGroup.getName())) {
                     groups.get(i).setGroupPosts(groupPosts);
                 }
             }
             groupmanagement.saveGroups(groups);
-        }   
+        }
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
@@ -1517,38 +1503,42 @@ public class AdminPage extends javax.swing.JFrame {
                 }
             }
             groups = groupmanagement.loadGroups();
-            for(int i=0; i<groups.size(); i++){
-                if(groups.get(i).getName().equals(currentGroup.getName())){
+            for (int i = 0; i < groups.size(); i++) {
+                if (groups.get(i).getName().equals(currentGroup.getName())) {
                     groups.get(i).setGroupPosts(posts);
                 }
             }
             groupmanagement.saveGroups(groups);
             refreshPage(currentGroup.getName());
             jDialog4.setVisible(false);
-        }  else{
+        } else {
             JOptionPane.showMessageDialog(this, "Select post first");
-        }     
+        }
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        viewPop.setVisible(true);
         LoadGroupRequests(currentName);
-        
+        viewPop.pack();
+        viewPop.setVisible(true);
+
+
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
         String username = requestList.getSelectedValue();
+        if(username!=null){
         adminRole.execute("approveUser", username, usergroups);
-        LoadGroupRequests(currentName);
+        LoadGroupRequests(currentName);}
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
         String username = requestList.getSelectedValue();
+        if(username!=null){
         adminRole.execute("declineUser", username, currentName);
-        LoadGroupRequests(currentName);
+        LoadGroupRequests(currentName);}
     }//GEN-LAST:event_jButton26ActionPerformed
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog bioPop;
     private javax.swing.JDialog deletePop;

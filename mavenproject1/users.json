@@ -29,15 +29,13 @@
     "user020" : "Declined"
   },
   "roles" : {
-    "Gym bros " : "AdminRole",
-    "gym bros" : "AdminRole",
-    "Gym Bros" : "AdminRole"
+    "agmad group" : "AdminRole"
   },
   "email" : "jane.smith02@gmail.com",
   "username" : "Jane Smith",
   "Date-of-birth" : "1992-08-21",
-  "Profile photo" : "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\pfp2.jpeg",
-  "Cover photo" : "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\JFrameBackground.jpg",
+  "Profile photo" : "Images\\pfp2.jpeg",
+  "Cover photo" : "Images\\JFrameBackground.jpg",
   "Bio" : "Life is a game"
 }, {
   "userId" : "user003",
