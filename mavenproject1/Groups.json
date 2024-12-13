@@ -7,4 +7,13 @@
   "coAdmin" : null,
   "groupPosts" : null,
   "groupRequests" : { }
+}, {
+  "name" : "yuhh",
+  "description" : "noo",
+  "groupPhoto" : "C:\\Users\\AbdElrahman\\AppData\\Roaming\\Microsoft\\Windows\\Recent\\ss1.png.lnk",
+  "admin" : "user001",
+  "users" : [ "user001" ],
+  "coAdmin" : null,
+  "groupPosts" : null,
+  "groupRequests" : { }
 } ]

@@ -143,6 +143,11 @@ System.out.println(friendReq.entrySet());
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setText("Friend Requests");
 
@@ -688,6 +693,18 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
 
         // TODO add your handling code here:
     }//GEN-LAST:event_SearchActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+       try {
+           AccountManagement.saveUsers(users);
+       } catch (IOException ex) {
+           Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        FeedWindow x = new FeedWindow(targetUser);
+        x.setVisible(true);
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosed
 private JPanel friendPanel(User friend) {
     JPanel panel = new JPanel();
     panel.setLayout(new FlowLayout(FlowLayout.LEFT));
