@@ -60,14 +60,15 @@ public class FriendManagement {
         if (!r.getFriendReq().containsKey(s.getUserId())) {
             throw new IOException("No request from this user");
         }
-        r.getFriendReq().remove(s.getUserId());
+        r.getFriendReq().put(s.getUserId(), "Declined");
 
     }
     //Friends suggestions
     public ArrayList<String> suggestedFriends(User x,ArrayList<User>users){
    ArrayList<String> suggested = new ArrayList<>();
    for(User i:users){
-if(!x.getFriends().contains(i.getUserId())&&!x.getBlocked().contains(i.getUserId())&&!x.getUserId().equals(i.getUserId())&&!i.getFriendReq().containsKey(x.getUserId()))   suggested.add(i.getUserId());
+       if(!x.getFriends().contains(i.getUserId())&&!x.getBlocked().contains(i.getUserId())&&!x.getUserId().equals(i.getUserId()))
+   suggested.add(i.getUserId());
    }
     
     
@@ -77,12 +78,8 @@ if(!x.getFriends().contains(i.getUserId())&&!x.getBlocked().contains(i.getUserId
     public void removeFriend(User u,User rem)throws IOException{
     if(u.getFriends().contains(rem.getUserId())){
         
-      u.getFriends().remove(rem.getUserId());
+        u.getFriends().remove(rem.getUserId());
         rem.getFriends().remove(u.getUserId());
-        if(u.getFriendReq().containsKey(rem.getUserId()))
-                    u.getFriendReq().remove(rem.getUserId());
-        else if(rem.getFriendReq().containsKey(u.getUserId()))
-             rem.getFriendReq().remove(u.getUserId());
             }
     else
        throw new IOException("User is not a friend") ;

@@ -14,21 +14,14 @@ import java.util.logging.Logger;
 
 public class FeedWindow extends javax.swing.JFrame {
 
-    private UserGroupsInterface userGroups;
-    
     private PostDatabase database1;
     private StoryDatabase database2;
-    private AccountManagement userDatabase;
-    private GroupManagement groupDatabase;
-    
+    private AccountManagement userDatabase = new AccountManagement();;
     private ArrayList<User> users;
     private ArrayList<ContentCreation> posts;
     private ArrayList<ContentCreation> stories;
-    private ArrayList<GroupInterface> groups;
-    
     private int postCounter = 0;
     private int storyCounter = 0;
-    
     private User currentUser;
 
     public FeedWindow(User user) {
@@ -36,11 +29,8 @@ public class FeedWindow extends javax.swing.JFrame {
         
         CustomJFrame frame = new CustomJFrame(this);
         
-        userDatabase = AccountManagement.getInstance();
         database1 = PostDatabase.getInstance();
         database2 = StoryDatabase.getInstance();
-        groupDatabase = GroupManagement.getInstance();
-        
         posts = database1.loadPosts();
         stories = database2.loadStories();
         try {
@@ -48,19 +38,17 @@ public class FeedWindow extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.out.println("error" + ex.getMessage());
         }
-        groups = groupDatabase.loadGroups();
         
         postCounter = posts.size();
         storyCounter = stories.size();
         currentUser = user;
-        userGroups = new UserGroups();
         
         this.setLayout(null); 
-        refresh();
+        loadPosts();
+        loadStories();
         jDialog1.pack();
         jDialog2.pack();
         jDialog3.pack();
-        jDialog4.pack();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -82,15 +70,6 @@ public class FeedWindow extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        jDialog4 = new javax.swing.JDialog();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
@@ -102,10 +81,6 @@ public class FeedWindow extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jButton7 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
 
         jDialog1.setTitle("Create Post");
 
@@ -254,89 +229,6 @@ public class FeedWindow extends javax.swing.JFrame {
                 .addGap(26, 26, 26))
         );
 
-        jDialog4.setTitle("Create Group");
-
-        jLabel5.setText("Name");
-
-        jLabel6.setText("Description");
-
-        jLabel7.setText("Group Photo");
-
-        jButton13.setText("Create Group");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
-
-        jButton14.setText("Browse...");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
-            }
-        });
-
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jDialog4Layout = new javax.swing.GroupLayout(jDialog4.getContentPane());
-        jDialog4.getContentPane().setLayout(jDialog4Layout);
-        jDialog4Layout.setHorizontalGroup(
-            jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog4Layout.createSequentialGroup()
-                .addGroup(jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jDialog4Layout.createSequentialGroup()
-                            .addGap(53, 53, 53)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jDialog4Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                                .addComponent(jTextField6)
-                                .addComponent(jTextField7))))
-                    .addGroup(jDialog4Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-        jDialog4Layout.setVerticalGroup(
-            jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog4Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(10, 10, 10)
-                .addGroup(jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton14)
-                .addGap(18, 18, 18)
-                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Feed Window");
 
@@ -409,25 +301,10 @@ public class FeedWindow extends javax.swing.JFrame {
 
         jButton7.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jButton7.setText("Notifications");
-        jList2.setBackground(new java.awt.Color(102, 102, 102));
-        jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane3.setViewportView(jList2);
-
-        jButton7.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jButton7.setText("View Group");
         jButton7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, new java.awt.Color(204, 204, 204), null, null));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
-            }
-        });
-
-        jButton12.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jButton12.setText("Create Group");
-        jButton12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, new java.awt.Color(204, 204, 204), null, null));
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
             }
         });
 
@@ -438,23 +315,6 @@ public class FeedWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 8, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -472,10 +332,10 @@ public class FeedWindow extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -488,20 +348,16 @@ public class FeedWindow extends javax.swing.JFrame {
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton11)
-                            .addComponent(jButton2))
+                            .addComponent(jButton2)
+                            .addComponent(jButton11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -619,12 +475,19 @@ public class FeedWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        refresh();        
+        for(int i=0; i<stories.size(); i++){
+            Story story = (Story)stories.get(i);
+            if(story.isPast24Hours()){
+                stories.remove(stories.get(i));            
+            }
+        }
+        loadPosts();
+        loadStories();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         FeedWindow feed = this;
-        ProfilePage profile = new ProfilePage(currentUser,feed);
+        ProfilePage profile = new ProfilePage(feed);
         this.setVisible(false);
         profile.setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -670,70 +533,6 @@ public class FeedWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton7ActionPerformed
 
-
-
-        
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        jDialog4.setVisible(true);        
-    }//GEN-LAST:event_jButton12ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
-
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
-
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        File file = null;
-        String fileName = null;
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Loading File");
-        int dialog = fileChooser.showSaveDialog(null);
-        if (dialog == JFileChooser.APPROVE_OPTION) {
-            file = fileChooser.getSelectedFile();
-            fileName = file.getAbsolutePath();
-        }
-        if (file != null && file.exists()) {
-            fileName = file.getAbsolutePath();
-            jTextField7.setText(fileName);
-        }        
-    }//GEN-LAST:event_jButton14ActionPerformed
-
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        String name = jTextField5.getText();
-        String description = jTextField6.getText();
-        String filePathtoImage = jTextField7.getText();
-        if(name.equals("") || description.equals("") || filePathtoImage.equals("")){
-            JOptionPane.showMessageDialog(this, "Please fill empty fields");
-        } else { 
-            GroupInterface newGroup = new Group();
-            newGroup.setName(name);
-            newGroup.setAdmin(currentUser.getUserId());
-            newGroup.setDescription(description);
-            newGroup.setGroupPhoto(filePathtoImage);
-            userGroups.addUserToGroup(currentUser.getUserId(), newGroup);
-            jDialog4.setVisible(false);
-            JOptionPane.showMessageDialog(this, "Group Created successfully");
-            groups.add(newGroup);
-            groupDatabase.saveGroups(groups);
-            loadGroups();
-        }
-    }//GEN-LAST:event_jButton13ActionPerformed
-    public void refresh(){
-        for(int i=0; i<stories.size(); i++){
-            Story story = (Story)stories.get(i);
-            if(story.isPast24Hours()){
-                stories.remove(stories.get(i));            
-            }
-        }
-        loadPosts();
-        loadStories();
-        loadGroups();
-    }
     public void loadPosts(){
         ArrayList<String> friends = currentUser.getFriends();
         jPanel1.removeAll();
@@ -751,7 +550,6 @@ public class FeedWindow extends javax.swing.JFrame {
         jPanel1.repaint();
     }
     public void loadStories(){
-        stories = database2.loadStories();
         ArrayList<String> friends = currentUser.getFriends();
         ArrayList<String> friendsUserNames = new ArrayList<>();
         ArrayList<String> friendsStories = new ArrayList<>();
@@ -760,7 +558,6 @@ public class FeedWindow extends javax.swing.JFrame {
             for (int j = 0; j < stories.size(); j++) {
                 if(stories.get(j).getContentPublisher().equals(friends.get(i))){
                     friendsStories.add(friends.get(i));
-                    break;
                 }
             }
         }
@@ -773,7 +570,6 @@ public class FeedWindow extends javax.swing.JFrame {
             for (int j = 0; j < users.size(); j++) {
                 if(friendsStories.get(i).equals(users.get(j).getUserId())){
                     friendsUserNames.add(users.get(j).getUserName());
-                    break;
                 }
             }
         }
@@ -785,23 +581,11 @@ public class FeedWindow extends javax.swing.JFrame {
         data = friendsUserNames.toArray(data);
         jList1.setListData(data);
     }
-    public void loadGroups(){
-        groups = groupDatabase.loadGroups();
-        String[] emptyData = {};
-        jList2.setListData(emptyData);
-        ArrayList<String> groupNames = userGroups.returnGroupNamesByUserId(currentUser.getUserId());
-        String[] data = new String[groups.size()];
-        data = groupNames.toArray(data);
-        jList2.setListData(data);
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -813,27 +597,18 @@ public class FeedWindow extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JDialog jDialog3;
-    private javax.swing.JDialog jDialog4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

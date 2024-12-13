@@ -156,11 +156,11 @@ public static User logIn;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String userName=nameI.getText();
-//    try {
-//        users=manager.loadUsers();
-//    } catch (IOException ex) {
-//        Logger.getLogger(LogInPannel.class.getName()).log(Level.SEVERE, null, ex);
-//    }
+    try {
+        users=manager.loadUsers();
+    } catch (IOException ex) {
+        Logger.getLogger(LogInPannel.class.getName()).log(Level.SEVERE, null, ex);
+    }
         char[] character=passwordI.getPassword();
         String password = new String(character);
         if(password.isEmpty()||userName.isEmpty()){
@@ -181,15 +181,15 @@ public static User logIn;
 
             PasswordManager pass = PasswordManager.getInstance();
             try {
-                if(manager.getUser(userName)!=null){
-                    User user = manager.getUser(userName);
+                if(manager.getUser(userName,users)!=null){
+                    User user = manager.getUser(userName,users);
                     System.out.println(user.getPassword());
                     System.out.println(pass.returnHashed(password, user.getSalt()));
                     System.out.println();
                     if(pass.verifyPassword(password,user.getPassword() , user.getSalt())){
 
                         users=manager.loadUsers();
-                        logIn=manager.getUser(userName);
+                        logIn=manager.getUser(userName,users);
                         FeedWindow feed=new FeedWindow(logIn);
                         feed.setVisible(true);
                         this.setVisible(false);

@@ -8,14 +8,7 @@ import java.util.ArrayList;
 public class AccountManagement {
     private static final String fileName = "users.json";
     private static ObjectMapper objectMapper = new ObjectMapper();
-    private static AccountManagement instance;
     PasswordManager passwordManager = PasswordManager.getInstance();
-    public static AccountManagement getInstance() {
-        if (instance == null) {
-            instance = new AccountManagement();
-        }
-        return instance;
-    }
 
     // signup method creates a user object and adds it to json file
 
@@ -74,8 +67,8 @@ public class AccountManagement {
         File file = new File(fileName);
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, users);
     }
-    public User getUser(String userId) throws IOException{
-        ArrayList<User> users = loadUsers();
+    public User getUser(String userId,ArrayList<User> users) throws IOException{
+        
         for(User user:users){
 
             if(user.getUserId().equals(userId))

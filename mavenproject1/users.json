@@ -3,13 +3,14 @@
   "salt" : "PvuuQFGh46qtAdY46ZPr6w==",
   "password" : "j/lS3W8kq3jBYyi8Rqxph5vKcORPQoCFFhI3btPkS3Y=",
   "status" : "online",
-  "friends" : [ "user004", "user005", "user015", "user011", "user003" ],
+  "friends" : [ "user003", "user004", "user005", "user002" ],
   "blocked" : [ "user017", "user018", "user019", "user020", "user002" ],
   "friendReq" : {
-    "user015" : "accepted",
-    "user011" : "accepted"
+    "user017" : "Declined",
+    "user018" : "Declined",
+    "user019" : "Declined",
+    "user020" : "Declined"
   },
-  "roles" : { },
   "email" : "john.doe01@gmail.com",
   "username" : "John Doe",
   "Date-of-birth" : "1990-04-15",
@@ -21,33 +22,32 @@
   "salt" : "sZyFwHHEIOwmeyn14L8k5g==",
   "password" : "VFK8+MhIKXaDDGtWw0EwOzojaMA9LyhSJTXLgUvQ9NM=",
   "status" : "online",
-  "friends" : [ "user006", "user007", "user009" ],
+  "friends" : [ "user006", "user007", "user009", "user001" ],
   "blocked" : [ "user018", "user019", "user020" ],
   "friendReq" : {
+    "user001" : "accepted",
     "user018" : "Declined",
     "user019" : "Declined",
     "user020" : "Declined"
   },
-  "roles" : { },
   "email" : "jane.smith02@gmail.com",
   "username" : "Jane Smith",
   "Date-of-birth" : "1992-08-21",
-  "Profile photo" : "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\pfp2.jpeg",
-  "Cover photo" : "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\JFrameBackground.jpg",
-  "Bio" : "Life is a game"
+  "Profile photo" : "Images\\user.jpg",
+  "Cover photo" : null,
+  "Bio" : null
 }, {
   "userId" : "user003",
   "salt" : "6ZQVWgZ3W1FpxZZonm95ew==",
   "password" : "HmN0wCbXqe/sAfu8pnxt3lJYcPuRZnCvhgxqdtBBYUY=",
-  "status" : "online",
-  "friends" : [ "user010", "user011", "user013", "user019", "user020" ],
+  "status" : "offline",
+  "friends" : [ "user001", "user010", "user011", "user013", "user019", "user020" ],
   "blocked" : [ ],
   "friendReq" : {
+    "user001" : "accepted",
     "user019" : "accepted",
-    "user020" : "accepted",
-    "user001" : "pending"
+    "user020" : "accepted"
   },
-  "roles" : { },
   "email" : "michael.jones03@gmail.com",
   "username" : "Michael Jones",
   "Date-of-birth" : "1988-03-10",
@@ -65,7 +65,6 @@
     "user001" : "accepted",
     "user020" : "Declined"
   },
-  "roles" : { },
   "email" : "sarah.lee04@gmail.com",
   "username" : "Sarah Lee",
   "Date-of-birth" : "1995-06-30",
@@ -82,7 +81,6 @@
   "friendReq" : {
     "user001" : "accepted"
   },
-  "roles" : { },
   "email" : "david.brown05@gmail.com",
   "username" : "David Brown",
   "Date-of-birth" : "1987-11-25",
@@ -100,7 +98,6 @@
     "user002" : "accepted",
     "user005" : "accepted"
   },
-  "roles" : { },
   "email" : "emma.clark06@gmail.com",
   "username" : "Emma Clark",
   "Date-of-birth" : "1993-05-14",
@@ -118,7 +115,6 @@
     "user002" : "accepted",
     "user006" : "Declined"
   },
-  "roles" : { },
   "email" : "chris.white07@gmail.com",
   "username" : "Chris White",
   "Date-of-birth" : "1991-09-19",
@@ -137,7 +133,6 @@
     "user006" : "accepted",
     "user007" : "accepted"
   },
-  "roles" : { },
   "email" : "lisa.harris08@gmail.com",
   "username" : "Lisa Harris",
   "Date-of-birth" : "1994-12-07",
@@ -157,7 +152,6 @@
     "user007" : "Declined",
     "user008" : "Declined"
   },
-  "roles" : { },
   "email" : "daniel.evans09@gmail.com",
   "username" : "Daniel Evans",
   "Date-of-birth" : "1989-02-03",
@@ -178,7 +172,6 @@
     "user008" : "Declined",
     "user009" : "Declined"
   },
-  "roles" : { },
   "email" : "sophie.turner10@gmail.com",
   "username" : "Sophie Turner",
   "Date-of-birth" : "1996-07-22",
@@ -190,7 +183,7 @@
   "salt" : "+QkargdQPgGXvcJTzQVGNA==",
   "password" : "dAdP5F9q3SeUYgF0b7xajr49wNFa5RdTj8Vt6AjU8O8=",
   "status" : "offline",
-  "friends" : [ "user003", "user007", "user008", "user009", "user010", "user014", "user001" ],
+  "friends" : [ "user003", "user007", "user008", "user009", "user010", "user014" ],
   "blocked" : [ ],
   "friendReq" : {
     "user003" : "accepted",
@@ -199,7 +192,6 @@
     "user009" : "accepted",
     "user010" : "accepted"
   },
-  "roles" : { },
   "email" : "jack.moore11@gmail.com",
   "username" : "Jack Moore",
   "Date-of-birth" : "1990-10-05",
@@ -220,7 +212,6 @@
     "user010" : "Declined",
     "user011" : "Declined"
   },
-  "roles" : { },
   "email" : "anna.bell12@gmail.com",
   "username" : "Anna Bell",
   "Date-of-birth" : "1992-01-18",
@@ -241,7 +232,6 @@
     "user011" : "Declined",
     "user012" : "Declined"
   },
-  "roles" : { },
   "email" : "ryan.morgan13@gmail.com",
   "username" : "Ryan Morgan",
   "Date-of-birth" : "1988-08-29",
@@ -262,7 +252,6 @@
     "user012" : "accepted",
     "user013" : "accepted"
   },
-  "roles" : { },
   "email" : "chloe.hill14@gmail.com",
   "username" : "Chloe Hill",
   "Date-of-birth" : "1995-04-09",
@@ -274,12 +263,15 @@
   "salt" : "EE8JvJ2jswiZfrnDB+FwyA==",
   "password" : "xTCNaWTf1IWDf+bk4aJDw8HrJMfcz4975Ze/KD3K2GM=",
   "status" : "offline",
-  "friends" : [ "user004", "user017", "user001" ],
+  "friends" : [ "user004", "user017" ],
   "blocked" : [ "user011", "user012", "user013", "user014" ],
   "friendReq" : {
-    "user004" : "accepted"
+    "user004" : "accepted",
+    "user011" : "Declined",
+    "user012" : "Declined",
+    "user013" : "Declined",
+    "user014" : "Declined"
   },
-  "roles" : { },
   "email" : "james.king15@gmail.com",
   "username" : "James King",
   "Date-of-birth" : "1987-03-28",
@@ -293,8 +285,13 @@
   "status" : "offline",
   "friends" : [ "user017", "user020" ],
   "blocked" : [ "user004", "user012", "user013", "user014", "user015" ],
-  "friendReq" : { },
-  "roles" : { },
+  "friendReq" : {
+    "user004" : "Declined",
+    "user012" : "Declined",
+    "user013" : "Declined",
+    "user014" : "Declined",
+    "user015" : "Declined"
+  },
   "email" : "olivia.scott16@gmail.com",
   "username" : "Olivia Scott",
   "Date-of-birth" : "1993-09-11",
@@ -315,7 +312,6 @@
     "user015" : "accepted",
     "user016" : "accepted"
   },
-  "roles" : { },
   "email" : "benjamin.green17@gmail.com",
   "username" : "Benjamin Green",
   "Date-of-birth" : "1991-06-02",
@@ -336,7 +332,6 @@
     "user016" : "Declined",
     "user017" : "Declined"
   },
-  "roles" : { },
   "email" : "mia.adams18@gmail.com",
   "username" : "Mia Adams",
   "Date-of-birth" : "1994-11-13",
@@ -357,7 +352,6 @@
     "user017" : "Declined",
     "user018" : "Declined"
   },
-  "roles" : { },
   "email" : "nathan.wright19@gmail.com",
   "username" : "Nathan Wright",
   "Date-of-birth" : "1989-05-25",
@@ -378,7 +372,6 @@
     "user018" : "accepted",
     "user019" : "accepted"
   },
-  "roles" : { },
   "email" : "sophia.walker20@gmail.com",
   "username" : "Sophia Walker",
   "Date-of-birth" : "1996-02-15",
