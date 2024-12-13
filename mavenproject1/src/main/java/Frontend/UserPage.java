@@ -41,6 +41,7 @@ public class UserPage extends javax.swing.JFrame {
     GroupManagement groupmanagement = GroupManagement.getInstance();
     private ArrayList<ContentCreation> posts;
     UserGroups usergroups;
+    FeedWindow feed;
     String currentName;
     User currentUser;
     private DefaultListModel<String> listModel;
@@ -48,12 +49,12 @@ public class UserPage extends javax.swing.JFrame {
     /**
      * Creates new form UserPage
      */
-    public UserPage(String groupName, User user) {
+    public UserPage(String groupName, User user, FeedWindow currentfeed) {
         initComponents();
         CustomJFrame frame = new CustomJFrame(this);
         currentName = groupName;
         currentUser = user;
-
+        feed = currentfeed;
         //loadFriendList(targetUser.getUserId());
         loadGroupPosts(groupName);
         loadGroupMembers(groupName);
@@ -518,8 +519,7 @@ public class UserPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        FeedWindow x = new FeedWindow(currentUser);
-        x.setVisible(true);
+        feed.setVisible(true);
         this.dispose();
 
         // TODO add your handling code here:
@@ -536,7 +536,7 @@ public class UserPage extends javax.swing.JFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         normalUser = new NormalUserRole(currentUser.getRoles().get("groupName"), usergroups);
         try {
-            normalUser.execute("leaveGroup",currentUser.getUserId(),usergroups.returnGroup(currentName));
+            normalUser.execute("leaveGroup", currentUser.getUserId(), usergroups.returnGroup(currentName));
             System.out.println("User left group successfully.");
         } catch (Exception e) {
             System.out.println("Error leaving group: " + e.getMessage());

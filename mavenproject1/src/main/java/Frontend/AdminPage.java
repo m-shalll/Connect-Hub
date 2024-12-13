@@ -48,17 +48,18 @@ public class AdminPage extends javax.swing.JFrame {
     GroupManagement groupmanagement = GroupManagement.getInstance();
     private ArrayList<ContentCreation> posts;
     UserGroups usergroups;
+    FeedWindow feed;
     String currentName;
     User currentUser;
     String groupPhoto, groupCover, groupDescription;
     private DefaultListModel<String> listModel;
   
-    public AdminPage(String groupName, User user) {
+    public AdminPage(String groupName, User user, FeedWindow currentfeed) {
         initComponents();
         CustomJFrame frame = new CustomJFrame(this);
         currentName = groupName;
         currentUser = user;
-        
+        feed = currentfeed;
         //loadFriendList(targetUser.getUserId());
         loadGroupPosts(groupName);
         loadGroupMembers(groupName);
@@ -900,8 +901,8 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        FeedWindow x = new FeedWindow(currentUser);
-        x.setVisible(true);
+       
+        feed.setVisible(true);
         this.dispose();
 
         // TODO add your handling code here:
