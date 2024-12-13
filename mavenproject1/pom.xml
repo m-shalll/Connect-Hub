@@ -28,7 +28,7 @@
     </repositories>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>23</maven.compiler.release>
+        <maven.compiler.release>22</maven.compiler.release>
         <exec.mainClass>com.mycompany.mavenproject1.Mavenproject1</exec.mainClass>
     </properties>
     <dependencies>
@@ -52,6 +52,12 @@
             <groupId>com.formdev</groupId>
             <artifactId>flatlaf</artifactId>
             <version>3.5.2</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>be.yildiz-games</groupId>
+            <artifactId>common-mapping</artifactId>
+            <version>1.0.7</version>
             <type>jar</type>
         </dependency>
     </dependencies>
