@@ -858,7 +858,7 @@ public class AdminPage extends javax.swing.JFrame {
         jLabel10.setOpaque(true);
 
         jButton25.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jButton25.setText("Accept");
+        jButton25.setText("Approve");
         jButton25.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, null, null));
         jButton25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1539,11 +1539,13 @@ public class AdminPage extends javax.swing.JFrame {
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
         String username = requestList.getSelectedValue();
         adminRole.execute("approveUser", username, usergroups);
+        LoadGroupRequests(currentName);
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
         String username = requestList.getSelectedValue();
         adminRole.execute("declineUser", username, currentName);
+        LoadGroupRequests(currentName);
     }//GEN-LAST:event_jButton26ActionPerformed
 
     
