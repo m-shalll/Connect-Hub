@@ -1,16 +1,16 @@
 
 package Frontend;
 import javax.swing.*;
-import java.awt.*;
 import Backend.*;
+import Backend.Roles.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public class FeedWindow extends javax.swing.JFrame {
 
@@ -646,8 +646,24 @@ public class FeedWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-
-
+        String groupName = jList2.getSelectedValue();
+        if (groupName != null) {
+            if (currentUser.getRoles().get(groupName) instanceof AdminRole) {
+                AdminPage newPage = new AdminPage(groupName, currentUser, this);
+                newPage.setVisible(true);
+                this.setVisible(false);
+            } else if (currentUser.getRoles().get(groupName) instanceof CoAdminRole) {
+                CoAdminPage newPage = new CoAdminPage(groupName, currentUser, this);
+                newPage.setVisible(true);
+                this.setVisible(false);
+            } else if (currentUser.getRoles().get(groupName) instanceof NormalUserRole) {
+                UserPage newPage = new UserPage(groupName, currentUser, this);
+                newPage.setVisible(true);
+                this.setVisible(false);
+            } 
+        } else {
+            JOptionPane.showMessageDialog(this, "choose group first");
+        }
         
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -696,6 +712,26 @@ public class FeedWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Group Created successfully");
             groups.add(newGroup);
             groupDatabase.saveGroups(groups);
+            
+            Map<String, Role> role = currentUser.getRoles();
+            role.put(name, new AdminRole(null, userGroups));
+            currentUser.setRoles(role);
+            try {
+                users = userDatabase.loadUsers();
+            } catch (IOException ex) {
+                
+            }
+            for(int i=0; i<users.size(); i++){
+                if(currentUser.getUserId().equals(users.get(i).getUserId())){
+                    users.get(i).setRoles(role);
+                    break;
+                }
+            }
+            try {
+                AccountManagement.saveUsers(users);
+            } catch (IOException ex) {
+                
+            }
             loadGroups();
         }
     }//GEN-LAST:event_jButton13ActionPerformed

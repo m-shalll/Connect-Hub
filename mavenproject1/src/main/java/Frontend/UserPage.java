@@ -5,18 +5,22 @@
 package Frontend;
 
 import Backend.AccountManagement;
+import Backend.Content;
 import Backend.ContentCreation;
+import Backend.ContentFactory;
 import Backend.GroupInterface;
 import Backend.GroupManagement;
 import Backend.Post;
 import Backend.Roles.NormalUserRole;
 import Backend.User;
 import Backend.UserGroups;
+import Backend.UserGroupsInterface;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -25,8 +29,10 @@ import javax.swing.BoxLayout;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -40,15 +46,15 @@ public class UserPage extends javax.swing.JFrame {
     AccountManagement accManager = LogInPannel.manager;
     GroupManagement groupmanagement = GroupManagement.getInstance();
     private ArrayList<ContentCreation> posts;
-    UserGroups usergroups;
+    UserGroupsInterface usergroups = new UserGroups();
     FeedWindow feed;
     String currentName;
     User currentUser;
     private DefaultListModel<String> listModel;
-
-    /**
-     * Creates new form UserPage
-     */
+    GroupInterface currentGroup;
+    private int postCounter;
+    ContentCreation currentPost = null;
+    
     public UserPage(String groupName, User user, FeedWindow currentfeed) {
         initComponents();
         CustomJFrame frame = new CustomJFrame(this);
@@ -57,6 +63,8 @@ public class UserPage extends javax.swing.JFrame {
         feed = currentfeed;
         //loadFriendList(targetUser.getUserId());
         loadGroupPosts(groupName);
+        postCounter = usergroups.returnGroup(groupName).getGroupPosts().size();
+        currentGroup = usergroups.returnGroup(groupName);
         loadGroupMembers(groupName);
         DisplayImage(jPanel8, usergroups.returnGroup(groupName).getGroupPhoto());
         refreshPage(groupName);
@@ -210,6 +218,13 @@ public class UserPage extends javax.swing.JFrame {
         leavePop = new javax.swing.JDialog();
         jPanel10 = new javax.swing.JPanel();
         jButton12 = new javax.swing.JButton();
+        jDialog1 = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jSeparator16 = new javax.swing.JSeparator();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -273,9 +288,66 @@ public class UserPage extends javax.swing.JFrame {
             .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jLabel1.setText("Caption:");
+
+        jLabel2.setText("Photo:");
+
+        jButton1.setText("Browse...");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Add Post");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField2)))
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1212, 834));
-        setPreferredSize(new java.awt.Dimension(1212, 834));
 
         jPanel7.setBackground(new java.awt.Color(51, 51, 51));
         jPanel7.setBorder(new javax.swing.border.MatteBorder(null));
@@ -526,7 +598,7 @@ public class UserPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
+        jDialog1.setVisible(true);
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
@@ -549,20 +621,64 @@ public class UserPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        File file = null;
+        String fileName = null;
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Loading File");
+        int dialog = fileChooser.showSaveDialog(null);
+        if (dialog == JFileChooser.APPROVE_OPTION) {
+            file = fileChooser.getSelectedFile();
+            fileName = file.getAbsolutePath();
+        }
+        if (file != null && file.exists()) {
+                fileName = file.getAbsolutePath();
+                jTextField1.setText(fileName);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Post p = (Post)ContentFactory.createContent("post");
+        String s1 = jTextField1.getText();
+        String s2 = jTextField2.getText();
+        File file = new File(s2);
+        Content content = null;
+        if(s1.equals("")){
+            JOptionPane.showMessageDialog(this, "No post without text");
+        } else {
+            if (s2.equals("")) {
+                content = new Content(s1);
+            } else {
+                if (file != null && file.exists()) {
+                    content = new Content(s2, s1);
+                }
+            }
+            jDialog1.setVisible(false);
+            p.setContent(content);
+            p.setContentID(String.valueOf(postCounter++));
+            p.setContentPublisher(currentUser.getUserId());
+            ArrayList<ContentCreation> groupPosts = currentGroup.getGroupPosts();
+            groupPosts.add(p);
+            currentGroup.setGroupPosts(groupPosts);
+        }  
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> friendsList;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton21;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel7;
@@ -575,6 +691,8 @@ public class UserPage extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator19;
     private javax.swing.JSeparator jSeparator20;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JDialog leavePop;
     // End of variables declaration//GEN-END:variables
 }

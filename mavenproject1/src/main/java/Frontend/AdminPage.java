@@ -1,58 +1,30 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package Frontend;
 
-import Backend.AccountManagement;
-import Backend.ContentCreation;
-import Backend.Group;
-import Backend.GroupInterface;
-import Backend.GroupManagement;
-import Backend.Post;
-import Backend.ProfileManagement;
-import Backend.Roles.AdminRole;
-import Backend.User;
-import Backend.UserGroups;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Image;
-import java.io.IOException;
-import java.util.ArrayList;
+package Frontend;
+import Backend.*;
+import Backend.Roles.*;
+import java.awt.*;
+import java.io.*;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BoxLayout;
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
-/**
- *
- * @author Hamza
- */
+import javax.swing.*;
+
 public class AdminPage extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AdminPage
-     */
     AdminRole adminRole;
     AccountManagement accManager = LogInPannel.manager;
     GroupManagement groupmanagement = GroupManagement.getInstance();
     private ArrayList<ContentCreation> posts;
-    UserGroups usergroups;
+    UserGroupsInterface usergroups = new UserGroups();
     FeedWindow feed;
     String currentName;
     User currentUser;
     String groupPhoto, groupCover, groupDescription;
     private DefaultListModel<String> listModel;
+    GroupInterface currentGroup;
+    private int postCounter;
+    ContentCreation currentPost =null;
   
     public AdminPage(String groupName, User user, FeedWindow currentfeed) {
         initComponents();
@@ -60,11 +32,13 @@ public class AdminPage extends javax.swing.JFrame {
         currentName = groupName;
         currentUser = user;
         feed = currentfeed;
+        currentGroup = usergroups.returnGroup(groupName);
         //loadFriendList(targetUser.getUserId());
         loadGroupPosts(groupName);
         loadGroupMembers(groupName);
         DisplayImage(jPanel4, usergroups.returnGroup(groupName).getGroupPhoto());
         refreshPage(groupName);
+        postCounter = usergroups.returnGroup(groupName).getGroupPosts().size();
     }
     private void loadGroupPosts(String groupName) {
     jPanel11.removeAll();
@@ -248,6 +222,28 @@ public class AdminPage extends javax.swing.JFrame {
         jButton15 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jDialog1 = new javax.swing.JDialog();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jDialog2 = new javax.swing.JDialog();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jButton9 = new javax.swing.JButton();
+        jDialog3 = new javax.swing.JDialog();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jButton21 = new javax.swing.JButton();
+        jButton22 = new javax.swing.JButton();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jDialog4 = new javax.swing.JDialog();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
+        jButton23 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -574,6 +570,213 @@ public class AdminPage extends javax.swing.JFrame {
         removePopLayout.setVerticalGroup(
             removePopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jLabel4.setText("Caption:");
+
+        jLabel5.setText("Photo:");
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Browse...");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("Add Post");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(jTextField4))
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addGap(29, 29, 29)
+                .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addGap(24, 24, 24))
+        );
+
+        jList1.setBackground(new java.awt.Color(102, 102, 102));
+        jList1.setForeground(new java.awt.Color(255, 255, 255));
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane3.setViewportView(jList1);
+
+        jButton9.setText("Edit Post");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton9)
+                .addGap(44, 44, 44))
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog2Layout.createSequentialGroup()
+                .addComponent(jButton9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jLabel6.setText("New Caption:");
+
+        jLabel9.setText("New Image:");
+
+        jButton21.setText("Browse for new...");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
+
+        jButton22.setText("Edit Post");
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
+
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialog3Layout = new javax.swing.GroupLayout(jDialog3.getContentPane());
+        jDialog3.getContentPane().setLayout(jDialog3Layout);
+        jDialog3Layout.setHorizontalGroup(
+            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog3Layout.createSequentialGroup()
+                .addGroup(jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialog3Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDialog3Layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDialog3Layout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jDialog3Layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+        jDialog3Layout.setVerticalGroup(
+            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog3Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+        );
+
+        jList2.setBackground(new java.awt.Color(102, 102, 102));
+        jList2.setForeground(new java.awt.Color(255, 255, 255));
+        jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane5.setViewportView(jList2);
+
+        jButton23.setText("Remove Post");
+        jButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton23ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialog4Layout = new javax.swing.GroupLayout(jDialog4.getContentPane());
+        jDialog4.getContentPane().setLayout(jDialog4Layout);
+        jDialog4Layout.setHorizontalGroup(
+            jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog4Layout.createSequentialGroup()
+                .addContainerGap(78, Short.MAX_VALUE)
+                .addComponent(jButton23)
+                .addGap(75, 75, 75))
+        );
+        jDialog4Layout.setVerticalGroup(
+            jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog4Layout.createSequentialGroup()
+                .addComponent(jButton23)
+                .addGap(5, 5, 5)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -985,22 +1188,182 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // TODO add your handling code here:
+        jDialog4.setVisible(true);
+        String[] emptyData = {};
+        jList2.setListData(emptyData);
+        ArrayList<String> posts = new ArrayList<>();
+        ArrayList<ContentCreation> groupPosts = currentGroup.getGroupPosts();
+        for(int i=0; i<groupPosts.size(); i++){
+            try {
+                posts.add(accManager.getUser(groupPosts.get(i).getContentPublisher()).getUserName()+ "," + groupPosts.get(i).getContentID());
+            } catch (IOException ex) {
+                
+            }
+        }
+        String[] data = new String[groupPosts.size()];
+        data = groupPosts.toArray(data);
+        jList2.setListData(data);
+        
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        // TODO add your handling code here:
+        jDialog2.setVisible(true);
+        String[] emptyData = {};
+        jList1.setListData(emptyData);
+        ArrayList<String> posts = new ArrayList<>();
+        ArrayList<ContentCreation> groupPosts = currentGroup.getGroupPosts();
+        for(int i=0; i<groupPosts.size(); i++){
+            try {
+                posts.add(accManager.getUser(groupPosts.get(i).getContentPublisher()).getUserName()+ "," + groupPosts.get(i).getContentID());
+            } catch (IOException ex) {
+                
+            }
+        }
+        String[] data = new String[groupPosts.size()];
+        data = groupPosts.toArray(data);
+        jList1.setListData(data);
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
+        jDialog1.setVisible(true);                
     }//GEN-LAST:event_jButton18ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        File file = null;
+        String fileName = null;
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Loading File");
+        int dialog = fileChooser.showSaveDialog(null);
+        if (dialog == JFileChooser.APPROVE_OPTION) {
+            file = fileChooser.getSelectedFile();
+            fileName = file.getAbsolutePath();
+        }
+        if (file != null && file.exists()) {
+                fileName = file.getAbsolutePath();
+                jTextField4.setText(fileName);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Post p = (Post)ContentFactory.createContent("post");
+        String s1 = jTextField3.getText();
+        String s2 = jTextField4.getText();
+        File file = new File(s2);
+        Content content = null;
+        if(s1.equals("")){
+            JOptionPane.showMessageDialog(this, "No post without text");
+        } else {
+            if (s2.equals("")) {
+                content = new Content(s1);
+            } else {
+                if (file != null && file.exists()) {
+                    content = new Content(s2, s1);
+                }
+            }
+            jDialog1.setVisible(false);
+            p.setContent(content);
+            p.setContentID(String.valueOf(postCounter++));
+            p.setContentPublisher(currentUser.getUserId());
+            ArrayList<ContentCreation> groupPosts = currentGroup.getGroupPosts();
+            groupPosts.add(p);
+            currentGroup.setGroupPosts(groupPosts);
+        }        
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        String[] selectedPost = jList1.getSelectedValue().split(",");
+        if (selectedPost != null) {
+            String userName = selectedPost[0];
+            String contentId = selectedPost[1];
+            ArrayList<ContentCreation> posts = currentGroup.getGroupPosts();
+            for (int i = 0; i < posts.size(); i++) {
+                if (posts.get(i).getContentID().equals(contentId)) {
+                    currentPost = posts.get(i);
+                    break;
+                }
+            }
+            jDialog3.setVisible(true);
+            jTextField5.setText(currentPost.getContent().getCaption());
+            jTextField6.setText(currentPost.getContent().getImageFilePath());
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        File file = null;
+        String fileName = null;
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Loading File");
+        int dialog = fileChooser.showSaveDialog(null);
+        if (dialog == JFileChooser.APPROVE_OPTION) {
+            file = fileChooser.getSelectedFile();
+            fileName = file.getAbsolutePath();
+        }
+        if (file != null && file.exists()) {
+                fileName = file.getAbsolutePath();
+                jTextField6.setText(fileName);
+        }
+    }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        Post p = (Post)ContentFactory.createContent("post");
+        String s1 = jTextField5.getText();
+        String s2 = jTextField6.getText();
+        File file = new File(s2);
+        Content content = null;
+        if(s1.equals("")){
+            JOptionPane.showMessageDialog(this, "No post without text");
+        } else {
+            if (s2.equals("")) {
+                content = new Content(s1);
+            } else {
+                if (file != null && file.exists()) {
+                    content = new Content(s2, s1);
+                }
+            }
+            jDialog3.setVisible(false);
+            p.setContent(content);
+            p.setContentID(currentPost.getContentID());
+            p.setContentPublisher(currentUser.getUserId());
+            ArrayList<ContentCreation> groupPosts = currentGroup.getGroupPosts();
+            groupPosts.remove(currentPost);
+            groupPosts.add(p);
+            currentGroup.setGroupPosts(groupPosts);
+            currentPost = null;
+        }   
+    }//GEN-LAST:event_jButton22ActionPerformed
+
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+        String[] selectedPost = jList2.getSelectedValue().split(",");
+        if (selectedPost != null) {
+            String userName = selectedPost[0];
+            String contentId = selectedPost[1];
+            ArrayList<ContentCreation> posts = currentGroup.getGroupPosts();
+            for (int i = 0; i < posts.size(); i++) {
+                if (posts.get(i).getContentID().equals(contentId)) {
+                    posts.remove(posts.get(i));
+                    break;
+                }
+            }
+            currentGroup.setGroupPosts(posts);
+            jDialog4.setVisible(false);
+        }  else{
+            JOptionPane.showMessageDialog(this, "Select post first");
+        }     
+    }//GEN-LAST:event_jButton23ActionPerformed
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog bioPop;
     private javax.swing.JDialog deletePop;
@@ -1016,18 +1379,34 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
+    private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
+    private javax.swing.JDialog jDialog3;
+    private javax.swing.JDialog jDialog4;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -1039,7 +1418,9 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -1050,6 +1431,10 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JDialog photoPop;
     private javax.swing.JDialog promdemPop;
     private javax.swing.JDialog removePop;
