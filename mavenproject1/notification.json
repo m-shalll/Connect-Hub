@@ -2,10 +2,14 @@
   "message" : "null has been added to null",
   "type" : "User",
   "userId" : null,
-  "notificationId" : 0.0
+  "notificationId" : 0.0,
+  "secondUser" : null,
+  "groupName" : null
 }, {
   "message" : "A new post has been added to null",
   "type" : "Post",
   "userId" : null,
-  "notificationId" : 1.0
+  "notificationId" : 1.0,
+  "groupName" : null,
+  "contentId" : null
 } ]

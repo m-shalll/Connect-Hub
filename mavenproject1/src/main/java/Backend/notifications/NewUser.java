@@ -9,8 +9,8 @@ package Backend.notifications;
  * @author Dell
  */
 public class NewUser extends Notification {
-    String secondUser;
-    String groupName;
+    public String secondUser;
+    public String groupName;
     public NewUser(){
         super();
         
@@ -21,5 +21,21 @@ public class NewUser extends Notification {
     }
     public String getMessage(){
         return this.message;
+    }
+
+    public String getSecondUser() {
+        return secondUser;
+    }
+
+    public void setSecondUser(String secondUser) {
+        this.secondUser = secondUser;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 }
