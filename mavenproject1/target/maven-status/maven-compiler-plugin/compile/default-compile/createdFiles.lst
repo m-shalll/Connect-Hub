@@ -46,6 +46,7 @@ Frontend\ProfilePage$4.class
 Frontend\FeedWindow$10.class
 Frontend\FeedWindow$7.class
 Frontend\Friends$1.class
+Frontend\Notifications.class
 Frontend\SignUpPanel$3.class
 Frontend\ProfilePage$1.class
 Frontend\LogInPannel$3.class
@@ -63,6 +64,7 @@ Backend\notifications\FriendRequests.class
 Frontend\FeedWindow.class
 Frontend\FeedWindow$8.class
 Backend\Content.class
+Frontend\FeedWindow$11.class
 Backend\UserBuilder.class
 Frontend\CustomJFrame$1.class
 Frontend\ProfilePage$11.class
