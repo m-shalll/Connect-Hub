@@ -12,7 +12,7 @@ public interface GroupInterface {
     public void setCoAdmin(ArrayList<String> coAdmin);
     public void setName(String name);
     public void setDescription(String description);
-    public void setGroupPosts(ArrayList<ContentCreation> groupPosts);
+    public void setGroupPosts(ArrayList<Post> groupPosts);
     public void setGroupRequests(Map<String, String> friendReq);
 
     public String getName();
@@ -21,7 +21,7 @@ public interface GroupInterface {
     public ArrayList<String> getUsers();
     public String getAdmin();
     public String getGroupPhoto();
-    public ArrayList<ContentCreation> getGroupPosts();
+    public ArrayList<Post> getGroupPosts();
     public Map<String, String> getGroupRequests();
 }
     

@@ -16,7 +16,7 @@ public class AdminPage extends javax.swing.JFrame {
     AccountManagement accManager = LogInPannel.manager;
     GroupManagement groupmanagement = GroupManagement.getInstance();
     ArrayList<GroupInterface> groups = new ArrayList<>();
-    private ArrayList<ContentCreation> posts;
+    private ArrayList<Post> posts;
     UserGroupsInterface usergroups = new UserGroups();
     FeedWindow feed;
     String currentName;
@@ -25,7 +25,7 @@ public class AdminPage extends javax.swing.JFrame {
     private DefaultListModel<String> listModel;
     GroupInterface currentGroup;
     private int postCounter;
-    ContentCreation currentPost =null;
+    Post currentPost =null;
   
     public AdminPage(String groupName, User user, FeedWindow currentfeed) {
         initComponents();
@@ -173,6 +173,7 @@ public class AdminPage extends javax.swing.JFrame {
 
      public void refreshPage(String groupName){
          loadGroupMembers(groupName);
+         loadGroupPosts(groupName);
          GroupInterface currentGroup = usergroups.returnGroup(groupName);
          ArrayList<GroupInterface> groups = groupmanagement.loadGroups();
          if(groupPhoto != null){
@@ -1212,7 +1213,7 @@ public class AdminPage extends javax.swing.JFrame {
         String[] emptyData = {};
         jList2.setListData(emptyData);
         ArrayList<String> posts = new ArrayList<>();
-        ArrayList<ContentCreation> groupPosts = currentGroup.getGroupPosts();
+        ArrayList<Post> groupPosts = currentGroup.getGroupPosts();
         for(int i=0; i<groupPosts.size(); i++){
             try {
                 posts.add(accManager.getUser(groupPosts.get(i).getContentPublisher()).getUserName()+ "," + groupPosts.get(i).getContentID());
@@ -1221,7 +1222,7 @@ public class AdminPage extends javax.swing.JFrame {
             }
         }
         String[] data = new String[groupPosts.size()];
-        data = groupPosts.toArray(data);
+        data = posts.toArray(data);
         jList2.setListData(data);
         
     }//GEN-LAST:event_jButton20ActionPerformed
@@ -1231,7 +1232,7 @@ public class AdminPage extends javax.swing.JFrame {
         String[] emptyData = {};
         jList1.setListData(emptyData);
         ArrayList<String> posts = new ArrayList<>();
-        ArrayList<ContentCreation> groupPosts = currentGroup.getGroupPosts();
+        ArrayList<Post> groupPosts = currentGroup.getGroupPosts();
         for(int i=0; i<groupPosts.size(); i++){
             try {
                 posts.add(accManager.getUser(groupPosts.get(i).getContentPublisher()).getUserName()+ "," + groupPosts.get(i).getContentID());
@@ -1240,7 +1241,7 @@ public class AdminPage extends javax.swing.JFrame {
             }
         }
         String[] data = new String[groupPosts.size()];
-        data = groupPosts.toArray(data);
+        data = posts.toArray(data);
         jList1.setListData(data);
     }//GEN-LAST:event_jButton19ActionPerformed
 
@@ -1288,7 +1289,7 @@ public class AdminPage extends javax.swing.JFrame {
             p.setContent(content);
             p.setContentID(String.valueOf(postCounter++));
             p.setContentPublisher(currentUser.getUserId());
-            ArrayList<ContentCreation> groupPosts = currentGroup.getGroupPosts();
+            ArrayList<Post> groupPosts = currentGroup.getGroupPosts();
             groupPosts.add(p);
             
             groups = groupmanagement.loadGroups();
@@ -1311,7 +1312,7 @@ public class AdminPage extends javax.swing.JFrame {
         if (selectedPost != null) {
             String userName = selectedPost[0];
             String contentId = selectedPost[1];
-            ArrayList<ContentCreation> posts = currentGroup.getGroupPosts();
+            ArrayList<Post> posts = currentGroup.getGroupPosts();
             for (int i = 0; i < posts.size(); i++) {
                 if (posts.get(i).getContentID().equals(contentId)) {
                     currentPost = posts.get(i);
@@ -1364,11 +1365,18 @@ public class AdminPage extends javax.swing.JFrame {
             p.setContent(content);
             p.setContentID(currentPost.getContentID());
             p.setContentPublisher(currentUser.getUserId());
-            ArrayList<ContentCreation> groupPosts = currentGroup.getGroupPosts();
+            ArrayList<Post> groupPosts = currentGroup.getGroupPosts();
             groupPosts.remove(currentPost);
             groupPosts.add(p);
-            currentGroup.setGroupPosts(groupPosts);
             currentPost = null;
+            
+            groups = groupmanagement.loadGroups();
+            for(int i=0; i<groups.size(); i++){
+                if(groups.get(i).getName().equals(currentGroup.getName())){
+                    groups.get(i).setGroupPosts(groupPosts);
+                }
+            }
+            groupmanagement.saveGroups(groups);
         }   
     }//GEN-LAST:event_jButton22ActionPerformed
 
@@ -1377,14 +1385,21 @@ public class AdminPage extends javax.swing.JFrame {
         if (selectedPost != null) {
             String userName = selectedPost[0];
             String contentId = selectedPost[1];
-            ArrayList<ContentCreation> posts = currentGroup.getGroupPosts();
+            ArrayList<Post> posts = currentGroup.getGroupPosts();
             for (int i = 0; i < posts.size(); i++) {
                 if (posts.get(i).getContentID().equals(contentId)) {
                     posts.remove(posts.get(i));
                     break;
                 }
             }
-            currentGroup.setGroupPosts(posts);
+            groups = groupmanagement.loadGroups();
+            for(int i=0; i<groups.size(); i++){
+                if(groups.get(i).getName().equals(currentGroup.getName())){
+                    groups.get(i).setGroupPosts(posts);
+                }
+            }
+            groupmanagement.saveGroups(groups);
+            refreshPage(currentGroup.getName());
             jDialog4.setVisible(false);
         }  else{
             JOptionPane.showMessageDialog(this, "Select post first");

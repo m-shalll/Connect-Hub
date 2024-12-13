@@ -52,7 +52,7 @@ public class CoAdminRole extends RoleDecorator {
     }
 
     private void deletePost(GroupInterface group, ContentCreation post) {
-        ArrayList<ContentCreation> groupPosts = group.getGroupPosts();
+        ArrayList<Post> groupPosts = group.getGroupPosts();
         for (int i = 0; i < groupPosts.size(); i++) {
             if (groupPosts.get(i).equals(post)) {
                 groupPosts.remove(groupPosts.get(i));

@@ -45,7 +45,7 @@ public class CoAdminPage extends javax.swing.JFrame {
     CoAdminRole coAdminRole;
     AccountManagement accManager = LogInPannel.manager;
     GroupManagement groupmanagement = GroupManagement.getInstance();
-    private ArrayList<ContentCreation> posts;
+    private ArrayList<Post> posts;
     UserGroupsInterface usergroups = new UserGroups();
     FeedWindow feed;
     String currentName;
@@ -53,7 +53,7 @@ public class CoAdminPage extends javax.swing.JFrame {
     private DefaultListModel<String> listModel;
     GroupInterface currentGroup;
     private int postCounter;
-    ContentCreation currentPost = null;
+    Post currentPost = null;
     
     public CoAdminPage(String groupName, User user, FeedWindow currentfeed) {
         initComponents();
@@ -871,7 +871,7 @@ public class CoAdminPage extends javax.swing.JFrame {
         String[] emptyData = {};
         jList1.setListData(emptyData);
         ArrayList<String> posts = new ArrayList<>();
-        ArrayList<ContentCreation> groupPosts = currentGroup.getGroupPosts();
+        ArrayList<Post> groupPosts = currentGroup.getGroupPosts();
         for(int i=0; i<groupPosts.size(); i++){
             try {
                 posts.add(accManager.getUser(groupPosts.get(i).getContentPublisher()).getUserName()+ "," + groupPosts.get(i).getContentID());
@@ -889,7 +889,7 @@ public class CoAdminPage extends javax.swing.JFrame {
         String[] emptyData = {};
         jList2.setListData(emptyData);
         ArrayList<String> posts = new ArrayList<>();
-        ArrayList<ContentCreation> groupPosts = currentGroup.getGroupPosts();
+        ArrayList<Post> groupPosts = currentGroup.getGroupPosts();
         for(int i=0; i<groupPosts.size(); i++){
             try {
                 posts.add(accManager.getUser(groupPosts.get(i).getContentPublisher()).getUserName()+ "," + groupPosts.get(i).getContentID());
@@ -970,7 +970,7 @@ public class CoAdminPage extends javax.swing.JFrame {
             p.setContent(content);
             p.setContentID(String.valueOf(postCounter++));
             p.setContentPublisher(currentUser.getUserId());
-            ArrayList<ContentCreation> groupPosts = currentGroup.getGroupPosts();
+            ArrayList<Post> groupPosts = currentGroup.getGroupPosts();
             groupPosts.add(p);
             currentGroup.setGroupPosts(groupPosts);
         }  
@@ -981,7 +981,7 @@ public class CoAdminPage extends javax.swing.JFrame {
         if (selectedPost != null) {
             String userName = selectedPost[0];
             String contentId = selectedPost[1];
-            ArrayList<ContentCreation> posts = currentGroup.getGroupPosts();
+            ArrayList<Post> posts = currentGroup.getGroupPosts();
             for (int i = 0; i < posts.size(); i++) {
                 if (posts.get(i).getContentID().equals(contentId)) {
                     currentPost = posts.get(i);
@@ -1030,7 +1030,7 @@ public class CoAdminPage extends javax.swing.JFrame {
             p.setContent(content);
             p.setContentID(currentPost.getContentID());
             p.setContentPublisher(currentUser.getUserId());
-            ArrayList<ContentCreation> groupPosts = currentGroup.getGroupPosts();
+            ArrayList<Post> groupPosts = currentGroup.getGroupPosts();
             groupPosts.remove(currentPost);
             groupPosts.add(p);
             currentGroup.setGroupPosts(groupPosts);
@@ -1043,7 +1043,7 @@ public class CoAdminPage extends javax.swing.JFrame {
         if (selectedPost != null) {
             String userName = selectedPost[0];
             String contentId = selectedPost[1];
-            ArrayList<ContentCreation> posts = currentGroup.getGroupPosts();
+            ArrayList<Post> posts = currentGroup.getGroupPosts();
             for (int i = 0; i < posts.size(); i++) {
                 if (posts.get(i).getContentID().equals(contentId)) {
                     posts.remove(posts.get(i));
@@ -1054,7 +1054,7 @@ public class CoAdminPage extends javax.swing.JFrame {
             String[] emptyData = {};
             jList2.setListData(emptyData);
             ArrayList<String> posts1 = new ArrayList<>();
-            ArrayList<ContentCreation> groupPosts = currentGroup.getGroupPosts();
+            ArrayList<Post> groupPosts = currentGroup.getGroupPosts();
             for (int i = 0; i < groupPosts.size(); i++) {
                 try {
                     posts1.add(accManager.getUser(groupPosts.get(i).getContentPublisher()).getUserName() + "," + groupPosts.get(i).getContentID());

@@ -45,7 +45,7 @@ public class UserPage extends javax.swing.JFrame {
     NormalUserRole normalUser;
     AccountManagement accManager = LogInPannel.manager;
     GroupManagement groupmanagement = GroupManagement.getInstance();
-    private ArrayList<ContentCreation> posts;
+    private ArrayList<Post> posts;
     UserGroupsInterface usergroups = new UserGroups();
     FeedWindow feed;
     String currentName;
@@ -657,7 +657,7 @@ public class UserPage extends javax.swing.JFrame {
             p.setContent(content);
             p.setContentID(String.valueOf(postCounter++));
             p.setContentPublisher(currentUser.getUserId());
-            ArrayList<ContentCreation> groupPosts = currentGroup.getGroupPosts();
+            ArrayList<Post> groupPosts = currentGroup.getGroupPosts();
             groupPosts.add(p);
             currentGroup.setGroupPosts(groupPosts);
         }  

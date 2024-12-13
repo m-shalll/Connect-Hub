@@ -5,14 +5,6 @@
   "admin" : "user002",
   "users" : [ "user002" ],
   "coAdmin" : [ ],
-  "groupPosts" : [ {
-    "contentID" : "0",
-    "contentPublisher" : "user002",
-    "content" : {
-      "imageFilePath" : null,
-      "caption" : "new post in group"
-    },
-    "timeStamp" : [ 2024, 12, 13, 19, 16, 45, 903579300 ]
-  } ],
+  "groupPosts" : [ ],
   "groupRequests" : { }
 } ]
