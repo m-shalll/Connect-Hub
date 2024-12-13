@@ -41,17 +41,19 @@ public class CoAdminPage extends javax.swing.JFrame {
     GroupManagement groupmanagement = GroupManagement.getInstance();
     private ArrayList<ContentCreation> posts;
     UserGroups usergroups;
+    FeedWindow feed;
     String currentName;
     User currentUser;
     private DefaultListModel<String> listModel;
     /**
      * Creates new form GroupPage
      */
-    public CoAdminPage(String groupName, User user) {
+    public CoAdminPage(String groupName, User user, FeedWindow currentfeed) {
         initComponents();
         CustomJFrame frame = new CustomJFrame(this);
         currentName = groupName;
         currentUser = user;
+        feed = currentfeed;
         
         //loadFriendList(targetUser.getUserId());
         loadGroupPosts(groupName);
@@ -629,8 +631,7 @@ public class CoAdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        FeedWindow x = new FeedWindow(currentUser);
-        x.setVisible(true);
+        feed.setVisible(true);
         this.dispose();
 
         // TODO add your handling code here:

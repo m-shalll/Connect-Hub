@@ -609,7 +609,7 @@ public class FeedWindow extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         FeedWindow feed = this;
-        ProfilePage profile = new ProfilePage(feed);
+        ProfilePage profile = new ProfilePage(currentUser,feed);
         this.setVisible(false);
         profile.setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -646,6 +646,8 @@ public class FeedWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+
+
         
     }//GEN-LAST:event_jButton7ActionPerformed
 

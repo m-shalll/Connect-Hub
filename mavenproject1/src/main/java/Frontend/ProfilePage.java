@@ -52,10 +52,10 @@ public class ProfilePage extends javax.swing.JFrame {
     AccountManagement accManager = LogInPannel.manager;
     private ArrayList<User> users = LogInPannel.users;
     private DefaultListModel<String> listModel;
-    public ProfilePage(User user) {
+    public ProfilePage(User user, FeedWindow currentfeed) {
         initComponents();
         CustomJFrame frame = new CustomJFrame(this);
-        
+        feed = currentfeed;
         
         //loadFriendList(targetUser.getUserId());
         loadUserPosts(targetUser.getUserId());
@@ -984,6 +984,7 @@ public class ProfilePage extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
      this.setVisible(false);
       feed.setVisible(true);
+  
      
      // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
