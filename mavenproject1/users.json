@@ -96,7 +96,8 @@
   "blocked" : [ ],
   "friendReq" : {
     "user002" : "accepted",
-    "user005" : "accepted"
+    "user005" : "accepted",
+    "user001" : "pending"
   },
   "roles" : { },
   "email" : "emma.clark06@gmail.com",

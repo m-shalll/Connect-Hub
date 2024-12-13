@@ -3,6 +3,8 @@ package Frontend;
 import javax.swing.*;
 import java.awt.*;
 import Backend.*;
+import Backend.notifications.FriendRequests;
+import Backend.notifications.NotificationManager;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -940,7 +942,7 @@ public class FeedWindow extends javax.swing.JFrame {
     } catch (IOException ex) {
         Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
     }
-                         panel.remove(blockButton);
+         panel.remove(blockButton);
                           try {
             AccountManagement.saveUsers(users);
             // TODO add your handling code here:
@@ -1109,6 +1111,16 @@ private JPanel sugPanel(User nonFriend) {
         } catch (IOException ex) {
             Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
         }
+          FriendRequests f=new FriendRequests();
+ f.setUserId(nonFriend.getUserId());
+ f.setSecondUser(currentUser.getUserId());
+ f.setMessage();
+ NotificationManager n=new NotificationManager();
+                  try {
+                      n.save(n.load());
+                  } catch (IOException ex) {
+                      Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
+                  }
         System.out.println("Sent friend request to " + nonFriend.getUserName());
         
     });

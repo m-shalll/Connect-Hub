@@ -103,8 +103,6 @@ System.out.println(friendReq.entrySet());
         Request = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        Search = new javax.swing.JButton();
 
         javax.swing.GroupLayout resultsLayout = new javax.swing.GroupLayout(results);
         results.setLayout(resultsLayout);
@@ -214,13 +212,6 @@ System.out.println(friendReq.entrySet());
             }
         });
 
-        Search.setText("Search");
-        Search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -258,11 +249,7 @@ System.out.println(friendReq.entrySet());
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Search)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -270,11 +257,8 @@ System.out.println(friendReq.entrySet());
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Search))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -485,8 +469,9 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
             Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
         }
  FriendRequests f=new FriendRequests();
- f.setUserId(targetUser.getUserId());
- f.setSecondUser(r.getUserId());
+ f.setUserId(r.getUserId());
+ f.setSecondUser(targetUser.getUserId());
+ f.setMessage();
  NotificationManager n=new NotificationManager();
                   try {
                       n.save(n.load());
@@ -534,175 +519,6 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
         x.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
-        results.removeAll();
-        searchPannel.revalidate();
-        searchPannel.repaint();
-        results.setLayout(new BoxLayout(results, BoxLayout.Y_AXIS));
-        String searchText = jTextField1.getText().trim();
-        if (searchText.isEmpty()) {
-            //System.out.println("Wrong search input");
-            javax.swing.JOptionPane.showMessageDialog(this,
-                    " Please enter Text",
-                    "Error",
-                    javax.swing.JOptionPane.ERROR_MESSAGE);
-            return; // Exit early for invalid input
-        }
-        ArrayList<User> userFriends = new ArrayList<>();
-        ArrayList<User> userNonFriends = new ArrayList<>();
-        ArrayList<User> userSentFriends = new ArrayList<>();
-        ArrayList<User> userRecievedFriends = new ArrayList<>();
-        
-        ArrayList<GroupInterface> inGrp = new ArrayList<>();
-        ArrayList<GroupInterface> noGrp = new ArrayList<>();
-        ArrayList<GroupInterface> reqForGrp = new ArrayList<>();
-        FriendManagement f =LogInPannel.f;
-        System.out.println(searchText);
-        // Categorize users into friends and non-friends
-        for (User i : users) {
-            if (!i.getUserId().equals(targetUser.getUserId()) && i.getUserName().toLowerCase().contains(searchText.toLowerCase())) {
-                System.out.println("11");
-                System.out.println(i.getUserName()+" "+i.getUserId());
-                if (i.getFriends().contains(targetUser.getUserId())) {
-                    userFriends.add(i); // viewprofile block remove 
-                } else if (i.getFriendReq().containsKey(targetUser.getUserId())) {
-                    if (i.getFriendReq().get(targetUser.getUserId()).equals("pending")) {
-                        userSentFriends.add(i); // viewprofile block
-                    }
-                } else if (targetUser.getFriendReq().containsKey(i.getUserId())) {
-                    if (targetUser.getFriendReq().get(i.getUserId()).equals("pending")) {
-                        userRecievedFriends.add(i); // viewprofile block accept decline
-                    }
-                }
-                 else if (!targetUser.getBlocked().contains(i.getUserId())) {
-                     System.out.println("44");
-                    userNonFriends.add(i); // viewprofile block add
-                }
-            }
-            
-        }
-        System.out.println(userFriends);
-        System.out.println(userSentFriends);
-        System.out.println(userRecievedFriends);
-        System.out.println(userNonFriends);
-        JLabel kindLabel = new JLabel("Friends:");
-    kindLabel.setPreferredSize(new Dimension(200, 30));
-    results.add(kindLabel);
-    JSeparator fSeparator = new JSeparator();
-    results.add(fSeparator, BorderLayout.SOUTH);
-    
-        //display friends
-        for (User friend : userFriends) {
-            if(friend==null)
-                break;
-    JPanel entryPanel = friendPanel(friend);
-    results.add(entryPanel);
-    JSeparator separator = new JSeparator();
-    results.add(separator, BorderLayout.SOUTH);
-}
-        //display Rec Friendreq
-       for (User friend : userSentFriends) {
-           if(friend==null)
-                break;
-    JPanel entryPanel = friendSentPanel(friend);
-    results.add(entryPanel);
-    JSeparator separator = new JSeparator();
-    results.add(separator, BorderLayout.SOUTH);
-}
-       //display sent Friendreq
-       for (User friend : userRecievedFriends) {
-           if(friend==null)
-                break;
-    JPanel entryPanel = friendRecPanel(friend);
-    results.add(entryPanel);
-    JSeparator separator = new JSeparator();
-    results.add(separator, BorderLayout.SOUTH);
-}
-       //display non-friends
-       for (User nonFriend : userNonFriends) {
-           if(nonFriend==null)
-                break;
-    JPanel entryPanel = sugPanel(nonFriend);
-    results.add(entryPanel);
-
-    JSeparator separator = new JSeparator();
-    results.add(separator, BorderLayout.SOUTH);
-}
-       if(userNonFriends.isEmpty()&&userRecievedFriends.isEmpty()&&userSentFriends.isEmpty()&&userFriends.isEmpty()){
-            JLabel nLabel = new JLabel("No Results that match search");
-    kindLabel.setPreferredSize(new Dimension(150, 30));
-    results.add(nLabel);
-    JSeparator gSeparator = new JSeparator();
-    results.add(gSeparator, BorderLayout.SOUTH);
-       }
-           
- //categorize groups
- for(GroupInterface g:groups){
- if(g.getName().toLowerCase().contains(searchText.toLowerCase())){
-     if(g.getUsers().equals(targetUser.getUserId()))
-         inGrp.add(g);
-     else if(g.getGroupRequests().containsKey(targetUser.getUserId())){
-         if(g.getGroupRequests().get(targetUser.getUserId()).equals("pending"))
-             reqForGrp.add(g);}
-     else if(g.getGroupRequests().containsKey(targetUser.getUserId())){
-         if(!g.getGroupRequests().get(targetUser.getUserId()).equals("declined"))
-     noGrp.add(g);
-     }
- }
-
- }
-         JLabel gLabel = new JLabel("Groups:");
-    kindLabel.setPreferredSize(new Dimension(150, 30));
-    results.add(gLabel);
-    JSeparator gSeparator = new JSeparator();
-    results.add(gSeparator, BorderLayout.SOUTH);
-//Display groups user is in
-       for (GroupInterface g : inGrp) {
-            if(g==null)
-                break;
-    JPanel entryPanel = inGrpPanel(g);
-    results.add(entryPanel);
-    JSeparator separator = new JSeparator();
-    results.add(separator, BorderLayout.SOUTH);
-}
-       //Display groups user sent req for
-       for (GroupInterface g : reqForGrp) {
-            if(g==null)
-                break;
-    JPanel entryPanel = reqForGrpPanel(g);
-    results.add(entryPanel);
-    JSeparator separator = new JSeparator();
-    results.add(separator, BorderLayout.SOUTH);
-}
-       //Display groups user is not in
-       for (GroupInterface g : noGrp) {
-            if(g==null)
-                break;
-    JPanel entryPanel = noGrpPanel(g);
-    results.add(entryPanel);
-    JSeparator separator = new JSeparator();
-    results.add(separator, BorderLayout.SOUTH);
-}
-      if(noGrp.isEmpty()&&reqForGrp.isEmpty()&&inGrp.isEmpty()){
-            JLabel nLabel = new JLabel("No Results that match search");
-    kindLabel.setPreferredSize(new Dimension(150, 30));
-    results.add(nLabel);
-    JSeparator mSeparator = new JSeparator();
-    results.add(mSeparator, BorderLayout.SOUTH);
-       }
-      searchPannel.revalidate();
-        searchPannel.repaint();
-        searchPannel.setTitle("Search For Users");
-    searchPannel.setSize(600, 500);
-        searchPannel.setLocationRelativeTo(this);
-    searchPannel.setModal(true);
-        searchPannel.setVisible(true);
-        searchPannel.pack();
- 
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SearchActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
        try {
@@ -1050,7 +866,6 @@ return panel;
     private javax.swing.JButton Decline;
     private javax.swing.JButton Remove;
     private javax.swing.JButton Request;
-    private javax.swing.JButton Search;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JDialog jDialog2;
@@ -1063,7 +878,6 @@ return panel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel results;
     private javax.swing.JDialog searchPannel;
     // End of variables declaration//GEN-END:variables
