@@ -9,7 +9,7 @@ package Backend.notifications;
  * @author Dell
  */
 public class FriendRequests extends Notification {
-    String secondUser;
+    public String secondUser;
     public FriendRequests(){
         super();
         
@@ -21,5 +21,12 @@ public class FriendRequests extends Notification {
     public String getMessage(){
         return this.message;
     }
-    
+
+    public String getSecondUser() {
+        return secondUser;
+    }
+
+    public void setSecondUser(String secondUser) {
+        this.secondUser = secondUser;
+    }
 }

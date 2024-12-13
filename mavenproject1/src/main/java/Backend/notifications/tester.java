@@ -27,5 +27,7 @@ public class tester {
         else{
             System.out.print("False");
         }
+        NewPosts newPost = (NewPosts) notifications.get(1);
+        System.out.print(newPost.getContentId());
     }
 }

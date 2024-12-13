@@ -21,12 +21,18 @@ public class NotificationManager {
             counter++;
             if (notification instanceof FriendRequests) {
             notification.setType("Friend");
+            ((FriendRequests) notification).setSecondUser(((FriendRequests) notification).getSecondUser());
         } else if (notification instanceof NewUser) {
             notification.setType("User");
+            ((NewUser) notification).setSecondUser(((NewUser) notification).getSecondUser());
+            ((NewUser) notification).setGroupName(((NewUser) notification).getGroupName());
         } else if (notification instanceof NewPosts) {
             notification.setType("Post");
+            ((NewPosts) notification).setGroupName(((NewPosts) notification).getGroupName());
+            ((NewPosts) notification).setContentId(((NewPosts) notification).getContentId());
         } else if (notification instanceof NewStatus) {
             notification.setType("Status");
+            ((NewStatus) notification).setGroupName(((NewStatus) notification).getGroupName());
         }
         }
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, notifications);

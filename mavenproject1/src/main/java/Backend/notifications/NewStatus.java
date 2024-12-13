@@ -9,7 +9,7 @@ package Backend.notifications;
  * @author Dell
  */
 public class NewStatus extends Notification {
-    String groupName;
+    public String groupName;
     public NewStatus(){
         super();
         
@@ -20,5 +20,13 @@ public class NewStatus extends Notification {
     }
     public String getMessage(){
         return this.message;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 }
