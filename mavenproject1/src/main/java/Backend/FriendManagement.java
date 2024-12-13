@@ -64,15 +64,18 @@ public class FriendManagement {
 
     }
     //Friends suggestions
-    public ArrayList<String> suggestedFriends(User x,ArrayList<User>users){
-   ArrayList<String> suggested = new ArrayList<>();
-   for(User i:users){
+public ArrayList<String> suggestedFriends(User x, ArrayList<User> users) {
+    ArrayList<String> suggested = new ArrayList<>();
+
+    // Iterate through each friend of the user
+ for(User i:users){
+       
 if(!x.getFriends().contains(i.getUserId())&&!x.getBlocked().contains(i.getUserId())&&!x.getUserId().equals(i.getUserId())&&!i.getFriendReq().containsKey(x.getUserId()))   suggested.add(i.getUserId());
    }
-    
-    
+
     return suggested;
-    }
+}
+
     //Remove a friend
     public void removeFriend(User u,User rem)throws IOException{
     if(u.getFriends().contains(rem.getUserId())){

@@ -40,12 +40,12 @@
   "salt" : "6ZQVWgZ3W1FpxZZonm95ew==",
   "password" : "HmN0wCbXqe/sAfu8pnxt3lJYcPuRZnCvhgxqdtBBYUY=",
   "status" : "online",
-  "friends" : [ "user010", "user011", "user013", "user019", "user020" ],
+  "friends" : [ "user010", "user011", "user013", "user019", "user020", "user001" ],
   "blocked" : [ ],
   "friendReq" : {
     "user019" : "accepted",
     "user020" : "accepted",
-    "user001" : "pending"
+    "user001" : "accepted"
   },
   "roles" : { },
   "email" : "michael.jones03@gmail.com",
@@ -59,10 +59,9 @@
   "salt" : "rUK08zJRNqB/mqsbpplmFA==",
   "password" : "Wm2MOgwc1k7qLKgjx1vMU+uuKm7Geetmw3O94VA5QaA=",
   "status" : "offline",
-  "friends" : [ "user001", "user014", "user015", "user017" ],
+  "friends" : [ "user014", "user015", "user017", "user001" ],
   "blocked" : [ "user020" ],
   "friendReq" : {
-    "user001" : "accepted",
     "user020" : "Declined"
   },
   "roles" : { },
@@ -168,7 +167,7 @@
   "userId" : "user010",
   "salt" : "3PgEbQdoFC9XL3eP0OuUJQ==",
   "password" : "CIQ+wAqg3lhmWR/0STRrvk2e/bbSdFs60rf8gzk3gP4=",
-  "status" : "offline",
+  "status" : "online",
   "friends" : [ "user003", "user011", "user014" ],
   "blocked" : [ "user006", "user007", "user008", "user009" ],
   "friendReq" : {
@@ -176,7 +175,8 @@
     "user006" : "Declined",
     "user007" : "Declined",
     "user008" : "Declined",
-    "user009" : "Declined"
+    "user009" : "Declined",
+    "user001" : "pending"
   },
   "roles" : { },
   "email" : "sophie.turner10@gmail.com",
@@ -239,7 +239,8 @@
     "user009" : "Declined",
     "user010" : "Declined",
     "user011" : "Declined",
-    "user012" : "Declined"
+    "user012" : "Declined",
+    "user001" : "pending"
   },
   "roles" : { },
   "email" : "ryan.morgan13@gmail.com",
@@ -290,10 +291,12 @@
   "userId" : "user016",
   "salt" : "IhouRX4sOqcmNmz9RUaViQ==",
   "password" : "L689/98lO3XOwLhc87t7o5dKm9S+m6eCw4Wve1AzXgY=",
-  "status" : "offline",
+  "status" : "online",
   "friends" : [ "user017", "user020" ],
   "blocked" : [ "user004", "user012", "user013", "user014", "user015" ],
-  "friendReq" : { },
+  "friendReq" : {
+    "user001" : "pending"
+  },
   "roles" : { },
   "email" : "olivia.scott16@gmail.com",
   "username" : "Olivia Scott",
