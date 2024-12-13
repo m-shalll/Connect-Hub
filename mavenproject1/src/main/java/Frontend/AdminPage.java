@@ -13,6 +13,7 @@ import javax.swing.*;
 public class AdminPage extends javax.swing.JFrame {
 
     AdminRole adminRole;
+    CoAdminRole coadminrole;
     AccountManagement accManager = LogInPannel.manager;
     GroupManagement groupmanagement = GroupManagement.getInstance();
     ArrayList<GroupInterface> groups = new ArrayList<>();
@@ -34,6 +35,7 @@ public class AdminPage extends javax.swing.JFrame {
         currentUser = user;
         feed = currentfeed;
         currentGroup = usergroups.returnGroup(groupName);
+        adminRole = new AdminRole(coadminrole,usergroups);
         //loadFriendList(targetUser.getUserId());
         loadGroupPosts(groupName);
         loadGroupMembers(groupName);
@@ -80,6 +82,28 @@ public class AdminPage extends javax.swing.JFrame {
             @Override
             public void run() {
                 friendsList.setModel(listModel);
+            }
+        });
+        
+    };
+        private void LoadGroupRequests(String groupName){
+        listModel = new DefaultListModel<>();
+        GroupInterface group = usergroups.returnGroup(groupName);
+        Map<String,String> requests = group.getGroupRequests();
+        if(requests != null){
+            for(String key : requests.keySet()){
+                listModel.addElement(key);
+
+            }
+        {
+            
+                    
+        }
+        }
+         SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                requestList.setModel(listModel);
             }
         });
         
@@ -256,6 +280,12 @@ public class AdminPage extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
         jButton23 = new javax.swing.JButton();
+        viewPop = new javax.swing.JDialog();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        requestList = new javax.swing.JList<>();
+        jLabel10 = new javax.swing.JLabel();
+        jButton25 = new javax.swing.JButton();
+        jButton26 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -281,6 +311,7 @@ public class AdminPage extends javax.swing.JFrame {
         jButton20 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
+        jButton24 = new javax.swing.JButton();
 
         photoPop.setTitle("Change Photo");
         photoPop.setMinimumSize(new java.awt.Dimension(976, 458));
@@ -800,6 +831,83 @@ public class AdminPage extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        viewPop.setBackground(new java.awt.Color(51, 51, 51));
+
+        jScrollPane6.setViewportBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        requestList.setBackground(new java.awt.Color(67, 71, 70));
+        requestList.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        requestList.setFont(new java.awt.Font("Comic Sans MS", 1, 13)); // NOI18N
+        requestList.setForeground(new java.awt.Color(204, 204, 204));
+        requestList.setToolTipText("");
+        requestList.setDropMode(javax.swing.DropMode.ON);
+        requestList.setFocusable(false);
+        requestList.setVisibleRowCount(10);
+        jScrollPane6.setViewportView(requestList);
+        friendsList.setCellRenderer(new CustomListCellRenderer());
+
+        // Add JList to a scroll pane
+
+        // Add the scroll pane to your panel
+
+        jLabel10.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Join Requests");
+        jLabel10.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 153)));
+        jLabel10.setOpaque(true);
+
+        jButton25.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jButton25.setText("Accept");
+        jButton25.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, null, null));
+        jButton25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton25ActionPerformed(evt);
+            }
+        });
+
+        jButton26.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jButton26.setText("Decline");
+        jButton26.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, null, null));
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout viewPopLayout = new javax.swing.GroupLayout(viewPop.getContentPane());
+        viewPop.getContentPane().setLayout(viewPopLayout);
+        viewPopLayout.setHorizontalGroup(
+            viewPopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewPopLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(viewPopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(viewPopLayout.createSequentialGroup()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addGroup(viewPopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+        viewPopLayout.setVerticalGroup(
+            viewPopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewPopLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(viewPopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(viewPopLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(viewPopLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(jButton25)
+                        .addGap(37, 37, 37)
+                        .addComponent(jButton26)))
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
@@ -979,6 +1087,15 @@ public class AdminPage extends javax.swing.JFrame {
             }
         });
 
+        jButton24.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jButton24.setText("View Requests");
+        jButton24.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, null, null));
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1011,13 +1128,18 @@ public class AdminPage extends javax.swing.JFrame {
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(15, 15, 15))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(1, 1, 1))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1026,7 +1148,7 @@ public class AdminPage extends javax.swing.JFrame {
                                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(jButton24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
@@ -1075,8 +1197,10 @@ public class AdminPage extends javax.swing.JFrame {
                                 .addComponent(jButton3)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton14)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton13)
+                                .addGap(13, 13, 13)
+                                .addComponent(jButton24)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1406,6 +1530,22 @@ public class AdminPage extends javax.swing.JFrame {
         }     
     }//GEN-LAST:event_jButton23ActionPerformed
 
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        viewPop.setVisible(true);
+        LoadGroupRequests(currentName);
+        
+    }//GEN-LAST:event_jButton24ActionPerformed
+
+    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+        String username = requestList.getSelectedValue();
+        adminRole.execute("approveUser", username, usergroups);
+    }//GEN-LAST:event_jButton25ActionPerformed
+
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        String username = requestList.getSelectedValue();
+        adminRole.execute("declineUser", username, currentName);
+    }//GEN-LAST:event_jButton26ActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog bioPop;
@@ -1427,6 +1567,9 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
+    private javax.swing.JButton jButton24;
+    private javax.swing.JButton jButton25;
+    private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1440,6 +1583,7 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog4;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1464,6 +1608,7 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -1481,5 +1626,7 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JDialog photoPop;
     private javax.swing.JDialog promdemPop;
     private javax.swing.JDialog removePop;
+    private javax.swing.JList<String> requestList;
+    private javax.swing.JDialog viewPop;
     // End of variables declaration//GEN-END:variables
 }

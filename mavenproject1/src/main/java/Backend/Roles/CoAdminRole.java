@@ -118,7 +118,7 @@ public class CoAdminRole extends RoleDecorator {
     private void declineUser(String userId, String groupName) {
         GroupInterface currentGroup = userGroups.returnGroup(groupName);
         if (currentGroup.getGroupRequests().containsKey(userId) && currentGroup.getGroupRequests().get(userId).equals("pending")) {
-            currentGroup.getGroupRequests().put(userId, "declined");
+            currentGroup.getGroupRequests().remove(userId);
         }
     }
 

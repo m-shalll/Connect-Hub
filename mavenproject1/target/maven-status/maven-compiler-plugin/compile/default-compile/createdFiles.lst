@@ -30,12 +30,14 @@ Backend\PostDatabase.class
 Backend\PasswordManager.class
 Frontend\CoAdminPage$8.class
 Backend\Validation.class
+Frontend\CoAdminPage$17.class
 Frontend\CoAdminPage$5.class
 Frontend\ProfilePage$CustomListCellRenderer.class
 Frontend\Friends$9.class
 Frontend\ProfilePage$13.class
 Frontend\FeedWindow$10.class
 Frontend\FeedWindow$7.class
+Frontend\CoAdminPage$19.class
 Frontend\Friends$9$1.class
 Frontend\AdminPage$10.class
 Frontend\ProfilePage$1.class
@@ -44,6 +46,7 @@ Frontend\CoAdminPage$13.class
 Frontend\Friends$5.class
 Frontend\CoAdminPage$6.class
 Frontend\AdminPage$18.class
+Frontend\AdminPage$28.class
 Frontend\PostsPanel.class
 Frontend\CoAdminPage$1.class
 Frontend\UserPage$3.class
@@ -64,10 +67,12 @@ Frontend\Friends.class
 Frontend\AdminPage$19.class
 Frontend\CoAdminPage$7.class
 Backend\Post.class
+Frontend\AdminPage$29.class
 Frontend\SignUpPanel.class
 Backend\notifications\NewPosts.class
 Backend\notifications\tester.class
 Frontend\CoAdminPage$4.class
+Frontend\CoAdminPage$18.class
 Backend\notifications\Notification.class
 Frontend\UserPage$6.class
 Frontend\ProfilePage$12.class
@@ -110,6 +115,7 @@ Frontend\ProfilePage.class
 Frontend\CoAdminPage$9.class
 Backend\ContentFactory.class
 Frontend\Friends$8.class
+Frontend\AdminPage$30.class
 Frontend\UserIcon.class
 Frontend\AdminPage$2.class
 Frontend\LogInPannel.class
@@ -119,10 +125,12 @@ Frontend\ProfilePage$3.class
 Frontend\FeedWindow.class
 Frontend\AdminPage$9.class
 Backend\Content.class
+Frontend\AdminPage$31.class
 Frontend\CoAdminPage$3.class
 Frontend\UserPage$1.class
 Backend\UserBuilder.class
 Frontend\AdminPage$26.class
+Frontend\CoAdminPage$20.class
 Frontend\CustomJFrame$1.class
 Frontend\ProfilePage$11.class
 Frontend\FeedWindow$4.class

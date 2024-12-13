@@ -12,6 +12,7 @@ import Backend.GroupInterface;
 import Backend.GroupManagement;
 import Backend.Post;
 import Backend.Roles.CoAdminRole;
+import Backend.Roles.NormalUserRole;
 import Backend.User;
 import Backend.UserGroups;
 import Backend.UserGroupsInterface;
@@ -23,6 +24,7 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
@@ -43,6 +45,7 @@ import javax.swing.SwingUtilities;
 public class CoAdminPage extends javax.swing.JFrame {
 
     CoAdminRole coAdminRole;
+    NormalUserRole normaluser;
     AccountManagement accManager = LogInPannel.manager;
     GroupManagement groupmanagement = GroupManagement.getInstance();
     private ArrayList<Post> posts;
@@ -61,6 +64,7 @@ public class CoAdminPage extends javax.swing.JFrame {
         currentName = groupName;
         currentUser = user;
         feed = currentfeed;
+        coAdminRole = new CoAdminRole(normaluser,usergroups);
         
         //loadFriendList(targetUser.getUserId());
         loadGroupPosts(groupName);
@@ -111,7 +115,28 @@ public class CoAdminPage extends javax.swing.JFrame {
         
     };
     
-    
+           private void LoadGroupRequests(String groupName){
+        listModel = new DefaultListModel<>();
+        GroupInterface group = usergroups.returnGroup(groupName);
+        Map<String,String> requests = group.getGroupRequests();
+        if(requests != null){
+            for(String key : requests.keySet()){
+                listModel.addElement(key);
+
+            }
+        {
+            
+                    
+        }
+        }
+         SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                requestList.setModel(listModel);
+            }
+        });
+        
+    };
     public ArrayList<String> userFrom(String groupName){
         GroupInterface group = usergroups.returnGroup(groupName);
         if (group == null) {
@@ -256,6 +281,12 @@ public class CoAdminPage extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
+        viewPop = new javax.swing.JDialog();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        requestList = new javax.swing.JList<>();
+        jLabel13 = new javax.swing.JLabel();
+        jButton25 = new javax.swing.JButton();
+        jButton26 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jSeparator16 = new javax.swing.JSeparator();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -278,6 +309,7 @@ public class CoAdminPage extends javax.swing.JFrame {
         jButton19 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
+        jButton24 = new javax.swing.JButton();
 
         removePop.setTitle("Remove Member");
 
@@ -570,6 +602,83 @@ public class CoAdminPage extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        viewPop.setBackground(new java.awt.Color(51, 51, 51));
+
+        jScrollPane6.setViewportBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        requestList.setBackground(new java.awt.Color(67, 71, 70));
+        requestList.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        requestList.setFont(new java.awt.Font("Comic Sans MS", 1, 13)); // NOI18N
+        requestList.setForeground(new java.awt.Color(204, 204, 204));
+        requestList.setToolTipText("");
+        requestList.setDropMode(javax.swing.DropMode.ON);
+        requestList.setFocusable(false);
+        requestList.setVisibleRowCount(10);
+        jScrollPane6.setViewportView(requestList);
+        friendsList.setCellRenderer(new CustomListCellRenderer());
+
+        // Add JList to a scroll pane
+
+        // Add the scroll pane to your panel
+
+        jLabel13.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Join Requests");
+        jLabel13.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 153)));
+        jLabel13.setOpaque(true);
+
+        jButton25.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jButton25.setText("Accept");
+        jButton25.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, null, null));
+        jButton25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton25ActionPerformed(evt);
+            }
+        });
+
+        jButton26.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jButton26.setText("Decline");
+        jButton26.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, null, null));
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout viewPopLayout = new javax.swing.GroupLayout(viewPop.getContentPane());
+        viewPop.getContentPane().setLayout(viewPopLayout);
+        viewPopLayout.setHorizontalGroup(
+            viewPopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewPopLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(viewPopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(viewPopLayout.createSequentialGroup()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addGroup(viewPopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+        viewPopLayout.setVerticalGroup(
+            viewPopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewPopLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(viewPopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(viewPopLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(viewPopLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(jButton25)
+                        .addGap(37, 37, 37)
+                        .addComponent(jButton26)))
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel7.setBackground(new java.awt.Color(51, 51, 51));
@@ -723,6 +832,15 @@ public class CoAdminPage extends javax.swing.JFrame {
             }
         });
 
+        jButton24.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jButton24.setText("View Requests");
+        jButton24.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, null, null));
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -772,7 +890,8 @@ public class CoAdminPage extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
@@ -817,6 +936,8 @@ public class CoAdminPage extends javax.swing.JFrame {
                                 .addComponent(jSeparator18, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton13)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton24)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton21)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1070,6 +1191,22 @@ public class CoAdminPage extends javax.swing.JFrame {
         }   
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        viewPop.setVisible(true);
+        LoadGroupRequests(currentName);
+
+    }//GEN-LAST:event_jButton24ActionPerformed
+
+    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+        String username = requestList.getSelectedValue();
+        coAdminRole.execute("approveUser", username, usergroups);
+    }//GEN-LAST:event_jButton25ActionPerformed
+
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        String username = requestList.getSelectedValue();
+        coAdminRole.execute("declineUser", username, currentName);
+    }//GEN-LAST:event_jButton26ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> friendsList;
@@ -1084,6 +1221,9 @@ public class CoAdminPage extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton24;
+    private javax.swing.JButton jButton25;
+    private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1096,6 +1236,7 @@ public class CoAdminPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1111,6 +1252,7 @@ public class CoAdminPage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator16;
     private javax.swing.JSeparator jSeparator17;
     private javax.swing.JSeparator jSeparator18;
@@ -1124,5 +1266,7 @@ public class CoAdminPage extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JDialog leavePop;
     private javax.swing.JDialog removePop;
+    private javax.swing.JList<String> requestList;
+    private javax.swing.JDialog viewPop;
     // End of variables declaration//GEN-END:variables
 }
