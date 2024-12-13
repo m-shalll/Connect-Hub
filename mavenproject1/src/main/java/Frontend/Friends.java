@@ -4,6 +4,7 @@
  */
 package Frontend;
 import Backend.*;
+import Backend.notifications.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -459,11 +460,11 @@ if(s==null)
  JOptionPane.showMessageDialog(this, "Must choose User","Error",JOptionPane.ERROR_MESSAGE);
 else{
 
-    
+    User r=null;
        try {
            
            
-           User r = LogInPannel.manager.getUser(s,users);
+            r = LogInPannel.manager.getUser(s,users);
            try {
                LogInPannel.f.sendFriendRequest(targetUser, r);
            } catch (IOException ex) {
@@ -483,6 +484,15 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
         } catch (IOException ex) {
             Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
         }
+ FriendRequests f=new FriendRequests();
+ f.setUserId(targetUser.getUserId());
+ f.setSecondUser(r.getUserId());
+ NotificationManager n=new NotificationManager();
+                  try {
+                      n.save(n.load());
+                  } catch (IOException ex) {
+                      Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
+                  }
 }
         // TODO add your handling code here:
     }//GEN-LAST:event_RequestActionPerformed
