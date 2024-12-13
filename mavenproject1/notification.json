@@ -1,0 +1,11 @@
+[ {
+  "message" : "null has been added to null",
+  "type" : "User",
+  "userId" : null,
+  "notificationId" : 0.0
+}, {
+  "message" : "A new post has been added to null",
+  "type" : "Post",
+  "userId" : null,
+  "notificationId" : 1.0
+} ]

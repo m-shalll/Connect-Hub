@@ -54,5 +54,11 @@
             <version>3.5.2</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>be.yildiz-games</groupId>
+            <artifactId>common-mapping</artifactId>
+            <version>1.0.7</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 </project>
