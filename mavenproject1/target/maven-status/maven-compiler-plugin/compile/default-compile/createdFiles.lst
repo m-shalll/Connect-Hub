@@ -8,7 +8,6 @@ Frontend\SignUpPanel$5.class
 Frontend\SignUpPanel.class
 Backend\ContentCreation.class
 Backend\notifications\NewPosts.class
-Backend\notifications\tester.class
 Frontend\LogInPannel$2.class
 Backend\notifications\Notification.class
 Frontend\Friends$8$1.class
@@ -48,12 +47,14 @@ Frontend\FeedWindow$7.class
 Frontend\Friends$1.class
 Frontend\Notifications.class
 Frontend\SignUpPanel$3.class
+Backend\notifications\hfxhx.class
 Frontend\ProfilePage$1.class
 Frontend\LogInPannel$3.class
 Frontend\ProfilePage.class
 Backend\ContentFactory.class
 Frontend\Friends$5.class
 Frontend\Friends$8.class
+Frontend\Notifications$1.class
 Frontend\PostsPanel.class
 Frontend\UserIcon.class
 Frontend\LogInPannel.class
@@ -69,7 +70,6 @@ Backend\UserBuilder.class
 Frontend\CustomJFrame$1.class
 Frontend\ProfilePage$11.class
 Frontend\FeedWindow$4.class
-Backend\Notifications.class
 Frontend\LogInPannel$1.class
 Frontend\ProfilePage$7.class
 Frontend\SignUpPanel$2.class

@@ -4,10 +4,6 @@
  */
 package Backend.notifications;
 
-/**
- *
- * @author Dell
- */
 public class FriendRequests extends Notification {
     public String secondUser;
     public FriendRequests(){

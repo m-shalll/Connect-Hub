@@ -51,6 +51,7 @@ public class NotificationManager {
             if(notification.getNotificationId()==deleted){
                 list.remove(notification);
                 save(list);
+                break;
             }
         }
     }
