@@ -13,6 +13,7 @@ import javax.swing.*;
 public class AdminPage extends javax.swing.JFrame {
 
     AdminRole adminRole;
+    
     CoAdminRole coadminrole;
     AccountManagement accManager = LogInPannel.manager;
     GroupManagement groupmanagement = GroupManagement.getInstance();
