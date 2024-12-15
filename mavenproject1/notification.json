@@ -1,8 +1,0 @@
-[ {
-  "message" : "user002 has been added to gym bros",
-  "type" : "User",
-  "userId" : "user001",
-  "notificationId" : 0.0,
-  "secondUser" : "user002",
-  "groupName" : "gym bros"
-} ]
