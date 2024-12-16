@@ -2,6 +2,7 @@ Frontend\UserPage$2.class
 Frontend\AdminPage$CustomListCellRenderer.class
 Frontend\AdminPage$12.class
 Frontend\UserPage$5.class
+Frontend\FeedWindow$18.class
 Frontend\AdminPage$6.class
 Frontend\AdminPage$15.class
 Backend\notifications\NotificationManager.class
@@ -18,7 +19,6 @@ Backend\notifications\FriendRequests.class
 Frontend\AdminPage$11.class
 Frontend\AdminPage$5.class
 Frontend\AdminPage$17.class
-Frontend\Friends$10$1.class
 Frontend\UserPage$4.class
 Frontend\CoAdminPage.class
 Frontend\FeedWindow$17.class
@@ -27,7 +27,6 @@ Backend\notifications\NewPosts.class
 Frontend\CoAdminPage$4.class
 Backend\notifications\Notification.class
 Frontend\UserPage$6.class
-Frontend\Friends$10.class
 Frontend\AdminPage$13.class
 Frontend\UserPage$CustomListCellRenderer.class
 Frontend\AdminPage$16.class
@@ -41,6 +40,7 @@ Frontend\CoAdminPage$2.class
 Frontend\AdminPage.class
 Frontend\AdminPage$1.class
 Frontend\CoAdminPage$9.class
+Frontend\Notifications$1.class
 Frontend\AdminPage$2.class
 Frontend\AdminPage$9.class
 Frontend\CoAdminPage$3.class
