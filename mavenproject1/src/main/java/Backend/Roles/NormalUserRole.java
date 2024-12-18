@@ -50,7 +50,7 @@ public class NormalUserRole extends RoleDecorator {
                 User currentUser;
         try {
             currentUser = accManager.getUser(userId);
-            Map<String, Role> roles = currentUser.getRoles();
+            Map<String, String> roles = currentUser.getRoles();
             roles.remove(group.getName());
             currentUser.setRoles(roles);
             ArrayList<User> users = accManager.loadUsers();

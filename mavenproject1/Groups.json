@@ -1,19 +1,10 @@
 [ {
-  "name" : "Gym Bros",
-  "description" : "we love protein",
-  "groupPhoto" : "C:\\Users\\Mostafa Mohamed\\AppData\\Roaming\\Microsoft\\Windows\\Recent\\4.lnk",
+  "name" : "agmad group",
+  "description" : "gamdeen",
+  "groupPhoto" : "C:\\Users\\Hamza\\Documents\\GitHub\\Connect-Hub\\mavenproject1\\Images\\pfp1.jpeg",
   "admin" : "user002",
   "users" : [ "user002" ],
-  "coAdmin" : null,
-  "groupPosts" : null,
-  "groupRequests" : { }
-}, {
-  "name" : "yuhh",
-  "description" : "noo",
-  "groupPhoto" : "C:\\Users\\AbdElrahman\\AppData\\Roaming\\Microsoft\\Windows\\Recent\\ss1.png.lnk",
-  "admin" : "user001",
-  "users" : [ "user001" ],
-  "coAdmin" : null,
-  "groupPosts" : null,
+  "coAdmin" : [ ],
+  "groupPosts" : [ ],
   "groupRequests" : { }
 } ]

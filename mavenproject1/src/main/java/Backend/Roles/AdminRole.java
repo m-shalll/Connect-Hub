@@ -49,7 +49,7 @@ public class AdminRole extends RoleDecorator {
         for(String userString:userids){
             try {
                User currentUser = accManager.getUser(userString);
-              Map<String,Role> roles =  currentUser.getRoles();
+              Map<String,String> roles =  currentUser.getRoles();
               roles.remove(groupName);
               currentUser.setRoles(roles);
               ArrayList<User> users = accManager.loadUsers();
@@ -70,9 +70,9 @@ public class AdminRole extends RoleDecorator {
         try {
             User currentUser = accManager.getUser(userId);
             GroupInterface group = userGroups.returnGroup(groupName);
-            Map<String,Role> roles = currentUser.getRoles();
-            if(roles.get(groupName) instanceof CoAdminRole) {
-            roles.put(groupName, (NormalUserRole)roles.get(groupName).unWrap());
+            Map<String,String> roles = currentUser.getRoles();
+            if(roles.get(groupName).equals("CoAdminRole")) {
+            roles.put(groupName, "NormalUserRole");
             currentUser.setRoles(roles);
             ArrayList<User> users = accManager.loadUsers();
             for(User user: users){
@@ -91,11 +91,9 @@ public class AdminRole extends RoleDecorator {
         try {
             User currentUser = accManager.getUser(userId);
             GroupInterface group = userGroups.returnGroup(groupName);
-            Map<String,Role> roles = currentUser.getRoles();
-            if(roles.get(groupName) instanceof NormalUserRole){
-                Role promotion = new CoAdminRole(roles.get(groupName), userGroups);
-                roles.put(groupName, promotion);
-                roles.put(groupName, (NormalUserRole)roles.get(groupName).unWrap());
+            Map<String,String> roles = currentUser.getRoles();
+            if(roles.get(groupName).equals("NormalUserRole")){
+                roles.put(groupName, "CoAdminRole");
             currentUser.setRoles(roles);
             ArrayList<User> users = accManager.loadUsers();
             for(User user: users){

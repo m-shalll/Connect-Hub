@@ -4,7 +4,6 @@
  */
 package Frontend;
 import Backend.*;
-import Backend.notifications.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,18 +19,16 @@ import java.awt.*;
  * @author AbdElrahman
  */
 public class Friends extends javax.swing.JDialog {
-   public ArrayList<User> users;
-   public User targetUser;
-   private GroupManagement groupDatabase;
-   private ArrayList<GroupInterface> groups;
-  
+    public ArrayList<User> users=LogInPannel.users;
+   
+   public User targetUser=LogInPannel.logIn ;
+   
     public Friends(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        groupDatabase = GroupManagement.getInstance();
-        groups = groupDatabase.loadGroups();
-       users=LogInPannel.users;
-       targetUser=LogInPannel.logIn;
+           
+        
+       
         //generate friend requests
         loadList1();
         //generate friends list
@@ -103,6 +100,8 @@ System.out.println(friendReq.entrySet());
         Request = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        Search = new javax.swing.JButton();
 
         javax.swing.GroupLayout resultsLayout = new javax.swing.GroupLayout(results);
         results.setLayout(resultsLayout);
@@ -142,11 +141,6 @@ System.out.println(friendReq.entrySet());
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
 
         jLabel1.setText("Friend Requests");
 
@@ -212,6 +206,13 @@ System.out.println(friendReq.entrySet());
             }
         });
 
+        Search.setText("Search");
+        Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -249,7 +250,11 @@ System.out.println(friendReq.entrySet());
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(17, 17, 17)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Search)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -257,8 +262,11 @@ System.out.println(friendReq.entrySet());
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Search))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -296,7 +304,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s,users);
+           User r = LogInPannel.manager.getUser(s);
            try {
                LogInPannel.f.acceptFriendRequest(targetUser,r);
            } catch (IOException ex) {
@@ -336,7 +344,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s,users);
+           User r = LogInPannel.manager.getUser(s);
            try {
                LogInPannel.f.declineFriendRequest(targetUser, r);
            } catch (IOException ex) {
@@ -372,7 +380,7 @@ else{
     
        User r;
             try {
-                r = LogInPannel.manager.getUser(s,users);
+                r = LogInPannel.manager.getUser(s);
                   try {
         LogInPannel.f.blockUser(targetUser, r);
     } catch (IOException ex) {
@@ -409,7 +417,7 @@ else{
        try {
            
            
-           User r = LogInPannel.manager.getUser(s,users);
+           User r = LogInPannel.manager.getUser(s);
            System.out.println("990"+r);
            try {
               LogInPannel.f.removeFriend(targetUser, r);
@@ -429,7 +437,6 @@ JOptionPane.showMessageDialog(this, "Removed User", "Information", JOptionPane.I
         } catch (IOException ex) {
             Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
         }
-       System.out.println("friends:"+targetUser.getFriends());
  
 }        
 // TODO add your handling code here:
@@ -444,11 +451,11 @@ if(s==null)
  JOptionPane.showMessageDialog(this, "Must choose User","Error",JOptionPane.ERROR_MESSAGE);
 else{
 
-    User r=null;
+    
        try {
            
            
-            r = LogInPannel.manager.getUser(s,users);
+           User r = LogInPannel.manager.getUser(s);
            try {
                LogInPannel.f.sendFriendRequest(targetUser, r);
            } catch (IOException ex) {
@@ -468,44 +475,21 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
         } catch (IOException ex) {
             Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
         }
- FriendRequests f=new FriendRequests();
- f.setUserId(r.getUserId());
- f.setSecondUser(targetUser.getUserId());
- f.setMessage();
- NotificationManager n=new NotificationManager();
-                  try {
-                      n.save(n.load());
-                  } catch (IOException ex) {
-                      Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
-                  }
 }
         // TODO add your handling code here:
     }//GEN-LAST:event_RequestActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-          try {
-           users=LogInPannel.manager.loadUsers();
-       } catch (IOException ex) {
-           Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
-       }
-            try {
-           targetUser=LogInPannel.manager.getUser(LogInPannel.userName, users);
-           // TODO add your handling code here:
-       } catch (IOException ex) {
-           Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
-       }
-        loadList1();
+           loadList1();
         loadList2();
         loadList3();
-        
-       /* try {
+        try {
             AccountManagement.saveUsers(users);
             // TODO add your handling code here:
         } catch (IOException ex) {
             Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-     
-     
+        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -520,17 +504,105 @@ JOptionPane.showMessageDialog(this, "Friend Request Sent", "Information", JOptio
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-       try {
-           AccountManagement.saveUsers(users);
-       } catch (IOException ex) {
-           Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
-       }
-        FeedWindow x = new FeedWindow(targetUser);
-        x.setVisible(true);
-        this.dispose();
+    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
+        results.removeAll();
+        searchPannel.revalidate();
+        searchPannel.repaint();
+        results.setLayout(new BoxLayout(results, BoxLayout.Y_AXIS));
+        String searchText = jTextField1.getText().trim();
+        if (searchText.isEmpty()) {
+            //System.out.println("Wrong search input");
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    " Please enter Text",
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+            return; // Exit early for invalid input
+        }
+        ArrayList<User> userFriends = new ArrayList<>();
+        ArrayList<User> userNonFriends = new ArrayList<>();
+        ArrayList<User> userSentFriends = new ArrayList<>();
+        ArrayList<User> userRecievedFriends = new ArrayList<>();
+        
+        FriendManagement f =LogInPannel.f;
+        System.out.println(searchText);
+        // Categorize users into friends and non-friends
+        for (User i : users) {
+            if (!i.getUserId().equals(targetUser.getUserId()) && i.getUserName().toLowerCase().contains(searchText.toLowerCase())) {
+                System.out.println("11");
+                System.out.println(i.getUserName()+" "+i.getUserId());
+                if (i.getFriends().contains(targetUser.getUserId())) {
+                    userFriends.add(i); // viewprofile block remove 
+                } else if (i.getFriendReq().containsKey(targetUser.getUserId())) {
+                    if (i.getFriendReq().get(targetUser.getUserId()).equals("pending")) {
+                        userSentFriends.add(i); // viewprofile block
+                    }
+                } else if (targetUser.getFriendReq().containsKey(i.getUserId())) {
+                    if (targetUser.getFriendReq().get(i.getUserId()).equals("pending")) {
+                        userRecievedFriends.add(i); // viewprofile block accept decline
+                    }
+                }
+                 else if (!targetUser.getBlocked().contains(i.getUserId())) {
+                     System.out.println("44");
+                    userNonFriends.add(i); // viewprofile block add
+                }
+            }
+            
+        }
+        System.out.println(userFriends);
+        System.out.println(userSentFriends);
+        System.out.println(userRecievedFriends);
+        System.out.println(userNonFriends);
+        //display friends
+        for (User friend : userFriends) {
+            if(friend==null)
+                break;
+    JPanel entryPanel = friendPanel(friend);
+    results.add(entryPanel);
+    JSeparator separator = new JSeparator();
+    results.add(separator, BorderLayout.SOUTH);
+}
+        //display Rec Friendreq
+       for (User friend : userSentFriends) {
+           if(friend==null)
+                break;
+    JPanel entryPanel = friendSentPanel(friend);
+    results.add(entryPanel);
+    JSeparator separator = new JSeparator();
+    results.add(separator, BorderLayout.SOUTH);
+}
+       //display sent Friendreq
+       for (User friend : userRecievedFriends) {
+           if(friend==null)
+                break;
+    JPanel entryPanel = friendRecPanel(friend);
+    results.add(entryPanel);
+    JSeparator separator = new JSeparator();
+    results.add(separator, BorderLayout.SOUTH);
+}
+       //display non-friends
+       for (User nonFriend : userNonFriends) {
+           if(nonFriend==null)
+                break;
+    JPanel entryPanel = sugPanel(nonFriend);
+    results.add(entryPanel);
+
+    JSeparator separator = new JSeparator();
+    results.add(separator, BorderLayout.SOUTH);
+}
+ 
+
+      searchPannel.revalidate();
+        searchPannel.repaint();
+        searchPannel.setTitle("Search For Users");
+    searchPannel.setSize(600, 500);
+        searchPannel.setLocationRelativeTo(this);
+    searchPannel.setModal(true);
+        searchPannel.setVisible(true);
+        searchPannel.pack();
+ 
+
         // TODO add your handling code here:
-    }//GEN-LAST:event_formWindowClosed
+    }//GEN-LAST:event_SearchActionPerformed
 private JPanel friendPanel(User friend) {
     JPanel panel = new JPanel();
     panel.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -755,68 +827,7 @@ private JPanel sugPanel(User nonFriend) {
 
     return panel;
 }
-private JPanel inGrpPanel(GroupInterface g){
-JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-    // Add user details
-    JLabel usernameLabel = new JLabel(g.getName());
-    usernameLabel.setPreferredSize(new Dimension(150, 30)); 
-    panel.add(usernameLabel);
-   
-
-    //Add Friend button
-    JButton viewGroup = new JButton("View Group");
-    //add functionality here
-        viewGroup.addActionListener(e -> {
-    
-    });
-        panel.add(viewGroup);
-
-return panel;
-}
-private JPanel noGrpPanel(GroupInterface g){
-JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
-    // Add user details
-    JLabel usernameLabel = new JLabel(g.getName());
-    usernameLabel.setPreferredSize(new Dimension(150, 30)); 
-    panel.add(usernameLabel);
-   
-
-    //Add Friend button
-    JButton viewGroup = new JButton("View Group");
-    //add functionality here
-        viewGroup.addActionListener(e -> {
-    
-    });
-        panel.add(viewGroup);
-         JButton request = new JButton("sent Request");
-    //add functionality here
-        viewGroup.addActionListener(e -> {
-    
-    });
-panel.add(request);
-return panel;
-}
-private JPanel reqForGrpPanel(GroupInterface g){
-JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
-    // Add user details
-    JLabel usernameLabel = new JLabel(g.getName());
-    usernameLabel.setPreferredSize(new Dimension(150, 30)); 
-    panel.add(usernameLabel);
-   
-
-    //Add Friend button
-    JButton viewGroup = new JButton("View Group");
-    //add functionality here
-        viewGroup.addActionListener(e -> {
-    
-    });
-        panel.add(viewGroup);
-
-return panel;
-}
 
 
 
@@ -866,6 +877,7 @@ return panel;
     private javax.swing.JButton Decline;
     private javax.swing.JButton Remove;
     private javax.swing.JButton Request;
+    private javax.swing.JButton Search;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JDialog jDialog2;
@@ -878,6 +890,7 @@ return panel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel results;
     private javax.swing.JDialog searchPannel;
     // End of variables declaration//GEN-END:variables

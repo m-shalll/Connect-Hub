@@ -3,8 +3,8 @@
   "salt" : "PvuuQFGh46qtAdY46ZPr6w==",
   "password" : "j/lS3W8kq3jBYyi8Rqxph5vKcORPQoCFFhI3btPkS3Y=",
   "status" : "online",
-  "friends" : [ "user004", "user005", "user015" ],
-  "blocked" : [ "user017", "user018", "user019", "user020", "user002", "user003", "user011" ],
+  "friends" : [ "user004", "user005", "user015", "user011", "user003", "user002" ],
+  "blocked" : [ "user017", "user018", "user019", "user020" ],
   "friendReq" : {
     "user015" : "accepted",
     "user011" : "accepted"
@@ -21,19 +21,21 @@
   "salt" : "sZyFwHHEIOwmeyn14L8k5g==",
   "password" : "VFK8+MhIKXaDDGtWw0EwOzojaMA9LyhSJTXLgUvQ9NM=",
   "status" : "online",
-  "friends" : [ "user006", "user007", "user009" ],
+  "friends" : [ "user006", "user007", "user009", "user001", "user005" ],
   "blocked" : [ "user018", "user019", "user020" ],
   "friendReq" : {
     "user018" : "Declined",
     "user019" : "Declined",
     "user020" : "Declined"
   },
-  "roles" : { },
+  "roles" : {
+    "agmad group" : "AdminRole"
+  },
   "email" : "jane.smith02@gmail.com",
   "username" : "Jane Smith",
   "Date-of-birth" : "1992-08-21",
-  "Profile photo" : "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\pfp2.jpeg",
-  "Cover photo" : "C:\\Users\\Mostafa Mohamed\\Connect-Hub\\mavenproject1\\Images\\JFrameBackground.jpg",
+  "Profile photo" : "Images\\pfp2.jpeg",
+  "Cover photo" : "Images\\JFrameBackground.jpg",
   "Bio" : "Life is a game"
 }, {
   "userId" : "user003",
@@ -44,7 +46,8 @@
   "blocked" : [ ],
   "friendReq" : {
     "user019" : "accepted",
-    "user020" : "accepted"
+    "user020" : "accepted",
+    "user001" : "pending"
   },
   "roles" : { },
   "email" : "michael.jones03@gmail.com",
@@ -58,9 +61,10 @@
   "salt" : "rUK08zJRNqB/mqsbpplmFA==",
   "password" : "Wm2MOgwc1k7qLKgjx1vMU+uuKm7Geetmw3O94VA5QaA=",
   "status" : "offline",
-  "friends" : [ "user014", "user015", "user017", "user001" ],
+  "friends" : [ "user001", "user014", "user015", "user017" ],
   "blocked" : [ "user020" ],
   "friendReq" : {
+    "user001" : "accepted",
     "user020" : "Declined"
   },
   "roles" : { },
@@ -74,8 +78,8 @@
   "userId" : "user005",
   "salt" : "fPNA8xtZQO7GvrZm0wVfZg==",
   "password" : "66c6oB4oMVoDzDDIViUxkN29pxnf9a1mVvKv/2z2bX4=",
-  "status" : "offline",
-  "friends" : [ "user001", "user018", "user019", "user006" ],
+  "status" : "online",
+  "friends" : [ "user001", "user018", "user019", "user006", "user002" ],
   "blocked" : [ ],
   "friendReq" : {
     "user001" : "accepted"
@@ -96,8 +100,7 @@
   "blocked" : [ ],
   "friendReq" : {
     "user002" : "accepted",
-    "user005" : "accepted",
-    "user001" : "pending"
+    "user005" : "accepted"
   },
   "roles" : { },
   "email" : "emma.clark06@gmail.com",
@@ -167,7 +170,7 @@
   "userId" : "user010",
   "salt" : "3PgEbQdoFC9XL3eP0OuUJQ==",
   "password" : "CIQ+wAqg3lhmWR/0STRrvk2e/bbSdFs60rf8gzk3gP4=",
-  "status" : "online",
+  "status" : "offline",
   "friends" : [ "user003", "user011", "user014" ],
   "blocked" : [ "user006", "user007", "user008", "user009" ],
   "friendReq" : {
@@ -175,8 +178,7 @@
     "user006" : "Declined",
     "user007" : "Declined",
     "user008" : "Declined",
-    "user009" : "Declined",
-    "user001" : "pending"
+    "user009" : "Declined"
   },
   "roles" : { },
   "email" : "sophie.turner10@gmail.com",
@@ -190,7 +192,7 @@
   "salt" : "+QkargdQPgGXvcJTzQVGNA==",
   "password" : "dAdP5F9q3SeUYgF0b7xajr49wNFa5RdTj8Vt6AjU8O8=",
   "status" : "offline",
-  "friends" : [ "user003", "user007", "user008", "user009", "user010", "user014" ],
+  "friends" : [ "user003", "user007", "user008", "user009", "user010", "user014", "user001" ],
   "blocked" : [ ],
   "friendReq" : {
     "user003" : "accepted",
@@ -239,8 +241,7 @@
     "user009" : "Declined",
     "user010" : "Declined",
     "user011" : "Declined",
-    "user012" : "Declined",
-    "user001" : "pending"
+    "user012" : "Declined"
   },
   "roles" : { },
   "email" : "ryan.morgan13@gmail.com",
@@ -275,7 +276,7 @@
   "salt" : "EE8JvJ2jswiZfrnDB+FwyA==",
   "password" : "xTCNaWTf1IWDf+bk4aJDw8HrJMfcz4975Ze/KD3K2GM=",
   "status" : "offline",
-  "friends" : [ "user004", "user017" ],
+  "friends" : [ "user004", "user017", "user001" ],
   "blocked" : [ "user011", "user012", "user013", "user014" ],
   "friendReq" : {
     "user004" : "accepted"
@@ -291,12 +292,10 @@
   "userId" : "user016",
   "salt" : "IhouRX4sOqcmNmz9RUaViQ==",
   "password" : "L689/98lO3XOwLhc87t7o5dKm9S+m6eCw4Wve1AzXgY=",
-  "status" : "online",
+  "status" : "offline",
   "friends" : [ "user017", "user020" ],
   "blocked" : [ "user004", "user012", "user013", "user014", "user015" ],
-  "friendReq" : {
-    "user001" : "pending"
-  },
+  "friendReq" : { },
   "roles" : { },
   "email" : "olivia.scott16@gmail.com",
   "username" : "Olivia Scott",

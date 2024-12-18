@@ -2,6 +2,7 @@
 package Backend;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class GroupManagement {
         }
         try {
             ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule());
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             groups = objectMapper.readValue(file,objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Group.class));
         } catch (IOException e) {
@@ -37,6 +39,8 @@ public class GroupManagement {
         File f = new File(fileName);
         try {
             ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule());
+            objectMapper.findAndRegisterModules();
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(f, groups);
         } catch (IOException e) {
 

@@ -52,7 +52,7 @@ public class CoAdminRole extends RoleDecorator {
     }
 
     private void deletePost(GroupInterface group, ContentCreation post) {
-        ArrayList<ContentCreation> groupPosts = group.getGroupPosts();
+        ArrayList<Post> groupPosts = group.getGroupPosts();
         for (int i = 0; i < groupPosts.size(); i++) {
             if (groupPosts.get(i).equals(post)) {
                 groupPosts.remove(groupPosts.get(i));
@@ -71,7 +71,7 @@ public class CoAdminRole extends RoleDecorator {
         User currentUser;
         try {
             currentUser = accManager.getUser(userId);
-            Map<String, Role> roles = currentUser.getRoles();
+            Map<String, String> roles = currentUser.getRoles();
             roles.remove(group.getName());
             currentUser.setRoles(roles);
             ArrayList<User> users = accManager.loadUsers();
@@ -94,10 +94,10 @@ public class CoAdminRole extends RoleDecorator {
             try {
                 User currentUser = accManager.getUser(userId);
                 GroupInterface group = userGroups.returnGroup(currentGroup.getName());
-                Map<String, Role> roles = currentUser.getRoles();
-                if (roles.get(currentGroup.getName()) instanceof NormalUserRole) {
-                    Role normal = new NormalUserRole(roles.get(currentGroup.getName()), userGroups);
-                    roles.put(currentGroup.getName(), normal);
+                Map<String, String> roles = currentUser.getRoles();
+                if (roles.get(currentGroup.getName()).equals("NormalUserRole")) {
+                    Role normal = new NormalUserRole(accManager.getUserRole(roles, group.getName()), userGroups);
+                    roles.put(currentGroup.getName(), "NormalUserRole");
                     currentUser.setRoles(roles);
                     ArrayList<User> users = accManager.loadUsers();
                     for (User user : users) {
@@ -118,7 +118,7 @@ public class CoAdminRole extends RoleDecorator {
     private void declineUser(String userId, String groupName) {
         GroupInterface currentGroup = userGroups.returnGroup(groupName);
         if (currentGroup.getGroupRequests().containsKey(userId) && currentGroup.getGroupRequests().get(userId).equals("pending")) {
-            currentGroup.getGroupRequests().put(userId, "declined");
+            currentGroup.getGroupRequests().remove(userId);
         }
     }
 

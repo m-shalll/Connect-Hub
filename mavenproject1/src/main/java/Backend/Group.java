@@ -11,9 +11,9 @@ public class Group implements GroupInterface{
     private String description;
     private String groupPhoto;
     private String admin;
-    private ArrayList<String> users;
-    private ArrayList<String> coAdmin;
-    private ArrayList<ContentCreation> groupPosts;
+    private ArrayList<String> users = new ArrayList<>();
+    private ArrayList<String> coAdmin = new ArrayList<>();
+    private ArrayList<Post> groupPosts = new ArrayList<>();
     private Map<String, String> groupRequests = new HashMap<>();
 
 
@@ -33,7 +33,7 @@ public class Group implements GroupInterface{
     @Override
     public void setDescription(String description) { this.description = description; }
     @Override
-    public void setGroupPosts(ArrayList<ContentCreation> groupPosts) { this.groupPosts = groupPosts; }
+    public void setGroupPosts(ArrayList<Post> groupPosts) { this.groupPosts = groupPosts; }
 
     @Override
     public String getName() { return name; }
@@ -48,7 +48,7 @@ public class Group implements GroupInterface{
     @Override
     public String getGroupPhoto() { return groupPhoto; }
     @Override
-    public ArrayList<ContentCreation> getGroupPosts() { return groupPosts; }
+    public ArrayList<Post> getGroupPosts() { return groupPosts; }
     @Override
     public Map<String, String> getGroupRequests(){ return groupRequests; }
 }

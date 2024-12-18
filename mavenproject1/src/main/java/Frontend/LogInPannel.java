@@ -27,7 +27,6 @@ public static AccountManagement manager=new AccountManagement();
 public static ArrayList<User> users;
 public static FriendManagement f=new FriendManagement();
 public static User logIn;
-public static String userName;
 
 
 
@@ -156,7 +155,7 @@ public static String userName;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        userName=nameI.getText();
+        String userName=nameI.getText();
 //    try {
 //        users=manager.loadUsers();
 //    } catch (IOException ex) {
@@ -190,7 +189,7 @@ public static String userName;
                     if(pass.verifyPassword(password,user.getPassword() , user.getSalt())){
 
                         users=manager.loadUsers();
-                        logIn=manager.getUser(userName,users);
+                        logIn=manager.getUser(userName);
                         FeedWindow feed=new FeedWindow(logIn);
                         feed.setVisible(true);
                         this.setVisible(false);
