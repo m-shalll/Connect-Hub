@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Chatting_System;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -11,10 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- *
- * @author AbdElrahman
- */
+
 public class MessageDatabase {
         private  String fileName;
     private static MessageDatabase instance = null;
