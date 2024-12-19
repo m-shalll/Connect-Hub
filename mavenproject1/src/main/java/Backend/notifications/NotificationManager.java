@@ -24,7 +24,6 @@ public class NotificationManager {
             ((FriendRequests) notification).setSecondUser(((FriendRequests) notification).getSecondUser());
         } else if (notification instanceof NewUser) {
             notification.setType("User");
-            ((NewUser) notification).setSecondUser(((NewUser) notification).getSecondUser());
             ((NewUser) notification).setGroupName(((NewUser) notification).getGroupName());
         } else if (notification instanceof NewPosts) {
             notification.setType("Post");

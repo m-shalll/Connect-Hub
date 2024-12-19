@@ -4,6 +4,9 @@
  */
 package Frontend;
 import Backend.*;
+import Backend.notifications.FriendRequests;
+import Backend.notifications.Notification;
+import Backend.notifications.NotificationManager;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -458,6 +461,14 @@ else{
            User r = LogInPannel.manager.getUser(s);
            try {
                LogInPannel.f.sendFriendRequest(targetUser, r);
+               NotificationManager manage=new NotificationManager();
+               FriendRequests noti=new FriendRequests();
+               noti.setSecondUser(targetUser.getUserId());
+               noti.setUserId(r.getUserId());
+               noti.setMessage();
+               ArrayList<Notification> list=manage.load();
+               list.add(noti);
+               manage.save(list);
            } catch (IOException ex) {
                Logger.getLogger(Friends.class.getName()).log(Level.SEVERE, null, ex);
            }

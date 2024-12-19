@@ -95,7 +95,7 @@
   "userId" : "user006",
   "salt" : "tuco5ttcx5pid3Kt6sDOPg==",
   "password" : "1vKLaRFejfVQ4zK2f0iBzvlidLOlYD6zYsp5WBFNV1g=",
-  "status" : "offline",
+  "status" : "online",
   "friends" : [ "user002", "user005", "user008" ],
   "blocked" : [ ],
   "friendReq" : {

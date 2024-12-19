@@ -1,51 +1,51 @@
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\mavenproject1.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Frontend\UserPage.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\FriendRequests.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\UserGroups.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\Roles\Role.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\UserGroupsInterface.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\Notifications.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Chatting_System\TextMessage.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\Story.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\ContentCreation.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\UserBuilder.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\FriendManagement.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Frontend\AdminPage.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\Notification.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\Roles\CoAdminRole.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\Roles\NormalUserRole.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Frontend\UserIcon.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\UserStories.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\NewUser.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Frontend\CustomJFrame.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\NotificationManager.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Frontend\FeedWindow.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\NewStatus.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\PasswordManager.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Frontend\ProfilePage.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\NewPosts.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\Roles\AdminRole.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\AccountManagement.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\tester.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\GroupManagement.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Chatting_System\MessageDatabase.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\User.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Frontend\Friends.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Chatting_System\Command.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Frontend\PostsPanel.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\PostDatabase.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Frontend\CoAdminPage.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\Group.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\Validation.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Chatting_System\Message.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Frontend\SignUpPanel.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\Content.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Frontend\StoriesPanel.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\ProfileManagement.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Frontend\LogInPannel.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\ContentFactory.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\GroupInterface.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\Roles\RoleDecorator.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\StoryDatabase.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Backend\Post.java
-C:\Users\Mostafa Mohamed\Connect-Hub\mavenproject1\src\main\java\Chatting_System\SendMessage.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\AccountManagement.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\UserGroups.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\UserStories.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\Post.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\Roles\Role.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Frontend\Notifications.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Frontend\CustomJFrame.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\UserBuilder.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Frontend\PostsPanel.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\notifications\Notification.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Frontend\CoAdminPage.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\Content.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\FriendManagement.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\notifications\tester.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\Roles\CoAdminRole.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\Roles\AdminRole.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Frontend\AdminPage.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\notifications\NotificationManager.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\PostDatabase.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Frontend\Friends.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Frontend\FeedWindow.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\User.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Frontend\UserIcon.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\Group.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Frontend\LogInPannel.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\Roles\RoleDecorator.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\Roles\NormalUserRole.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Frontend\UserPage.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\mavenproject1.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\ContentFactory.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\notifications\FriendRequests.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\Notifications.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Chatting_System\Message.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\UserGroupsInterface.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\ProfileManagement.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\StoryDatabase.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\notifications\NewPosts.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Frontend\SignUpPanel.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Frontend\ProfilePage.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Frontend\StoriesPanel.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\GroupManagement.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\ContentCreation.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\GroupInterface.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Chatting_System\Chatting.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\Validation.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Chatting_System\TextMessage.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\notifications\NewStatus.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\notifications\NewUser.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Chatting_System\MessageDatabase.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\PasswordManager.java
+D:\Mohamed Shal\College\Term 5\Programming 2\Lab\All\Connect Hub\mavenproject1\src\main\java\Backend\Story.java
