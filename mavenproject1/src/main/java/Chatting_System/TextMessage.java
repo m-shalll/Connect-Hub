@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 public class TextMessage implements Message {
     private String message;
     private String sender;
-    private String reciever;
     private LocalDateTime timeStamp;
 
     public TextMessage() {
@@ -26,14 +25,6 @@ public class TextMessage implements Message {
 
     public void setSender(String sender) {
         this.sender = sender;
-    }
-
-    public String getReciever() {
-        return reciever;
-    }
-
-    public void setReciever(String reciever) {
-        this.reciever = reciever;
     }
 
     public LocalDateTime getTimeStamp() {

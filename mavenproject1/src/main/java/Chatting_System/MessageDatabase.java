@@ -10,34 +10,27 @@ import java.util.ArrayList;
 
 
 public class MessageDatabase {
-        private  String fileName;
-    private static MessageDatabase instance = null;
+        private  File file;
     
-    private MessageDatabase(String s1,String s2){
-        fileName=s1+","+s2;
+    public MessageDatabase(File file){
+        this.file=file;
     }
-    public static MessageDatabase getInstance(String s1,String s2){
-        if(instance == null){
-            instance  = new MessageDatabase(s1,s2);
-        }
-        return instance;
-    }
-    public void savePosts(ArrayList<TextMessage> m) {
-    File f = new File(fileName);
+    public void saveMessages(ArrayList<Message> m) {
+    
     try {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.findAndRegisterModules();
-        objectMapper.writerWithDefaultPrettyPrinter().writeValue(f, m);
+        objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, m);
     } catch (IOException e) {
 
     }
 }
-    public ArrayList<TextMessage> loadPosts() {
-        File file = new File(fileName);
-        ArrayList<TextMessage> messages = new ArrayList<>();
+    public ArrayList<Message> loadMessages() {
+        
+        ArrayList<Message> messages = new ArrayList<>();
         if (!file.exists()) {
-            System.out.println("File not found: " + fileName);
+            System.out.println("File not found: " );
             return messages; 
         }
         try {
