@@ -15,7 +15,12 @@ public class tester {
     public static void main(String[] args) throws IOException{
         NotificationManager noti=new NotificationManager();
         NewUser not=new NewUser();
+        not.setGroupName("gym bros");
+        not.setUserId("user001");
         NewPosts not1=new NewPosts();
+        not1.setGroupName("gym bros");
+        not1.setUserId("user001");
+        not1.setContentId("1");
         ArrayList<Notification> notifications=new ArrayList<>();
         notifications.add(not);
         notifications.add(not1);

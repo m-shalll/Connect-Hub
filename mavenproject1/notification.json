@@ -1,15 +1,14 @@
 [ {
-  "message" : "null has been added to null",
+  "message" : "user001 has been added to gym bros",
   "type" : "User",
-  "userId" : null,
+  "userId" : "user001",
   "notificationId" : 0.0,
-  "secondUser" : null,
-  "groupName" : null
+  "groupName" : "gym bros"
 }, {
-  "message" : "A new post has been added to null",
+  "message" : "A new post has been added to gym bros",
   "type" : "Post",
-  "userId" : null,
+  "userId" : "user001",
   "notificationId" : 1.0,
-  "groupName" : null,
-  "contentId" : null
+  "groupName" : "gym bros",
+  "contentId" : "1"
 } ]

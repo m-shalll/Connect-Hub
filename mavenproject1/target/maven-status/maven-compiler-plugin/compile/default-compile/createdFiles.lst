@@ -16,6 +16,7 @@ Backend\Roles\RoleDecorator.class
 Backend\Roles\Role.class
 Frontend\LogInPannel$2.class
 Frontend\UserPage$5.class
+Frontend\FeedWindow$18.class
 Frontend\AdminPage$25.class
 Frontend\AdminPage$6.class
 Frontend\CoAdminPage$11.class
@@ -35,7 +36,6 @@ Backend\UserGroupsInterface.class
 Backend\PasswordManager.class
 Frontend\CoAdminPage$8.class
 Backend\Validation.class
-Chatting_System\Command.class
 Frontend\FeedWindow$12.class
 Frontend\CoAdminPage$17.class
 Frontend\CoAdminPage$5.class
@@ -71,7 +71,6 @@ Frontend\CoAdminPage$12.class
 Frontend\AdminPage$17.class
 Frontend\UserPage$4.class
 Frontend\ProfilePage$7.class
-Chatting_System\SendMessage.class
 Frontend\CoAdminPage.class
 Frontend\Friends$4.class
 Frontend\FeedWindow$1.class
@@ -127,6 +126,7 @@ Frontend\AdminPage$27.class
 Backend\UserGroups.class
 Frontend\AdminPage.class
 Frontend\AdminPage$1.class
+Frontend\Notifications.class
 Frontend\SignUpPanel$3.class
 Frontend\FeedWindow$13.class
 Frontend\AdminPage$20.class
@@ -135,6 +135,7 @@ Frontend\CoAdminPage$9.class
 Backend\ContentFactory.class
 Chatting_System\TextMessage.class
 Frontend\Friends$8.class
+Frontend\Notifications$1.class
 Frontend\AdminPage$30.class
 Chatting_System\MessageDatabase.class
 Frontend\UserIcon.class
@@ -149,6 +150,7 @@ Frontend\AdminPage$9.class
 Backend\Content.class
 Frontend\CoAdminPage$3.class
 Frontend\UserPage$1.class
+Chatting_System\Chatting.class
 Backend\UserBuilder.class
 Frontend\AdminPage$26.class
 Frontend\CustomJFrame$1.class
