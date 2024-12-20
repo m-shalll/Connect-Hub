@@ -8,17 +8,28 @@ import java.util.List;
 
 public class PostInteractionManagement {
     private User postAuthor;
+    private String postId;
     private List<Comment> comments = new ArrayList<>();
     private List<Like> likes = new ArrayList<>();
-    private static PostInteractionManagement instance;
     private List<InteractionObserver> observers = new ArrayList<>();
 
-    //Singleton
-    public static PostInteractionManagement getInstance() {
-        if (instance == null) {
-            instance = new PostInteractionManagement();
-        }
-        return instance;
+    public PostInteractionManagement(User postAuthor, String postId) {
+        this.postAuthor = postAuthor;
+        this.postId = postId;
+        initialize(); // Load saved interactions for the given postId
+    }
+
+    private void initialize() {
+        InteractionDatabase database = InteractionDatabase.getInstance();
+        // filter by postId to load only relevant interactions
+        comments = database.loadInteractions("comments.json", Comment.class)
+                .stream()
+                .filter(comment -> comment.getPostId().equals(postId))
+                .toList();
+        likes = database.loadInteractions("likes.json", Like.class)
+                .stream()
+                .filter(like -> like.getPostId().equals(postId))
+                .toList();
     }
 
     public void addObserver(InteractionObserver observer) {
@@ -48,4 +59,13 @@ public class PostInteractionManagement {
         observer.notify(message);
     }
     }
+
+    public void saveInteractions() {
+        InteractionDatabase database = InteractionDatabase.getInstance();
+        database.saveInteractions(comments, "comments.json");
+        database.saveInteractions(likes, "likes.json");
+    }
+
+
+
 }
