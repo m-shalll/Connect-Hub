@@ -24,13 +24,14 @@ public class PostInteractionManagement {
         // filter by postId to load only relevant interactions
         comments = database.loadInteractions("comments.json", Comment.class)
                 .stream()
-                .filter(comment -> comment.getPostId().equals(postId))
+                .filter(comment -> comment.getPostId() != null && comment.getPostId().equals(postId))
                 .toList();
         likes = database.loadInteractions("likes.json", Like.class)
                 .stream()
-                .filter(like -> like.getPostId().equals(postId))
+                .filter(like -> like.getPostId() != null && like.getPostId().equals(postId))
                 .toList();
     }
+
 
     public void addObserver(InteractionObserver observer) {
         observers.add(observer);

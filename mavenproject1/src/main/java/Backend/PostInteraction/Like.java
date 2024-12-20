@@ -1,5 +1,6 @@
 package Backend.PostInteraction;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
@@ -10,12 +11,17 @@ public class Like  {
     @JsonProperty
     private String username;
     @JsonProperty
-    private LocalDateTime timeStamp;
-
-    public Like(String postId, String username, LocalDateTime timeStamp) {
+    private LocalDateTime timestamp;
+    
+    
+    public Like(){
+        
+    }
+    
+    public Like(String postId, String username,LocalDateTime timestamp) {
         this.postId = postId;
         this.username = username;
-        this.timeStamp = timeStamp;
+        this.timestamp = timestamp;
     }
 
     public String getPostId() {
@@ -26,5 +32,14 @@ public class Like  {
     }
     public String getUsername() {
         return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public LocalDateTime getTimeStamp() {
+        return timestamp;
+    }
+    public void setTimeStamp(LocalDateTime timeStamp) {
+        this.timestamp = timeStamp;
     }
 }
