@@ -33,6 +33,10 @@ public class NotificationManager {
             notification.setType("Status");
             ((NewStatus) notification).setGroupName(((NewStatus) notification).getGroupName());
         }
+        else if (notification instanceof ChatNoti) {
+            notification.setType("ChatNoti");
+            ((ChatNoti) notification).setSecondUser(((ChatNoti) notification).getSecondUser());
+        }
         }
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, notifications);
     }

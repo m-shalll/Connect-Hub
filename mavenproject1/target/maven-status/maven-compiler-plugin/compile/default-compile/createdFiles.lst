@@ -29,6 +29,7 @@ Frontend\FeedWindow$5.class
 Backend\mavenproject1.class
 Backend\UserStories.class
 Backend\AccountManagement.class
+Backend\notifications\newLike.class
 Frontend\ProfilePage$6.class
 Backend\StoryDatabase.class
 Frontend\AdminPage$3.class
@@ -49,8 +50,10 @@ Frontend\ProfilePage$13.class
 Frontend\FeedWindow$10.class
 Frontend\FeedWindow$7.class
 Backend\Roles\CoAdminRole.class
+Backend\notifications\ChatNoti.class
 Chatting_System\Message.class
 Frontend\CoAdminPage$19.class
+Backend\notifications\newComment.class
 Frontend\Friends$9$1.class
 Frontend\AdminPage$10.class
 Frontend\ProfilePage$1.class
@@ -92,6 +95,7 @@ Backend\PostInteraction\InteractionFactory.class
 Frontend\AdminPage$29.class
 Frontend\SignUpPanel.class
 Backend\notifications\NewPosts.class
+Backend\notifications\NotificationRefresher.class
 Backend\notifications\tester.class
 Frontend\CoAdminPage$4.class
 Frontend\CoAdminPage$18.class
@@ -106,6 +110,7 @@ Frontend\FeedWindow$6.class
 Frontend\SignUpPanel$1.class
 Frontend\ProfilePage$5.class
 Frontend\FeedWindow$16.class
+Frontend\FeedWindow$24.class
 Frontend\AdminPage$21.class
 Frontend\FeedWindow$21.class
 Frontend\FeedWindow$3.class

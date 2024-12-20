@@ -1,5 +1,7 @@
 
 package Chatting_System;
+import Backend.notifications.ChatNoti;
+import Backend.notifications.NotificationManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import java.io.File;
@@ -65,6 +67,19 @@ public class Chatting implements Chat{
         m.setSender(sender);
         messages.add(m);
         database.saveMessages(messages);
+        NotificationManager noti=new NotificationManager();        
+        ChatNoti not2=new ChatNoti();
+        not2.setMessage();
+        not2.setUserId(this.reciever);
+        not2.setSecondUser(this.sender);
+        try {
+            ArrayList allNotis = noti.load();
+            allNotis.add(not2);
+            noti.save(allNotis);
+        } catch (IOException ex) {
+            Logger.getLogger(Chatting.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     @Override
