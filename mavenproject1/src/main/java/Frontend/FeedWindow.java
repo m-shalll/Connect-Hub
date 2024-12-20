@@ -2,6 +2,9 @@ package Frontend;
 
 import javax.swing.*;
 import Backend.*;
+import Backend.PostInteraction.InteractionFactory;
+import Backend.PostInteraction.Like;
+import Backend.PostInteraction.PostInteractionManagement;
 import Chatting_System.*;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -15,7 +18,12 @@ import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.swing.FontIcon;
 
 import java.awt.Color;
+
+import java.util.List;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.Image;
+
 
 public class FeedWindow extends javax.swing.JFrame {
 
@@ -69,6 +77,7 @@ public class FeedWindow extends javax.swing.JFrame {
         jDialog4.pack();
         friends.pack();
         chat.pack();
+        postInteract.pack();
           FontIcon sendIcon = FontIcon.of(FontAwesomeSolid.PAPER_PLANE, 20, Color.WHITE);
             send.setIcon(sendIcon);
     }
@@ -134,6 +143,12 @@ public class FeedWindow extends javax.swing.JFrame {
         chatPanel = new javax.swing.JPanel();
         textMsg = new javax.swing.JTextField();
         send = new javax.swing.JButton();
+        postInteract = new javax.swing.JDialog();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        postList = new javax.swing.JList<>();
+        jLabel8 = new javax.swing.JLabel();
+        likeButton = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
         introPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
@@ -155,6 +170,7 @@ public class FeedWindow extends javax.swing.JFrame {
         jButton15 = new javax.swing.JButton();
         notifications = new javax.swing.JButton();
         Chat = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
 
         jDialog1.setTitle("Create Post");
 
@@ -478,6 +494,54 @@ public class FeedWindow extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
+        postList.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane5.setViewportView(postList);
+
+        jLabel8.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Posts");
+
+        likeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                likeButtonActionPerformed(evt);
+            }
+        });
+
+        jButton18.setText("Comment");
+
+        javax.swing.GroupLayout postInteractLayout = new javax.swing.GroupLayout(postInteract.getContentPane());
+        postInteract.getContentPane().setLayout(postInteractLayout);
+        postInteractLayout.setHorizontalGroup(
+            postInteractLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(postInteractLayout.createSequentialGroup()
+                .addGroup(postInteractLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(postInteractLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(postInteractLayout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(postInteractLayout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(likeButton)
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton18)))
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+        postInteractLayout.setVerticalGroup(
+            postInteractLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(postInteractLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addGroup(postInteractLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(likeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton18))
+                .addContainerGap(62, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Feed Window");
 
@@ -605,49 +669,61 @@ public class FeedWindow extends javax.swing.JFrame {
             }
         });
 
+        jButton16.setText("Choose Post");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(notifications, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(Chat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(notifications, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(Chat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addGap(197, 197, 197)
+                        .addComponent(jButton16)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -683,7 +759,9 @@ public class FeedWindow extends javax.swing.JFrame {
                                     .addComponent(jButton2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane2)))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton16)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -975,6 +1053,86 @@ public class FeedWindow extends javax.swing.JFrame {
         loadChats(currentChat.getReciever());
         textMsg.setText("");
     }//GEN-LAST:event_sendActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        loadPostList();
+        postInteract.setVisible(true);
+        ArrayList<String> friends = currentUser.getFriends();
+        String selectedPost = postList.getSelectedValue();
+        PostInteractionManagement interactManager = new PostInteractionManagement(getPostId(),getAuthorId());
+        postList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) { // Ensure the event is not a duplicate
+                    int selectedIndex = postList.getSelectedIndex();
+                    interactManager.setAuthorId(getAuthorId());
+                    interactManager.setPostId(getPostId());
+                    interactManager.initialize();
+                    if (selectedIndex != -1) {
+                        if (isLiked(interactManager.getLikes(), interactManager.getPostId())) {
+                            likeButton.setBackground(Color.BLUE);
+                            likeButton.setText("Liked");
+                        }
+                    } else {
+                        // Reset the button's color when no post is selected
+                        likeButton.setBackground(Color.LIGHT_GRAY);
+                        likeButton.setText("Like");
+                    }
+                }
+            }
+        });
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void likeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_likeButtonActionPerformed
+
+    }//GEN-LAST:event_likeButtonActionPerformed
+
+    public String getPostId() {
+        ArrayList<String> friends = currentUser.getFriends();
+        String selectedPost = postList.getSelectedValue();
+        int counter = 0, postIndex = postList.getSelectedIndex();
+        if (selectedPost != null) {
+            for (int i = 0; i < posts.size(); i++) {
+                for (int j = 0; j < friends.size(); j++) {
+                    if (posts.get(i).getContentPublisher().equals(friends.get(j))) {
+                        if (counter == postIndex) {
+                            String postid = posts.get(i).getContentID();
+                            return postid;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public String getAuthorId() {
+        ArrayList<String> friends = currentUser.getFriends();
+        String selectedPost = postList.getSelectedValue();
+        int counter = 0, postIndex = postList.getSelectedIndex();
+        if (selectedPost != null) {
+            for (int i = 0; i < posts.size(); i++) {
+                for (int j = 0; j < friends.size(); j++) {
+                    if (posts.get(i).getContentPublisher().equals(friends.get(j))) {
+                        if (counter == postIndex) {
+                            String author = posts.get(i).getContentPublisher();
+                            return author;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public boolean isLiked(List<Like> likes, String postId) {
+        Like like = InteractionFactory.createLike(postId, currentUser.getUserId());
+        if (likes.contains(like)) {
+            return true;
+        }
+        return false;
+    }
+
     public void refresh() {
         for (int i = 0; i < stories.size(); i++) {
             Story story = (Story) stories.get(i);
@@ -1039,6 +1197,27 @@ public class FeedWindow extends javax.swing.JFrame {
         String[] data = new String[stories.size()];
         data = friendsUserNames.toArray(data);
         jList1.setListData(data);
+    }
+
+    public void loadPostList() {
+        String caption;
+        ArrayList<String> postCaptions = new ArrayList<>();
+        ArrayList<String> friends = currentUser.getFriends();
+        posts = database1.loadPosts();
+        posts.sort((e1, e2) -> e2.getTimeStamp().compareTo(e1.getTimeStamp()));
+        for (int i = 0; i < posts.size(); i++) {
+            for (int j = 0; j < friends.size(); j++) {
+                if (posts.get(i).getContentPublisher().equals(friends.get(j))) {
+                    caption = posts.get(i).getContent().getCaption();
+                    postCaptions.add(caption);
+                }
+            }
+        }
+        String[] emptyData = {};
+        postList.setListData(emptyData);
+        String[] data = new String[postCaptions.size()];
+        data = postCaptions.toArray(data);
+        postList.setListData(data);
     }
 
     public void loadGroups() {
@@ -1184,6 +1363,8 @@ public class FeedWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1203,6 +1384,7 @@ public class FeedWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
@@ -1211,6 +1393,7 @@ public class FeedWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -1219,7 +1402,10 @@ public class FeedWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JButton likeButton;
     private javax.swing.JButton notifications;
+    private javax.swing.JDialog postInteract;
+    private javax.swing.JList<String> postList;
     private javax.swing.JButton send;
     private javax.swing.JTextField textMsg;
     // End of variables declaration//GEN-END:variables

@@ -34,24 +34,43 @@ public class InteractionDatabase {
             System.err.println("Error saving interactions: " + e.getMessage());
         }
     }
+
+    // Load interactions from a file
     public <T> List<T> loadInteractions(String filename, Class<T> type) {
-        File file = new File(filename);
-        List<T> interactions = new ArrayList<>();
-        if (!file.exists()) {
-            System.err.println("File not found: " + filename);
-            return interactions;
-        }
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.registerModule(new JavaTimeModule());
-            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            interactions = objectMapper.readValue(file,
-                    objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, type));
-        } catch (IOException e) {
-            System.err.println("Error loading interactions: " + e.getMessage());
-        }
+    File file = new File(filename);
+    List<T> interactions = new ArrayList<>();
+
+    if (!file.exists()) {
+        System.err.println("File not found: " + filename);
         return interactions;
     }
+
+    try {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        // Read the file as JSON
+        String json = new String(java.nio.file.Files.readAllBytes(file.toPath()));
+
+        // Check if the JSON starts with '['
+        if (json.trim().startsWith("[")) {
+            interactions = objectMapper.readValue(
+                file,
+                objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, type)
+            );
+        } else {
+            // If it's a single object, wrap it into a list
+            T singleObject = objectMapper.readValue(file, type);
+            interactions.add(singleObject);
+        }
+    } catch (IOException e) {
+        System.err.println("Error loading interactions: " + e.getMessage());
+    }
+
+    return interactions;
+}
+
 
 
 
