@@ -71,6 +71,21 @@ public class FeedWindow extends javax.swing.JFrame {
         chat.pack();
           FontIcon sendIcon = FontIcon.of(FontAwesomeSolid.PAPER_PLANE, 20, Color.WHITE);
             send.setIcon(sendIcon);
+            FontIcon notifIcon = FontIcon.of(FontAwesomeSolid.BELL, 20, Color.WHITE);
+            notifications.setIcon(notifIcon);
+            FontIcon chatIcon = FontIcon.of(FontAwesomeSolid.COMMENT, 20, Color.WHITE);
+            chat1.setIcon(chatIcon);
+            FontIcon refIcon = FontIcon.of(FontAwesomeSolid.SYNC_ALT, 20, Color.WHITE);
+            jButton3.setIcon(refIcon);
+            FontIcon friendIcon = FontIcon.of(FontAwesomeSolid.USERS, 20, Color.WHITE);
+            jButton4.setIcon(friendIcon);
+            FontIcon profIcon = FontIcon.of(FontAwesomeSolid.USER, 20, Color.WHITE);
+            jButton10.setIcon(profIcon);
+            FontIcon postIcon = FontIcon.of(FontAwesomeSolid.PLUS, 20, Color.WHITE);
+            jButton1.setIcon(postIcon);
+    
+            
+            
     }
 
     public void LoadGroupSuggestions() {
@@ -154,7 +169,7 @@ public class FeedWindow extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jButton15 = new javax.swing.JButton();
         notifications = new javax.swing.JButton();
-        Chat = new javax.swing.JButton();
+        chat1 = new javax.swing.JButton();
 
         jDialog1.setTitle("Create Post");
 
@@ -488,7 +503,6 @@ public class FeedWindow extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jPanel1);
 
         jButton4.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jButton4.setText("Manage Friends");
         jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, new java.awt.Color(204, 204, 204), null, null));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -497,7 +511,6 @@ public class FeedWindow extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jButton3.setText("refresh");
         jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, new java.awt.Color(204, 204, 204), null, null));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -515,7 +528,6 @@ public class FeedWindow extends javax.swing.JFrame {
         });
 
         jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jButton1.setText("Create Post");
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, new java.awt.Color(204, 204, 204), null, null));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -531,7 +543,6 @@ public class FeedWindow extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jList1);
 
         jButton10.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jButton10.setText("View Profile");
         jButton10.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, new java.awt.Color(204, 204, 204), null, null));
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -588,7 +599,6 @@ public class FeedWindow extends javax.swing.JFrame {
         });
 
         notifications.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        notifications.setText("Notifications");
         notifications.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, new java.awt.Color(204, 204, 204), null, null));
         notifications.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -596,12 +606,11 @@ public class FeedWindow extends javax.swing.JFrame {
             }
         });
 
-        Chat.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        Chat.setText("Chats");
-        Chat.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, new java.awt.Color(204, 204, 204), null, null));
-        Chat.addActionListener(new java.awt.event.ActionListener() {
+        chat1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        chat1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, new java.awt.Color(204, 204, 204), null, null));
+        chat1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChatActionPerformed(evt);
+                chat1ActionPerformed(evt);
             }
         });
 
@@ -631,7 +640,7 @@ public class FeedWindow extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(notifications, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(Chat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(chat1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -659,13 +668,13 @@ public class FeedWindow extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton10)
-                            .addComponent(jButton4)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton12)
+                            .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(notifications)
-                            .addComponent(Chat))
+                            .addComponent(chat1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(notifications, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -683,7 +692,7 @@ public class FeedWindow extends javax.swing.JFrame {
                                     .addComponent(jButton2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane2)))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -958,7 +967,7 @@ public class FeedWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_notificationsActionPerformed
 
-    private void ChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChatActionPerformed
+    private void chat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chat1ActionPerformed
         friendPanel.setLayout(new BoxLayout(friendPanel, BoxLayout.Y_AXIS));
         friends.setVisible(true);
         for (String i : currentUser.getFriends()) {
@@ -967,7 +976,7 @@ public class FeedWindow extends javax.swing.JFrame {
             friendPanel.revalidate();
             friendPanel.repaint();
         }
-    }//GEN-LAST:event_ChatActionPerformed
+    }//GEN-LAST:event_chat1ActionPerformed
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         String message = textMsg.getText();
@@ -1054,7 +1063,13 @@ public class FeedWindow extends javax.swing.JFrame {
     private JPanel friendPanel(String friend) {
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout(FlowLayout.LEFT));
-
+        ImageIcon icon = new ImageIcon(userDatabase.getUser(friend, users).getUserPhoto());
+        Image image = icon.getImage();
+        Image scaledImage1 = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        ImageIcon circularIcon = new ImageIcon(UserIcon.makeImageCircular(scaledImage1));
+        JLabel imageLabel1 = new JLabel(circularIcon);
+        panel.add(imageLabel1);
+        panel.add(Box.createHorizontalStrut(20));
         JLabel usernameLabel = new JLabel(userDatabase.getUser(friend, users).getUserName());
         usernameLabel.setPreferredSize(new Dimension(150, 30)); // Adjust dimensions as needed
         panel.add(usernameLabel);
@@ -1144,6 +1159,8 @@ public class FeedWindow extends javax.swing.JFrame {
         JLabel messageLabel = new JLabel(m.getMessage());
         messageLabel.setOpaque(true);
         messageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        Color textColor = new Color(169, 169, 169); 
+    messageLabel.setForeground(textColor);
         if (m.getSender().equals(currentUser.getUserId())) {
             panel.setLayout(new FlowLayout(FlowLayout.RIGHT,0,0));
             messageLabel.setBackground(new Color(220, 248, 198));
@@ -1169,9 +1186,9 @@ public class FeedWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Chat;
     private javax.swing.JList<String> RequestList;
     private javax.swing.JDialog chat;
+    private javax.swing.JButton chat1;
     private javax.swing.JScrollPane chatPane;
     private javax.swing.JPanel chatPanel;
     private javax.swing.JPanel friendPanel;

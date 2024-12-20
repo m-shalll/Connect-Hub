@@ -13,6 +13,7 @@ Frontend\AdminPage$12.class
 Frontend\FeedWindow$15.class
 Backend\ContentCreation.class
 Backend\Roles\RoleDecorator.class
+Backend\PostInteraction\PostInteractionManagement.class
 Backend\Roles\Role.class
 Frontend\LogInPannel$2.class
 Frontend\UserPage$5.class
@@ -22,11 +23,13 @@ Frontend\AdminPage$6.class
 Frontend\CoAdminPage$11.class
 Frontend\Friends$3.class
 Frontend\AdminPage$15.class
+Backend\PostInteraction\InteractionNotification.class
 Backend\notifications\NotificationManager.class
 Frontend\FeedWindow$5.class
 Backend\mavenproject1.class
 Backend\UserStories.class
 Backend\AccountManagement.class
+Backend\notifications\newLike.class
 Frontend\ProfilePage$6.class
 Backend\StoryDatabase.class
 Frontend\AdminPage$3.class
@@ -36,6 +39,7 @@ Backend\PostDatabase.class
 Backend\UserGroupsInterface.class
 Backend\PasswordManager.class
 Frontend\CoAdminPage$8.class
+Backend\PostInteraction\Like.class
 Backend\Validation.class
 Frontend\FeedWindow$12.class
 Frontend\CoAdminPage$17.class
@@ -48,6 +52,7 @@ Frontend\FeedWindow$7.class
 Backend\Roles\CoAdminRole.class
 Chatting_System\Message.class
 Frontend\CoAdminPage$19.class
+Backend\notifications\newComment.class
 Frontend\Friends$9$1.class
 Frontend\AdminPage$10.class
 Frontend\ProfilePage$1.class
@@ -68,6 +73,7 @@ Frontend\AdminPage$11.class
 Frontend\FeedWindow$8.class
 Frontend\FeedWindow$11.class
 Frontend\AdminPage$5.class
+Backend\PostInteraction\InteractionDatabase.class
 Frontend\CoAdminPage$12.class
 Frontend\AdminPage$17.class
 Frontend\UserPage$4.class
@@ -82,6 +88,7 @@ Frontend\CoAdminPage$7.class
 Backend\GroupManagement.class
 Backend\Roles\NormalUserRole.class
 Backend\Post.class
+Backend\PostInteraction\InteractionFactory.class
 Frontend\AdminPage$29.class
 Frontend\SignUpPanel.class
 Backend\notifications\NewPosts.class
@@ -92,6 +99,7 @@ Backend\notifications\Notification.class
 Frontend\UserPage$6.class
 Backend\Group.class
 Frontend\ProfilePage$12.class
+Backend\PostInteraction\Comment.class
 Frontend\AdminPage$13.class
 Backend\Story.class
 Frontend\FeedWindow$6.class
@@ -135,6 +143,7 @@ Frontend\FeedWindow$13.class
 Frontend\AdminPage$20.class
 Frontend\ProfilePage.class
 Frontend\CoAdminPage$9.class
+Backend\PostInteraction\InteractionObserver.class
 Backend\ContentFactory.class
 Chatting_System\TextMessage.class
 Frontend\Friends$8.class
