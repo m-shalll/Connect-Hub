@@ -7,19 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostInteractionManagement {
-    private User postAuthor;
+    private String postAuthor;
     private String postId;
     private List<Comment> comments = new ArrayList<>();
     private List<Like> likes = new ArrayList<>();
     private List<InteractionObserver> observers = new ArrayList<>();
 
-    public PostInteractionManagement(User postAuthor, String postId) {
+    public PostInteractionManagement(String postAuthor, String postId) {
         this.postAuthor = postAuthor;
         this.postId = postId;
         initialize(); // Load saved interactions for the given postId
     }
 
-    private void initialize() {
+    public void initialize() {
         InteractionDatabase database = InteractionDatabase.getInstance();
         // filter by postId to load only relevant interactions
         comments = database.loadInteractions("comments.json", Comment.class)
@@ -36,7 +36,7 @@ public class PostInteractionManagement {
         observers.add(observer);
     }
 
-    public void setPostAuthor(User postAuthor) {
+    public void setPostAuthor(String postAuthor) {
         this.postAuthor = postAuthor;
     }
 
@@ -64,6 +64,34 @@ public class PostInteractionManagement {
         InteractionDatabase database = InteractionDatabase.getInstance();
         database.saveInteractions(comments, "comments.json");
         database.saveInteractions(likes, "likes.json");
+    }
+    
+    public List<Like> getLikes(){
+        return likes;
+    }
+    
+    public List<Comment> getComments(){
+        return comments;
+    }
+    
+    public void setLikes(List<Like> likes){
+        this.likes = likes;
+    }
+    
+    public void setComments(List<Comment> comments){
+        this.comments = comments;
+    }
+    public void setPostId(String postId){
+        this.postId = postId;
+    }
+    public String getPostId(){
+        return this.postId;
+    }
+    public void setAuthorId(String authorid){
+        this.postAuthor = authorid;
+    }
+    public String getAuthorId(){
+        return this.postAuthor;
     }
 
 
