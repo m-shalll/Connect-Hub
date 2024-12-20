@@ -12,7 +12,6 @@ import Backend.PostInteraction.Comment;
  */
 public class newComment extends Notification {
     public String comment;
-    public String commentId;
     public String commentAuthor;
     public String postId;
     public newComment(){
@@ -27,13 +26,7 @@ public class newComment extends Notification {
         return this.message;
     }
 
-    public String getCommentId() {
-        return commentId;
-    }
 
-    public void setCommentId(String commentId) {
-        this.commentId = commentId;
-    }
     public String getCommentAuthor() { return this.commentAuthor; }
     public void setCommentAuthor(String commentAuthor) { this.commentAuthor = commentAuthor; }
     public String getPostId() { return this.postId; }

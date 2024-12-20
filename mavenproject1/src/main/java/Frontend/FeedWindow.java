@@ -2,9 +2,13 @@ package Frontend;
 
 import javax.swing.*;
 import Backend.*;
+import Backend.PostInteraction.Comment;
 import Backend.PostInteraction.InteractionFactory;
 import Backend.PostInteraction.Like;
 import Backend.PostInteraction.PostInteractionManagement;
+import Backend.notifications.NotificationManager;
+import Backend.notifications.newComment;
+import Backend.notifications.newLike;
 import Chatting_System.*;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -23,7 +27,6 @@ import java.util.List;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.Image;
-
 
 public class FeedWindow extends javax.swing.JFrame {
 
@@ -78,8 +81,9 @@ public class FeedWindow extends javax.swing.JFrame {
         friends.pack();
         chat.pack();
         postInteract.pack();
-          FontIcon sendIcon = FontIcon.of(FontAwesomeSolid.PAPER_PLANE, 20, Color.WHITE);
-            send.setIcon(sendIcon);
+        jDialog5.pack();
+        FontIcon sendIcon = FontIcon.of(FontAwesomeSolid.PAPER_PLANE, 20, Color.WHITE);
+        send.setIcon(sendIcon);
     }
 
     public void LoadGroupSuggestions() {
@@ -143,13 +147,17 @@ public class FeedWindow extends javax.swing.JFrame {
         chatPanel = new javax.swing.JPanel();
         textMsg = new javax.swing.JTextField();
         send = new javax.swing.JButton();
+        introPanel = new javax.swing.JPanel();
         postInteract = new javax.swing.JDialog();
         jScrollPane5 = new javax.swing.JScrollPane();
         postList = new javax.swing.JList<>();
         jLabel8 = new javax.swing.JLabel();
         likeButton = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
-        introPanel = new javax.swing.JPanel();
+        jDialog5 = new javax.swing.JDialog();
+        jTextField8 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jButton17 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
@@ -508,6 +516,11 @@ public class FeedWindow extends javax.swing.JFrame {
         });
 
         jButton18.setText("Comment");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout postInteractLayout = new javax.swing.GroupLayout(postInteract.getContentPane());
         postInteract.getContentPane().setLayout(postInteractLayout);
@@ -540,6 +553,49 @@ public class FeedWindow extends javax.swing.JFrame {
                     .addComponent(likeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton18))
                 .addContainerGap(62, Short.MAX_VALUE))
+        );
+
+        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField8ActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Comment");
+
+        jButton17.setText("set");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialog5Layout = new javax.swing.GroupLayout(jDialog5.getContentPane());
+        jDialog5.getContentPane().setLayout(jDialog5Layout);
+        jDialog5Layout.setHorizontalGroup(
+            jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog5Layout.createSequentialGroup()
+                .addGroup(jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialog5Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDialog5Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jButton17)))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+        jDialog5Layout.setVerticalGroup(
+            jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog5Layout.createSequentialGroup()
+                .addContainerGap(68, Short.MAX_VALUE)
+                .addGroup(jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addComponent(jButton17)
+                .addGap(29, 29, 29))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1059,33 +1115,119 @@ public class FeedWindow extends javax.swing.JFrame {
         postInteract.setVisible(true);
         ArrayList<String> friends = currentUser.getFriends();
         String selectedPost = postList.getSelectedValue();
-        PostInteractionManagement interactManager = new PostInteractionManagement(getPostId(),getAuthorId());
+        PostInteractionManagement interactManager = new PostInteractionManagement(getPostId(), getAuthorId());
+        interactManager.initialize();
         postList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) { // Ensure the event is not a duplicate
                     int selectedIndex = postList.getSelectedIndex();
-                    interactManager.setAuthorId(getAuthorId());
-                    interactManager.setPostId(getPostId());
-                    interactManager.initialize();
+                    System.out.println("Selected index: " + selectedIndex);  // Debugging line
+
+                    // Initialize interactManager
+                    PostInteractionManagement interactManager = new PostInteractionManagement(getPostId(), getAuthorId());
+                    interactManager.initialize(); // Initialize the interactions for the selected post
+
                     if (selectedIndex != -1) {
-                        if (isLiked(interactManager.getLikes(), interactManager.getPostId())) {
-                            likeButton.setBackground(Color.BLUE);
-                            likeButton.setText("Liked");
-                        }
+                        // Update the like button color and text based on the current like status
+                        updateLikeButton(interactManager);
                     } else {
                         // Reset the button's color when no post is selected
-                        likeButton.setBackground(Color.LIGHT_GRAY);
-                        likeButton.setText("Like");
+                        likeButton.setBackground(Color.GRAY);
+                        likeButton.setText("");
                     }
                 }
             }
         });
+
+
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void likeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_likeButtonActionPerformed
+        // Use the current selected post's ID and author ID
+        if (postList.getSelectedValue().isEmpty()) {
+            return;
+        }
+        PostInteractionManagement interactManager = new PostInteractionManagement(getPostId(), getAuthorId());
+        interactManager.initialize();
 
+        Like like = InteractionFactory.createLike(getPostId(), currentUser.getUserId());
+
+        // Check if the post is already liked
+        if (isLiked(interactManager.getLikes(), interactManager.getPostId())) {
+            interactManager.UnLikePost(like); // Remove like
+            System.out.println("no");
+        } else {
+
+            try {
+                interactManager.LikePost(like);
+                NotificationManager noti = new NotificationManager();
+                newLike not2 = new newLike();
+                not2.setMessage();
+                not2.setUserId(interactManager.getAuthorId());
+                not2.setPostId(interactManager.getPostId());
+                not2.setUsername(currentUser.getUserId());
+                ArrayList allNotis = noti.load();
+                allNotis.add(not2);
+                noti.save(allNotis);
+// Add like
+            } catch (IOException ex) {
+                Logger.getLogger(FeedWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        // Save interactions (do this after modifying the list of likes)
+        interactManager.saveInteractions();
+        interactManager.initialize();
+
+        // Update the button's UI based on the new like status
+        updateLikeButton(interactManager);
     }//GEN-LAST:event_likeButtonActionPerformed
+
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        String inComment = jTextField8.getText();
+        PostInteractionManagement interactManager = new PostInteractionManagement(getPostId(), getAuthorId());
+        interactManager.initialize();
+        if (!inComment.isEmpty()) {
+            try {
+                Comment comment = InteractionFactory.createComment(inComment, getPostId(), currentUser.getUserId());
+                interactManager.addComment(comment);
+                interactManager.saveInteractions();
+                NotificationManager noti = new NotificationManager();
+                newComment not2 = new newComment();
+                not2.setUserId(currentUser.getUserId());
+                not2.setMessage();
+                not2.setCommentAuthor(interactManager.getAuthorId());
+                not2.setPostId(interactManager.getPostId());
+                ArrayList allNotis = noti.load();
+                allNotis.add(not2);
+                noti.save(allNotis);
+            } catch (IOException ex) {
+                Logger.getLogger(FeedWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        jDialog5.setVisible(true);
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void updateLikeButton(PostInteractionManagement interactManager) {
+        if (isLiked(interactManager.getLikes(), interactManager.getPostId())) {
+            likeButton.setBackground(Color.BLUE);
+            likeButton.setForeground(Color.white);
+            likeButton.setText("UnLike");
+        } else {
+            likeButton.setBackground(Color.LIGHT_GRAY);
+            likeButton.setForeground(Color.BLACK);
+            likeButton.setText("Like");
+        }
+    }
 
     public String getPostId() {
         ArrayList<String> friends = currentUser.getFriends();
@@ -1099,6 +1241,7 @@ public class FeedWindow extends javax.swing.JFrame {
                             String postid = posts.get(i).getContentID();
                             return postid;
                         }
+                        counter++;
                     }
                 }
             }
@@ -1108,6 +1251,7 @@ public class FeedWindow extends javax.swing.JFrame {
 
     public String getAuthorId() {
         ArrayList<String> friends = currentUser.getFriends();
+        posts = database1.loadPosts();
         String selectedPost = postList.getSelectedValue();
         int counter = 0, postIndex = postList.getSelectedIndex();
         if (selectedPost != null) {
@@ -1118,6 +1262,7 @@ public class FeedWindow extends javax.swing.JFrame {
                             String author = posts.get(i).getContentPublisher();
                             return author;
                         }
+                        counter++;
                     }
                 }
             }
@@ -1125,12 +1270,13 @@ public class FeedWindow extends javax.swing.JFrame {
         return null;
     }
 
-    public boolean isLiked(List<Like> likes, String postId) {
-        Like like = InteractionFactory.createLike(postId, currentUser.getUserId());
-        if (likes.contains(like)) {
-            return true;
+    public boolean isLiked(ArrayList<Like> likes, String postId) {
+        for (Like like : likes) {
+            if (like.getPostId().equals(getPostId()) && like.getUsername().equals(currentUser.getUserId())) {
+                return true; // Like is found
+            }
         }
-        return false;
+        return false; // Like not found
     }
 
     public void refresh() {
@@ -1256,50 +1402,48 @@ public class FeedWindow extends javax.swing.JFrame {
         introPanel.removeAll();
         chatPanel.removeAll();
         chat.setVisible(true);
-         chat.revalidate();
+        chat.revalidate();
         chat.repaint();
         chatPane.revalidate();
         chatPane.repaint();
         chatPanel.setLayout(new BoxLayout(chatPanel, BoxLayout.Y_AXIS));
-        
+
         introPanel.revalidate();
         introPanel.repaint();
         introPanel.setLayout(new BoxLayout(introPanel, BoxLayout.X_AXIS));
         JLabel userNameLabel = new JLabel(userDatabase.getUser(friend, users).getUserName());
-            userNameLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-            ImageIcon icon = new ImageIcon(userDatabase.getUser(friend, users).getUserPhoto());
+        userNameLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        ImageIcon icon = new ImageIcon(userDatabase.getUser(friend, users).getUserPhoto());
         Image image = icon.getImage();
         Image scaledImage1 = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon circularIcon = new ImageIcon(UserIcon.makeImageCircular(scaledImage1));
         JLabel imageLabel1 = new JLabel(circularIcon);
-        
-         JButton back = new JButton("Back");
+
+        JButton back = new JButton("Back");
         FontIcon backIcon = FontIcon.of(FontAwesomeSolid.ARROW_LEFT, 20, Color.WHITE);
-            back.setIcon(backIcon);
-            introPanel.add(back);
-            introPanel.add(Box.createHorizontalStrut(20));
-           introPanel.add(imageLabel1);
-           introPanel.add(Box.createHorizontalStrut(20));
+        back.setIcon(backIcon);
+        introPanel.add(back);
+        introPanel.add(Box.createHorizontalStrut(20));
+        introPanel.add(imageLabel1);
+        introPanel.add(Box.createHorizontalStrut(20));
         introPanel.add(userNameLabel);
         introPanel.add(Box.createHorizontalStrut(280));
-        
 
-            
-            FontIcon refreshIcon = FontIcon.of(FontAwesomeSolid.SYNC_ALT, 20, Color.WHITE);
-            JButton refreshButton = new JButton("");
-            refreshButton.setIcon(refreshIcon);
-            introPanel.add(refreshButton);
+        FontIcon refreshIcon = FontIcon.of(FontAwesomeSolid.SYNC_ALT, 20, Color.WHITE);
+        JButton refreshButton = new JButton("");
+        refreshButton.setIcon(refreshIcon);
+        introPanel.add(refreshButton);
         Chat chatting = new Chatting(currentUser.getUserId(), friend);
         currentChat = chatting;
         if (chatting.getMessages().isEmpty()) {
-            
+
             JLabel messageLabel = new JLabel("<html><body style='width: 500px;'>" + "Start Chatting!" + "</body></html>");
             messageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
             messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
             chatPanel.add(messageLabel);
         } else {
             for (Message i : chatting.getMessages()) {
-                JPanel entryPanel = chat(i,friend);
+                JPanel entryPanel = chat(i, friend);
                 chatPanel.add(entryPanel);
                 chatPanel.add(Box.createVerticalStrut(20));
             }
@@ -1315,32 +1459,32 @@ public class FeedWindow extends javax.swing.JFrame {
         chatPanel.repaint();
     }
 
-    public JPanel chat(Message m,String friend) {
+    public JPanel chat(Message m, String friend) {
         JPanel panel = new JPanel();
-         // Simplify alignment
-    panel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-    
+        // Simplify alignment
+        panel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+
         JLabel messageLabel = new JLabel(m.getMessage());
         messageLabel.setOpaque(true);
         messageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         if (m.getSender().equals(currentUser.getUserId())) {
-            panel.setLayout(new FlowLayout(FlowLayout.RIGHT,0,0));
+            panel.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
             messageLabel.setBackground(new Color(220, 248, 198));
-             
+
         } else {
-            panel.setLayout(new FlowLayout(FlowLayout.LEFT,0,0));
+            panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
             messageLabel.setBackground(new Color(230, 230, 230));
             ImageIcon icon = new ImageIcon(userDatabase.getUser(friend, users).getUserPhoto());
             System.out.println(userDatabase.getUser(friend, users).getUserPhoto());
-        Image image = icon.getImage();
-        Image scaledImage1 = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-        ImageIcon circularIcon = new ImageIcon(UserIcon.makeImageCircular(scaledImage1));
-        JLabel imageLabel1 = new JLabel(circularIcon);
-        Box centerBox = Box.createHorizontalBox();
-        centerBox.add(imageLabel1);
-        centerBox.add(Box.createHorizontalStrut(20));
-        centerBox.add(messageLabel);
-        panel.add(centerBox);
+            Image image = icon.getImage();
+            Image scaledImage1 = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+            ImageIcon circularIcon = new ImageIcon(UserIcon.makeImageCircular(scaledImage1));
+            JLabel imageLabel1 = new JLabel(circularIcon);
+            Box centerBox = Box.createHorizontalBox();
+            centerBox.add(imageLabel1);
+            centerBox.add(Box.createHorizontalStrut(20));
+            centerBox.add(messageLabel);
+            panel.add(centerBox);
         }
         panel.add(messageLabel);
         panel.add(Box.createVerticalStrut(30));
@@ -1364,6 +1508,7 @@ public class FeedWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1377,6 +1522,7 @@ public class FeedWindow extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog2;
     private javax.swing.JDialog jDialog3;
     private javax.swing.JDialog jDialog4;
+    private javax.swing.JDialog jDialog5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1385,6 +1531,7 @@ public class FeedWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
@@ -1402,6 +1549,7 @@ public class FeedWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
     private javax.swing.JButton likeButton;
     private javax.swing.JButton notifications;
     private javax.swing.JDialog postInteract;

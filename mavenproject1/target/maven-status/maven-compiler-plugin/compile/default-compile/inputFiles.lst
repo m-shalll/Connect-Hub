@@ -1,10 +1,10 @@
-
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\NewPosts.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\Roles\NormalUserRole.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\FriendManagement.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\PostInteraction\PostInteractionManagement.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Chatting_System\Chat.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\Content.java
+C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\PostInteraction\LikeDatabase.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\GroupInterface.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\NewStatus.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Frontend\CoAdminPage.java
@@ -19,6 +19,7 @@ C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Frontend
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\Notifications.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\ProfileManagement.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\Roles\AdminRole.java
+C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\Chat.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\NewUser.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\Post.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\GroupManagement.java
@@ -32,8 +33,10 @@ C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\PasswordManager.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\FriendRequests.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\Validation.java
+C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\Comment.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Frontend\CustomJFrame.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Frontend\Notifications.java
+C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\newComment.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\Roles\RoleDecorator.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\UserGroupsInterface.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Chatting_System\Chatting.java
@@ -52,62 +55,11 @@ C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\PostInteraction\InteractionNotification.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\tester.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\PostDatabase.java
+C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\newLike.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\Notification.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Frontend\PostsPanel.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\UserStories.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Chatting_System\TextMessage.java
+C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\PostInteraction\CommentDatabase.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\PostInteraction\Comment.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Frontend\AdminPage.java
-=======
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\Roles\CoAdminRole.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Chatting_System\Chatting.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Frontend\ProfilePage.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\Group.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Frontend\CoAdminPage.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\NewUser.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Chatting_System\Message.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\ProfileManagement.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Frontend\CustomJFrame.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Frontend\SignUpPanel.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\ContentFactory.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Chatting_System\Chat.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\PostDatabase.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\Notification.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\Notifications.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\AccountManagement.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Chatting_System\MessageDatabase.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\UserGroupsInterface.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\Roles\AdminRole.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Frontend\UserPage.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Frontend\PostsPanel.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\UserGroups.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\UserBuilder.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\Validation.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\mavenproject1.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\FriendManagement.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Frontend\UserIcon.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\NotificationManager.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\Content.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\tester.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\FriendRequests.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\Roles\RoleDecorator.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Frontend\FeedWindow.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\UserStories.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\NewStatus.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\StoryDatabase.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\GroupInterface.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\Post.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Frontend\LogInPannel.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Frontend\StoriesPanel.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\GroupManagement.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\NewPosts.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Frontend\Notifications.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\User.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Chatting_System\TextMessage.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\Roles\Role.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\Roles\NormalUserRole.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Frontend\Friends.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\PasswordManager.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\ContentCreation.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Backend\Story.java
-C:\Users\AbdElrahman\Documents\college\programming 2\Connect-Hub\mavenproject1\src\main\java\Frontend\AdminPage.java
