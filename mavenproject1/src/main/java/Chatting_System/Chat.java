@@ -9,11 +9,9 @@ import java.util.*;
  * @author AbdElrahman
  */
 public interface Chat {
-    void loadDatabase();
-
-    void addMessage(String text, String sender);
-
-    void loadChatHistory();
-
-    ArrayList<Message> getMessages();
+    public void loadDatabase();
+    public void addMessage(String text, String sender);
+    public void loadChatHistory();
+    public ArrayList<Message> getMessages();
+    public String getReciever();
 }

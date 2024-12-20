@@ -30,6 +30,7 @@ Backend\AccountManagement.class
 Frontend\ProfilePage$6.class
 Backend\StoryDatabase.class
 Frontend\AdminPage$3.class
+Chatting_System\Chat.class
 Frontend\UserPage$8.class
 Backend\PostDatabase.class
 Backend\UserGroupsInterface.class
@@ -105,6 +106,7 @@ Frontend\ProfilePage$8.class
 Frontend\AdminPage$16.class
 Frontend\CoAdminPage$10.class
 Frontend\Friends$2.class
+Frontend\FeedWindow$19.class
 Backend\AccountManagement$1.class
 Frontend\StoriesPanel.class
 Frontend\AdminPage$4.class
@@ -126,6 +128,7 @@ Frontend\AdminPage$27.class
 Backend\UserGroups.class
 Frontend\AdminPage.class
 Frontend\AdminPage$1.class
+Frontend\FeedWindow$20.class
 Frontend\Notifications.class
 Frontend\SignUpPanel$3.class
 Frontend\FeedWindow$13.class

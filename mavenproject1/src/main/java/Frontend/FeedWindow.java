@@ -1,51 +1,49 @@
-
 package Frontend;
+
 import javax.swing.*;
 import Backend.*;
 import Chatting_System.*;
-import Backend.Roles.*;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import java.awt.Color;
 
-
 public class FeedWindow extends javax.swing.JFrame {
 
     private UserGroupsInterface userGroups;
-    
+
     private PostDatabase database1;
     private StoryDatabase database2;
     private AccountManagement userDatabase;
     private GroupManagement groupDatabase;
-    
+
     private ArrayList<User> users;
     private ArrayList<ContentCreation> posts;
     private ArrayList<ContentCreation> stories;
     private ArrayList<GroupInterface> groups;
-    
+
     private int postCounter = 0;
     private int storyCounter = 0;
-    
+
     private User currentUser;
+    private Chat currentChat;
 
     public FeedWindow(User user) {
         initComponents();
-        
+
         CustomJFrame frame = new CustomJFrame(this);
-        
+
         userDatabase = AccountManagement.getInstance();
         database1 = PostDatabase.getInstance();
         database2 = StoryDatabase.getInstance();
         groupDatabase = GroupManagement.getInstance();
-        
+
         posts = database1.loadPosts();
         stories = database2.loadStories();
         try {
@@ -54,49 +52,47 @@ public class FeedWindow extends javax.swing.JFrame {
             System.out.println("error" + ex.getMessage());
         }
         groups = groupDatabase.loadGroups();
-        
+
         postCounter = posts.size();
         storyCounter = stories.size();
         currentUser = user;
         userGroups = new UserGroups();
-        
-        this.setLayout(null); 
+
+        this.setLayout(null);
         refresh();
         jDialog1.pack();
         jDialog2.pack();
         jDialog3.pack();
         jDialog4.pack();
+        friends.pack();
+        chat.pack();
     }
-    
-    public void LoadGroupSuggestions(){
+
+    public void LoadGroupSuggestions() {
         String[] emptyData = {};
         RequestList.setListData(emptyData);
         ArrayList<String> friends = currentUser.getFriends();
         ArrayList<String> groupNames = new ArrayList<>();
-        for(String friend:friends){
+        for (String friend : friends) {
             try {
                 User friendUser = userDatabase.getUser(friend);
                 Map<String, String> groupRoles = friendUser.getRoles();
-                for(String key: groupRoles.keySet()){
-                    if(!groupNames.contains(key))
+                for (String key : groupRoles.keySet()) {
+                    if (!groupNames.contains(key)) {
                         groupNames.add(key);
+                    }
                 }
             } catch (IOException ex) {
                 Logger.getLogger(FeedWindow.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
-            
+
         }
         String[] data = new String[groupNames.size()];
         data = groupNames.toArray(data);
         RequestList.setListData(data);
-        
-        
-        
+
     }
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -127,7 +123,7 @@ public class FeedWindow extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         friends = new javax.swing.JDialog();
-        jPanel3 = new javax.swing.JPanel();
+        friendPanel = new javax.swing.JPanel();
         chat = new javax.swing.JDialog();
         chatPane = new javax.swing.JScrollPane();
         chatPanel = new javax.swing.JPanel();
@@ -384,14 +380,16 @@ public class FeedWindow extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        friends.setTitle("Chat with Friends");
+
+        javax.swing.GroupLayout friendPanelLayout = new javax.swing.GroupLayout(friendPanel);
+        friendPanel.setLayout(friendPanelLayout);
+        friendPanelLayout.setHorizontalGroup(
+            friendPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 388, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        friendPanelLayout.setVerticalGroup(
+            friendPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 288, Short.MAX_VALUE)
         );
 
@@ -401,16 +399,18 @@ public class FeedWindow extends javax.swing.JFrame {
             friendsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(friendsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(friendPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         friendsLayout.setVerticalGroup(
             friendsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, friendsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(friendPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        chat.setTitle("Chat");
 
         javax.swing.GroupLayout chatPanelLayout = new javax.swing.GroupLayout(chatPanel);
         chatPanel.setLayout(chatPanelLayout);
@@ -437,9 +437,9 @@ public class FeedWindow extends javax.swing.JFrame {
         chatLayout.setHorizontalGroup(
             chatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(chatLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(textMsg, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
-                .addGap(28, 28, 28)
+                .addGap(16, 16, 16)
+                .addComponent(textMsg)
+                .addGap(18, 18, 18)
                 .addComponent(send)
                 .addGap(16, 16, 16))
             .addComponent(chatPane)
@@ -447,7 +447,7 @@ public class FeedWindow extends javax.swing.JFrame {
         chatLayout.setVerticalGroup(
             chatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(chatLayout.createSequentialGroup()
-                .addComponent(chatPane, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                .addComponent(chatPane)
                 .addGap(18, 18, 18)
                 .addGroup(chatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -573,7 +573,9 @@ public class FeedWindow extends javax.swing.JFrame {
             }
         });
 
+        Chat.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         Chat.setText("Chats");
+        Chat.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, new java.awt.Color(204, 204, 204), null, null));
         Chat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ChatActionPerformed(evt);
@@ -597,19 +599,20 @@ public class FeedWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(notifications, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Chat))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(notifications, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(Chat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -657,7 +660,7 @@ public class FeedWindow extends javax.swing.JFrame {
                                     .addComponent(jButton2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane2)))))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -674,18 +677,18 @@ public class FeedWindow extends javax.swing.JFrame {
             fileName = file.getAbsolutePath();
         }
         if (file != null && file.exists()) {
-                fileName = file.getAbsolutePath();
-                jTextField2.setText(fileName);
-        } 
+            fileName = file.getAbsolutePath();
+            jTextField2.setText(fileName);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Post p = (Post)ContentFactory.createContent("post");
+        Post p = (Post) ContentFactory.createContent("post");
         String s1 = jTextField1.getText();
         String s2 = jTextField2.getText();
         File file = new File(s2);
         Content content = null;
-        if(s1.equals("")){
+        if (s1.equals("")) {
             JOptionPane.showMessageDialog(this, "No post without text");
         } else {
             if (s2.equals("")) {
@@ -709,11 +712,11 @@ public class FeedWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        FeedWindow x=new FeedWindow(currentUser);
-        Friends h = new Friends(x,true);
+        FeedWindow x = new FeedWindow(currentUser);
+        Friends h = new Friends(x, true);
         this.setVisible(false);
         h.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -728,7 +731,7 @@ public class FeedWindow extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Cant create story, try again after present story expires!");
         }
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -742,13 +745,13 @@ public class FeedWindow extends javax.swing.JFrame {
             fileName = file.getAbsolutePath();
         }
         if (file != null && file.exists()) {
-                fileName = file.getAbsolutePath();
-                jTextField4.setText(fileName);
-        } 
+            fileName = file.getAbsolutePath();
+            jTextField4.setText(fileName);
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        Story s = (Story)ContentFactory.createContent("story");
+        Story s = (Story) ContentFactory.createContent("story");
         String s1 = jTextField3.getText();
         String s2 = jTextField4.getText();
         File file = new File(s2);
@@ -774,12 +777,12 @@ public class FeedWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        refresh();        
+        refresh();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         FeedWindow feed = this;
-        ProfilePage profile = new ProfilePage(currentUser,feed);
+        ProfilePage profile = new ProfilePage(currentUser, feed);
         this.setVisible(false);
         profile.setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -794,7 +797,7 @@ public class FeedWindow extends javax.swing.JFrame {
                     jPanel2.add(userStory);
                     jDialog2.setTitle("Your story");
                     jDialog2.setVisible(true);
-                } else{
+                } else {
                     JOptionPane.showMessageDialog(this, "Add a story first");
                 }
             } else {
@@ -830,15 +833,15 @@ public class FeedWindow extends javax.swing.JFrame {
                 UserPage newPage = new UserPage(groupName, currentUser, this);
                 newPage.setVisible(true);
                 this.setVisible(false);
-            } 
+            }
         } else {
             JOptionPane.showMessageDialog(this, "choose group first");
         }
-        
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        jDialog4.setVisible(true);        
+        jDialog4.setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
@@ -862,16 +865,16 @@ public class FeedWindow extends javax.swing.JFrame {
         if (file != null && file.exists()) {
             fileName = file.getAbsolutePath();
             jTextField7.setText(fileName);
-        }        
+        }
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         String name = jTextField5.getText();
         String description = jTextField6.getText();
         String filePathtoImage = jTextField7.getText();
-        if(name.equals("") || description.equals("") || filePathtoImage.equals("")){
+        if (name.equals("") || description.equals("") || filePathtoImage.equals("")) {
             JOptionPane.showMessageDialog(this, "Please fill empty fields");
-        } else { 
+        } else {
             GroupInterface newGroup = new Group();
             newGroup.setName(name);
             newGroup.setAdmin(currentUser.getUserId());
@@ -882,17 +885,17 @@ public class FeedWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Group Created successfully");
             groups.add(newGroup);
             groupDatabase.saveGroups(groups);
-            
+
             Map<String, String> role = currentUser.getRoles();
             role.put(name, "AdminRole");
             currentUser.setRoles(role);
             try {
                 users = userDatabase.loadUsers();
             } catch (IOException ex) {
-                
+
             }
-            for(int i=0; i<users.size(); i++){
-                if(currentUser.getUserId().equals(users.get(i).getUserId())){
+            for (int i = 0; i < users.size(); i++) {
+                if (currentUser.getUserId().equals(users.get(i).getUserId())) {
                     users.get(i).setRoles(role);
                     break;
                 }
@@ -900,7 +903,7 @@ public class FeedWindow extends javax.swing.JFrame {
             try {
                 AccountManagement.saveUsers(users);
             } catch (IOException ex) {
-                
+
             }
             loadGroups();
         }
@@ -908,47 +911,52 @@ public class FeedWindow extends javax.swing.JFrame {
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         String groupName = RequestList.getSelectedValue();
-        if(groupName!=null){
-        GroupInterface currentGroup = userGroups.returnGroup(groupName);
-        Map<String, String> requests = currentGroup.getGroupRequests();
-        requests.put(currentUser.getUserId(), "pending");
-        JOptionPane.showMessageDialog(this, "Request Sent Successfully!");
-        currentGroup.setGroupRequests(requests);
-        ArrayList<GroupInterface> groups = groupDatabase.loadGroups();
-        for(GroupInterface group:groups){
-            if(group.getName().equals(currentGroup.getName()))
-                group = currentGroup;
-        }
-        groupDatabase.saveGroups(groups);
+        if (groupName != null) {
+            GroupInterface currentGroup = userGroups.returnGroup(groupName);
+            Map<String, String> requests = currentGroup.getGroupRequests();
+            requests.put(currentUser.getUserId(), "pending");
+            JOptionPane.showMessageDialog(this, "Request Sent Successfully!");
+            currentGroup.setGroupRequests(requests);
+            ArrayList<GroupInterface> groups = groupDatabase.loadGroups();
+            for (GroupInterface group : groups) {
+                if (group.getName().equals(currentGroup.getName())) {
+                    group = currentGroup;
+                }
+            }
+            groupDatabase.saveGroups(groups);
         }
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void notificationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationsActionPerformed
         try {
-            Notifications window=new Notifications(this);
+            Notifications window = new Notifications(this);
         } catch (IOException ex) {
             Logger.getLogger(FeedWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_notificationsActionPerformed
 
     private void ChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChatActionPerformed
+        friendPanel.setLayout(new BoxLayout(friendPanel, BoxLayout.Y_AXIS));
         friends.setVisible(true);
-        for(String i:currentUser.getFriends()){
-        JPanel entryPanel = friendPanel(i);
-    friends.add(entryPanel);
+        for (String i : currentUser.getFriends()) {
+            JPanel entryPanel = friendPanel(i);
+            friendPanel.add(entryPanel);
+            friendPanel.revalidate();
+            friendPanel.repaint();
         }
-        
-        // TODO add your handling code here:
     }//GEN-LAST:event_ChatActionPerformed
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
-        // TODO add your handling code here:
+        String message = textMsg.getText();
+        currentChat.addMessage(message, currentUser.getUserId());
+        loadChats(currentChat.getReciever());
+        textMsg.setText("");
     }//GEN-LAST:event_sendActionPerformed
-    public void refresh(){
-        for(int i=0; i<stories.size(); i++){
-            Story story = (Story)stories.get(i);
-            if(story.isPast24Hours()){
-                stories.remove(stories.get(i));            
+    public void refresh() {
+        for (int i = 0; i < stories.size(); i++) {
+            Story story = (Story) stories.get(i);
+            if (story.isPast24Hours()) {
+                stories.remove(stories.get(i));
             }
         }
         loadPosts();
@@ -956,7 +964,8 @@ public class FeedWindow extends javax.swing.JFrame {
         loadGroups();
         LoadGroupSuggestions();
     }
-    public void loadPosts(){
+
+    public void loadPosts() {
         ArrayList<String> friends = currentUser.getFriends();
         jPanel1.removeAll();
         posts = database1.loadPosts();
@@ -964,7 +973,7 @@ public class FeedWindow extends javax.swing.JFrame {
         for (int i = 0; i < posts.size(); i++) {
             for (int j = 0; j < friends.size(); j++) {
                 if (posts.get(i).getContentPublisher().equals(friends.get(j))) {
-                    PostsPanel postPanel = new PostsPanel((Post)posts.get(i));
+                    PostsPanel postPanel = new PostsPanel((Post) posts.get(i));
                     jPanel1.add(postPanel);
                 }
             }
@@ -972,7 +981,8 @@ public class FeedWindow extends javax.swing.JFrame {
         jPanel1.revalidate();
         jPanel1.repaint();
     }
-    public void loadStories(){
+
+    public void loadStories() {
         stories = database2.loadStories();
         ArrayList<String> friends = currentUser.getFriends();
         ArrayList<String> friendsUserNames = new ArrayList<>();
@@ -980,7 +990,7 @@ public class FeedWindow extends javax.swing.JFrame {
         friendsUserNames.add("View Your story");
         for (int i = 0; i < friends.size(); i++) {
             for (int j = 0; j < stories.size(); j++) {
-                if(stories.get(j).getContentPublisher().equals(friends.get(i))){
+                if (stories.get(j).getContentPublisher().equals(friends.get(i))) {
                     friendsStories.add(friends.get(i));
                     break;
                 }
@@ -993,7 +1003,7 @@ public class FeedWindow extends javax.swing.JFrame {
         }
         for (int i = 0; i < friendsStories.size(); i++) {
             for (int j = 0; j < users.size(); j++) {
-                if(friendsStories.get(i).equals(users.get(j).getUserId())){
+                if (friendsStories.get(i).equals(users.get(j).getUserId())) {
                     friendsUserNames.add(users.get(j).getUserName());
                     break;
                 }
@@ -1007,7 +1017,8 @@ public class FeedWindow extends javax.swing.JFrame {
         data = friendsUserNames.toArray(data);
         jList1.setListData(data);
     }
-    public void loadGroups(){
+
+    public void loadGroups() {
         groups = groupDatabase.loadGroups();
         String[] emptyData = {};
         jList2.setListData(emptyData);
@@ -1016,57 +1027,62 @@ public class FeedWindow extends javax.swing.JFrame {
         data = groupNames.toArray(data);
         jList2.setListData(data);
     }
-    private JPanel friendPanel(String friend){
-         JPanel panel = new JPanel();
-    panel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-    JLabel usernameLabel = new JLabel(userDatabase.getUser(friend, users).getUserName());
-     usernameLabel.setPreferredSize(new Dimension(150, 30)); // Adjust dimensions as needed
-    panel.add(usernameLabel);
-    JLabel useridLabel = new JLabel(friend);
-    usernameLabel.setPreferredSize(new Dimension(150, 30)); // Adjust dimensions as needed
-    panel.add(useridLabel);
+    private JPanel friendPanel(String friend) {
+        JPanel panel = new JPanel();
+        panel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-    // Button to view the friend's profile
-    JButton viewChatButton = new JButton("View Chat");
-    //Here add view Profile functionality
-    viewChatButton.addActionListener(e -> {
-        loadChats(friend);
-    });
-    return panel;
+        JLabel usernameLabel = new JLabel(userDatabase.getUser(friend, users).getUserName());
+        usernameLabel.setPreferredSize(new Dimension(150, 30)); // Adjust dimensions as needed
+        panel.add(usernameLabel);
+        JLabel useridLabel = new JLabel(friend);
+        usernameLabel.setPreferredSize(new Dimension(150, 30)); // Adjust dimensions as needed
+        panel.add(useridLabel);
+
+        // Button to view the friend's profile
+        JButton viewChatButton = new JButton("View Chat");
+        //Here add view Profile functionality
+        viewChatButton.addActionListener(e -> {
+            loadChats(friend);
+        });
+        panel.add(viewChatButton);
+        return panel;
     }
-    public void loadChats(String friend){
+
+    public void loadChats(String friend) {
         friends.dispose();
-    chat.setVisible(true);
-    Chat chatting=new Chatting(currentUser.getUserId(),friend);
-    if(chatting.getMessages().isEmpty()){
-    JLabel messageLabel = new JLabel("<html><body style='width: 200px;'>" +"Start Chatting!" + "</body></html>");
+        chat.setVisible(true);
+        Chat chatting = new Chatting(currentUser.getUserId(), friend);
+        currentChat = chatting;
+        if (chatting.getMessages().isEmpty()) {
+            JLabel messageLabel = new JLabel("Start Chatting!");
+            messageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            chatPanel.add(messageLabel);
+        } else {
+            for (Message i : chatting.getMessages()) {
+                JPanel entryPanel = chat(i);
+                chatPanel.add(entryPanel);
+            }
+        }
+        chatPanel.revalidate();
+        chatPanel.repaint();
+    }
+
+    public JPanel chat(Message m) {
+        JPanel panel = new JPanel();
+        JLabel messageLabel = new JLabel(m.getMessage());
+        messageLabel.setOpaque(true);
         messageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
-    }
-    for(Message i:chatting.getMessages()){
-    JPanel entryPanel = chat(i);
-    chatPanel.add(entryPanel);
-    }
-    
-    }
-    public JPanel chat(Message m){
-     JPanel panel = new JPanel();
-     JLabel messageLabel = new JLabel("<html><body style='width: 200px;'>" + m.getMessage() + "</body></html>");
-      messageLabel.setOpaque(true);
-        messageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-     if(m.getSender().equals(currentUser.getUserId())){
-    panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-    messageLabel.setBackground( new Color(220, 248, 198));
-     }
-     else{
-       panel.setLayout(new FlowLayout(FlowLayout.LEFT)); 
-     messageLabel.setBackground(new Color(230, 230, 230));
-     }
-   panel.add(messageLabel);
-        
-        
-     return panel;
+        if (m.getSender().equals(currentUser.getUserId())) {
+            panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+            messageLabel.setBackground(new Color(220, 248, 198));
+        } else {
+            panel.setLayout(new FlowLayout(FlowLayout.LEFT));
+            messageLabel.setBackground(new Color(230, 230, 230));
+        }
+        panel.add(messageLabel);
+        return panel;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1075,6 +1091,7 @@ public class FeedWindow extends javax.swing.JFrame {
     private javax.swing.JDialog chat;
     private javax.swing.JScrollPane chatPane;
     private javax.swing.JPanel chatPanel;
+    private javax.swing.JPanel friendPanel;
     private javax.swing.JDialog friends;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -1106,7 +1123,6 @@ public class FeedWindow extends javax.swing.JFrame {
     private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

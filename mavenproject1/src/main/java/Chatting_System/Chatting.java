@@ -1,19 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Chatting_System;
 
+package Chatting_System;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author AbdElrahman
- */
 public class Chatting implements Chat{
 
     private String sender;
@@ -28,30 +23,42 @@ public class Chatting implements Chat{
         messages = new ArrayList<>();
         String[] users = {sender, reciever};
         Arrays.sort(users);
-        this.fileName = users[0] + "," + users[1];
+        this.fileName = users[0] + "," + users[1] + ".json";
         loadDatabase();
     }
+    @Override
+    public String getReciever() {
+        return reciever;
+    }
 
+    @Override
     public ArrayList<Message> getMessages() {
         return messages;
     }
 
+    @Override
     public void loadDatabase() {
-        File file = new File(fileName);
-        try {
-            if (!file.createNewFile()) {
-                database = new MessageDatabase(file);
-                messages = database.loadMessages();
-            } else {
-                database = new MessageDatabase(file);
-
+    File file = new File(fileName);
+    ObjectMapper objectMapper = new ObjectMapper();
+    try {
+        if (!file.createNewFile()) {
+            database = new MessageDatabase(file);
+            messages = database.loadMessages();
+        } else {
+            ArrayNode emptyArray = objectMapper.createArrayNode(); 
+            try {
+                objectMapper.writeValue(file, emptyArray);
+            } catch (IOException ex) {
+                throw new IOException("Failed to initialize new file with empty array", ex);
             }
-        } catch (IOException ex) {
-            Logger.getLogger(Chatting.class.getName()).log(Level.SEVERE, null, ex);
+            database = new MessageDatabase(file);
         }
-
+    } catch (IOException ex) {
+        System.err.println("Error handling the file: " + ex.getMessage());
     }
+}
 
+    @Override
     public void addMessage(String text, String sender) {
         Message m = new TextMessage();
         m.setMessage(text);
@@ -60,6 +67,7 @@ public class Chatting implements Chat{
         database.saveMessages(messages);
     }
 
+    @Override
     public void loadChatHistory() {
         messages = database.loadMessages();
     }
