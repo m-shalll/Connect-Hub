@@ -5,12 +5,14 @@ import Backend.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PostInteractionManagement {
+
     private String postAuthor;
     private String postId;
-    private List<Comment> comments = new ArrayList<>();
-    private List<Like> likes = new ArrayList<>();
+    private ArrayList<Comment> comments = new ArrayList<>();
+    private ArrayList<Like> likes = new ArrayList<>();
     private List<InteractionObserver> observers = new ArrayList<>();
 
     public PostInteractionManagement(String postAuthor, String postId) {
@@ -19,18 +21,16 @@ public class PostInteractionManagement {
         initialize(); // Load saved interactions for the given postId
     }
 
-    public void initialize() {
-        InteractionDatabase database = InteractionDatabase.getInstance();
-        // filter by postId to load only relevant interactions
-        comments = database.loadInteractions("comments.json", Comment.class)
-                .stream()
-                .filter(comment -> comment.getPostId() != null && comment.getPostId().equals(postId))
-                .toList();
-        likes = database.loadInteractions("likes.json", Like.class)
-                .stream()
-                .filter(like -> like.getPostId() != null && like.getPostId().equals(postId))
-                .toList();
-    }
+ public void initialize() {
+    // Load all interactions (likes and comments) for the post
+    CommentDatabase commentatabase = CommentDatabase.getInstance();
+     LikeDatabase likeatabase = LikeDatabase.getInstance();
+    
+    // Load and filter likes for the selected postId
+    this.likes = likeatabase.loadInteractions();
+    // Load and filter comments for the selected postId
+    this.comments = commentatabase.loadInteractions();
+}
 
 
     public void addObserver(InteractionObserver observer) {
@@ -43,58 +43,77 @@ public class PostInteractionManagement {
 
     public void addComment(Comment comment) {
         comments.add(comment);
-        notifyObservers(comment.getUsername() + " added a comment to your post: " + comment.getText());
     }
 
-    public void LikePost(Like like){
-        likes.add(like);
-        notifyObservers(like.getUsername() + "liked your post");
+    public void LikePost(Like newLike) {
+    // Avoid modifying during iteration
+    boolean alreadyLiked = false;
+    for (Like like : likes) {
+        if (like.getPostId().equals(newLike.getPostId()) && 
+            like.getUsername().equals(newLike.getUsername())) {
+            alreadyLiked = true;
+            break;
+        }
     }
+    if (!alreadyLiked) {
+        likes.add(newLike);
+    }
+}
 
-    public void UnLikePost(Like like){
-        likes.remove(like);
-    }
 
-    public void notifyObservers(String message){
-    for(InteractionObserver observer : observers){
-        observer.notify(message);
+    public void UnLikePost(Like newLike) {
+    for (int i = 0; i < likes.size(); i++) {
+        Like like = likes.get(i);
+        if (like.getPostId().equals(newLike.getPostId()) &&
+            like.getUsername().equals(newLike.getUsername())) {
+            likes.remove(i); // Remove the matching Like object by index
+            break; // Exit the loop once the item is removed
+        }
     }
-    }
+}
+
 
     public void saveInteractions() {
-        InteractionDatabase database = InteractionDatabase.getInstance();
-        database.saveInteractions(comments, "comments.json");
-        database.saveInteractions(likes, "likes.json");
+
+        CommentDatabase commentatabase = CommentDatabase.getInstance();
+        LikeDatabase likeatabase = LikeDatabase.getInstance();
+
+        likeatabase.saveInteractions(likes);
+
+        // Save the comments as well (if any changes to them)
+        commentatabase.saveInteractions(comments);
     }
-    
-    public List<Like> getLikes(){
+
+    public ArrayList<Like> getLikes() {
         return likes;
     }
-    
-    public List<Comment> getComments(){
+
+    public ArrayList<Comment> getComments() {
         return comments;
     }
-    
-    public void setLikes(List<Like> likes){
+
+    public void setLikes(ArrayList<Like> likes) {
         this.likes = likes;
     }
-    
-    public void setComments(List<Comment> comments){
+
+    public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
     }
-    public void setPostId(String postId){
+
+    public void setPostId(String postId) {
         this.postId = postId;
     }
-    public String getPostId(){
+
+    public String getPostId() {
         return this.postId;
     }
-    public void setAuthorId(String authorid){
+
+    public void setAuthorId(String authorid) {
         this.postAuthor = authorid;
     }
-    public String getAuthorId(){
+
+    public String getAuthorId() {
         return this.postAuthor;
     }
-
-
 
 }
