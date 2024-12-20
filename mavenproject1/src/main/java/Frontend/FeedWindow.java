@@ -2,7 +2,10 @@
 package Frontend;
 import javax.swing.*;
 import Backend.*;
+import Chatting_System.*;
 import Backend.Roles.*;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import java.awt.Color;
 
 
 public class FeedWindow extends javax.swing.JFrame {
@@ -121,6 +126,13 @@ public class FeedWindow extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
+        friends = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        chat = new javax.swing.JDialog();
+        chatPane = new javax.swing.JScrollPane();
+        chatPanel = new javax.swing.JPanel();
+        textMsg = new javax.swing.JTextField();
+        send = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
@@ -140,6 +152,7 @@ public class FeedWindow extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jButton15 = new javax.swing.JButton();
         notifications = new javax.swing.JButton();
+        Chat = new javax.swing.JButton();
 
         jDialog1.setTitle("Create Post");
 
@@ -371,6 +384,77 @@ public class FeedWindow extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 388, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 288, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout friendsLayout = new javax.swing.GroupLayout(friends.getContentPane());
+        friends.getContentPane().setLayout(friendsLayout);
+        friendsLayout.setHorizontalGroup(
+            friendsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(friendsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        friendsLayout.setVerticalGroup(
+            friendsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, friendsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout chatPanelLayout = new javax.swing.GroupLayout(chatPanel);
+        chatPanel.setLayout(chatPanelLayout);
+        chatPanelLayout.setHorizontalGroup(
+            chatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 548, Short.MAX_VALUE)
+        );
+        chatPanelLayout.setVerticalGroup(
+            chatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 323, Short.MAX_VALUE)
+        );
+
+        chatPane.setViewportView(chatPanel);
+
+        send.setText("Send");
+        send.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout chatLayout = new javax.swing.GroupLayout(chat.getContentPane());
+        chat.getContentPane().setLayout(chatLayout);
+        chatLayout.setHorizontalGroup(
+            chatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(chatLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(textMsg, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(send)
+                .addGap(16, 16, 16))
+            .addComponent(chatPane)
+        );
+        chatLayout.setVerticalGroup(
+            chatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(chatLayout.createSequentialGroup()
+                .addComponent(chatPane, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(chatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Feed Window");
 
@@ -489,6 +573,13 @@ public class FeedWindow extends javax.swing.JFrame {
             }
         });
 
+        Chat.setText("Chats");
+        Chat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -509,24 +600,27 @@ public class FeedWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(notifications, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(178, 178, 178)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Chat))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -544,7 +638,8 @@ public class FeedWindow extends javax.swing.JFrame {
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton12)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(notifications))
+                            .addComponent(notifications)
+                            .addComponent(Chat))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -835,6 +930,20 @@ public class FeedWindow extends javax.swing.JFrame {
             Logger.getLogger(FeedWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_notificationsActionPerformed
+
+    private void ChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChatActionPerformed
+        friends.setVisible(true);
+        for(String i:currentUser.getFriends()){
+        JPanel entryPanel = friendPanel(i);
+    friends.add(entryPanel);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ChatActionPerformed
+
+    private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sendActionPerformed
     public void refresh(){
         for(int i=0; i<stories.size(); i++){
             Story story = (Story)stories.get(i);
@@ -907,9 +1016,66 @@ public class FeedWindow extends javax.swing.JFrame {
         data = groupNames.toArray(data);
         jList2.setListData(data);
     }
+    private JPanel friendPanel(String friend){
+         JPanel panel = new JPanel();
+    panel.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+    JLabel usernameLabel = new JLabel(userDatabase.getUser(friend, users).getUserName());
+     usernameLabel.setPreferredSize(new Dimension(150, 30)); // Adjust dimensions as needed
+    panel.add(usernameLabel);
+    JLabel useridLabel = new JLabel(friend);
+    usernameLabel.setPreferredSize(new Dimension(150, 30)); // Adjust dimensions as needed
+    panel.add(useridLabel);
+
+    // Button to view the friend's profile
+    JButton viewChatButton = new JButton("View Chat");
+    //Here add view Profile functionality
+    viewChatButton.addActionListener(e -> {
+        loadChats(friend);
+    });
+    return panel;
+    }
+    public void loadChats(String friend){
+        friends.dispose();
+    chat.setVisible(true);
+    Chat chatting=new Chatting(currentUser.getUserId(),friend);
+    if(chatting.getMessages().isEmpty()){
+    JLabel messageLabel = new JLabel("<html><body style='width: 200px;'>" +"Start Chatting!" + "</body></html>");
+        messageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    }
+    for(Message i:chatting.getMessages()){
+    JPanel entryPanel = chat(i);
+    chatPanel.add(entryPanel);
+    }
+    
+    }
+    public JPanel chat(Message m){
+     JPanel panel = new JPanel();
+     JLabel messageLabel = new JLabel("<html><body style='width: 200px;'>" + m.getMessage() + "</body></html>");
+      messageLabel.setOpaque(true);
+        messageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+     if(m.getSender().equals(currentUser.getUserId())){
+    panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+    messageLabel.setBackground( new Color(220, 248, 198));
+     }
+     else{
+       panel.setLayout(new FlowLayout(FlowLayout.LEFT)); 
+     messageLabel.setBackground(new Color(230, 230, 230));
+     }
+   panel.add(messageLabel);
+        
+        
+     return panel;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Chat;
     private javax.swing.JList<String> RequestList;
+    private javax.swing.JDialog chat;
+    private javax.swing.JScrollPane chatPane;
+    private javax.swing.JPanel chatPanel;
+    private javax.swing.JDialog friends;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -940,6 +1106,7 @@ public class FeedWindow extends javax.swing.JFrame {
     private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -953,5 +1120,7 @@ public class FeedWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JButton notifications;
+    private javax.swing.JButton send;
+    private javax.swing.JTextField textMsg;
     // End of variables declaration//GEN-END:variables
 }

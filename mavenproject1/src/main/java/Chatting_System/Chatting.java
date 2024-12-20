@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  *
  * @author AbdElrahman
  */
-public class Chatting {
+public class Chatting implements Chat{
 
     private String sender;
     private String reciever;
@@ -30,6 +30,10 @@ public class Chatting {
         Arrays.sort(users);
         this.fileName = users[0] + "," + users[1];
         loadDatabase();
+    }
+
+    public ArrayList<Message> getMessages() {
+        return messages;
     }
 
     public void loadDatabase() {

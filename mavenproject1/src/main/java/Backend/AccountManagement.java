@@ -86,6 +86,16 @@ public class AccountManagement {
         }
         return null;
     }
+        public User getUser(String userId,ArrayList<User> users){
+        for(User user:users){
+
+            if(user.getUserId().equals(userId))
+
+            return user;
+        }
+        return null;
+    }
+    
     public Role getUserRole(Map<String,String> roles,String groupName){
         String roleName = roles.get(groupName);
         if(roleName!=null){
