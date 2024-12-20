@@ -13,7 +13,6 @@ Frontend\Friends$3.class
 Frontend\AdminPage$15.class
 Backend\PostInteraction\InteractionNotification.class
 Backend\UserStories.class
-Backend\AccountManagement.class
 Backend\notifications\newLike.class
 Frontend\ProfilePage$6.class
 Frontend\UserPage$8.class
@@ -25,12 +24,8 @@ Frontend\CoAdminPage$5.class
 Frontend\Friends$9.class
 Frontend\FeedWindow$10.class
 Frontend\FeedWindow$7.class
-Backend\Roles\CoAdminRole.class
-Backend\notifications\ChatNoti.class
 Chatting_System\Message.class
-Frontend\CoAdminPage$19.class
 Backend\notifications\newComment.class
-Frontend\Friends$9$1.class
 Frontend\AdminPage$10.class
 Frontend\ProfilePage$1.class
 Frontend\CoAdminPage$6.class
@@ -55,7 +50,6 @@ Frontend\AdminPage$29.class
 Frontend\SignUpPanel.class
 Backend\notifications\NewPosts.class
 Backend\notifications\NotificationRefresher.class
-Backend\notifications\tester.class
 Frontend\CoAdminPage$4.class
 Backend\notifications\Notification.class
 Backend\Group.class
@@ -63,9 +57,6 @@ Backend\PostInteraction\Comment.class
 Frontend\AdminPage$13.class
 Backend\Story.class
 Frontend\FeedWindow$6.class
-Frontend\SignUpPanel$1.class
-Frontend\ProfilePage$5.class
-Frontend\FeedWindow$16.class
 Frontend\FeedWindow$24.class
 Frontend\AdminPage$21.class
 Frontend\FeedWindow$3.class
@@ -93,7 +84,6 @@ Frontend\UserPage$1.class
 Chatting_System\Chatting.class
 Frontend\CustomJFrame$1.class
 Frontend\FeedWindow$4.class
-Backend\Notifications.class
 Frontend\LogInPannel$1.class
 Frontend\AdminPage$14.class
 Frontend\UserPage.class
@@ -124,6 +114,7 @@ Frontend\FeedWindow$12.class
 Frontend\ProfilePage$CustomListCellRenderer.class
 Frontend\ProfilePage$13.class
 Backend\Roles\CoAdminRole.class
+Backend\notifications\ChatNoti.class
 Frontend\CoAdminPage$19.class
 Frontend\Friends$9$1.class
 Frontend\LogInPannel$3.class

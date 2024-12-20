@@ -10,10 +10,10 @@ import Backend.PostInteraction.Comment;
  *
  * @author Dell
  */
-public class NewLike extends Notification {
+public class newLike extends Notification {
     public String secondUser;
     public String postId;
-    public NewLike(){
+    public newLike(){
         super();
 
     }

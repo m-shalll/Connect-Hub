@@ -1,4 +1,3 @@
-
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\NewPosts.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\Roles\NormalUserRole.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\FriendManagement.java
@@ -17,10 +16,8 @@ C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Chatting
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Frontend\UserIcon.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Frontend\ProfilePage.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Frontend\UserPage.java
-C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\Notifications.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\ProfileManagement.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\Roles\AdminRole.java
-C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\Chat.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\NewUser.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\Post.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\GroupManagement.java
@@ -32,9 +29,10 @@ C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Chatting
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\mavenproject1.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\ContentFactory.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\PasswordManager.java
+C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\ChatNoti.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\FriendRequests.java
+C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\NotificationRefresher.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\Validation.java
-C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\Comment.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Frontend\CustomJFrame.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Frontend\Notifications.java
 C:\Users\Hamza\Documents\GitHub\Connect-Hub\mavenproject1\src\main\java\Backend\notifications\newComment.java

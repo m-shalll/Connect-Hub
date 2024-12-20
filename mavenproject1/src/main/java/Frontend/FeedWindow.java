@@ -88,7 +88,6 @@ public class FeedWindow extends javax.swing.JFrame {
         jDialog5.pack();
         FontIcon sendIcon = FontIcon.of(FontAwesomeSolid.PAPER_PLANE, 20, Color.WHITE);
         send.setIcon(sendIcon);
-        FontIcon sendIcon = FontIcon.of(FontAwesomeSolid.PAPER_PLANE, 20, Color.WHITE);
         send.setIcon(sendIcon);
         NotificationRefresher refresher = new NotificationRefresher();
         Thread refresherThread = new Thread(refresher);
@@ -168,6 +167,8 @@ public class FeedWindow extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jButton17 = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        commentList = new javax.swing.JList<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
@@ -549,7 +550,7 @@ public class FeedWindow extends javax.swing.JFrame {
                         .addComponent(likeButton)
                         .addGap(39, 39, 39)
                         .addComponent(jButton18)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         postInteractLayout.setVerticalGroup(
             postInteractLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -562,7 +563,7 @@ public class FeedWindow extends javax.swing.JFrame {
                 .addGroup(postInteractLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(likeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton18))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
@@ -580,6 +581,9 @@ public class FeedWindow extends javax.swing.JFrame {
             }
         });
 
+        commentList.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane6.setViewportView(commentList);
+
         javax.swing.GroupLayout jDialog5Layout = new javax.swing.GroupLayout(jDialog5.getContentPane());
         jDialog5.getContentPane().setLayout(jDialog5Layout);
         jDialog5Layout.setHorizontalGroup(
@@ -587,19 +591,24 @@ public class FeedWindow extends javax.swing.JFrame {
             .addGroup(jDialog5Layout.createSequentialGroup()
                 .addGroup(jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDialog5Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDialog5Layout.createSequentialGroup()
                         .addGap(100, 100, 100)
-                        .addComponent(jButton17)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addComponent(jButton17))
+                    .addGroup(jDialog5Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jDialog5Layout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jDialog5Layout.setVerticalGroup(
             jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialog5Layout.createSequentialGroup()
-                .addContainerGap(68, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1125,7 +1134,7 @@ public class FeedWindow extends javax.swing.JFrame {
         postInteract.setVisible(true);
         ArrayList<String> friends = currentUser.getFriends();
         String selectedPost = postList.getSelectedValue();
-        PostInteractionManagement interactManager = new PostInteractionManagement(getPostId(), getAuthorId());
+        PostInteractionManagement interactManager = new PostInteractionManagement(getAuthorId(),getPostId() );
         interactManager.initialize();
         postList.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -1158,7 +1167,7 @@ public class FeedWindow extends javax.swing.JFrame {
         if (postList.getSelectedValue().isEmpty()) {
             return;
         }
-        PostInteractionManagement interactManager = new PostInteractionManagement(getPostId(), getAuthorId());
+        PostInteractionManagement interactManager = new PostInteractionManagement(getAuthorId(),getPostId() );
         interactManager.initialize();
 
         Like like = InteractionFactory.createLike(getPostId(), currentUser.getUserId());
@@ -1176,7 +1185,7 @@ public class FeedWindow extends javax.swing.JFrame {
                 not2.setMessage();
                 not2.setUserId(interactManager.getAuthorId());
                 not2.setPostId(interactManager.getPostId());
-                not2.setUsername(currentUser.getUserId());
+                not2.setSecondUser(currentUser.getUserId());
                 ArrayList allNotis = noti.load();
                 allNotis.add(not2);
                 noti.save(allNotis);
@@ -1200,7 +1209,7 @@ public class FeedWindow extends javax.swing.JFrame {
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         String inComment = jTextField8.getText();
-        PostInteractionManagement interactManager = new PostInteractionManagement(getPostId(), getAuthorId());
+        PostInteractionManagement interactManager = new PostInteractionManagement(getAuthorId(),getPostId() );
         interactManager.initialize();
         if (!inComment.isEmpty()) {
             try {
@@ -1210,6 +1219,7 @@ public class FeedWindow extends javax.swing.JFrame {
                 NotificationManager noti = new NotificationManager();
                 newComment not2 = new newComment();
                 not2.setUserId(currentUser.getUserId());
+                not2.setComment(inComment);
                 not2.setMessage();
                 not2.setCommentAuthor(interactManager.getAuthorId());
                 not2.setPostId(interactManager.getPostId());
@@ -1224,9 +1234,32 @@ public class FeedWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        loadCommentList();
         jDialog5.setVisible(true);
     }//GEN-LAST:event_jButton18ActionPerformed
 
+    public void loadCommentList(){
+        PostInteractionManagement interactManager = new PostInteractionManagement(getAuthorId(),getPostId() );
+        interactManager.initialize();
+        ArrayList<Comment> comments = interactManager.getComments();
+        String caption;
+        ArrayList<String> postCaptions = new ArrayList<>();
+        comments.sort((e1, e2) -> e2.getTimeStamp().compareTo(e1.getTimeStamp()));
+        for (int i = 0; i < comments.size(); i++) {
+                    caption = comments.get(i).getText();
+                    postCaptions.add(caption);
+                }
+            
+        
+        String[] emptyData = {};
+        commentList.setListData(emptyData);
+        String[] data = new String[postCaptions.size()];
+        data = postCaptions.toArray(data);
+        commentList.setListData(data);
+        
+        
+        
+    }
     private void updateLikeButton(PostInteractionManagement interactManager) {
         if (isLiked(interactManager.getLikes(), interactManager.getPostId())) {
             likeButton.setBackground(Color.BLUE);
@@ -1247,8 +1280,7 @@ public class FeedWindow extends javax.swing.JFrame {
                 for (int j = 0; j < friends.size(); j++) {
                     if (posts.get(i).getContentPublisher().equals(friends.get(j))) {
                         if (counter == postIndex) {
-                            String postid = posts.get(i).getContentID();
-                            return postid;
+                            return posts.get(i).getContentID();
                         }
                         counter++;
                     }
@@ -1506,6 +1538,7 @@ public class FeedWindow extends javax.swing.JFrame {
     private javax.swing.JDialog chat;
     private javax.swing.JScrollPane chatPane;
     private javax.swing.JPanel chatPanel;
+    private javax.swing.JList<String> commentList;
     private javax.swing.JPanel friendPanel;
     private javax.swing.JDialog friends;
     private javax.swing.JPanel introPanel;
@@ -1550,6 +1583,7 @@ public class FeedWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;

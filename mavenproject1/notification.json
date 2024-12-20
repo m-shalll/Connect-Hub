@@ -11,4 +11,65 @@
   "notificationId" : 1.0,
   "groupName" : "gym bros",
   "contentId" : "1"
+}, {
+  "message" : "user001liked your post",
+  "type" : "NewLike",
+  "userId" : "3",
+  "notificationId" : 2.0,
+  "secondUser" : "user001",
+  "postId" : "user005"
+}, {
+  "message" : "user001liked your post",
+  "type" : "NewLike",
+  "userId" : "2",
+  "notificationId" : 3.0,
+  "secondUser" : "user001",
+  "postId" : "user002"
+}, {
+  "message" : "3added a comment to your post: null",
+  "type" : "NewComment",
+  "userId" : "user001",
+  "notificationId" : 4.0,
+  "comment" : null,
+  "commentAuthor" : "3",
+  "postId" : "user005"
+}, {
+  "message" : "user001liked your post",
+  "type" : "NewLike",
+  "userId" : "3",
+  "notificationId" : 5.0,
+  "secondUser" : "user001",
+  "postId" : "user005"
+}, {
+  "message" : "3added a comment to your post: amazing",
+  "type" : "NewComment",
+  "userId" : "user001",
+  "notificationId" : 6.0,
+  "comment" : "amazing",
+  "commentAuthor" : "3",
+  "postId" : "user005"
+}, {
+  "message" : "3added a comment to your post: ho",
+  "type" : "NewComment",
+  "userId" : "user001",
+  "notificationId" : 7.0,
+  "comment" : "ho",
+  "commentAuthor" : "3",
+  "postId" : "user005"
+}, {
+  "message" : "user005added a comment to your post: 1111",
+  "type" : "NewComment",
+  "userId" : "user001",
+  "notificationId" : 8.0,
+  "comment" : "1111",
+  "commentAuthor" : "user005",
+  "postId" : "3"
+}, {
+  "message" : "nulladded a comment to your post: hi",
+  "type" : "NewComment",
+  "userId" : "user001",
+  "notificationId" : 9.0,
+  "comment" : "hi",
+  "commentAuthor" : null,
+  "postId" : null
 } ]
