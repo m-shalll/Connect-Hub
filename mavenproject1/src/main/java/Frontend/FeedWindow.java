@@ -14,11 +14,16 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
+import org.kordamp.ikonli.swing.FontIcon;
 
 import java.awt.Color;
+
 import java.util.List;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.Image;
+
 
 public class FeedWindow extends javax.swing.JFrame {
 
@@ -73,6 +78,8 @@ public class FeedWindow extends javax.swing.JFrame {
         friends.pack();
         chat.pack();
         postInteract.pack();
+          FontIcon sendIcon = FontIcon.of(FontAwesomeSolid.PAPER_PLANE, 20, Color.WHITE);
+            send.setIcon(sendIcon);
     }
 
     public void LoadGroupSuggestions() {
@@ -142,6 +149,7 @@ public class FeedWindow extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         likeButton = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
+        introPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
@@ -446,6 +454,17 @@ public class FeedWindow extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout introPanelLayout = new javax.swing.GroupLayout(introPanel);
+        introPanel.setLayout(introPanelLayout);
+        introPanelLayout.setHorizontalGroup(
+            introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        introPanelLayout.setVerticalGroup(
+            introPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 49, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout chatLayout = new javax.swing.GroupLayout(chat.getContentPane());
         chat.getContentPane().setLayout(chatLayout);
         chatLayout.setHorizontalGroup(
@@ -457,11 +476,17 @@ public class FeedWindow extends javax.swing.JFrame {
                 .addComponent(send)
                 .addGap(16, 16, 16))
             .addComponent(chatPane)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, chatLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(introPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         chatLayout.setVerticalGroup(
             chatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(chatLayout.createSequentialGroup()
-                .addComponent(chatPane)
+                .addComponent(introPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(chatPane, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(chatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1228,37 +1253,97 @@ public class FeedWindow extends javax.swing.JFrame {
 
     public void loadChats(String friend) {
         friends.dispose();
+        introPanel.removeAll();
+        chatPanel.removeAll();
         chat.setVisible(true);
+         chat.revalidate();
+        chat.repaint();
+        chatPane.revalidate();
+        chatPane.repaint();
+        chatPanel.setLayout(new BoxLayout(chatPanel, BoxLayout.Y_AXIS));
+        
+        introPanel.revalidate();
+        introPanel.repaint();
+        introPanel.setLayout(new BoxLayout(introPanel, BoxLayout.X_AXIS));
+        JLabel userNameLabel = new JLabel(userDatabase.getUser(friend, users).getUserName());
+            userNameLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            ImageIcon icon = new ImageIcon(userDatabase.getUser(friend, users).getUserPhoto());
+        Image image = icon.getImage();
+        Image scaledImage1 = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        ImageIcon circularIcon = new ImageIcon(UserIcon.makeImageCircular(scaledImage1));
+        JLabel imageLabel1 = new JLabel(circularIcon);
+        
+         JButton back = new JButton("Back");
+        FontIcon backIcon = FontIcon.of(FontAwesomeSolid.ARROW_LEFT, 20, Color.WHITE);
+            back.setIcon(backIcon);
+            introPanel.add(back);
+            introPanel.add(Box.createHorizontalStrut(20));
+           introPanel.add(imageLabel1);
+           introPanel.add(Box.createHorizontalStrut(20));
+        introPanel.add(userNameLabel);
+        introPanel.add(Box.createHorizontalStrut(280));
+        
+
+            
+            FontIcon refreshIcon = FontIcon.of(FontAwesomeSolid.SYNC_ALT, 20, Color.WHITE);
+            JButton refreshButton = new JButton("");
+            refreshButton.setIcon(refreshIcon);
+            introPanel.add(refreshButton);
         Chat chatting = new Chatting(currentUser.getUserId(), friend);
         currentChat = chatting;
         if (chatting.getMessages().isEmpty()) {
-            JLabel messageLabel = new JLabel("Start Chatting!");
+            
+            JLabel messageLabel = new JLabel("<html><body style='width: 500px;'>" + "Start Chatting!" + "</body></html>");
             messageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
             messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
             chatPanel.add(messageLabel);
         } else {
             for (Message i : chatting.getMessages()) {
-                JPanel entryPanel = chat(i);
+                JPanel entryPanel = chat(i,friend);
                 chatPanel.add(entryPanel);
+                chatPanel.add(Box.createVerticalStrut(20));
             }
         }
+        back.addActionListener(e -> {
+            friends.setVisible(true);
+            this.dispose();
+        });
+        refreshButton.addActionListener(e -> {
+            loadChats(friend);
+        });
         chatPanel.revalidate();
         chatPanel.repaint();
     }
 
-    public JPanel chat(Message m) {
+    public JPanel chat(Message m,String friend) {
         JPanel panel = new JPanel();
+         // Simplify alignment
+    panel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+    
         JLabel messageLabel = new JLabel(m.getMessage());
         messageLabel.setOpaque(true);
         messageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         if (m.getSender().equals(currentUser.getUserId())) {
-            panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+            panel.setLayout(new FlowLayout(FlowLayout.RIGHT,0,0));
             messageLabel.setBackground(new Color(220, 248, 198));
+             
         } else {
-            panel.setLayout(new FlowLayout(FlowLayout.LEFT));
+            panel.setLayout(new FlowLayout(FlowLayout.LEFT,0,0));
             messageLabel.setBackground(new Color(230, 230, 230));
+            ImageIcon icon = new ImageIcon(userDatabase.getUser(friend, users).getUserPhoto());
+            System.out.println(userDatabase.getUser(friend, users).getUserPhoto());
+        Image image = icon.getImage();
+        Image scaledImage1 = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        ImageIcon circularIcon = new ImageIcon(UserIcon.makeImageCircular(scaledImage1));
+        JLabel imageLabel1 = new JLabel(circularIcon);
+        Box centerBox = Box.createHorizontalBox();
+        centerBox.add(imageLabel1);
+        centerBox.add(Box.createHorizontalStrut(20));
+        centerBox.add(messageLabel);
+        panel.add(centerBox);
         }
         panel.add(messageLabel);
+        panel.add(Box.createVerticalStrut(30));
         return panel;
     }
 
@@ -1270,6 +1355,7 @@ public class FeedWindow extends javax.swing.JFrame {
     private javax.swing.JPanel chatPanel;
     private javax.swing.JPanel friendPanel;
     private javax.swing.JDialog friends;
+    private javax.swing.JPanel introPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;

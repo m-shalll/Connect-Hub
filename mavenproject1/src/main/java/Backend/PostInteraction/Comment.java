@@ -44,10 +44,10 @@ public class Comment {
     public String getCommentId() {
         return commentId;
     }
+
     public void setCommentId(String commentId) { this.commentId = commentId; }
     public void setText(String text) { this.text = text; }
     public void setPostId(String postId) { this.postId = postId; }
     public void setUsername(String username) { this.username = username; }
     public void setTimeStamp(LocalDateTime timeStamp) { this.timeStamp = timeStamp; }
-
 }
