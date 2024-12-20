@@ -11,11 +11,4 @@
   "notificationId" : 1.0,
   "groupName" : "gym bros",
   "contentId" : "1"
-}, {
-  "message" : "user001liked your post",
-  "type" : null,
-  "userId" : "3",
-  "notificationId" : 2.0,
-  "username" : "user001",
-  "postId" : "user005"
 } ]

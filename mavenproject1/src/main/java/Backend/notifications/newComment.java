@@ -10,11 +10,11 @@ import Backend.PostInteraction.Comment;
  *
  * @author Dell
  */
-public class newComment extends Notification {
+public class NewComment extends Notification {
     public String comment;
     public String commentAuthor;
     public String postId;
-    public newComment(){
+    public NewComment(){
         super();
 
     }

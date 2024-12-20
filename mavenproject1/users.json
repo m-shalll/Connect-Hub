@@ -60,7 +60,7 @@
   "userId" : "user004",
   "salt" : "rUK08zJRNqB/mqsbpplmFA==",
   "password" : "Wm2MOgwc1k7qLKgjx1vMU+uuKm7Geetmw3O94VA5QaA=",
-  "status" : "offline",
+  "status" : "online",
   "friends" : [ "user001", "user014", "user015", "user017" ],
   "blocked" : [ "user020" ],
   "friendReq" : {

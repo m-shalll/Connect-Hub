@@ -9,6 +9,8 @@ import Backend.PostInteraction.PostInteractionManagement;
 import Backend.notifications.NotificationManager;
 import Backend.notifications.newComment;
 import Backend.notifications.newLike;
+import Backend.notifications.Notification;
+import Backend.notifications.NotificationRefresher;
 import Chatting_System.*;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -47,6 +49,8 @@ public class FeedWindow extends javax.swing.JFrame {
 
     private User currentUser;
     private Chat currentChat;
+    
+    public static ArrayList<Notification> notificationList;
 
     public FeedWindow(User user) {
         initComponents();
@@ -84,6 +88,12 @@ public class FeedWindow extends javax.swing.JFrame {
         jDialog5.pack();
         FontIcon sendIcon = FontIcon.of(FontAwesomeSolid.PAPER_PLANE, 20, Color.WHITE);
         send.setIcon(sendIcon);
+        FontIcon sendIcon = FontIcon.of(FontAwesomeSolid.PAPER_PLANE, 20, Color.WHITE);
+        send.setIcon(sendIcon);
+        NotificationRefresher refresher = new NotificationRefresher();
+        Thread refresherThread = new Thread(refresher);
+        refresherThread.start();
+        this.notificationList=refresher.getNotifications();
     }
 
     public void LoadGroupSuggestions() {
@@ -1228,7 +1238,6 @@ public class FeedWindow extends javax.swing.JFrame {
             likeButton.setText("Like");
         }
     }
-
     public String getPostId() {
         ArrayList<String> friends = currentUser.getFriends();
         String selectedPost = postList.getSelectedValue();

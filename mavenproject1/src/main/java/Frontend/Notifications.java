@@ -28,7 +28,7 @@ import javax.swing.JTextField;
 public class Notifications extends javax.swing.JFrame {
     private JFrame notificationsFrame;
     private JPanel notificationsContainer;
-    private ArrayList<Notification> notifications;
+    public ArrayList<Notification> notifications=FeedWindow.notificationList;
     public ArrayList<User> users=LogInPannel.users;
     public User targetUser =LogInPannel.logIn;
     private FeedWindow feed;

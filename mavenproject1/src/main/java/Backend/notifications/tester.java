@@ -34,5 +34,16 @@ public class tester {
         }
         NewPosts newPost = (NewPosts) notifications.get(1);
         System.out.print(newPost.getContentId());
+//        Chat not2=new newChat();
+//        not2.setMessage();
+//        not2.setUserId(*user who will recieve the message*);
+//        not2.setSecondUser(*user who sent the message*);
+//        ArrayList allNotis=noti.load();
+//        allNotis.add(not2);
+//        noti.save(allNotis);
+        
     }
+    
+    
+
 }
