@@ -1264,11 +1264,11 @@ public class FeedWindow extends javax.swing.JFrame {
         if (isLiked(interactManager.getLikes(), interactManager.getPostId())) {
             likeButton.setBackground(Color.BLUE);
             likeButton.setForeground(Color.white);
-            likeButton.setText("UnLike");
+            likeButton.setText("UnLike"+ interactManager.getLikes().size());
         } else {
             likeButton.setBackground(Color.LIGHT_GRAY);
             likeButton.setForeground(Color.BLACK);
-            likeButton.setText("Like");
+            likeButton.setText("Like"+ interactManager.getLikes().size());
         }
     }
     public String getPostId() {
