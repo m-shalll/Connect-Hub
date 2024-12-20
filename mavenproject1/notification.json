@@ -11,4 +11,16 @@
   "notificationId" : 1.0,
   "groupName" : "gym bros",
   "contentId" : "1"
+}, {
+  "message" : "You got a new text from user001",
+  "type" : "ChatNoti",
+  "userId" : "user002",
+  "notificationId" : 2.0,
+  "secondUser" : "user001"
+}, {
+  "message" : "You got a new text from user001",
+  "type" : "ChatNoti",
+  "userId" : "user002",
+  "notificationId" : 3.0,
+  "secondUser" : "user001"
 } ]

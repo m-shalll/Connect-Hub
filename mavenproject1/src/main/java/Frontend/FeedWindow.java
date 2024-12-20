@@ -5,6 +5,8 @@ import Backend.*;
 import Backend.PostInteraction.InteractionFactory;
 import Backend.PostInteraction.Like;
 import Backend.PostInteraction.PostInteractionManagement;
+import Backend.notifications.Notification;
+import Backend.notifications.NotificationRefresher;
 import Chatting_System.*;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -44,6 +46,8 @@ public class FeedWindow extends javax.swing.JFrame {
 
     private User currentUser;
     private Chat currentChat;
+    
+    public static ArrayList<Notification> notificationList;
 
     public FeedWindow(User user) {
         initComponents();
@@ -78,8 +82,12 @@ public class FeedWindow extends javax.swing.JFrame {
         friends.pack();
         chat.pack();
         postInteract.pack();
-          FontIcon sendIcon = FontIcon.of(FontAwesomeSolid.PAPER_PLANE, 20, Color.WHITE);
-            send.setIcon(sendIcon);
+        FontIcon sendIcon = FontIcon.of(FontAwesomeSolid.PAPER_PLANE, 20, Color.WHITE);
+        send.setIcon(sendIcon);
+        NotificationRefresher refresher = new NotificationRefresher();
+        Thread refresherThread = new Thread(refresher);
+        refresherThread.start();
+        this.notificationList=refresher.getNotifications();
     }
 
     public void LoadGroupSuggestions() {
@@ -143,13 +151,13 @@ public class FeedWindow extends javax.swing.JFrame {
         chatPanel = new javax.swing.JPanel();
         textMsg = new javax.swing.JTextField();
         send = new javax.swing.JButton();
+        introPanel = new javax.swing.JPanel();
         postInteract = new javax.swing.JDialog();
         jScrollPane5 = new javax.swing.JScrollPane();
         postList = new javax.swing.JList<>();
         jLabel8 = new javax.swing.JLabel();
         likeButton = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
-        introPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
@@ -508,6 +516,11 @@ public class FeedWindow extends javax.swing.JFrame {
         });
 
         jButton18.setText("Comment");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout postInteractLayout = new javax.swing.GroupLayout(postInteract.getContentPane());
         postInteract.getContentPane().setLayout(postInteractLayout);
@@ -1086,6 +1099,10 @@ public class FeedWindow extends javax.swing.JFrame {
     private void likeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_likeButtonActionPerformed
 
     }//GEN-LAST:event_likeButtonActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        
+    }//GEN-LAST:event_jButton18ActionPerformed
 
     public String getPostId() {
         ArrayList<String> friends = currentUser.getFriends();

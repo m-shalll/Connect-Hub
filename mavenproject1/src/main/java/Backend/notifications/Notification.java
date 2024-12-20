@@ -11,7 +11,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
     @JsonSubTypes.Type(value = FriendRequests.class, name = "Friend"),
     @JsonSubTypes.Type(value = NewUser.class, name = "User"),
     @JsonSubTypes.Type(value = NewPosts.class, name = "Post"),
-    @JsonSubTypes.Type(value = NewStatus.class, name = "Status")
+    @JsonSubTypes.Type(value = NewStatus.class, name = "Status"),
+    @JsonSubTypes.Type(value = ChatNoti.class, name = "ChatNoti")
 })
 public abstract class Notification {
     String message;
