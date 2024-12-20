@@ -37,6 +37,13 @@ public class NotificationManager {
             notification.setType("ChatNoti");
             ((ChatNoti) notification).setSecondUser(((ChatNoti) notification).getSecondUser());
         }
+            else if (notification instanceof newComment) {
+            notification.setType("newComment");
+        }
+            else if (notification instanceof newLike) {
+            notification.setType("newLike");
+            ((newLike) notification).setSecondUser(((newLike) notification).getSecondUser());
+        }
         }
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, notifications);
     }

@@ -11,7 +11,7 @@ import Backend.PostInteraction.Comment;
  * @author Dell
  */
 public class newLike extends Notification {
-    public String username;
+    public String secondUser;
     public String postId;
     public newLike(){
         super();
@@ -19,16 +19,16 @@ public class newLike extends Notification {
     }
     @Override
     public void setMessage() {
-        this.message= username+"liked your post";
+        this.message= secondUser+"liked your post";
     }
     public String getMessage(){
         return this.message;
     }
-    public void setUsername(String username) {
-        this.username = username;
+    public void setSecondUser(String username) {
+        this.secondUser = username;
     }
-    public String getUsername() {
-        return this.username;
+    public String getSecondUser() {
+        return this.secondUser;
     }
     public void setPostId(String postId) {
         this.postId = postId;
